@@ -9,9 +9,19 @@
         <li class="nav-header">Another list header</li>
         <li><a href="#">Profile</a></li>
         <li><a href="#">Settings</a></li>
+
+        <%-- this section is for admin only --%>
+        <%
+        if(System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+        {
+        %>  
         <li class="nav-header">Users Management</li>
         <li><a href="/AdminAccess/ViewAllUsers.aspx">View all users</a></li>
         <li><a href="#">Add new user</a></li>
+        <%
+        }
+        %>
+        <%-- this section is for admin only --%>
     </ul>
 </div>
 
