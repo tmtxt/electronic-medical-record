@@ -32,6 +32,7 @@ public partial class AdminAccess_ViewAllUsers : System.Web.UI.Page
 
     protected void AllUsersGridViewRowDeleting(object sender, GridViewDeleteEventArgs e)
     {
+        System.Threading.Thread.Sleep(3000);
         var username = AllUsersGridView.Rows[e.RowIndex].Cells[0].Text;
         Membership.DeleteUser(username);
         ResultLabel.Text = string.Format("<strong>{0}</strong> details deleted Successfully", username);
@@ -41,6 +42,7 @@ public partial class AdminAccess_ViewAllUsers : System.Web.UI.Page
 
     protected void AllUsersGridViewRowUpdating(object sender, GridViewUpdateEventArgs e)
     {
+        System.Threading.Thread.Sleep(3000);
         int index = AllUsersGridView.EditIndex;
         GridViewRow gvrow = AllUsersGridView.Rows[index];
         var username = AllUsersGridView.Rows[e.RowIndex].Cells[0].Text;
