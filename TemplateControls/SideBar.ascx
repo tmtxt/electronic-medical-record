@@ -4,14 +4,18 @@
 <div class="well" style="padding: 8px 0;">
     <ul class="nav nav-list" id="sidebar-nav">
         <li class="nav-header">Warehouse Management</li>
-        <li><a href="/aaa.aspx">View warehouses</a></li>
-        <li><a href="/Default.aspx">Edit ware house</a></li>
+        <li><a href="#">View warehouses</a></li>
+        <li><a href="/UserAccess/Default.aspx">Edit ware house</a></li>
         <li class="nav-header">Another list header</li>
-        <li><a href="/ccc.apsx">Profile</a></li>
-        <li><a href="/ddd.aspx">Settings</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Settings</a></li>
+        <li class="nav-header">Users Management</li>
+        <li><a href="/AdminAccess/ViewAllUsers.aspx">View all users</a></li>
+        <li><a href="#">Add new user</a></li>
     </ul>
 </div>
 
+<%-- code for highlighting the current link in sidebar --%>
 <script type="text/javascript">
     // highlight current item in nav bar
 

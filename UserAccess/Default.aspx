@@ -5,5 +5,5 @@
 </asp:Content>
 
 <asp:Content ID="Content" ContentPlaceHolderID="Content" Runat="Server">
-    Welcome
+    Default User
 </asp:Content>
