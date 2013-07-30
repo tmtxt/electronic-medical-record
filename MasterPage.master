@@ -1,6 +1,8 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
 
-<%@ Register src="Template/Navbar.ascx" tagname="Navbar" tagprefix="utmpl" %>
+<%@ Register Src="TemplateControls/Navbar.ascx" TagName="Navbar" TagPrefix="utmpl" %>
+<%@ Register Src="TemplateControls/SideBar.ascx" TagPrefix="utmpl" TagName="SideBar" %>
+
 
 <!DOCTYPE html>
 
@@ -20,6 +22,24 @@
 
 </head>
 <body>
-        <utmpl:Navbar ID="Navbar" runat="server" />
+    <utmpl:Navbar ID="Navbar" runat="server" />
+
+    <div class="container">
+        <div class="hidden-phone">
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+        </div>
+
+        <div class="content">
+            <div class="row">
+                <div class="span3">
+                    <utmpl:SideBar runat="server" ID="SideBar" />
+                </div>
+                <div class="span9">bbb</div>
+            </div>
+        </div>
+    </div>
+
+    
 </body>
 </html>

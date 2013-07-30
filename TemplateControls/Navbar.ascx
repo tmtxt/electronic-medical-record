@@ -1,8 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Navbar.ascx.cs" Inherits="WebUserControl" %>
 
-<div class="navbar">
+<div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
-            <div class="container" style="width: 1170px">
+            <div class="container" style="width: 1000px">
                 <a class="brand" href="Default.aspx">Warehouse Management</a>
                 <ul class="nav pull-right" id="main-menu-right">
                     <li class="dropdown">
