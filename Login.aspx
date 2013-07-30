@@ -25,7 +25,9 @@
                 </div>
                 <form class="well text-center" id="LoginForm" action="/Login.aspx" runat="server">
                     <fieldset>
-                        <legend><h3>Login</h3></legend>
+                        <legend>
+                            <h3>Login</h3>
+                        </legend>
                         <div class="form-group">
                             <label for="useUsernameTextboxrname">Username</label>
                             <asp:TextBox ID="UsernameTextbox" runat="server" CssClass="form-control"></asp:TextBox><br />
@@ -48,6 +50,19 @@
                         </div>
                         <asp:Button ID="LoginButton" runat="server" Text="Login" CssClass="btn btn-primary btn-large" OnClick="LoginButton_Click" />
                     </fieldset>
+                    <br />
+                    <div runat="server" id="LoginFailAlert" style="display:none" class="alert alert-error">
+                        <strong>Login fail</strong><br />
+                        Please check your username and password.
+                    </div>
+                    <div runat="server" id="AdminAccessAlert" style="display:none" class="alert alert-error">
+                        <strong>Access Deined</strong><br />
+                        You need to login with an admin account to continue
+                    </div>
+                    <div runat="server" id="UserAccessAlert" style="display:none" class="alert alert-error">
+                        <strong>Access Deined</strong><br />
+                        You need to login to continue
+                    </div>
                 </form>
             </div>
             <div class="span3"></div>
