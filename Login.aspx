@@ -27,13 +27,17 @@
                     <fieldset>
                         <legend><h3>Login</h3></legend>
                         <div class="form-group">
-                            <label for="username">Username</label>
-                            <input type="text" class="form-control" id="username" placeholder="Username" />
+                            <label for="useUsernameTextboxrname">Username</label>
+                            <asp:TextBox ID="UsernameTextbox" runat="server" CssClass="form-control"></asp:TextBox><br />
+                            <asp:RequiredFieldValidator ID="UsernameValidator" runat="server" ErrorMessage="Username is required" ControlToValidate="UsernameTextbox" CssClass="label label-important"></asp:RequiredFieldValidator>
                         </div>
+                        <br />
                         <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="Password" />
+                            <label for="PasswordTextbox">Password</label>
+                            <asp:TextBox ID="PasswordTextbox" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox><br />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Password is required" ControlToValidate="PasswordTextbox" CssClass="label label-important"></asp:RequiredFieldValidator>
                         </div>
+                        <br />
                         <div class="form-inline">
                             <div class="checkbox">
                                 <label>
@@ -44,8 +48,7 @@
                         </div>
                         <button type="submit" class="btn btn-primary btn-large">
                             <span class="glyphicon glyphicon-hand-up"></span>
-                            Sign in
-                        </button>
+                            Sign in</button>
                     </fieldset>
                 </form>
             </div>
