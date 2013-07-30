@@ -3,6 +3,11 @@
 <asp:Content ID="Title" ContentPlaceHolderID="Title" runat="Server">
     Users
 </asp:Content>
+
+<asp:Content ID="Header" ContentPlaceHolderID="Header" runat="Server">
+    Users List
+</asp:Content>
+
 <asp:Content ID="Content" ContentPlaceHolderID="Content" runat="Server">
 
     <form id="form1" runat="server">
@@ -38,4 +43,3 @@
     </form>
 
 </asp:Content>
-

@@ -29,13 +29,13 @@
                             <h3>Login</h3>
                         </legend>
                         <div class="form-group">
-                            <label for="useUsernameTextboxrname">Username</label>
+                            <label for="useUsernameTextboxrname">Username*</label>
                             <asp:TextBox ID="UsernameTextbox" runat="server" CssClass="form-control"></asp:TextBox><br />
                             <asp:RequiredFieldValidator ID="UsernameValidator" runat="server" ErrorMessage="Username is required" ControlToValidate="UsernameTextbox" CssClass="label label-important"></asp:RequiredFieldValidator>
                         </div>
                         <br />
                         <div class="form-group">
-                            <label for="PasswordTextbox">Password</label>
+                            <label for="PasswordTextbox">Password*</label>
                             <asp:TextBox ID="PasswordTextbox" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox><br />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Password is required" ControlToValidate="PasswordTextbox" CssClass="label label-important"></asp:RequiredFieldValidator>
                         </div>

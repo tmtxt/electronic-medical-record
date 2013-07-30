@@ -17,7 +17,7 @@
         %>  
         <li class="nav-header">Users Management</li>
         <li><a href="/AdminAccess/ViewAllUsers.aspx">View all users</a></li>
-        <li><a href="#">Add new user</a></li>
+        <li><a href="/AdminAccess/AddNewUser.aspx">Add new user</a></li>
         <%
         }
         %>

@@ -33,12 +33,19 @@
                 </div>
                 <div class="span9">
                     <div class="well">
+                        <h1>
+                            <asp:ContentPlaceHolder ID="Header" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </h1>
+                        <hr />
                         <asp:ContentPlaceHolder ID="Content" runat="server">
                         </asp:ContentPlaceHolder>
                     </div>
 
                 </div>
             </div>
+            <footer>
+            </footer>
         </div>
     </div>
 
