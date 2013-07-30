@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="WarehouseManagement" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=TMTXT-PC\SQLEXPRESS;Initial Catalog=WarehouseManagement;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="WarehouseManagementConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="" Member="Warehouses">
+    <Type Name="Warehouse">
+      <Column Member="ID" Type="System.String" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Member="Name" Type="System.String" CanBeNull="false" />
+      <Column Member="Address" Type="System.String" CanBeNull="false" />
+      <Association Name="Warehouse_WES" Member="WES" ThisKey="ID" OtherKey="WarehouseID" Type="WES" />
+      <Association Name="Warehouse_DOS" Member="DOS" ThisKey="ID" OtherKey="WarehouseID" Type="DOS" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Products">
+    <Type Name="Product">
+      <Column Member="ID" Type="System.String" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Member="Name" Type="System.String" CanBeNull="false" />
+      <Column Member="Description" Type="System.String" CanBeNull="false" />
+      <Column Member="Unit" Type="System.String" CanBeNull="false" />
+      <Column Member="Price" Type="System.Single" CanBeNull="false" />
+      <Column Member="CurrentBalance" Type="System.Int32" CanBeNull="false" />
+      <Association Name="Product_WESDetail" Member="WESDetails" ThisKey="ID" OtherKey="ProductID" Type="WESDetail" />
+      <Association Name="Product_DOSDetail" Member="DOSDetails" ThisKey="ID" OtherKey="ProductID" Type="DOSDetail" />
+    </Type>
+  </Table>
+  <Table Name="" Member="WES">
+    <Type Name="WES">
+      <Column Member="ID" Type="System.String" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Member="Date" Type="System.DateTime" CanBeNull="false" />
+      <Column Member="WarehouseID" Type="System.String" CanBeNull="false" />
+      <Column Member="ProviderID" Type="System.String" CanBeNull="false" />
+      <Column Member="Username" Type="System.String" CanBeNull="false" />
+      <Association Name="WES_WESDetail" Member="WESDetails" ThisKey="ID" OtherKey="WESID" Type="WESDetail" />
+      <Association Name="Warehouse_WES" Member="Warehouse" ThisKey="WarehouseID" OtherKey="ID" Type="Warehouse" IsForeignKey="true" />
+      <Association Name="Provider_WES" Member="Provider" ThisKey="ProviderID" OtherKey="ID" Type="Provider" IsForeignKey="true" />
+      <Association Name="aspnet_User_WES" Member="aspnet_User" ThisKey="Username" OtherKey="UserName" Type="aspnet_User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="WESDetails">
+    <Type Name="WESDetail">
+      <Column Member="ID" Type="System.String" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Member="ProductID" Type="System.String" CanBeNull="false" />
+      <Column Member="Quantity" Type="System.Int32" CanBeNull="false" />
+      <Column Member="Unit" Type="System.String" CanBeNull="false" />
+      <Column Member="Price" Type="System.Single" CanBeNull="false" />
+      <Column Member="WESID" Type="System.String" CanBeNull="false" />
+      <Association Name="WES_WESDetail" Member="WES" ThisKey="WESID" OtherKey="ID" Type="WES" IsForeignKey="true" />
+      <Association Name="Product_WESDetail" Member="Product" ThisKey="ProductID" OtherKey="ID" Type="Product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="DOS">
+    <Type Name="DOS">
+      <Column Member="ID" Type="System.String" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Member="Date" Type="System.DateTime" CanBeNull="false" />
+      <Column Member="WarehouseID" Type="System.String" CanBeNull="false" />
+      <Column Member="ProviderID" Type="System.String" CanBeNull="false" />
+      <Column Member="Username" Type="System.String" CanBeNull="false" />
+      <Association Name="DOS_DOSDetail" Member="DOSDetails" ThisKey="ID" OtherKey="DOSID" Type="DOSDetail" />
+      <Association Name="Warehouse_DOS" Member="Warehouse" ThisKey="WarehouseID" OtherKey="ID" Type="Warehouse" IsForeignKey="true" />
+      <Association Name="Provider_DOS" Member="Provider" ThisKey="ProviderID" OtherKey="ID" Type="Provider" IsForeignKey="true" />
+      <Association Name="aspnet_User_DOS" Member="aspnet_User" ThisKey="Username" OtherKey="UserName" Type="aspnet_User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Providers">
+    <Type Name="Provider">
+      <Column Member="ID" Type="System.String" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Member="Name" Type="System.String" CanBeNull="false" />
+      <Column Member="Address" Type="System.String" CanBeNull="false" />
+      <Column Member="Phone" Type="System.String" CanBeNull="false" />
+      <Column Member="Email" Type="System.String" CanBeNull="false" />
+      <Column Member="ContactPerson" Type="System.String" CanBeNull="false" />
+      <Column Member="ContactPersonPhone" Type="System.String" CanBeNull="false" />
+      <Column Member="ContactPersonEmail" Type="System.String" CanBeNull="false" />
+      <Association Name="Provider_WES" Member="WES" ThisKey="ID" OtherKey="ProviderID" Type="WES" />
+      <Association Name="Provider_DOS" Member="DOS" ThisKey="ID" OtherKey="ProviderID" Type="DOS" />
+    </Type>
+  </Table>
+  <Table Name="dbo.aspnet_Users" Member="aspnet_Users">
+    <Type Name="aspnet_User">
+      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="LoweredUserName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="MobileAlias" Type="System.String" DbType="NVarChar(16)" CanBeNull="true" />
+      <Column Name="IsAnonymous" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LastActivityDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="aspnet_User_WES" Member="WES" ThisKey="UserName" OtherKey="Username" Type="WES" />
+      <Association Name="aspnet_User_DOS" Member="DOS" ThisKey="UserName" OtherKey="Username" Type="DOS" />
+    </Type>
+  </Table>
+  <Table Name="" Member="DOSDetails">
+    <Type Name="DOSDetail">
+      <Column Member="ID" Type="System.String" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Member="ProductID" Type="System.String" CanBeNull="false" />
+      <Column Member="Quantity" Type="System.Int32" CanBeNull="false" />
+      <Column Member="Unit" Type="System.String" CanBeNull="false" />
+      <Column Member="Price" Type="System.Single" CanBeNull="false" />
+      <Column Member="DOSID" Type="System.String" CanBeNull="false" />
+      <Association Name="Product_DOSDetail" Member="Product" ThisKey="ProductID" OtherKey="ID" Type="Product" IsForeignKey="true" />
+      <Association Name="DOS_DOSDetail" Member="DOS" ThisKey="DOSID" OtherKey="ID" Type="DOS" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
