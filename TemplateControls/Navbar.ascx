@@ -8,14 +8,14 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             <span class="glyphicon glyphicon-user"></span>
-                            Hello User
+                            Hello <%= System.Threading.Thread.CurrentPrincipal.Identity.Name %>
                             <b class="caret"></b>
                             <ul class="dropdown-menu">
                                 <li>
                                     <a href="#">Edit Profile</a>
                                 </li>
                                 <li>
-                                    <a href="#">Logout</a>
+                                    <a href="/Logout.aspx">Logout</a>
                                 </li>
                             </ul>
                         </a>
