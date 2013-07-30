@@ -4,9 +4,17 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
-    <asp:ContentPlaceHolder id="head" runat="server">
-    </asp:ContentPlaceHolder>
+    <%-- include twitter bootstrap --%>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="Assets/Default/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <script src="Assets/Default/jQuery/jquery-1.10.2.min.js"></script>
+    <script src="Assets/Default/js/bootstrap.min.js"></script>
+
+    <title>
+        <asp:ContentPlaceHolder id="title" runat="server">
+    </asp:ContentPlaceHolder>s
+    </title>
+    
 </head>
 <body>
     <form id="form1" runat="server">
