@@ -3,19 +3,35 @@
 
 <div class="well" style="padding: 8px 0;">
     <ul class="nav nav-list" id="sidebar-nav">
-        <li class="nav-header">Warehouse Management</li>
+        <li class="nav-header">Home</li>
+        <li><a href="/UserAccess/Default.aspx">Home</a></li>
+
+        <li class="nav-header">Warehouses</li>
         <li><a href="#">View warehouses</a></li>
-        <li><a href="/UserAccess/Default.aspx">Edit ware house</a></li>
-        <li class="nav-header">Another list header</li>
-        <li><a href="#">Profile</a></li>
-        <li><a href="#">Settings</a></li>
+        <li><a href="#">Add new warehouse</a></li>
+
+        <li class="nav-header">Providers</li>
+        <li><a href="#">View providers</a></li>
+        <li><a href="#">Add new provider</a></li>
+
+        <li class="nav-header">Products</li>
+        <li><a href="#">View products</a></li>
+        <li><a href="#">Add new product</a></li>
+
+        <li class="nav-header">Import cards</li>
+        <li><a href="#">View import cards</a></li>
+        <li><a href="#">Add new import card</a></li>
+
+        <li class="nav-header">Export cards</li>
+        <li><a href="#">View export cards</a></li>
+        <li><a href="#">Add new export card</a></li>
 
         <%-- this section is for admin only --%>
         <%
         if(System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
         {
         %>  
-        <li class="nav-header">Users Management</li>
+        <li class="nav-header">Users</li>
         <li><a href="/AdminAccess/ViewAllUsers.aspx">View all users</a></li>
         <li><a href="/AdminAccess/AddNewUser.aspx">Add new user</a></li>
         <%
