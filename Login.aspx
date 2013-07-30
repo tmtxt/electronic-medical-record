@@ -41,14 +41,12 @@
                         <div class="form-inline">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" />
+                                    <asp:CheckBox ID="RememberPasswordCheckbox" runat="server" />
                                     Remember me
                                 </label>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-large">
-                            <span class="glyphicon glyphicon-hand-up"></span>
-                            Sign in</button>
+                        <asp:Button ID="LoginButton" runat="server" Text="Login" CssClass="btn btn-primary btn-large" OnClick="LoginButton_Click" />
                     </fieldset>
                 </form>
             </div>
