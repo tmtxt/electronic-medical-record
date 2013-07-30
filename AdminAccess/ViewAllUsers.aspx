@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ViewAllUsers.aspx.cs" Inherits="AdminAccess_ViewAllUsers" %>
 
+<%@ Register Src="~/TemplateControls/UpdateProgressBar.ascx" TagPrefix="utmpl" TagName="UpdateProgressBar" %>
+
+
 <asp:Content ID="Title" ContentPlaceHolderID="Title" runat="Server">
     Users
 </asp:Content>
@@ -43,11 +46,7 @@
                 </div>
             </ContentTemplate>
         </asp:UpdatePanel>
-        <asp:UpdateProgress ID="UsersUpdateProgress" runat="server">
-            <ProgressTemplate>
-                <img src="/Assets/Default/images/ajax-loader.gif" />
-            </ProgressTemplate>
-        </asp:UpdateProgress>
+        <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
     </form>
 
 </asp:Content>
