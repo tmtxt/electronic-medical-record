@@ -38,14 +38,14 @@
                 <div class="span9">
                     <div class="well">
                         <asp:ContentPlaceHolder ID="Content" runat="server">
-                    </asp:ContentPlaceHolder>
+                        </asp:ContentPlaceHolder>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
     </div>
 
-    
+
 </body>
 </html>
