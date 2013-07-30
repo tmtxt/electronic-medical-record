@@ -2,7 +2,7 @@
 
 <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
-            <div class="container" style="width: 1000px">
+            <div class="container" style="width: 960px">
                 <a class="brand" href="Default.aspx">Warehouse Management</a>
                 <ul class="nav pull-right" id="main-menu-right">
                     <li class="dropdown">
