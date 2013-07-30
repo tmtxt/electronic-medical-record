@@ -16,12 +16,12 @@
     <script src="Assets/Default/js/bootstrap.min.js"></script>
 
     <title>
-        <asp:ContentPlaceHolder ID="title" runat="server">
+        <asp:ContentPlaceHolder ID="Title" runat="server">
         </asp:ContentPlaceHolder>
     </title>
 
 </head>
-<body>
+<body style="background-color: #eee;">
     <utmpl:Navbar ID="Navbar" runat="server" />
 
     <div class="container">
@@ -35,7 +35,13 @@
                 <div class="span3">
                     <utmpl:SideBar runat="server" ID="SideBar" />
                 </div>
-                <div class="span9">bbb</div>
+                <div class="span9">
+                    <div class="well">
+                        <asp:ContentPlaceHolder ID="Content" runat="server">
+                    </asp:ContentPlaceHolder>
+                    </div>
+                    
+                </div>
             </div>
         </div>
     </div>
