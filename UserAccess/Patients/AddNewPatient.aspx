@@ -26,7 +26,9 @@
                                 <div class="span6">
                                     <div class="form-group">
                                         <label for="NameTextBox">Name</label>
-                                        <asp:TextBox CssClass="form-control" ID="NameTextBox" runat="server" Text='<%# Bind("Name") %>' />
+                                        <asp:TextBox CausesValidation="true" CssClass="form-control" ID="NameTextBox" runat="server" Text='<%# Bind("Name") %>' />
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Patient Name is required" ControlToValidate="NameTextBox" CssClass="label label-important" Display="Dynamic"></asp:RequiredFieldValidator>
+                                        <p></p>
                                     </div>
                                     <div class="form-group">
                                         <label for="GenderDropdownList">Gender</label>
@@ -40,7 +42,9 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="AddressTextbox">Address</label>
-                                        <asp:TextBox ID="AddressTextbox" runat="server" Text='<%# Bind("Address") %>' TextMode="MultiLine" Rows="3" />
+                                        <asp:TextBox CausesValidation="true" ID="AddressTextbox" runat="server" Text='<%# Bind("Address") %>' TextMode="MultiLine" Rows="3" />
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="AddressTextbox" CssClass="label label-important" Display="Dynamic" ErrorMessage="Patient Address is required"></asp:RequiredFieldValidator>
+                                        <p></p>
                                     </div>
                                 </div>
                                 <div class="span6">
@@ -53,13 +57,13 @@
                                     </div>
                                 </div>
                             </div>
-
+                            
                             <asp:LinkButton CssClass="btn btn-primary" ID="InsertButton" runat="server"
                                 CausesValidation="True" Text="Insert" OnClick="InsertButton_Click" />
                             &nbsp;<asp:LinkButton CssClass="btn btn-primary" ID="ClearButton" runat="server"
                                 CausesValidation="False" Text="Clear Form" OnClick="ClearButton_Click" />
                             &nbsp;<asp:LinkButton CssClass="btn btn-primary" ID="InsertCancelButton" runat="server"
-                                CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+                                CausesValidation="False" Text="Cancel" OnClick="InsertCancelButton_Click" />
                             
                         </fieldset>
                     </InsertItemTemplate>

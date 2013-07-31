@@ -50,7 +50,7 @@
 
                         <asp:TemplateField>
                             <ItemTemplate>
-                                <asp:Button ID="Button2" runat="server" Text="Delete" CssClass="btn btn-small btn-primary" CommandName="Delete" OnClientClick="return confirm('Are you sure you want to delete this patient?')" />
+                                <asp:Button ID="Button2" runat="server" Text="Delete" CssClass="btn btn-small btn-primary" CommandName="Delete" OnClientClick="return confirm('Are you sure you want to delete this patient?\nAll visits belong to this patient will be deleted, too!')" />
                             </ItemTemplate>
                         </asp:TemplateField>
 

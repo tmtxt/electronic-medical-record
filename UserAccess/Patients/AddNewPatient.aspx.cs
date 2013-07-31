@@ -9,7 +9,13 @@ public partial class UserAccess_Patients_AddNewPatient : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        AddPatientFormView.ChangeMode(FormViewMode.Insert);
+        if (!IsPostBack)
+            AddPatientFormView.ChangeMode(FormViewMode.Insert);
+        else
+        {
+            AddPatientFormView.ChangeMode(FormViewMode.Edit);
+            AddPatientFormView.ChangeMode(FormViewMode.Insert);
+        }
     }
     protected void InsertButton_Click(object sender, EventArgs e)
     {
@@ -65,7 +71,12 @@ public partial class UserAccess_Patients_AddNewPatient : System.Web.UI.Page
         }
         else
         {
-            
+            ResultAlert.SetResultAlert("An error occured!",
+                TemplateControls_ResultAlert.AlertTypeError);
         }
+    }
+    protected void InsertCancelButton_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("/UserAccess/Patients/ViewAllPatients.aspx");
     }
 }
