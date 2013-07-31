@@ -8,7 +8,7 @@
 
         <li class="nav-header">Warehouses</li>
         <li><a href="/UserAccess/Warehouses/ViewAllWarehouses.aspx">View warehouses</a></li>
-        <li><a href="#">Add new warehouse</a></li>
+        <li><a href="/UserAccess/Warehouses/AddNewWarehouse.aspx">Add new warehouse</a></li>
 
         <li class="nav-header">Providers</li>
         <li><a href="#">View providers</a></li>

@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ViewAllWarehouses.aspx.cs" Inherits="UserAccess_Warehouses_ViewAllWarehouses" %>
 
+<%@ Register Src="~/TemplateControls/ResultAlert.ascx" TagPrefix="utmpl" TagName="ResultAlert" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="Server">
     Warehouses
 </asp:Content>
@@ -8,7 +11,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Content" runat="Server">
     <form id="form1" runat="server">
-        <asp:GridView DataKeyNames="ID" CssClass="gridview table table-bordered table-striped table-hover" ID="AllWarehousesGridView" runat="server" AutoGenerateColumns="False" DataSourceID="AllWarehousesDataSource">
+        <asp:GridView DataKeyNames="ID" CssClass="gridview table table-bordered table-striped table-hover" ID="AllWarehousesGridView" runat="server" AutoGenerateColumns="False" DataSourceID="AllWarehousesDataSource" OnRowCancelingEdit="AllWarehousesGridView_RowCancelingEdit" OnRowDeleted="AllWarehousesGridView_RowDeleted" OnRowEditing="AllWarehousesGridView_RowEditing" OnRowUpdated="AllWarehousesGridView_RowUpdated">
             <Columns>
                 <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="True" SortExpression="ID"
                     ItemStyle-Width="5%" HeaderStyle-Width="5%" FooterStyle-Width="5%" HeaderStyle-HorizontalAlign="Center">
@@ -50,15 +53,15 @@
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <ItemTemplate>
-                        <asp:Button ID="Button2" runat="server" Text="Delete" CssClass="btn btn-primary" CommandName="Delete" />
+                        <asp:Button ID="Button2" runat="server" Text="Delete" CssClass="btn btn-primary" CommandName="Delete" OnClientClick="return confirm('Are you sure you want to delete this warehouse?')" />
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:Button ID="Button4" runat="server" Text="Cancel" CssClass="btn btn-primary" CommandName="Cancel" />
+                        <asp:Button ID="Button4" runat="server" Text="Cancel" CssClass="btn btn-primary" CommandName="Cancel" CausesValidation="False" />
                     </EditItemTemplate>
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
-
+        <utmpl:ResultAlert runat="server" ID="ResultAlert" />
         <asp:LinqDataSource ID="AllWarehousesDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" OrderBy="ID" TableName="Warehouses">
         </asp:LinqDataSource>
 
