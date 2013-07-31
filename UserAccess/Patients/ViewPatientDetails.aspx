@@ -51,11 +51,56 @@
                                 </td>
                             </tr>
                         </table>
-                        <asp:HyperLink ID="AddNewButton" CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign" runat="server" NavigateUrl="/UserAccess/Patients/AddNewPatient.aspx">
-                                        Add New Patient
-                        </asp:HyperLink>
+
                     </ItemTemplate>
+                    <EditItemTemplate>
+
+                        <h3><%# Eval("Name") %></h3>
+                        <table style="width: 100%" class="table table-hover">
+                            <tr>
+                                <td><strong>Name</strong></td>
+                                <td>
+                                    <asp:TextBox ID="NameTextBox" Text='<%# Bind("Name") %>' runat="server"></asp:TextBox></td>
+                                <td colspan="2" rowspan="2">
+                                    <p><strong>Address</strong></p>
+                                    <p>
+                                        <asp:TextBox ID="AddressTextBox" TextMode="MultiLine" Text='<%# Bind("Address") %>' runat="server"></asp:TextBox></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Gender</strong></td>
+                                <td>
+                                    <asp:DropDownList SelectedValue='<%# Bind("Gender") %>' ID="GenderDropdownList" runat="server">
+                                        <asp:ListItem>Male</asp:ListItem>
+                                        <asp:ListItem>Female</asp:ListItem>
+                                        <asp:ListItem>Gay</asp:ListItem>
+                                        <asp:ListItem>Les</asp:ListItem>
+                                        <asp:ListItem>Bi</asp:ListItem>
+                                    </asp:DropDownList></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Birthdate</strong></td>
+                                <td><%# DateTime.FromBinary(long.Parse(Eval("DateOfBirth").ToString())).ToLongDateString() %></td>
+                                <td><strong>Number of visits</strong></td>
+                                <td>number</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">
+                                    <asp:Button ID="UpdateButton" CommandName="Update" runat="server" Text="Update Patient"
+                                        CssClass="btn btn-primary" />
+                                    <asp:Button ID="ClearButton" runat="server" Text="Clear Form"
+                                        CssClass="btn btn-primary" />
+                                    <asp:Button ID="CancelButton" runat="server" Text="Cancel Editting" CommandName="Cancel"
+                                        CssClass="btn btn-primary" />
+                                </td>
+                            </tr>
+                        </table>
+
+                    </EditItemTemplate>
                 </asp:FormView>
+                <asp:HyperLink ID="AddNewButton" CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign" runat="server" NavigateUrl="/UserAccess/Patients/AddNewPatient.aspx">
+                                        Add New Patient
+                </asp:HyperLink>
                 <utmpl:ResultAlert runat="server" ID="ResultAlert" />
             </ContentTemplate>
         </asp:UpdatePanel>
