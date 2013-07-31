@@ -64,5 +64,8 @@
         <asp:LinqDataSource ID="AllPatientsDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableDelete="True" EnableUpdate="True" EntityTypeName="" TableName="Patients">
         </asp:LinqDataSource>
     </form>
+    <asp:HyperLink CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign"
+            ID="HyperLink1" runat="server" NavigateUrl="/UserAccess/Patients/AddNewPatient.aspx">
+            Add New Patient</asp:HyperLink>
 </asp:Content>
 

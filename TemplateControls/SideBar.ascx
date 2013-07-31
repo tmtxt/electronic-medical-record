@@ -9,7 +9,7 @@
         <li class="nav-header">Patients</li>
         <li><a href="/UserAccess/Patients/ViewAllPatients.aspx">View Patients</a></li>
         <li><a href="/UserAccess/Patients/ViewPatientDetails.aspx">Patient Detail</a></li>
-        <li><a href="/UserAccess/Warehouses/AddNewWarehouse.aspx">Add New Patient</a></li>
+        <li><a href="/UserAccess/Patients/AddNewPatient.aspx">Add New Patient</a></li>
 
         <li class="nav-header">Providers</li>
         <li><a href="#">View providers</a></li>
