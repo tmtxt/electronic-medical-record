@@ -7,7 +7,7 @@
         <li><a href="/UserAccess/Default.aspx">Home</a></li>
 
         <li class="nav-header">Warehouses</li>
-        <li><a href="#">View warehouses</a></li>
+        <li><a href="/UserAccess/Warehouses/ViewAllWarehouses.aspx">View warehouses</a></li>
         <li><a href="#">Add new warehouse</a></li>
 
         <li class="nav-header">Providers</li>
