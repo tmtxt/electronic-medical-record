@@ -27,7 +27,7 @@
                     </tr>
                     <tr>
                         <td><strong>Birthdate</strong></td>
-                        <td><%# Eval("DateOfBirth") %></td>
+                        <td><%# DateTime.FromBinary(long.Parse(Eval("DateOfBirth").ToString())).ToLongDateString() %></td>
                         <td><strong>Number of visits</strong></td>
                         <td>number</td>
                     </tr>
