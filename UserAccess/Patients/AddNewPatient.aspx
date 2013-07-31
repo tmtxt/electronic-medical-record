@@ -54,7 +54,7 @@
                                 </div>
                             </div>
 
-                            <asp:LinkButton CssClass="btn btn-primary" ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
+                            <asp:LinkButton CssClass="btn btn-primary" ID="InsertButton" runat="server" CausesValidation="True" Text="Insert" OnClick="InsertButton_Click" />
                             &nbsp;<asp:LinkButton CssClass="btn btn-primary" ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
                         </fieldset>
                     </InsertItemTemplate>
