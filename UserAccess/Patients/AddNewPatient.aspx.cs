@@ -25,7 +25,47 @@ public partial class UserAccess_Patients_AddNewPatient : System.Web.UI.Page
         dic.Add("Gender", patientGender);
         dic.Add("Address", patientAddress);
         dic.Add("DateOfBirth", patientDateOfBirth);
-        AddPatientDataSource.Insert(dic);
-        
+
+
+        if (AddPatientDataSource.Insert(dic) == 0)
+        {
+            //fail
+            ResultAlert.SetResultAlert("An error occured!",
+                TemplateControls_ResultAlert.AlertTypeError);
+        }
+        else
+        {
+            // success
+            ResultAlert.SetResultAlert("Patient inserted successfully!",
+                TemplateControls_ResultAlert.AlertTypeSuccess);
+            ClearForm();
+        }
+    }
+
+    protected void ClearForm()
+    {
+        ((TextBox)AddPatientFormView.FindControl("NameTextBox")).Text = "";
+        ((DropDownList)AddPatientFormView.FindControl("GenderDropdownList")).SelectedIndex = 0;
+        ((TextBox)AddPatientFormView.FindControl("AddressTextbox")).Text = "";
+        ((Calendar)AddPatientFormView.FindControl("DateOfBirthCalendar")).SelectedDate = DateTime.Now;
+    }
+
+    protected void ClearButton_Click(object sender, EventArgs e)
+    {
+        ClearForm();
+    }
+
+    protected void AddPatientFormView_ItemInserted(object sender, FormViewInsertedEventArgs e)
+    {
+        if (e.Exception == null)
+        {
+            ResultAlert.SetResultAlert("Patient inserted successfully!",
+                TemplateControls_ResultAlert.AlertTypeSuccess);
+            ClearForm();
+        }
+        else
+        {
+            
+        }
     }
 }

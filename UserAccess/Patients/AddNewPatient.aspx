@@ -17,7 +17,7 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
 
             <ContentTemplate>
-                <asp:FormView Width="100%" ID="AddPatientFormView" runat="server" DataKeyNames="ID" DataSourceID="AddPatientDataSource">
+                <asp:FormView Width="100%" ID="AddPatientFormView" runat="server" DataKeyNames="ID" DataSourceID="AddPatientDataSource" OnItemInserted="AddPatientFormView_ItemInserted">
 
                     <InsertItemTemplate>
                         <fieldset>
@@ -54,8 +54,13 @@
                                 </div>
                             </div>
 
-                            <asp:LinkButton CssClass="btn btn-primary" ID="InsertButton" runat="server" CausesValidation="True" Text="Insert" OnClick="InsertButton_Click" />
-                            &nbsp;<asp:LinkButton CssClass="btn btn-primary" ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+                            <asp:LinkButton CssClass="btn btn-primary" ID="InsertButton" runat="server"
+                                CausesValidation="True" Text="Insert" OnClick="InsertButton_Click" />
+                            &nbsp;<asp:LinkButton CssClass="btn btn-primary" ID="ClearButton" runat="server"
+                                CausesValidation="False" Text="Clear Form" OnClick="ClearButton_Click" />
+                            &nbsp;<asp:LinkButton CssClass="btn btn-primary" ID="InsertCancelButton" runat="server"
+                                CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+                            
                         </fieldset>
                     </InsertItemTemplate>
 
@@ -63,6 +68,8 @@
                 <asp:LinqDataSource ID="AddPatientDataSource"
                     runat="server" ContextTypeName="DataClassesDataContext" EnableInsert="True" EntityTypeName="" TableName="Patients">
                 </asp:LinqDataSource>
+                <p>&nbsp;</p>
+                <utmpl:ResultAlert runat="server" ID="ResultAlert" />
             </ContentTemplate>
         </asp:UpdatePanel>
         <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
