@@ -7,14 +7,31 @@
     Patient Detail
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Content" runat="Server">
-    <form id="PatientDetailForm" runat="server">
+    <form runat="server">
         <asp:FormView ID="PatientDetailFormView" runat="server" DataSourceID="PatientDetailDataSource">
             <ItemTemplate>
                 <%-- patient name as title --%>
-                <h2><%# Eval("Name") %></h2>
-                <hr />
-
-                Name: <%# Eval("Name") %>
+                <h3><%# Eval("Name") %></h3>
+                <table style="width:100%" class="table table-hover">
+                    <tr>
+                        <td><strong>Name</strong></td>
+                        <td><%# Eval("Name") %></td>
+                        <td colspan="2" rowspan="2">
+                            <p><strong>Address</strong></p>
+                            <p><%# Eval("Address") %></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gender</strong></td>
+                        <td><%# Eval("Gender") %></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Birthdate</strong></td>
+                        <td><%# Eval("DateOfBirth") %></td>
+                        <td><strong>Number of visits</strong></td>
+                        <td>number</td>
+                    </tr>
+                </table>
             </ItemTemplate>
         </asp:FormView>
         <asp:LinqDataSource ID="PatientDetailDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableDelete="True" EnableUpdate="True" EntityTypeName="" TableName="Patients" Where="ID == @ID">
