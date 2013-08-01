@@ -11,22 +11,6 @@
         <li><a href="/UserAccess/Patients/ViewPatientDetails.aspx">Patient Detail</a></li>
         <li><a href="/UserAccess/Patients/AddNewPatient.aspx">Add New Patient</a></li>
 
-        <li class="nav-header">Providers</li>
-        <li><a href="#">View providers</a></li>
-        <li><a href="#">Add new provider</a></li>
-
-        <li class="nav-header">Products</li>
-        <li><a href="#">View products</a></li>
-        <li><a href="#">Add new product</a></li>
-
-        <li class="nav-header">Import cards</li>
-        <li><a href="#">View import cards</a></li>
-        <li><a href="#">Add new import card</a></li>
-
-        <li class="nav-header">Export cards</li>
-        <li><a href="#">View export cards</a></li>
-        <li><a href="#">Add new export card</a></li>
-
         <%-- this section is for admin only --%>
         <%
         if(System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))

@@ -16,7 +16,7 @@
         <asp:ScriptManager ID="PatientDetailScriptManager" runat="server"></asp:ScriptManager>
         <asp:UpdatePanel ID="PatientDetailUpdatePanel" runat="server">
             <ContentTemplate>
-                <asp:FormView DataKeyNames="ID" ID="PatientDetailFormView" runat="server" DataSourceID="PatientDetailDataSource" OnItemDeleted="PatientDetailFormView_ItemDeleted" OnItemDeleting="PatientDetailFormView_ItemDeleting">
+                <asp:FormView DataKeyNames="ID" ID="PatientDetailFormView" runat="server" DataSourceID="PatientDetailDataSource" OnItemDeleted="PatientDetailFormView_ItemDeleted" OnItemDeleting="PatientDetailFormView_ItemDeleting" OnItemUpdated="PatientDetailFormView_ItemUpdated">
                     <ItemTemplate>
                         <%-- patient name as title --%>
                         <h3><%# Eval("Name") %></h3>
@@ -60,11 +60,15 @@
                             <tr>
                                 <td><strong>Name</strong></td>
                                 <td>
-                                    <asp:TextBox ID="NameTextBox" Text='<%# Bind("Name") %>' runat="server"></asp:TextBox></td>
+                                    <asp:TextBox ID="NameTextBox" Text='<%# Bind("Name") %>' runat="server"></asp:TextBox><br />
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="NameTextBox" CssClass="label label-important" Display="Dynamic" ErrorMessage="Patient Name is required"></asp:RequiredFieldValidator>
+                                </td>
                                 <td colspan="2" rowspan="2">
                                     <p><strong>Address</strong></p>
                                     <p>
-                                        <asp:TextBox ID="AddressTextBox" TextMode="MultiLine" Text='<%# Bind("Address") %>' runat="server"></asp:TextBox></p>
+                                        <asp:TextBox ID="AddressTextBox" TextMode="MultiLine" Text='<%# Bind("Address") %>' runat="server"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="AddressTextBox" CssClass="label label-important" Display="Dynamic" ErrorMessage="Patient Address is required"></asp:RequiredFieldValidator>
+                                    </p>
                                 </td>
                             </tr>
                             <tr>
@@ -89,19 +93,19 @@
                                     <asp:Button ID="UpdateButton" CommandName="Update" runat="server" Text="Update Patient"
                                         CssClass="btn btn-primary" />
                                     <asp:Button ID="ClearButton" runat="server" Text="Clear Form"
-                                        CssClass="btn btn-primary" />
+                                        CssClass="btn btn-primary" CausesValidation="False" OnClick="ClearButton_Click" />
                                     <asp:Button ID="CancelButton" runat="server" Text="Cancel Editting" CommandName="Cancel"
-                                        CssClass="btn btn-primary" />
+                                        CssClass="btn btn-primary" CausesValidation="False" />
                                 </td>
                             </tr>
                         </table>
 
                     </EditItemTemplate>
                 </asp:FormView>
-                <asp:HyperLink ID="AddNewButton" CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign" runat="server" NavigateUrl="/UserAccess/Patients/AddNewPatient.aspx">
-                                        Add New Patient
-                </asp:HyperLink>
                 <utmpl:ResultAlert runat="server" ID="ResultAlert" />
+                <p></p>
+
+
             </ContentTemplate>
         </asp:UpdatePanel>
         <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
@@ -110,6 +114,9 @@
                 <asp:QueryStringParameter Name="ID" QueryStringField="ID" Type="Int64" />
             </WhereParameters>
         </asp:LinqDataSource>
+        <asp:HyperLink ID="AddNewButton" CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign" runat="server" NavigateUrl="/UserAccess/Patients/AddNewPatient.aspx">
+                                        Add New Patient
+        </asp:HyperLink>
     </form>
 </asp:Content>
 

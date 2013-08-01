@@ -3,7 +3,7 @@
 <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container" style="width: 960px">
-                <a class="brand" href="Default.aspx"><span class="glyphicon glyphicon-plus-sign"></span> Medical Electronic Record Management</a>
+                <a class="brand" href="/Default.aspx"><span class="glyphicon glyphicon-plus-sign"></span> Medical Electronic Record Management</a>
                 <ul class="nav pull-right" id="main-menu-right">
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">

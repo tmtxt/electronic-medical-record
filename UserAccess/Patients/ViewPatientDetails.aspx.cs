@@ -31,4 +31,32 @@ public partial class UserAccess_Patients_ViewPatientDetails : System.Web.UI.Page
     {
         System.Threading.Thread.Sleep(2000);
     }
+
+    protected void ClearForm()
+    {
+        ((TextBox)PatientDetailFormView.FindControl("NameTextBox")).Text = "";
+        ((TextBox)PatientDetailFormView.FindControl("AddressTextBox")).Text = "";
+        ((DropDownList)PatientDetailFormView.FindControl("GenderDropdownList")).SelectedIndex = 0;
+    }
+
+    protected void ClearButton_Click(object sender, EventArgs e)
+    {
+        ClearForm();
+    }
+
+    protected void PatientDetailFormView_ItemUpdated(object sender, FormViewUpdatedEventArgs e)
+    {
+        System.Threading.Thread.Sleep(1000);
+        if (e.Exception == null)
+        {
+            ResultAlert.SetResultAlert("Patient updated successfully!",
+                TemplateControls_ResultAlert.AlertTypeSuccess);
+        }
+        else
+        {
+            ResultAlert.SetResultAlert("An error occured! Please try again!",
+                TemplateControls_ResultAlert.AlertTypeError);
+            e.ExceptionHandled = true;
+        }
+    }
 }
