@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AjaxControlToolkit;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -37,6 +38,7 @@ public partial class UserAccess_Patients_ViewPatientDetails : System.Web.UI.Page
         ((TextBox)PatientDetailFormView.FindControl("NameTextBox")).Text = "";
         ((TextBox)PatientDetailFormView.FindControl("AddressTextBox")).Text = "";
         ((DropDownList)PatientDetailFormView.FindControl("GenderDropdownList")).SelectedIndex = 0;
+        
     }
 
     protected void ClearButton_Click(object sender, EventArgs e)
@@ -54,9 +56,35 @@ public partial class UserAccess_Patients_ViewPatientDetails : System.Web.UI.Page
         }
         else
         {
-            ResultAlert.SetResultAlert("An error occured! Please try again!",
+            ResultAlert.SetResultAlert(e.Exception.Message,
                 TemplateControls_ResultAlert.AlertTypeError);
             e.ExceptionHandled = true;
         }
+    }
+    protected void PatientDetailFormView_ModeChanged(object sender, EventArgs e)
+    {
+        
+    }
+    protected void PatientDetailDataSource_Updating(object sender, LinqDataSourceUpdateEventArgs e)
+    {
+        DateTime result;
+
+        // get the new object
+        var newObject = (Patient)e.NewObject;
+
+        // get the controls from the view
+        var calendar = (CalendarExtender)PatientDetailFormView.FindControl("DateOfBirthCalendarExtender");
+        var textbox = (TextBox)PatientDetailFormView.FindControl("DateOfBirthTextBox");
+
+        if (DateTime.TryParseExact(textbox.Text, calendar.Format, null, System.Globalization.DateTimeStyles.None, out result))
+        {
+            DateTime t = DateTime.ParseExact(textbox.Text, calendar.Format, null);
+            newObject.DateOfBirth = t.Ticks;
+        }
+        else
+        {
+            throw new Exception("Bad Date format! Please try again");
+        }
+        
     }
 }

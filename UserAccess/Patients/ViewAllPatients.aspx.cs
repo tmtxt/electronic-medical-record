@@ -9,7 +9,6 @@ public partial class UserAccess_Patients_ViewAllPatient : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
     }
     protected void AllPatientsGridview_RowDeleted(object sender, GridViewDeletedEventArgs e)
     {

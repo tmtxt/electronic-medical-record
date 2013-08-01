@@ -13,10 +13,12 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Content" runat="Server">
     <form runat="server">
-        <asp:ScriptManager ID="PatientDetailScriptManager" runat="server"></asp:ScriptManager>
+        <%--<asp:ScriptManager ID="PatientDetailScriptManager" runat="server"></asp:ScriptManager>--%>
+        <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:UpdatePanel ID="PatientDetailUpdatePanel" runat="server">
+        
             <ContentTemplate>
-                <asp:FormView DataKeyNames="ID" ID="PatientDetailFormView" runat="server" DataSourceID="PatientDetailDataSource" OnItemDeleted="PatientDetailFormView_ItemDeleted" OnItemDeleting="PatientDetailFormView_ItemDeleting" OnItemUpdated="PatientDetailFormView_ItemUpdated">
+                <asp:FormView DataKeyNames="ID" ID="PatientDetailFormView" runat="server" DataSourceID="PatientDetailDataSource" OnItemDeleted="PatientDetailFormView_ItemDeleted" OnItemDeleting="PatientDetailFormView_ItemDeleting" OnItemUpdated="PatientDetailFormView_ItemUpdated" OnModeChanged="PatientDetailFormView_ModeChanged">
                     <ItemTemplate>
                         <%-- patient name as title --%>
                         <h3><%# Eval("Name") %></h3>
@@ -84,7 +86,11 @@
                             </tr>
                             <tr>
                                 <td><strong>Birthdate</strong></td>
-                                <td><%# DateTime.FromBinary(long.Parse(Eval("DateOfBirth").ToString())).ToLongDateString() %></td>
+                                <td>
+                                    <asp:TextBox ID="DateOfBirthTextBox" CssClass="form-control" runat="server"></asp:TextBox>
+                                    <asp:CalendarExtender ID="DateOfBirthCalendarExtender" TargetControlID="DateOfBirthTextBox" Format="dd/MMM/yyyy" runat="server" >
+                                    </asp:CalendarExtender>
+                                </td>
                                 <td><strong>Number of visits</strong></td>
                                 <td>number</td>
                             </tr>
@@ -109,7 +115,15 @@
             </ContentTemplate>
         </asp:UpdatePanel>
         <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
-        <asp:LinqDataSource ID="PatientDetailDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableDelete="True" EnableUpdate="True" EntityTypeName="" TableName="Patients" Where="ID == @ID">
+        <asp:LinqDataSource
+            ID="PatientDetailDataSource"
+            runat="server"
+            ContextTypeName="DataClassesDataContext"
+            EnableDelete="True"
+            EnableUpdate="True"
+            EntityTypeName=""
+            TableName="Patients"
+            Where="ID == @ID" OnUpdating="PatientDetailDataSource_Updating">
             <WhereParameters>
                 <asp:QueryStringParameter Name="ID" QueryStringField="ID" Type="Int64" />
             </WhereParameters>
