@@ -8,8 +8,13 @@ using System.Web.UI.WebControls;
 
 public partial class UserAccess_Patients_ViewPatientDetails : System.Web.UI.Page
 {
+    private CalendarExtender calendar;
+
     protected void Page_Load(object sender, EventArgs e)
     {
+        // get the controls from the view
+        var calendar = (CalendarExtender)PatientDetailFormView.FindControl("DateOfBirthCalendarExtender");
+
         if (Request.QueryString["ID"] == null)
         {
             Response.Redirect("/UserAccess/Patients/ViewAllPatients.aspx");
@@ -38,7 +43,7 @@ public partial class UserAccess_Patients_ViewPatientDetails : System.Web.UI.Page
         ((TextBox)PatientDetailFormView.FindControl("NameTextBox")).Text = "";
         ((TextBox)PatientDetailFormView.FindControl("AddressTextBox")).Text = "";
         ((DropDownList)PatientDetailFormView.FindControl("GenderDropdownList")).SelectedIndex = 0;
-        
+        ((TextBox)PatientDetailFormView.FindControl("DateOfBirthTextBox")).Text = DateTime.Now.ToString("dd/MMM/yyyy");
     }
 
     protected void ClearButton_Click(object sender, EventArgs e)
@@ -86,5 +91,19 @@ public partial class UserAccess_Patients_ViewPatientDetails : System.Web.UI.Page
             throw new Exception("Bad Date format! Please try again");
         }
         
+    }
+    protected void PatientDetailDataSource_DataBinding(object sender, EventArgs e)
+    {
+        
+    }
+    protected void PatientDetailDataSource_Selected(object sender, LinqDataSourceStatusEventArgs e)
+    {
+        //// get the textbox control from the formview
+        //var textbox = (TextBox)PatientDetailFormView.FindControl("DateOfBirthTextBox");
+
+        //// get the current patient
+        //var patient = (Patient)PatientDetailFormView.DataItem;
+
+        //textbox.Text = patient.DateOfBirth.ToString();
     }
 }

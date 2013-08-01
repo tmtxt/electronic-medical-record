@@ -87,7 +87,7 @@
                             <tr>
                                 <td><strong>Birthdate</strong></td>
                                 <td>
-                                    <asp:TextBox ID="DateOfBirthTextBox" CssClass="form-control" runat="server"></asp:TextBox>
+                                    <asp:TextBox Text='<%# DateTime.FromBinary(long.Parse(Eval("DateOfBirth").ToString())).ToString("dd/MMM/yyyy") %>' ID="DateOfBirthTextBox" CssClass="form-control" runat="server"></asp:TextBox>
                                     <asp:CalendarExtender ID="DateOfBirthCalendarExtender" TargetControlID="DateOfBirthTextBox" Format="dd/MMM/yyyy" runat="server" >
                                     </asp:CalendarExtender>
                                 </td>
@@ -123,7 +123,7 @@
             EnableUpdate="True"
             EntityTypeName=""
             TableName="Patients"
-            Where="ID == @ID" OnUpdating="PatientDetailDataSource_Updating">
+            Where="ID == @ID" OnUpdating="PatientDetailDataSource_Updating" OnSelected="PatientDetailDataSource_Selected">
             <WhereParameters>
                 <asp:QueryStringParameter Name="ID" QueryStringField="ID" Type="Int64" />
             </WhereParameters>
