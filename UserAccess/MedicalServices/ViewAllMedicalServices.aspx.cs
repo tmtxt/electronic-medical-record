@@ -7,9 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class UserAccess_MedicalServices_ViewAllMedicalServices : System.Web.UI.Page
 {
-
-
-    protected void Page_Load(object sender, EventArgs e)
+    protected void BindData()
     {
         var dataContext = new DataClassesDataContext();
         var allMedicalServicesQuery =
@@ -24,15 +22,46 @@ public partial class UserAccess_MedicalServices_ViewAllMedicalServices : System.
                 MedicalServiceGroupID = m.MedicalServiceGroupID,
                 MedicalServiceGroupName = mg.Name
             };
-        var allMedicalServicesDataSource = allMedicalServicesQuery.ToList();
 
         // bind to the grid view
-        AllMedicalServicesGridView.DataSource = allMedicalServicesDataSource;
+        AllMedicalServicesGridView.DataSource = allMedicalServicesQuery;
         AllMedicalServicesGridView.DataBind();
+    }
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            BindData();
+        }
+        
     }
 
     protected void AllMedicalServicesDataSource_Selecting(object sender, LinqDataSourceSelectEventArgs e)
     {
         
+    }
+    protected void AllMedicalServicesGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        System.Threading.Thread.Sleep(1000);
+        var ctx = new DataClassesDataContext();
+        var itemToDelete = from ms in ctx.MedicalServices
+                           where ms.ID == long.Parse(e.Keys["ID"].ToString())
+                           select ms;
+        ctx.MedicalServices.DeleteAllOnSubmit(itemToDelete);
+        try
+        {
+            ctx.SubmitChanges();
+            ResultAlert.SetResultAlertReturn("Medical Services deleted successfully!", null);
+        }
+        catch (Exception ex)
+        {
+            ResultAlert.SetResultAlertReturn("Medical Services deleted successfully!", ex);
+        }
+        BindData();
+    }
+
+    protected void AllMedicalServicesGridView_RowDeleted(object sender, GridViewDeletedEventArgs e)
+    {
     }
 }
