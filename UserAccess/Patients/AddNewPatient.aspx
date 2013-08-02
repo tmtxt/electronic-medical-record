@@ -53,7 +53,7 @@
 
                             <p></p>
                             <asp:LinkButton CssClass="btn btn-primary" ID="InsertButton" runat="server"
-                                CausesValidation="True" Text="Insert" OnClick="InsertButton_Click" />
+                                CausesValidation="True" Text="Add New Patient" OnClick="InsertButton_Click" />
                             &nbsp;<asp:LinkButton CssClass="btn btn-primary" ID="ClearButton" runat="server"
                                 CausesValidation="False" Text="Clear Form" OnClick="ClearButton_Click" />
                             &nbsp;<asp:LinkButton CssClass="btn btn-primary" ID="InsertCancelButton" runat="server"
