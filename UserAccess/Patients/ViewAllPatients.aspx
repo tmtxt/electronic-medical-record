@@ -12,14 +12,18 @@
     Patients List
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Content" runat="Server">
-    <form runat="server">
+    <form runat="server" class="form-horizontal">
         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:UpdatePanel ID="AllPatientsUpdatePanel" runat="server">
             <ContentTemplate>
-                <div class="text-center">
+                <div class="control-group">
                     <asp:Label CssClass="label_filter" ID="Label3" runat="server" Text="Filter Patients by Name"></asp:Label>
                     <asp:TextBox ID="FindPatientTextBox" runat="server"></asp:TextBox>
-                    <asp:AutoCompleteExtender ID="AutoCompleteExtender1" TargetControlID="FindPatientTextBox" runat="server" ServiceMethod="GetCompletionList" UseContextKey="True"></asp:AutoCompleteExtender>
+                    <asp:AutoCompleteExtender ID="AutoCompleteExtender1" TargetControlID="FindPatientTextBox"
+                        runat="server" ServiceMethod="GetCompletionList" UseContextKey="True"
+                        >
+                        
+                    </asp:AutoCompleteExtender>
                     
                     <asp:Button ID="FindPatientButton" CssClass="btn btn-primary" runat="server" Text="Search" OnClick="FindPatientButton_Click" />
                 </div>
