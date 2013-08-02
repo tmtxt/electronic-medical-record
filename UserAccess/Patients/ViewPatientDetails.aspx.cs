@@ -8,12 +8,9 @@ using System.Web.UI.WebControls;
 
 public partial class UserAccess_Patients_ViewPatientDetails : System.Web.UI.Page
 {
-    private CalendarExtender calendar;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        // get the controls from the view
-        var calendar = (CalendarExtender)PatientDetailFormView.FindControl("DateOfBirthCalendarExtender");
 
         if (Request.QueryString["ID"] == null)
         {

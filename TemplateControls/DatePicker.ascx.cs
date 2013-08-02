@@ -41,7 +41,6 @@ public partial class TemplateControls_DatePicker : System.Web.UI.UserControl
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        // set selected date if initial date is null
 
         // required field validation
         if (IsRequired)
