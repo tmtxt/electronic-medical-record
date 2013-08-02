@@ -17,6 +17,12 @@
         <li><a href="#">ICD List</a></li>
         <li><a href="#">Add New ICD</a></li>
 
+        <li class="nav-header">Drugs</li>
+        <li><a href="/UserAccess/Drugs/ViewAllDrugGroups.aspx">Drug Groups</a></li>
+        <li><a href="#">Add New Drug Group</a></li>
+        <li><a href="#">ICD List</a></li>
+        <li><a href="#">Add New ICD</a></li>
+
         <%-- this section is for admin only --%>
         <%
         if(System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
