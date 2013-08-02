@@ -26,6 +26,7 @@
                     </asp:AutoCompleteExtender>
                     
                     <asp:Button ID="FindPatientButton" CssClass="btn btn-primary" runat="server" Text="Search" OnClick="FindPatientButton_Click" />
+                    <asp:Button ID="Button3" runat="server" CssClass="btn btn-primary" OnClick="Button3_Click" Text="Cancel" />
                 </div>
 
                 <asp:GridView CssClass="gridview table table-bordered table-striped table-hover" ID="AllPatientsGridview" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="AllPatientsDataSource" OnRowDeleted="AllPatientsGridview_RowDeleted" OnRowDeleting="AllPatientsGridview_RowDeleting">
@@ -62,7 +63,7 @@
 
                         <asp:TemplateField>
                             <ItemTemplate>
-                                <asp:Button ID="Button2" runat="server" Text="Delete" CssClass="btn btn-small btn-primary" CommandName="Delete" OnClientClick="return confirm('Are you sure you want to delete this patient?\nAll visits belong to this patient will be deleted, too!')" />
+                                <asp:Button ID="Button2" runat="server" Text="Delete" CssClass="btn btn-small btn-danger" CommandName="Delete" OnClientClick="return confirm('Are you sure you want to delete this patient?\nAll visits belong to this patient will be deleted, too!')" />
                             </ItemTemplate>
                         </asp:TemplateField>
 

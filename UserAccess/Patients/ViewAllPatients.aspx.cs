@@ -42,4 +42,9 @@ public partial class UserAccess_Patients_ViewAllPatient : System.Web.UI.Page
                                      select p.Name).ToArray();
         return patientNameDataSource;
     }
+    protected void Button3_Click(object sender, EventArgs e)
+    {
+        FindPatientTextBox.Text = "";
+        AllPatientsGridview.DataBind();
+    }
 }

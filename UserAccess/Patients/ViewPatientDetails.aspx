@@ -46,7 +46,7 @@
                             <tr>
                                 <td colspan="4">
                                     <asp:Button ID="DeleteButton" CommandName="Delete" runat="server" Text="Delete Patient"
-                                        CssClass="btn btn-primary" OnClientClick="return confirm('Are you sure you want to delete this patient?\nAll visits belong to this patient will be deleted, too!')" />
+                                        CssClass="btn btn-danger" OnClientClick="return confirm('Are you sure you want to delete this patient?\nAll visits belong to this patient will be deleted, too!')" />
                                     <asp:Button ID="EditButton" runat="server" Text="Edit Patient" CommandName="Edit"
                                         CssClass="btn btn-primary" />
                                     <asp:HyperLink ID="HyperLink1" CssClass="btn btn-primary" runat="server" NavigateUrl="/UserAccess/Patients/AddNewPatient.aspx">
