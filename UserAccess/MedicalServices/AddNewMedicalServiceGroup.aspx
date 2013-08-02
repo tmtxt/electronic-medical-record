@@ -24,7 +24,9 @@
                             <legend>Enter Medical Service Group details</legend>
                             <div class="form-group">
                                 <label for="NameTextBox">Medical Service Group Name *</label>
-                                <asp:TextBox Width="70%" ID="NameTextBox" runat="server" Text='<%# Bind("Name") %>' />
+                                <asp:TextBox Width="70%" ID="NameTextBox" runat="server" Text='<%# Bind("Name") %>' /><br />
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Medical Service Group Name is required" ControlToValidate="NameTextBox" CssClass="label label-important" Display="Dynamic"></asp:RequiredFieldValidator>
+                                <p></p>
                             </div>
                             <div class="form-group">
                                 <label for="DescriptionTextBox">Description</label>
