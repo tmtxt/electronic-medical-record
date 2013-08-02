@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ViewAllMedicalServiceGroups.aspx.cs" Inherits="UserAccess_MedicalServices_ViewAllMedicalServiceGroups" %>
 
-<%@ Register Src="~/TemplateControls/UpdateProgressBar.ascx" TagPrefix="uc1" TagName="UpdateProgressBar" %>
+<%@ Register Src="~/TemplateControls/UpdateProgressBar.ascx" TagPrefix="utmpl" TagName="UpdateProgressBar" %>
+<%@ Register Src="~/TemplateControls/ResultAlert.ascx" TagPrefix="utmpl" TagName="ResultAlert" %>
+
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" Runat="Server">
@@ -14,9 +16,9 @@
         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <asp:GridView ID="GridView1"  CssClass="table table-bordered table-striped table-hover"
+                <asp:GridView ID="AllMedicalServiceGroupsGridView"  CssClass="table table-bordered table-striped table-hover"
                     runat="server" AutoGenerateColumns="False" DataKeyNames="ID"
-                    DataSourceID="AllMedicalServiceGroupsDataSource">
+                    DataSourceID="AllMedicalServiceGroupsDataSource" OnRowDeleted="AllMedicalServiceGroupsGridView_RowDeleted" OnRowUpdated="AllMedicalServiceGroupsGridView_RowUpdated">
                     <Columns>
                         <asp:TemplateField HeaderText="Name" SortExpression="Name"
                              HeaderStyle-Width="40%" FooterStyle-Width="40%" ItemStyle-Width="40%">
@@ -68,11 +70,13 @@
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
+                <utmpl:ResultAlert runat="server" ID="ResultAlert" />
                 <asp:LinqDataSource ID="AllMedicalServiceGroupsDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableDelete="True" EnableUpdate="True" EntityTypeName="" TableName="MedicalServiceGroups">
                 </asp:LinqDataSource>
             </ContentTemplate>
         </asp:UpdatePanel>
-        <uc1:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
+        <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
     </form>
+    <asp:HyperLink ID="HyperLink1" runat="server" CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign" NavigateUrl="/UserAccess/MedicalServices/AddNewMedicalServiceGroup.aspx">Add New Medical Service Group</asp:HyperLink>
 </asp:Content>
 

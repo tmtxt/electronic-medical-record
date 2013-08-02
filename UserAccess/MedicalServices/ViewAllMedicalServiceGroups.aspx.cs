@@ -11,4 +11,22 @@ public partial class UserAccess_MedicalServices_ViewAllMedicalServiceGroups : Sy
     {
 
     }
+
+    protected void AllMedicalServiceGroupsGridView_RowUpdated(object sender, GridViewUpdatedEventArgs e)
+    {
+        System.Threading.Thread.Sleep(1000);
+
+        // set the result alert
+        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Medical Service Group inserted successfully!",
+            e.Exception);
+    }
+
+    protected void AllMedicalServiceGroupsGridView_RowDeleted(object sender, GridViewDeletedEventArgs e)
+    {
+        System.Threading.Thread.Sleep(1000);
+
+        // set the result alert
+        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Medical Service Group deleted successfully!",
+            e.Exception);
+    }
 }
