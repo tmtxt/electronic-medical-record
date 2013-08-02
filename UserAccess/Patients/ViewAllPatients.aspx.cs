@@ -28,4 +28,9 @@ public partial class UserAccess_Patients_ViewAllPatient : System.Web.UI.Page
     {
         System.Threading.Thread.Sleep(1000);
     }
+
+    protected void FindPatientButton_Click(object sender, EventArgs e)
+    {
+        AllPatientsGridview.DataBind();
+    }
 }

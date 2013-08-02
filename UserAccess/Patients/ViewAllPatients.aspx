@@ -16,6 +16,12 @@
         <asp:ScriptManager ID="AllPatientsScriptManager" runat="server"></asp:ScriptManager>
         <asp:UpdatePanel ID="AllPatientsUpdatePanel" runat="server">
             <ContentTemplate>
+                <div class="text-center">
+                    <asp:Label CssClass="label_filter" ID="Label3" runat="server" Text="Find Patients"></asp:Label>
+                    <asp:TextBox ID="FindPatientTextBox" runat="server"></asp:TextBox>
+                    <asp:Button ID="FindPatientButton" CssClass="btn btn-primary" runat="server" Text="Search" OnClick="FindPatientButton_Click" />
+                </div>
+
                 <asp:GridView CssClass="gridview table table-bordered table-striped table-hover" ID="AllPatientsGridview" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="AllPatientsDataSource" OnRowDeleted="AllPatientsGridview_RowDeleted" OnRowDeleting="AllPatientsGridview_RowDeleting">
                     <Columns>
                         <asp:TemplateField HeaderText="ID" InsertVisible="False" SortExpression="ID">
@@ -61,7 +67,14 @@
 
         </asp:UpdatePanel>
         <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
-        <asp:LinqDataSource ID="AllPatientsDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableDelete="True" EnableUpdate="True" EntityTypeName="" TableName="Patients">
+        <asp:LinqDataSource ID="AllPatientsDataSource" runat="server" ContextTypeName="DataClassesDataContext"
+            EnableDelete="True" EnableUpdate="True" EntityTypeName="" TableName="Patients"
+            Where="Name.Contains(@NamePart)" >
+            <WhereParameters>
+                
+                <asp:ControlParameter ControlID="FindPatientTextBox" ConvertEmptyStringToNull="False" Name="NamePart" PropertyName="Text" />
+                
+            </WhereParameters>
         </asp:LinqDataSource>
     </form>
     <asp:HyperLink CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign"

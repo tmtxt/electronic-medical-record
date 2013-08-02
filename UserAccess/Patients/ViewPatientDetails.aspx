@@ -129,6 +129,7 @@
             Where="ID == @ID" OnUpdating="PatientDetailDataSource_Updating" OnSelected="PatientDetailDataSource_Selected">
             <WhereParameters>
                 <asp:QueryStringParameter Name="ID" QueryStringField="ID" Type="Int64" />
+                
             </WhereParameters>
         </asp:LinqDataSource>
         <asp:HyperLink ID="AddNewButton" CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign" runat="server" NavigateUrl="/UserAccess/Patients/AddNewPatient.aspx">
