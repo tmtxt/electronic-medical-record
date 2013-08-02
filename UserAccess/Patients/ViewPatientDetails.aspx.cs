@@ -43,7 +43,9 @@ public partial class UserAccess_Patients_ViewPatientDetails : System.Web.UI.Page
         ((TextBox)PatientDetailFormView.FindControl("NameTextBox")).Text = "";
         ((TextBox)PatientDetailFormView.FindControl("AddressTextBox")).Text = "";
         ((DropDownList)PatientDetailFormView.FindControl("GenderDropdownList")).SelectedIndex = 0;
-        ((TextBox)PatientDetailFormView.FindControl("DateOfBirthTextBox")).Text = DateTime.Now.ToString("dd/MMM/yyyy");
+        var dateOfBirthDatePicker = (TemplateControls_DatePicker)
+            PatientDetailFormView.FindControl("DateOfBirthDatePicker");
+        dateOfBirthDatePicker.SelectedDate = DateTime.Now.Ticks;
     }
 
     protected void ClearButton_Click(object sender, EventArgs e)
