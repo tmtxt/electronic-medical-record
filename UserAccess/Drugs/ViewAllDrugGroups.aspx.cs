@@ -25,4 +25,24 @@ public partial class UserAccess_Drugs_ViewAllDrugGroups : System.Web.UI.Page
         // set the result alert
         ResultAlert.SetResultAlertReturn("Drug Group delete successfully!", e.Exception);
     }
+
+    [System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethodAttribute()]
+    public static string[] GetCompletionList(string prefixText, int count, string contextKey)
+    {
+        var findDrugGroupDataSource = (from dg in new DataClassesDataContext().DrugGroups
+                                       where dg.Name.Contains(prefixText)
+                                       select dg.Name).ToArray();
+        return findDrugGroupDataSource;
+    }
+
+    protected void FindDrugGroupButton_Click(object sender, EventArgs e)
+    {
+        AllDrugGroupsGridView.DataBind();
+    }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        FindDrugGroupTextBox.Text = "";
+        AllDrugGroupsGridView.DataBind();
+    }
 }

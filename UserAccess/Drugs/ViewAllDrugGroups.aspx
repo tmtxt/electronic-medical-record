@@ -12,10 +12,21 @@
     All Drug Groups
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Content" Runat="Server">
-    <form runat="server">
+    <form runat="server" class="form-horizontal">
         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
+                <div class="control-group">
+                    <asp:Label CssClass="label_filter" ID="Label3" runat="server"
+                        Text="Filter Drug Group by Name"></asp:Label>
+                    <asp:TextBox ID="FindDrugGroupTextBox" runat="server"></asp:TextBox>
+                    <asp:AutoCompleteExtender ID="AutoCompleteExtender1" TargetControlID="FindDrugGroupTextBox"
+                        runat="server" UseContextKey="True" ServiceMethod="GetCompletionList">
+                    </asp:AutoCompleteExtender>
+                    <asp:Button ID="FindDrugGroupButton" CssClass="btn btn-primary" runat="server" Text="Search" OnClick="FindDrugGroupButton_Click" />
+                    <asp:Button ID="Button1" runat="server" CssClass="btn btn-primary" Text="Cancel" OnClick="Button1_Click" />
+                </div>
+
                 <asp:GridView ID="AllDrugGroupsGridView" runat="server" AutoGenerateColumns="False"
                     DataKeyNames="ID" DataSourceID="AllDrugGroupsDataSource"
                     CssClass="table table-bordered table-striped table-hover" OnRowDeleted="AllDrugGroupsGridView_RowDeleted" OnRowUpdated="AllDrugGroupsGridView_RowUpdated">
@@ -70,7 +81,13 @@
                     </Columns>
                 </asp:GridView>
                 <utmpl:ResultAlert runat="server" ID="ResultAlert" />
-                <asp:LinqDataSource ID="AllDrugGroupsDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableDelete="True" EnableUpdate="True" EntityTypeName="" TableName="DrugGroups">
+                <asp:LinqDataSource ID="AllDrugGroupsDataSource" runat="server" ContextTypeName="DataClassesDataContext"
+                    EnableDelete="True" EnableUpdate="True" EntityTypeName="" TableName="DrugGroups"
+                     Where="Name.Contains(@NamePart)">
+                    <WhereParameters>
+                        <asp:ControlParameter ControlID="FindDrugGroupTextBox"
+                            ConvertEmptyStringToNull="False" Name="NamePart" PropertyName="Text" />
+                    </WhereParameters>
                 </asp:LinqDataSource>
             </ContentTemplate>
         </asp:UpdatePanel>
