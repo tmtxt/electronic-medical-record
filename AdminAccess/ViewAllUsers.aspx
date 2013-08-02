@@ -32,7 +32,7 @@
                         <asp:TemplateField>
                             <ItemTemplate>
                                 <asp:Button ID="Button1" runat="server" CssClass="btn btn-primary" CommandName="Edit" Text="Edit" />
-                                <asp:Button ID="Button2" runat="server" CssClass="btn btn-primary" CommandName="Delete" Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this user?')" />
+                                <asp:Button ID="Button2" runat="server" CssClass="btn btn-danger" CommandName="Delete" Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this user?')" />
                             </ItemTemplate>
                             <EditItemTemplate>
                                 <asp:Button ID="Button3" runat="server" CssClass="btn btn-primary" CommandName="Update" Text="Update" />
