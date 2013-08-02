@@ -26,6 +26,6 @@ public partial class UserAccess_Patients_ViewAllPatient : System.Web.UI.Page
     }
     protected void AllPatientsGridview_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
-        System.Threading.Thread.Sleep(2000);
+        System.Threading.Thread.Sleep(1000);
     }
 }
