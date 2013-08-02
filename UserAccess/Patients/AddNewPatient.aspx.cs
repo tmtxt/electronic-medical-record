@@ -19,12 +19,12 @@ public partial class UserAccess_Patients_AddNewPatient : System.Web.UI.Page
     }
     protected void InsertButton_Click(object sender, EventArgs e)
     {
-        System.Threading.Thread.Sleep(1000);
 
         var patientName = ((TextBox)AddPatientFormView.FindControl("NameTextBox")).Text;
         var patientGender = ((DropDownList)AddPatientFormView.FindControl("GenderDropdownList")).SelectedValue;
         var patientAddress = ((TextBox)AddPatientFormView.FindControl("AddressTextbox")).Text;
-        var patientDateOfBirth = ((Calendar)AddPatientFormView.FindControl("DateOfBirthCalendar")).SelectedDate.Ticks;
+        var patientDateOfBirth =
+            ((TemplateControls_DatePicker)AddPatientFormView.FindControl("DateOfBirthDatePicker")).SelectedDate;
 
         System.Collections.Specialized.ListDictionary dic = new System.Collections.Specialized.ListDictionary();
         dic.Add("Name", patientName);
@@ -53,7 +53,7 @@ public partial class UserAccess_Patients_AddNewPatient : System.Web.UI.Page
         ((TextBox)AddPatientFormView.FindControl("NameTextBox")).Text = "";
         ((DropDownList)AddPatientFormView.FindControl("GenderDropdownList")).SelectedIndex = 0;
         ((TextBox)AddPatientFormView.FindControl("AddressTextbox")).Text = "";
-        ((Calendar)AddPatientFormView.FindControl("DateOfBirthCalendar")).SelectedDate = DateTime.Now;
+        ((TemplateControls_DatePicker)AddPatientFormView.FindControl("DateOfBirthDatePicker")).SelectedDate = DateTime.Now.Ticks;
     }
 
     protected void ClearButton_Click(object sender, EventArgs e)
@@ -63,6 +63,7 @@ public partial class UserAccess_Patients_AddNewPatient : System.Web.UI.Page
 
     protected void AddPatientFormView_ItemInserted(object sender, FormViewInsertedEventArgs e)
     {
+        System.Threading.Thread.Sleep(1000);
         if (e.Exception == null)
         {
             ResultAlert.SetResultAlert("Patient inserted successfully!",
@@ -78,5 +79,8 @@ public partial class UserAccess_Patients_AddNewPatient : System.Web.UI.Page
     protected void InsertCancelButton_Click(object sender, EventArgs e)
     {
         Response.Redirect("/UserAccess/Patients/ViewAllPatients.aspx");
+    }
+    protected void AddPatientDataSource_Inserting(object sender, LinqDataSourceInsertEventArgs e)
+    {
     }
 }
