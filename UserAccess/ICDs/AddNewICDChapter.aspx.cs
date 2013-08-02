@@ -29,4 +29,19 @@ public partial class UserAccess_ICDs_AddNewICDChapter : System.Web.UI.Page
     {
         ClearForm();
     }
+    protected void AddNewICDChapterFormView_ItemInserted(object sender, FormViewInsertedEventArgs e)
+    {
+        System.Threading.Thread.Sleep(1000);
+        if (e.Exception == null)
+        {
+            ResultAlert.SetResultAlert("ICD Chapter inserted successfully!",
+                TemplateControls_ResultAlert.AlertTypeSuccess);
+        }
+        else
+        {
+            ResultAlert.SetResultAlert(e.Exception.Message,
+                TemplateControls_ResultAlert.AlertTypeError);
+            e.ExceptionHandled = true;
+        }
+    }
 }

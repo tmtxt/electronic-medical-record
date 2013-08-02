@@ -16,8 +16,8 @@
             <ContentTemplate>
                 <asp:FormView Width="100%" DataSourceID="AddNewICDChapterDataSource"
                     ID="AddNewICDChapterFormView" runat="server" DefaultMode="Insert"
-                    DataKeyNames="ID">
-
+                    DataKeyNames="ID" OnItemInserted="AddNewICDChapterFormView_ItemInserted">
+                        
                     <InsertItemTemplate>
                         <fieldset>
                             <legend>Enter ICD Chapter information</legend>
@@ -40,6 +40,7 @@
                 </asp:FormView>
                 <asp:LinqDataSource ID="AddNewICDChapterDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableInsert="True" EntityTypeName="" TableName="ICDChapters">
                 </asp:LinqDataSource>
+                <p></p>
                 <utmpl:ResultAlert runat="server" ID="ResultAlert" />
             </ContentTemplate>
         </asp:UpdatePanel>
