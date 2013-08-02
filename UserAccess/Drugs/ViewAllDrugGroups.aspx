@@ -1,5 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ViewAllDrugGroups.aspx.cs" Inherits="UserAccess_Drugs_ViewAllDrugGroups" %>
 
+<%@ Register Src="/TemplateControls/UpdateProgressBar.ascx" TagPrefix="utmpl" TagName="UpdateProgressBar" %>
+<%@ Register Src="/TemplateControls/ResultAlert.ascx" TagPrefix="utmpl" TagName="ResultAlert" %>
+
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" Runat="Server">
     Drug Groups
 </asp:Content>
@@ -13,7 +18,7 @@
             <ContentTemplate>
                 <asp:GridView ID="AllDrugGroupsGridView" runat="server" AutoGenerateColumns="False"
                     DataKeyNames="ID" DataSourceID="AllDrugGroupsDataSource"
-                    CssClass="table table-bordered table-striped table-hover">
+                    CssClass="table table-bordered table-striped table-hover" OnRowDeleted="AllDrugGroupsGridView_RowDeleted" OnRowUpdated="AllDrugGroupsGridView_RowUpdated">
                     <Columns>
                         <asp:TemplateField HeaderText="Name" SortExpression="Name"
                              HeaderStyle-Width="40%" FooterStyle-Width="40%" ItemStyle-Width="40%">
@@ -56,10 +61,12 @@
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
+                <utmpl:ResultAlert runat="server" ID="ResultAlert" />
                 <asp:LinqDataSource ID="AllDrugGroupsDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableDelete="True" EnableUpdate="True" EntityTypeName="" TableName="DrugGroups">
                 </asp:LinqDataSource>
             </ContentTemplate>
         </asp:UpdatePanel>
+        <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
     </form>
 </asp:Content>
 

@@ -40,6 +40,26 @@ public partial class TemplateControls_ResultAlert : System.Web.UI.UserControl
         }
     }
 
+    /// <summary>
+    /// same as the above function but with event args to determine the message type automatically
+    /// </summary>
+    /// <param name="successfulMessage">message to display if succesful</param>
+    /// <param name="ex"></param>
+    /// <returns>whether the exception is handled</returns>
+    public bool SetResultAlertReturn(string successfulMessage, Exception ex)
+    {
+        if (ex == null)
+        {
+            SetResultAlert(successfulMessage, AlertTypeSuccess);
+            return true;
+        }
+        else
+        {
+            SetResultAlert(ex.Message, AlertTypeError);
+            return false;
+        }
+    }
+
     public void ClearResultAlert()
     {
         ResultLabel.Text = "";
