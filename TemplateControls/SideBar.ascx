@@ -13,7 +13,7 @@
 
         <li class="nav-header">ICD</li>
         <li><a href="/UserAccess/ICDs/ViewAllICDChapters.aspx">ICD Chapters</a></li>
-        <li><a href="#">Add New ICD Chapter</a></li>
+        <li><a href="/UserAccess/ICDs/AddNewICDChapter.aspx">Add New ICD Chapter</a></li>
         <li><a href="#">ICD List</a></li>
         <li><a href="#">Add New ICD</a></li>
 

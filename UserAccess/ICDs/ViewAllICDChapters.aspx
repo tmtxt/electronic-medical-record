@@ -17,7 +17,7 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <div class="control-group">
-                    <asp:Label CssClass="label_filter" ID="Label3" runat="server" Text="Filter Patients by Name"></asp:Label>
+                    <asp:Label CssClass="label_filter" ID="Label3" runat="server" Text="Filter ICD Chapter by Name"></asp:Label>
                     
                     <asp:AutoCompleteExtender ID="AutoCompleteExtender1" TargetControlID="FindICDChapterTextBox"
                         runat="server" UseContextKey="True" ServiceMethod="GetCompletionList">
@@ -65,6 +65,7 @@
                     </Columns>
                 </asp:GridView>
                 <utmpl:ResultAlert runat="server" ID="ResultAlert" />
+                
                 <asp:LinqDataSource ID="AllICDChaptersDataSource" runat="server"
                     ContextTypeName="DataClassesDataContext" EnableDelete="True" EnableUpdate="True"
                     EntityTypeName="" TableName="ICDChapters" Where="Name.Contains(@NamePart)">
@@ -78,5 +79,6 @@
         <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
 
     </form>
+    <asp:HyperLink ID="HyperLink1" runat="server" CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign" NavigateUrl="~/UserAccess/ICDs/AddNewICDChapter.aspx">Add New ICD Chapter</asp:HyperLink>
 </asp:Content>
 
