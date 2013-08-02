@@ -16,6 +16,17 @@
         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
+                <div class="control-group">
+                    <asp:Label CssClass="label_filter" ID="Label3" runat="server" Text="Filter Medical Service Groups by Name"></asp:Label>
+                    <asp:TextBox ID="FindMedicalServiceGroupTextBox" runat="server"></asp:TextBox>
+                    <asp:AutoCompleteExtender ID="AutoCompleteExtender1" TargetControlID="FindMedicalServiceGroupTextBox"
+                        runat="server" UseContextKey="True" ServiceMethod="GetCompletionList">
+                    </asp:AutoCompleteExtender>
+
+                    <asp:Button ID="FindMedicalServiceGroupButton" CssClass="btn btn-primary" runat="server" Text="Search" OnClick="FindMedicalServiceGroupButton_Click"/>
+                    <asp:Button ID="Button1" runat="server" CssClass="btn btn-primary" Text="Cancel" OnClick="Button1_Click" />
+                </div>
+
                 <asp:GridView ID="AllMedicalServiceGroupsGridView"  CssClass="table table-bordered table-striped table-hover"
                     runat="server" AutoGenerateColumns="False" DataKeyNames="ID"
                     DataSourceID="AllMedicalServiceGroupsDataSource" OnRowDeleted="AllMedicalServiceGroupsGridView_RowDeleted" OnRowUpdated="AllMedicalServiceGroupsGridView_RowUpdated">
@@ -71,7 +82,14 @@
                     </Columns>
                 </asp:GridView>
                 <utmpl:ResultAlert runat="server" ID="ResultAlert" />
-                <asp:LinqDataSource ID="AllMedicalServiceGroupsDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableDelete="True" EnableUpdate="True" EntityTypeName="" TableName="MedicalServiceGroups">
+                <asp:LinqDataSource ID="AllMedicalServiceGroupsDataSource" runat="server"
+                    ContextTypeName="DataClassesDataContext" EnableDelete="True" EnableUpdate="True"
+                    EntityTypeName="" TableName="MedicalServiceGroups"
+                    Where="Name.Contains(@NamePart)">
+                    <WhereParameters>
+                        <asp:ControlParameter ControlID="FindMedicalServiceGroupTextBox"
+                            ConvertEmptyStringToNull="False" Name="NamePart" PropertyName="Text" />
+                    </WhereParameters>
                 </asp:LinqDataSource>
             </ContentTemplate>
         </asp:UpdatePanel>

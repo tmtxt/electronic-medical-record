@@ -29,4 +29,21 @@ public partial class UserAccess_MedicalServices_ViewAllMedicalServiceGroups : Sy
         e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Medical Service Group deleted successfully!",
             e.Exception);
     }
+
+    [System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethodAttribute()]
+    public static string[] GetCompletionList(string prefixText, int count, string contextKey)
+    {
+        return default(string[]);
+    }
+
+    protected void FindMedicalServiceGroupButton_Click(object sender, EventArgs e)
+    {
+        AllMedicalServiceGroupsGridView.DataBind();
+    }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        FindMedicalServiceGroupTextBox.Text = "";
+        AllMedicalServiceGroupsGridView.DataBind();
+    }
 }
