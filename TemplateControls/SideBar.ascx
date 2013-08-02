@@ -26,7 +26,7 @@
         <li class="nav-header">Medical Services</li>
         <li><a href="/UserAccess/MedicalServices/ViewAllMedicalServiceGroups.aspx">Medical Service Groups</a></li>
         <li><a href="/UserAccess/MedicalServices/AddNewMedicalServiceGroup.aspx">Add Medical Service Group</a></li>
-        <li><a href="#">ICD List</a></li>
+        <li><a href="/UserAccess/MedicalServices/ViewAllMedicalServices.aspx">Medical Services</a></li>
         <li><a href="#">Add New ICD</a></li>
 
         <%-- this section is for admin only --%>
