@@ -21,20 +21,29 @@
                         <asp:TemplateField HeaderText="Name" SortExpression="Name"
                              HeaderStyle-Width="40%" FooterStyle-Width="40%" ItemStyle-Width="40%">
                             <EditItemTemplate>
-                                <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Name") %>'></asp:TextBox>
+                                <asp:TextBox ID="NameTextBox" runat="server" Text='<%# Bind("Name") %>'></asp:TextBox><br />
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
+                                    ErrorMessage="Medical Service Group Name is required" ControlToValidate="NameTextBox" CssClass="label label-important" Display="Dynamic"></asp:RequiredFieldValidator>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="Label1" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
                             </ItemTemplate>
+                            <FooterStyle Width="40%" />
+                            <HeaderStyle Width="40%" />
+                            <ItemStyle Width="40%" />
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Description" SortExpression="Description"
                              HeaderStyle-Width="40%" FooterStyle-Width="40%" ItemStyle-Width="40%">
                             <EditItemTemplate>
-                                <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Description") %>'></asp:TextBox>
+                                <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Description") %>'
+                                    TextMode="MultiLine" Rows="6"></asp:TextBox>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="Label2" runat="server" Text='<%# Bind("Description") %>'></asp:Label>
                             </ItemTemplate>
+                            <FooterStyle Width="40%" />
+                            <HeaderStyle Width="40%" />
+                            <ItemStyle Width="40%" />
                         </asp:TemplateField>
                         <asp:TemplateField>
                             <EditItemTemplate>
@@ -49,7 +58,7 @@
                         <asp:TemplateField>
                             <EditItemTemplate>
                                 <asp:Button ID="CancelButton" CssClass="btn btn-primary" runat="server"
-                                    Text="Cancel" CommandName="Cancel" />
+                                    Text="Cancel" CommandName="Cancel" CausesValidation="False" />
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Button ID="DeleteButton" CssClass="btn btn-danger" runat="server"
