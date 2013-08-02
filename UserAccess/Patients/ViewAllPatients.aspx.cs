@@ -33,4 +33,13 @@ public partial class UserAccess_Patients_ViewAllPatient : System.Web.UI.Page
     {
         AllPatientsGridview.DataBind();
     }
+
+    [System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethodAttribute()]
+    public static string[] GetCompletionList(string prefixText, int count, string contextKey)
+    {
+        var patientNameDataSource = (from p in new DataClassesDataContext().Patients
+                                     where p.Name.Contains(prefixText)
+                                     select p.Name).ToArray();
+        return patientNameDataSource;
+    }
 }
