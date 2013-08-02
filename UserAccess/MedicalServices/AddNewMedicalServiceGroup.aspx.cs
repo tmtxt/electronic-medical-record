@@ -11,4 +11,22 @@ public partial class UserAccess_MedicalServices_AddNewMedicalServiceGroup : Syst
     {
 
     }
+
+    protected void ClearFormButton_Click(object sender, EventArgs e)
+    {
+        ClearForm();
+    }
+
+    protected void ClearForm()
+    {
+        ((TextBox)AddNewMedicalServiceGroupFormView.FindControl("NameTextBox"))
+            .Text = "";
+        ((TextBox)AddNewMedicalServiceGroupFormView.FindControl("DescriptionTextBox"))
+            .Text = "";
+    }
+
+    protected void AddNewMedicalServiceGroupFormView_ItemInserted(object sender, FormViewInsertedEventArgs e)
+    {
+
+    }
 }
