@@ -2,6 +2,8 @@
 
 <%@ Register Src="~/TemplateControls/UpdateProgressBar.ascx" TagPrefix="utmpl" TagName="UpdateProgressBar" %>
 <%@ Register Src="~/TemplateControls/ResultAlert.ascx" TagPrefix="utmpl" TagName="ResultAlert" %>
+<%@ Register Src="~/TemplateControls/DatePicker.ascx" TagPrefix="utmpl" TagName="DatePicker" %>
+
 
 
 
@@ -87,9 +89,10 @@
                             <tr>
                                 <td><strong>Birthdate</strong></td>
                                 <td>
-                                    <asp:TextBox Text='<%# DateTime.FromBinary(long.Parse(Eval("DateOfBirth").ToString())).ToString("dd/MMM/yyyy") %>' ID="DateOfBirthTextBox" CssClass="form-control" runat="server"></asp:TextBox>
+                                    <%--<asp:TextBox Text='<%# DateTime.FromBinary(long.Parse(Eval("DateOfBirth").ToString())).ToString("dd/MMM/yyyy") %>' ID="DateOfBirthTextBox" CssClass="form-control" runat="server"></asp:TextBox>
                                     <asp:CalendarExtender ID="DateOfBirthCalendarExtender" TargetControlID="DateOfBirthTextBox" Format="dd/MMM/yyyy" runat="server" >
-                                    </asp:CalendarExtender>
+                                    </asp:CalendarExtender>--%>
+                                    <utmpl:DatePicker InitialDate='<%# long.Parse(Eval("DateOfBirth").ToString()) %>' runat="server" ID="DateOfBirthDatePicker" />
                                 </td>
                                 <td><strong>Number of visits</strong></td>
                                 <td>number</td>

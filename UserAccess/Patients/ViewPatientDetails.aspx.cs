@@ -72,24 +72,15 @@ public partial class UserAccess_Patients_ViewPatientDetails : System.Web.UI.Page
     }
     protected void PatientDetailDataSource_Updating(object sender, LinqDataSourceUpdateEventArgs e)
     {
-        DateTime result;
-
         // get the new object
         var newObject = (Patient)e.NewObject;
 
         // get the controls from the view
-        var calendar = (CalendarExtender)PatientDetailFormView.FindControl("DateOfBirthCalendarExtender");
-        var textbox = (TextBox)PatientDetailFormView.FindControl("DateOfBirthTextBox");
+        var dateOfBirthDatePicker = (TemplateControls_DatePicker)
+            PatientDetailFormView.FindControl("DateOfBirthDatePicker");
 
-        if (DateTime.TryParseExact(textbox.Text, calendar.Format, null, System.Globalization.DateTimeStyles.None, out result))
-        {
-            DateTime t = DateTime.ParseExact(textbox.Text, calendar.Format, null);
-            newObject.DateOfBirth = t.Ticks;
-        }
-        else
-        {
-            throw new Exception("Bad Date format! Please try again");
-        }
+        // set the date for the new object
+        newObject.DateOfBirth = dateOfBirthDatePicker.SelectedDate;
         
     }
     protected void PatientDetailDataSource_DataBinding(object sender, EventArgs e)
@@ -98,12 +89,6 @@ public partial class UserAccess_Patients_ViewPatientDetails : System.Web.UI.Page
     }
     protected void PatientDetailDataSource_Selected(object sender, LinqDataSourceStatusEventArgs e)
     {
-        //// get the textbox control from the formview
-        //var textbox = (TextBox)PatientDetailFormView.FindControl("DateOfBirthTextBox");
-
-        //// get the current patient
-        //var patient = (Patient)PatientDetailFormView.DataItem;
-
-        //textbox.Text = patient.DateOfBirth.ToString();
+        
     }
 }
