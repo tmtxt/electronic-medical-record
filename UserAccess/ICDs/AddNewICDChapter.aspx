@@ -23,7 +23,9 @@
                             <legend>Enter ICD Chapter information</legend>
                             <div class="form-group">
                                 <label for="NameTextBox">ICD Chapter Name *</label>
-                                <asp:TextBox CssClass="form-control" Text='<%# Bind("Name") %>' ID="NameTextBox" runat="server" Width="70%"></asp:TextBox>
+                                <asp:TextBox CssClass="form-control" Text='<%# Bind("Name") %>' ID="NameTextBox" runat="server" Width="70%"></asp:TextBox><br />
+                                <asp:RequiredFieldValidator ID="NameValidator" runat="server" ErrorMessage="ICD Chapter Name is required" ControlToValidate="NameTextBox" CssClass="label label-important" Display="Dynamic"></asp:RequiredFieldValidator>
+                                <p></p>
                             </div>
                             <div class="form-group">
                                 <label for="DescriptionTextBox">ICD Chapter Description</label>
