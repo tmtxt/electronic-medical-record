@@ -92,7 +92,7 @@
                                     <%--<asp:TextBox Text='<%# DateTime.FromBinary(long.Parse(Eval("DateOfBirth").ToString())).ToString("dd/MMM/yyyy") %>' ID="DateOfBirthTextBox" CssClass="form-control" runat="server"></asp:TextBox>
                                     <asp:CalendarExtender ID="DateOfBirthCalendarExtender" TargetControlID="DateOfBirthTextBox" Format="dd/MMM/yyyy" runat="server" >
                                     </asp:CalendarExtender>--%>
-                                    <utmpl:DatePicker InitialDate='<%# long.Parse(Eval("DateOfBirth").ToString()) %>' runat="server" ID="DateOfBirthDatePicker" />
+                                    <utmpl:DatePicker IsRequired="true" InitialDate='<%# long.Parse(Eval("DateOfBirth").ToString()) %>' runat="server" ID="DateOfBirthDatePicker" />
                                 </td>
                                 <td><strong>Number of visits</strong></td>
                                 <td>number</td>

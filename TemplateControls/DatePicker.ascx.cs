@@ -7,6 +7,11 @@ using System.Web.UI.WebControls;
 
 public partial class TemplateControls_DatePicker : System.Web.UI.UserControl
 {
+    /// <summary>
+    /// whether this date is required or not, used for validation
+    /// default value is true
+    /// </summary>
+    public bool IsRequired { get; set; }
 
     public long InitialDate { get; set; }
     public long SelectedDate
@@ -36,6 +41,16 @@ public partial class TemplateControls_DatePicker : System.Web.UI.UserControl
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        // set selected date if initial date is null
 
+        // required field validation
+        if (IsRequired)
+        {
+            DateOfBirthTextBoxValidator.Enabled = true;
+        }
+        else
+        {
+            DateOfBirthTextBoxValidator.Enabled = false;
+        }
     }
 }
