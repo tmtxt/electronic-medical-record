@@ -27,6 +27,10 @@ public partial class UserAccess_MedicalServices_AddNewMedicalServiceGroup : Syst
 
     protected void AddNewMedicalServiceGroupFormView_ItemInserted(object sender, FormViewInsertedEventArgs e)
     {
+        System.Threading.Thread.Sleep(1000);
 
+        // display the result alert
+        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Medical Service Group inserted successfully!",
+            e.Exception);
     }
 }
