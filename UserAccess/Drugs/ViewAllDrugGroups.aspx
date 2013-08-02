@@ -23,11 +23,15 @@
                         <asp:TemplateField HeaderText="Name" SortExpression="Name"
                              HeaderStyle-Width="40%" FooterStyle-Width="40%" ItemStyle-Width="40%">
                             <EditItemTemplate>
-                                <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Name") %>'></asp:TextBox>
+                                <asp:TextBox ID="NameTextBox" runat="server" Text='<%# Bind("Name") %>'></asp:TextBox><br />
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Drug Group Name is required" ControlToValidate="NameTextBox" CssClass="label label-important" Display="Dynamic"></asp:RequiredFieldValidator>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="Label1" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
                             </ItemTemplate>
+                            <FooterStyle Width="40%" />
+                            <HeaderStyle Width="40%" />
+                            <ItemStyle Width="40%" />
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Description" SortExpression="Description"
                              HeaderStyle-Width="40%" FooterStyle-Width="40%" ItemStyle-Width="40%">
@@ -38,6 +42,9 @@
                             <ItemTemplate>
                                 <asp:Label ID="Label2" runat="server" Text='<%# Bind("Description") %>'></asp:Label>
                             </ItemTemplate>
+                            <FooterStyle Width="40%" />
+                            <HeaderStyle Width="40%" />
+                            <ItemStyle Width="40%" />
                         </asp:TemplateField>
                         <asp:TemplateField>
                             <EditItemTemplate>
@@ -52,7 +59,7 @@
                         <asp:TemplateField>
                             <EditItemTemplate>
                                 <asp:Button ID="CancelButton" runat="server" Text="Cancel" CommandName="Cancel"
-                                    CssClass="btn btn-primary" />
+                                    CssClass="btn btn-primary" CausesValidation="False" />
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Button ID="DeleteButton" runat="server" Text="Delete" CommandName="Delete"
@@ -69,5 +76,8 @@
         </asp:UpdatePanel>
         <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
     </form>
+    <asp:HyperLink ID="HyperLink1" runat="server" CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign"
+        NavigateUrl="/UserAccess/Drugs/AllNewDrugGroup.aspx">
+        Add New Drug Group</asp:HyperLink>
 </asp:Content>
 
