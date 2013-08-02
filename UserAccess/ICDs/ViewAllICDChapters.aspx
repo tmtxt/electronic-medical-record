@@ -31,11 +31,15 @@
                     <Columns>
                         <asp:TemplateField HeaderStyle-Width="40%" FooterStyle-Width="40%" ItemStyle-Width="40%" HeaderText="Name" SortExpression="Name">
                             <EditItemTemplate>
-                                <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Name") %>'></asp:TextBox>
+                                <asp:TextBox ID="NameTextBox" runat="server" Text='<%# Bind("Name") %>'></asp:TextBox><br />
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="NameTextBox" CssClass="label label-important" Display="Dynamic" ErrorMessage="ICD Chapter Name is required"></asp:RequiredFieldValidator>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="Label1" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
                             </ItemTemplate>
+                            <FooterStyle Width="40%" />
+                            <HeaderStyle Width="40%" />
+                            <ItemStyle Width="40%" />
                         </asp:TemplateField>
                         <asp:TemplateField HeaderStyle-Width="40%" FooterStyle-Width="40%" ItemStyle-Width="40%" HeaderText="Description" SortExpression="Description">
                             <EditItemTemplate>
@@ -44,6 +48,9 @@
                             <ItemTemplate>
                                 <asp:Label ID="Label2" runat="server" Text='<%# Bind("Description") %>'></asp:Label>
                             </ItemTemplate>
+                            <FooterStyle Width="40%" />
+                            <HeaderStyle Width="40%" />
+                            <ItemStyle Width="40%" />
                         </asp:TemplateField>
                         <asp:TemplateField HeaderStyle-Width="10%" FooterStyle-Width="10%" ItemStyle-Width="10%">
                             <EditItemTemplate>
@@ -52,15 +59,21 @@
                             <ItemTemplate>
                                 <asp:Button ID="EditButton" runat="server" CommandName="Edit" CssClass="btn btn-primary" Text="Edit" />
                             </ItemTemplate>
+                            <FooterStyle Width="10%" />
+                            <HeaderStyle Width="10%" />
+                            <ItemStyle Width="10%" />
                         </asp:TemplateField>
                         <asp:TemplateField HeaderStyle-Width="10%" FooterStyle-Width="10%" ItemStyle-Width="10%">
                             <EditItemTemplate>
-                                <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" CssClass="btn btn-primary" Text="Cancel" />
+                                <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" CssClass="btn btn-primary" Text="Cancel" CausesValidation="False" />
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" CssClass="btn btn-danger" Text="Delete"
                                     OnClientClick="return confirm('Are you sure you want to delete this ICD Chapter?\nAll ICDs belong to this Chapter and All Visits associated with those ICDs will be deleted, too!')" />
                             </ItemTemplate>
+                            <FooterStyle Width="10%" />
+                            <HeaderStyle Width="10%" />
+                            <ItemStyle Width="10%" />
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
