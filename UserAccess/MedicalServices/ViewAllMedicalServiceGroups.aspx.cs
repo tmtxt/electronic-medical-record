@@ -33,7 +33,11 @@ public partial class UserAccess_MedicalServices_ViewAllMedicalServiceGroups : Sy
     [System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethodAttribute()]
     public static string[] GetCompletionList(string prefixText, int count, string contextKey)
     {
-        return default(string[]);
+        var medicalServiceGroupNamesDataSource =
+            (from msg in new DataClassesDataContext().MedicalServiceGroups
+             where msg.Name.Contains(prefixText)
+             select msg.Name).ToArray();
+        return medicalServiceGroupNamesDataSource;
     }
 
     protected void FindMedicalServiceGroupButton_Click(object sender, EventArgs e)
