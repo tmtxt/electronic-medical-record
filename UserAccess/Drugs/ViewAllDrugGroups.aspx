@@ -56,7 +56,8 @@
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Button ID="DeleteButton" runat="server" Text="Delete" CommandName="Delete"
-                                    CssClass="btn btn-danger" />
+                                    CssClass="btn btn-danger"
+                                    OnClientClick="return confirm('Are you sure you want to delete this Drug Group?\nAll Drugs belong to this Group as well as All Prescription Details associated with those Drugs will be deleted, too.')" />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
