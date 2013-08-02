@@ -5,6 +5,7 @@
 
 
 
+
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="Server">
     Patients
 </asp:Content>
@@ -29,7 +30,7 @@
                     <asp:Button ID="Button3" runat="server" CssClass="btn btn-primary" OnClick="Button3_Click" Text="Cancel" />
                 </div>
 
-                <asp:GridView CssClass="gridview table table-bordered table-striped table-hover" ID="AllPatientsGridview" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="AllPatientsDataSource" OnRowDeleted="AllPatientsGridview_RowDeleted" OnRowDeleting="AllPatientsGridview_RowDeleting">
+                <asp:GridView CssClass="gridview table table-bordered table-striped table-hover" ID="AllPatientsGridview" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="AllPatientsDataSource" OnRowDeleted="AllPatientsGridview_RowDeleted" OnRowDeleting="AllPatientsGridview_RowDeleting" AllowPaging="True">
                     <Columns>
                         <asp:TemplateField HeaderText="ID" InsertVisible="False" SortExpression="ID">
                             <EditItemTemplate>
@@ -68,6 +69,29 @@
                         </asp:TemplateField>
 
                     </Columns>
+                    <PagerSettings Mode="NumericFirstLast" PageButtonCount="4" />
+                    <pagertemplate>
+                        <ul class="pager">
+                            <li>
+                                <asp:LinkButton CommandName="Page" CommandArgument="First" ID="HyperLink2" runat="server">
+                                    First
+                                </asp:LinkButton>
+                                <asp:LinkButton CommandName="Page" CommandArgument="Prev" ID="LinkButton1" runat="server">
+                                    Previous
+                                </asp:LinkButton>
+                                <asp:Label ID="Label4" runat="server" Text="Label">
+                                    Page <%= AllPatientsGridview.PageIndex + 1 %> of <%= AllPatientsGridview.PageCount %>
+                                </asp:Label>
+                                <asp:LinkButton CommandName="Page" CommandArgument="Next" ID="LinkButton2" runat="server">
+                                    Next
+                                </asp:LinkButton>
+                                <asp:LinkButton CommandName="Page" CommandArgument="Last" ID="LinkButton3" runat="server">
+                                    Last
+                                </asp:LinkButton>
+                            </li>
+                        </ul>
+                    </pagertemplate>
+
                 </asp:GridView>
                 <utmpl:ResultAlert runat="server" ID="ResultAlert" />
             </ContentTemplate>
