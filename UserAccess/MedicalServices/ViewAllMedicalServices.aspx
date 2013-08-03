@@ -23,8 +23,6 @@
                         runat="server" UseContextKey="True" ServiceMethod="GetCompletionList">
                     </asp:AutoCompleteExtender>
                     
-                    <asp:LinqDataSource ID="MedicalServiceGroupDataSource" runat="server" ContextTypeName="DataClassesDataContext" EntityTypeName="" Select="new (ID, Name)" TableName="MedicalServiceGroups">
-                    </asp:LinqDataSource>
                     <asp:Button ID="FindMedicalServiceButton" CssClass="btn btn-primary" runat="server" Text="Search" OnClick="FindMedicalServiceButton_Click"/>
                     <asp:Button ID="CancelFindButton" runat="server" CssClass="btn btn-primary" Text="Cancel" OnClick="CancelFindButton_Click" />
                 </div>
