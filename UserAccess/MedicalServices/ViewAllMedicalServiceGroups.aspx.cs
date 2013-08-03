@@ -50,4 +50,10 @@ public partial class UserAccess_MedicalServices_ViewAllMedicalServiceGroups : Sy
         FindMedicalServiceGroupTextBox.Text = "";
         AllMedicalServiceGroupsGridView.DataBind();
     }
+
+    protected void AllMedicalServiceGroupsGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        // delete the dependencies first
+        MedicalServiceGroupOperations.DeleteDependencies(long.Parse(e.Keys["ID"].ToString()));
+    }
 }

@@ -29,7 +29,7 @@
 
                 <asp:GridView ID="AllMedicalServiceGroupsGridView"  CssClass="table table-bordered table-striped table-hover"
                     runat="server" AutoGenerateColumns="False" DataKeyNames="ID"
-                    DataSourceID="AllMedicalServiceGroupsDataSource" OnRowDeleted="AllMedicalServiceGroupsGridView_RowDeleted" OnRowUpdated="AllMedicalServiceGroupsGridView_RowUpdated">
+                    DataSourceID="AllMedicalServiceGroupsDataSource" OnRowDeleted="AllMedicalServiceGroupsGridView_RowDeleted" OnRowUpdated="AllMedicalServiceGroupsGridView_RowUpdated" OnRowDeleting="AllMedicalServiceGroupsGridView_RowDeleting">
                     <Columns>
                         <asp:TemplateField HeaderText="Name" SortExpression="Name"
                              HeaderStyle-Width="40%" FooterStyle-Width="40%" ItemStyle-Width="40%">
