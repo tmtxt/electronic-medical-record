@@ -25,4 +25,12 @@ public partial class UserAccess_Drugs_AddNewDrug : System.Web.UI.Page
     {
         ClearForm();
     }
+
+    protected void AddNewDrugFormView_ItemInserted(object sender, FormViewInsertedEventArgs e)
+    {
+        System.Threading.Thread.Sleep(1000);
+
+        // display the result alert
+        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Drug inserted successfully!", e.Exception);
+    }
 }

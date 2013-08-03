@@ -18,7 +18,7 @@
             <ContentTemplate>
 
                 <asp:FormView Width="100%" ID="AddNewDrugFormView" runat="server" DataKeyNames="ID"
-                    DataSourceID="AddNewDrugDataSource" DefaultMode="Insert">
+                    DataSourceID="AddNewDrugDataSource" DefaultMode="Insert" OnItemInserted="AddNewDrugFormView_ItemInserted">
                     <InsertItemTemplate>
                         <fieldset>
                             <legend>Enter Drug information</legend>
@@ -55,7 +55,8 @@
                                 <label for="DrugGroupDropdownList">Drug Group</label>
                                 <asp:DropDownList ID="DrugGroupDropdownList" runat="server"
                                     DataSourceID="DrugGroupDataSource" DataTextField="Name"
-                                    DataValueField="ID"></asp:DropDownList>
+                                    DataValueField="ID"
+                                    SelectedValue='<%# Bind("DrugGroupID") %>'></asp:DropDownList>
                                 <asp:LinqDataSource ID="DrugGroupDataSource" runat="server"
                                     ContextTypeName="DataClassesDataContext" EntityTypeName=""
                                     TableName="DrugGroups">
