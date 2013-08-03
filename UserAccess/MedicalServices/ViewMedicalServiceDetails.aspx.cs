@@ -67,4 +67,17 @@ public partial class UserAccess_MedicalServices_ViewMedicalServiceDetails : Syst
         //groupLabel.Text = groupName.First();
         
     }
+
+    protected void MedicalServiceDetailsFormView_ItemUpdated(object sender, FormViewUpdatedEventArgs e)
+    {
+        System.Threading.Thread.Sleep(1000);
+
+        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Medical Service updated successfully!", e.Exception);
+    }
+
+    protected void MedicalServiceDetailsFormView_ItemDeleted(object sender, FormViewDeletedEventArgs e)
+    {
+        System.Threading.Thread.Sleep(1000);
+        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Medical Service deleted successfully!", e.Exception);
+    }
 }
