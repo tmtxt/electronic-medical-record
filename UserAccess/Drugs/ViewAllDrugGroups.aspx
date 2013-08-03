@@ -29,7 +29,7 @@
 
                 <asp:GridView ID="AllDrugGroupsGridView" runat="server" AutoGenerateColumns="False"
                     DataKeyNames="ID" DataSourceID="AllDrugGroupsDataSource"
-                    CssClass="table table-bordered table-striped table-hover" OnRowDeleted="AllDrugGroupsGridView_RowDeleted" OnRowUpdated="AllDrugGroupsGridView_RowUpdated">
+                    CssClass="table table-bordered table-striped table-hover" OnRowDeleted="AllDrugGroupsGridView_RowDeleted" OnRowUpdated="AllDrugGroupsGridView_RowUpdated" OnRowDeleting="AllDrugGroupsGridView_RowDeleting">
                     <Columns>
                         <asp:TemplateField HeaderText="Name" SortExpression="Name"
                              HeaderStyle-Width="40%" FooterStyle-Width="40%" ItemStyle-Width="40%">
@@ -75,7 +75,7 @@
                             <ItemTemplate>
                                 <asp:Button ID="DeleteButton" runat="server" Text="Delete" CommandName="Delete"
                                     CssClass="btn btn-danger"
-                                    OnClientClick="return confirm('Are you sure you want to delete this Drug Group?\nAll Drugs belong to this Group as well as All Prescription Details associated with those Drugs will be deleted, too.')" />
+                                    OnClientClick="return confirm('Are you sure you want to delete this Drug Group?\n\nAll Drugs belong to this Group as well as All Prescription Details associated with those Drugs will be deleted, too.')" />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

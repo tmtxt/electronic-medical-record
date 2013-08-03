@@ -45,4 +45,10 @@ public partial class UserAccess_Drugs_ViewAllDrugGroups : System.Web.UI.Page
         FindDrugGroupTextBox.Text = "";
         AllDrugGroupsGridView.DataBind();
     }
+
+    protected void AllDrugGroupsGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        // delete all this drug group's dependencies
+        DrugGroupOperations.DeleteDependencies(long.Parse(e.Keys["ID"].ToString()));
+    }
 }
