@@ -16,17 +16,17 @@
         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <asp:FormView Width="100%" ID="AddNewMedicalServiceFormView" runat="server" DefaultMode="Insert" DataKeyNames="ID" DataSourceID="AddNewMedicalServiceDataSource">
+                <asp:FormView Width="100%" ID="AddNewMedicalServiceFormView" runat="server" DefaultMode="Insert" DataKeyNames="ID" DataSourceID="AddNewMedicalServiceDataSource" OnItemInserting="AddNewMedicalServiceFormView_ItemInserting">
                     <InsertItemTemplate>
                         <fieldset>
                             <legend>Enter Medical Service Information</legend>
                             <div class="form-group">
                                 <label for="NameTextBox">Medical Service Name *</label>
-                                <asp:TextBox ID="NameTextBox" runat="server"></asp:TextBox>
+                                <asp:TextBox Text='<%# Bind("Name") %>' ID="NameTextBox" runat="server"></asp:TextBox>
                             </div>
                             <div class="form-group">
                                 <label for="PriceTextBox">Price *</label>
-                                <asp:TextBox ID="PriceTextBox" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="PriceTextBox" Text='<%# Bind("Price") %>' runat="server"></asp:TextBox>
                             </div>
                             <div class="form-group">
                                 <label for="MedicalServiceGroupNameDropdownList">

@@ -23,4 +23,13 @@ public partial class UserAccess_MedicalServices_AddNewMedicalService : System.We
     {
         ClearForm();
     }
+
+    protected void AddNewMedicalServiceFormView_ItemInserting(object sender, FormViewInsertEventArgs e)
+    {
+        // set the MedicalServiceGroupID for the new object
+        // get the control from the form view
+        var dropdownList = (DropDownList)AddNewMedicalServiceFormView.FindControl("MedicalServiceGroupNameDropdownList");
+        // set the value
+        e.Values["MedicalServiceGroupID"] = dropdownList.SelectedValue;
+    }
 }
