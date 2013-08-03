@@ -9,6 +9,25 @@ public partial class UserAccess_Drugs_ViewDrugDetails : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Request.QueryString["ID"] == null)
+        {
+            Response.Redirect("ViewAllDrugs.aspx");
+        }
+    }
 
+    protected void DrugDetailsFormView_ItemDeleted(object sender, FormViewDeletedEventArgs e)
+    {
+        System.Threading.Thread.Sleep(1000);
+
+        // print the result alert
+        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Drug deleted successfully!", e.Exception);
+    }
+
+    protected void DrugDetailsFormView_ItemUpdated(object sender, FormViewUpdatedEventArgs e)
+    {
+        System.Threading.Thread.Sleep(1000);
+
+        // print the result alert
+        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Drug updated successfully!", e.Exception);
     }
 }
