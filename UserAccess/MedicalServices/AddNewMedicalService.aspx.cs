@@ -32,4 +32,11 @@ public partial class UserAccess_MedicalServices_AddNewMedicalService : System.We
         // set the value
         e.Values["MedicalServiceGroupID"] = dropdownList.SelectedValue;
     }
+
+    protected void AddNewMedicalServiceFormView_ItemInserted(object sender, FormViewInsertedEventArgs e)
+    {
+        System.Threading.Thread.Sleep(1000);
+
+        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Medical Service inserted successfully!", e.Exception);
+    }
 }

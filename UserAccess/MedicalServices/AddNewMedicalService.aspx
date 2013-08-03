@@ -16,17 +16,24 @@
         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <asp:FormView Width="100%" ID="AddNewMedicalServiceFormView" runat="server" DefaultMode="Insert" DataKeyNames="ID" DataSourceID="AddNewMedicalServiceDataSource" OnItemInserting="AddNewMedicalServiceFormView_ItemInserting">
+                <asp:FormView Width="100%" ID="AddNewMedicalServiceFormView" runat="server" DefaultMode="Insert" DataKeyNames="ID" DataSourceID="AddNewMedicalServiceDataSource" OnItemInserting="AddNewMedicalServiceFormView_ItemInserting" OnItemInserted="AddNewMedicalServiceFormView_ItemInserted">
                     <InsertItemTemplate>
                         <fieldset>
                             <legend>Enter Medical Service Information</legend>
                             <div class="form-group">
                                 <label for="NameTextBox">Medical Service Name *</label>
                                 <asp:TextBox Text='<%# Bind("Name") %>' ID="NameTextBox" runat="server"></asp:TextBox>
+                                <br />
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="NameTextBox" CssClass="label label-important" Display="Dynamic" ErrorMessage="Medical Service Name is required"></asp:RequiredFieldValidator>
+                                <p></p>
                             </div>
                             <div class="form-group">
                                 <label for="PriceTextBox">Price *</label>
                                 <asp:TextBox ID="PriceTextBox" Text='<%# Bind("Price") %>' runat="server"></asp:TextBox>
+                                <br />
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="PriceTextBox" CssClass="label label-important" Display="Dynamic" ErrorMessage="Medical Service Price is required"></asp:RequiredFieldValidator>
+                                <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="PriceTextBox" CssClass="label label-important" Display="Dynamic" ErrorMessage="Price must be a number" Operator="DataTypeCheck" Type="Double"></asp:CompareValidator>
+                                <p></p>
                             </div>
                             <div class="form-group">
                                 <label for="MedicalServiceGroupNameDropdownList">
@@ -52,6 +59,7 @@
                 </asp:FormView>
                 <asp:LinqDataSource ID="AddNewMedicalServiceDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableInsert="True" EntityTypeName="" TableName="MedicalServices">
                 </asp:LinqDataSource>
+                <p></p>
                 <utmpl:ResultAlert runat="server" ID="ResultAlert" />
             </ContentTemplate>
         </asp:UpdatePanel>
