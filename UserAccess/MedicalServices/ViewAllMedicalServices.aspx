@@ -22,9 +22,7 @@
                     <asp:AutoCompleteExtender ID="AutoCompleteExtender1" TargetControlID="FindMedicalServiceTextBox"
                         runat="server" UseContextKey="True" ServiceMethod="GetCompletionList">
                     </asp:AutoCompleteExtender>
-                    <asp:DropDownList ID="MedicalServiceGroupDropdownList" runat="server" DataSourceID="MedicalServiceGroupDataSource" DataTextField="Name" DataValueField="ID" OnDataBound="MedicalServiceGroupDropdownList_DataBound">
-                        
-                    </asp:DropDownList>
+                    
                     <asp:LinqDataSource ID="MedicalServiceGroupDataSource" runat="server" ContextTypeName="DataClassesDataContext" EntityTypeName="" Select="new (ID, Name)" TableName="MedicalServiceGroups">
                     </asp:LinqDataSource>
                     <asp:Button ID="FindMedicalServiceButton" CssClass="btn btn-primary" runat="server" Text="Search" OnClick="FindMedicalServiceButton_Click"/>
