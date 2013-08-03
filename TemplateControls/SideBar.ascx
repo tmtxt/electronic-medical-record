@@ -28,7 +28,7 @@
         <li><a href="/UserAccess/MedicalServices/AddNewMedicalServiceGroup.aspx">Add Medical Service Group</a></li>
         <li><a href="/UserAccess/MedicalServices/ViewAllMedicalServices.aspx">Medical Services</a></li>
         <li><a href="/UserAccess/MedicalServices/ViewMedicalServiceDetails.aspx">Medical Service Details</a></li>
-        <li><a href="#">Add New Medical Service</a></li>
+        <li><a href="/UserAccess/MedicalServices/AddNewMedicalService.aspx">Add New Medical Service</a></li>
 
         <%-- this section is for admin only --%>
         <%
