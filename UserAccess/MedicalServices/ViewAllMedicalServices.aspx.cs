@@ -83,4 +83,24 @@ public partial class UserAccess_MedicalServices_ViewAllMedicalServices : System.
     {
         AllMedicalServicesGridView.DataBind();
     }
+
+    protected void CancelFindButton_Click(object sender, EventArgs e)
+    {
+        FindMedicalServiceTextBox.Text = "";
+        AllMedicalServicesGridView.DataBind();
+    }
+
+    protected void MedicalServiceGroupDropdownList_DataBound(object sender, EventArgs e)
+    {
+        // add one new item to the top of the list
+        MedicalServiceGroupDropdownList.Items.Insert(0, new ListItem("Select Group","none"));
+
+        // add a separator
+        ListItem separator = new ListItem("------");
+        separator.Attributes.Add("disabled", "true");
+        MedicalServiceGroupDropdownList.Items.Insert(1, separator);
+
+        // set the selected to the first
+        MedicalServiceGroupDropdownList.SelectedIndex = 0;
+    }
 }
