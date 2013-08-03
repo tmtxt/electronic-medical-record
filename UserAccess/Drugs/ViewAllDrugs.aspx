@@ -20,7 +20,7 @@
                 <asp:GridView ID="AllDrugGridView" runat="server"
                     AutoGenerateColumns="False"
                     DataKeyNames="ID" DataSourceID="AllDrugsDataSource"
-                    CssClass="gridview table table-bordered table-striped table-hover" OnRowDeleted="AllDrugGridView_RowDeleted">
+                    CssClass="gridview table table-bordered table-striped table-hover" AllowPaging="True" OnRowDeleted="AllDrugGridView_RowDeleted">
 
                     <Columns>
                         <asp:TemplateField HeaderText="Drug Name" SortExpression="Name">
@@ -54,7 +54,27 @@
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
-
+                    <pagertemplate>
+                        <ul class="pager">
+                            <li>
+                                <asp:LinkButton CommandName="Page" CommandArgument="First" ID="HyperLink2" runat="server">
+                                    First
+                                </asp:LinkButton>
+                                <asp:LinkButton CommandName="Page" CommandArgument="Prev" ID="LinkButton1" runat="server">
+                                    Previous
+                                </asp:LinkButton>
+                                <asp:Label ID="Label4" runat="server" Text="Label">
+                                    Page <%= AllDrugGridView.PageIndex + 1 %> of <%= AllDrugGridView.PageCount %>
+                                </asp:Label>
+                                <asp:LinkButton CommandName="Page" CommandArgument="Next" ID="LinkButton2" runat="server">
+                                    Next
+                                </asp:LinkButton>
+                                <asp:LinkButton CommandName="Page" CommandArgument="Last" ID="LinkButton3" runat="server">
+                                    Last
+                                </asp:LinkButton>
+                            </li>
+                        </ul>
+                    </pagertemplate>
                 </asp:GridView>
 
                 <asp:LinqDataSource ID="AllDrugsDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableDelete="True" EntityTypeName="" TableName="Drugs">
