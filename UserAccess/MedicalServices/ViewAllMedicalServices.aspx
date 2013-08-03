@@ -57,7 +57,7 @@
                         <asp:HyperLinkField HeaderStyle-Width="10%" FooterStyle-Width="10%"
                             ItemStyle-Width="10%" DataNavigateUrlFields="ID"
                             DataNavigateUrlFormatString="ViewMedicalServiceDetails.aspx?ID={0}"
-                            Text="Detail">
+                            Text="Details">
                             <ControlStyle CssClass="btn btn-primary btn-small" />
                         <FooterStyle Width="10%" />
                         <HeaderStyle Width="10%" />

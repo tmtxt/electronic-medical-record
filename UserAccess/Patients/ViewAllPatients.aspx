@@ -58,7 +58,7 @@
                             </ItemTemplate>
                         </asp:TemplateField>--%>
 
-                        <asp:HyperLinkField DataNavigateUrlFields="ID" DataNavigateUrlFormatString="ViewPatientDetails.aspx?ID={0}" Text="Detail">
+                        <asp:HyperLinkField DataNavigateUrlFields="ID" DataNavigateUrlFormatString="ViewPatientDetails.aspx?ID={0}" Text="Details">
                             <ControlStyle CssClass="btn btn-small btn-primary" />
                         </asp:HyperLinkField>
 

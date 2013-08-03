@@ -42,6 +42,17 @@
                                 </asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
+                        <asp:HyperLinkField DataNavigateUrlFields="ID" Text="Details"
+                            DataNavigateUrlFormatString="ViewDrugDetails.aspx?ID={0}">
+                            <ControlStyle CssClass="btn btn-small btn-primary" />
+                        </asp:HyperLinkField>
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:Button ID="DeleteButton" runat="server" Text="Delete"
+                                    CommandName="Delete" CssClass="btn btn-danger btn-small"
+                                    OnClientClick="return confirm('Are you sure you want to delete this Drug?\n\nAll Prescription Details associated with this Drug will be deleted, too!')" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
 
                 </asp:GridView>
