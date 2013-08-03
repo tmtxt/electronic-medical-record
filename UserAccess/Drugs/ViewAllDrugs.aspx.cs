@@ -11,4 +11,12 @@ public partial class UserAccess_Drugs_ViewAllDrugs : System.Web.UI.Page
     {
 
     }
+
+    protected void AllDrugGridView_RowDeleted(object sender, GridViewDeletedEventArgs e)
+    {
+        System.Threading.Thread.Sleep(1000);
+
+        // display the result alert
+        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Drug deleted successfully!", e.Exception);
+    }
 }
