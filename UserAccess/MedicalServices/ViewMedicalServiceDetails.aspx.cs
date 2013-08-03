@@ -92,4 +92,14 @@ public partial class UserAccess_MedicalServices_ViewMedicalServiceDetails : Syst
     {
         ClearForm();
     }
+
+    protected void MedicalServiceDetailsFormView_ItemUpdating(object sender, FormViewUpdateEventArgs e)
+    {
+        // set the MedicalServiceGroupID
+        // get the control from the formview
+        var groupNameControl = (DropDownList)MedicalServiceDetailsFormView.FindControl("MedicalServiceGroupNameDropdownList");
+
+        // set the value to be updated
+        e.NewValues["MedicalServiceGroupID"] = groupNameControl.SelectedValue;
+    }
 }

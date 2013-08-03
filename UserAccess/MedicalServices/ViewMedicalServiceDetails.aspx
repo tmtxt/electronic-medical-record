@@ -17,7 +17,7 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
 
-                <asp:FormView ID="MedicalServiceDetailsFormView" runat="server" DataKeyNames="ID" OnModeChanging="MedicalServiceDetailsFormView_ModeChanging" DataSourceID="MedicalServiceDetailDataSource" OnItemCommand="MedicalServiceDetailsFormView_ItemCommand" OnItemDeleting="MedicalServiceDetailsFormView_ItemDeleting" OnDataBound="MedicalServiceDetailsFormView_DataBound" OnItemDeleted="MedicalServiceDetailsFormView_ItemDeleted" OnItemUpdated="MedicalServiceDetailsFormView_ItemUpdated">
+                <asp:FormView ID="MedicalServiceDetailsFormView" runat="server" DataKeyNames="ID" OnModeChanging="MedicalServiceDetailsFormView_ModeChanging" DataSourceID="MedicalServiceDetailDataSource" OnItemCommand="MedicalServiceDetailsFormView_ItemCommand" OnItemDeleting="MedicalServiceDetailsFormView_ItemDeleting" OnDataBound="MedicalServiceDetailsFormView_DataBound" OnItemDeleted="MedicalServiceDetailsFormView_ItemDeleted" OnItemUpdated="MedicalServiceDetailsFormView_ItemUpdated" OnItemUpdating="MedicalServiceDetailsFormView_ItemUpdating">
                     <ItemTemplate>
                         <h3><%# Eval("Name") %></h3>
                         <table class="table table-hover">
@@ -103,7 +103,12 @@
                                     <strong>Medical Service Group</strong>
                                 </td>
                                 <td>
-                                    <asp:Label ID="MedicalServiceGroupLabel" Text='<%# ((MedicalService)MedicalServiceDetailsFormView.DataItem).MedicalServiceGroup.Name %>' runat="server"></asp:Label>
+                                    
+                                    <asp:DropDownList ID="MedicalServiceGroupNameDropdownList" runat="server" DataSourceID="MedicalServiceGroupsDataSource" DataTextField="Name" DataValueField="ID" SelectedValue='<%# Eval("MedicalServiceGroupID") %>'>
+                                    </asp:DropDownList>
+                                    <asp:LinqDataSource ID="MedicalServiceGroupsDataSource" runat="server" ContextTypeName="DataClassesDataContext" EntityTypeName="" TableName="MedicalServiceGroups">
+                                    </asp:LinqDataSource>
+                                    
                                 </td>
                             </tr>
                             <tr>
