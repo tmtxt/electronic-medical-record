@@ -69,4 +69,18 @@ public partial class UserAccess_MedicalServices_ViewAllMedicalServices : System.
     protected void AllMedicalServicesGridView_RowDeleted(object sender, GridViewDeletedEventArgs e)
     {
     }
+
+    [System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethodAttribute()]
+    public static string[] GetCompletionList(string prefixText, int count, string contextKey)
+    {
+        var medicalServiceNames = from m in new DataClassesDataContext().MedicalServices
+                                  where m.Name.Contains(prefixText)
+                                  select m.Name;
+        return medicalServiceNames.ToArray();
+    }
+    
+    protected void FindMedicalServiceButton_Click(object sender, EventArgs e)
+    {
+        AllMedicalServicesGridView.DataBind();
+    }
 }

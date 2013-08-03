@@ -12,10 +12,21 @@
     All Medical Services
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Content" runat="Server">
-    <form runat="server">
+    <form runat="server" class="form-horizontal">
         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
+                <div class="control-group">
+                    <strong><asp:Label CssClass="label_filter" ID="Label3" runat="server" Text="Filter"></asp:Label></strong>&nbsp;
+                    <asp:TextBox placeholder="Medical Service Name" ID="FindMedicalServiceTextBox" runat="server"></asp:TextBox>
+                    <asp:AutoCompleteExtender ID="AutoCompleteExtender1" TargetControlID="FindMedicalServiceTextBox"
+                        runat="server" UseContextKey="True" ServiceMethod="GetCompletionList">
+                    </asp:AutoCompleteExtender>
+
+                    <asp:Button ID="FindMedicalServiceButton" CssClass="btn btn-primary" runat="server" Text="Search" OnClick="FindMedicalServiceButton_Click"/>
+                    <asp:Button ID="CancelFindButton" runat="server" CssClass="btn btn-primary" Text="Cancel" />
+                </div>
+
                 <asp:GridView ID="AllMedicalServicesGridView" runat="server"
                     DataKeyNames="ID" AutoGenerateColumns="False"
                     CssClass="gridview table table-bordered table-striped table-hover"
@@ -86,7 +97,12 @@
                     </pagertemplate>
                 </asp:GridView>
 
-                <asp:LinqDataSource ID="AllMedicalServicesDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableDelete="True" EntityTypeName="" TableName="MedicalServices">
+                <asp:LinqDataSource ID="AllMedicalServicesDataSource" runat="server"
+                    ContextTypeName="DataClassesDataContext" EnableDelete="True"
+                    EntityTypeName="" TableName="MedicalServices" Where="Name.Contains(@NamePart)">
+                    <WhereParameters>
+                        <asp:ControlParameter ControlID="FindMedicalServiceTextBox" ConvertEmptyStringToNull="False" Name="NamePart" PropertyName="Text" />
+                    </WhereParameters>
                 </asp:LinqDataSource>
 
                 <p></p>
