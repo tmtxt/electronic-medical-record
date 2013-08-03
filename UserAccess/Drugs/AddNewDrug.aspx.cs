@@ -11,4 +11,18 @@ public partial class UserAccess_Drugs_AddNewDrug : System.Web.UI.Page
     {
 
     }
+
+    protected void ClearForm()
+    {
+        ((TextBox)AddNewDrugFormView.FindControl("NameTextBox")).Text = "";
+        ((TextBox)AddNewDrugFormView.FindControl("GenericNameTextBox")).Text = "";
+        ((TextBox)AddNewDrugFormView.FindControl("UnitTextBox")).Text = "";
+        ((TextBox)AddNewDrugFormView.FindControl("PriceTextBox")).Text = "";
+        ((DropDownList)AddNewDrugFormView.FindControl("DrugGroupDropdownList")).SelectedIndex = 0;
+    }
+
+    protected void ClearButton_Click(object sender, EventArgs e)
+    {
+        ClearForm();
+    }
 }

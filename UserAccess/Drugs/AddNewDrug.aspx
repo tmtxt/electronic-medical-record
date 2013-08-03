@@ -65,7 +65,7 @@
                             <asp:Button ID="AddButton" runat="server" Text="Add New Drug"
                                 CommandName="Insert" CausesValidation="true" CssClass="btn btn-primary" />
                             <asp:Button ID="ClearButton" runat="server" Text="Clear Form"
-                                CausesValidation="false" CssClass="btn btn-primary" />
+                                CausesValidation="false" CssClass="btn btn-primary" OnClick="ClearButton_Click" />
                             <asp:HyperLink CssClass="btn btn-primary" ID="CancelButton"
                                 NavigateUrl="/UserAccess/Drugs/ViewAllDrugs.aspx" runat="server">
                                 Cancel
