@@ -32,7 +32,10 @@ public partial class UserAccess_Patients_ViewPatientDetails : System.Web.UI.Page
     }
     protected void PatientDetailFormView_ItemDeleting(object sender, FormViewDeleteEventArgs e)
     {
-        System.Threading.Thread.Sleep(2000);
+        System.Threading.Thread.Sleep(1000);
+
+        // delete all the dependencies first
+        PatientOperations.DeleteDependencies(long.Parse(e.Keys["ID"].ToString()));
     }
 
     protected void ClearForm()
