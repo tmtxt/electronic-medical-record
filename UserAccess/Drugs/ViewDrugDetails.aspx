@@ -16,7 +16,7 @@
         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <asp:FormView ID="DrugDetailsFormView" runat="server" DataKeyNames="ID" DataSourceID="DrugDetailDataSource" OnItemDeleted="DrugDetailsFormView_ItemDeleted" OnItemUpdated="DrugDetailsFormView_ItemUpdated">
+                <asp:FormView ID="DrugDetailsFormView" runat="server" DataKeyNames="ID" DataSourceID="DrugDetailDataSource" OnItemDeleted="DrugDetailsFormView_ItemDeleted" OnItemUpdated="DrugDetailsFormView_ItemUpdated" OnItemDeleting="DrugDetailsFormView_ItemDeleting">
                     <EditItemTemplate>
 
                         <h3><%# Eval("Name") %></h3>

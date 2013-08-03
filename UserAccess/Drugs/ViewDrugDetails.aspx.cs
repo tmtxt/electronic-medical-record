@@ -30,4 +30,10 @@ public partial class UserAccess_Drugs_ViewDrugDetails : System.Web.UI.Page
         // print the result alert
         e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Drug updated successfully!", e.Exception);
     }
+
+    protected void DrugDetailsFormView_ItemDeleting(object sender, FormViewDeleteEventArgs e)
+    {
+        // delete all this drug's dependencies
+        DrugOperations.DeleteDependencies(long.Parse(e.Keys["ID"].ToString()));
+    }
 }

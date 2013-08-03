@@ -30,7 +30,7 @@
                 <asp:GridView ID="AllDrugGridView" runat="server"
                     AutoGenerateColumns="False"
                     DataKeyNames="ID" DataSourceID="AllDrugsDataSource"
-                    CssClass="gridview table table-bordered table-striped table-hover" AllowPaging="True" OnRowDeleted="AllDrugGridView_RowDeleted">
+                    CssClass="gridview table table-bordered table-striped table-hover" AllowPaging="True" OnRowDeleted="AllDrugGridView_RowDeleted" OnRowDeleting="AllDrugGridView_RowDeleting">
 
                     <Columns>
                         <asp:TemplateField HeaderText="Drug Name" SortExpression="Name">

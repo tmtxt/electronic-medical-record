@@ -39,4 +39,10 @@ public partial class UserAccess_Drugs_ViewAllDrugs : System.Web.UI.Page
     {
         AllDrugGridView.DataBind();
     }
+
+    protected void AllDrugGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        // delete all this drug's dependencies
+        DrugOperations.DeleteDependencies(long.Parse(e.Keys["ID"].ToString()));
+    }
 }
