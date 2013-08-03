@@ -12,10 +12,20 @@
     Drugs List
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Content" runat="Server">
-    <form runat="server">
+    <form class="form-horizontal" runat="server">
         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
+
+                <div class="control-group">
+                    <strong><asp:Label CssClass="label_filter" ID="Label3" runat="server" Text="Filter by Name"></asp:Label></strong>&nbsp;
+                    <asp:TextBox ID="FindDrugTextBox" runat="server" placeholder="Enter Drug Name"></asp:TextBox>
+                    <asp:AutoCompleteExtender ID="AutoCompleteExtender1" TargetControlID="FindDrugTextBox"
+                        runat="server" UseContextKey="True" ServiceMethod="GetCompletionList">
+                    </asp:AutoCompleteExtender>
+                    <asp:Button ID="FindDrugButton" CssClass="btn btn-primary" runat="server" Text="Search" OnClick="FindDrugButton_Click" />
+                    <asp:Button ID="CancelFindButton" runat="server" CssClass="btn btn-primary" Text="Cancel" OnClick="CancelFindButton_Click" />
+                </div>
 
                 <asp:GridView ID="AllDrugGridView" runat="server"
                     AutoGenerateColumns="False"
@@ -77,13 +87,25 @@
                     </pagertemplate>
                 </asp:GridView>
 
-                <asp:LinqDataSource ID="AllDrugsDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableDelete="True" EntityTypeName="" TableName="Drugs">
+                <asp:LinqDataSource ID="AllDrugsDataSource" runat="server" ContextTypeName="DataClassesDataContext"
+                    EnableDelete="True" EntityTypeName="" TableName="Drugs" Where="Name.Contains(@NamePart)">
+                    
+                    <WhereParameters>
+                        <asp:ControlParameter ControlID="FindDrugTextBox" Name="NamePart" PropertyName="Text"
+                            ConvertEmptyStringToNull="false" />
+                    </WhereParameters>
+                    
                 </asp:LinqDataSource>
 
                 <utmpl:ResultAlert runat="server" ID="ResultAlert" />
             </ContentTemplate>
         </asp:UpdatePanel>
         <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
+        <p></p>
+        <asp:HyperLink ID="AddNewButton" CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign"
+            runat="server" NavigateUrl="/UserAccess/Drugs/AddNewDrug.aspx">
+                                        Add New Drug
+        </asp:HyperLink>
     </form>
 </asp:Content>
 

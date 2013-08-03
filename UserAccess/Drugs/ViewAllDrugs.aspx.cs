@@ -19,4 +19,24 @@ public partial class UserAccess_Drugs_ViewAllDrugs : System.Web.UI.Page
         // display the result alert
         e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Drug deleted successfully!", e.Exception);
     }
+
+    [System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethodAttribute()]
+    public static string[] GetCompletionList(string prefixText, int count, string contextKey)
+    {
+        var drugNames = from d in new DataClassesDataContext().Drugs
+                        where d.Name.Contains(prefixText)
+                        select d.Name;
+        return drugNames.ToArray();
+    }
+
+    protected void CancelFindButton_Click(object sender, EventArgs e)
+    {
+        FindDrugTextBox.Text = "";
+        AllDrugGridView.DataBind();
+    }
+
+    protected void FindDrugButton_Click(object sender, EventArgs e)
+    {
+        AllDrugGridView.DataBind();
+    }
 }
