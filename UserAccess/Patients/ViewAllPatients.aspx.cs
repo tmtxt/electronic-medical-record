@@ -27,6 +27,9 @@ public partial class UserAccess_Patients_ViewAllPatient : System.Web.UI.Page
     protected void AllPatientsGridview_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         System.Threading.Thread.Sleep(1000);
+
+        // delete all the dependencies of this patients
+        PatientOperations.DeleteDependencies(long.Parse(e.Keys["ID"].ToString()));
     }
 
     protected void FindPatientButton_Click(object sender, EventArgs e)

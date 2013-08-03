@@ -14,4 +14,9 @@ public class LabOrderDetailOperations
 		// TODO: Add constructor logic here
 		//
 	}
+
+    public static void DeleteDependencies(long id)
+    {
+        // nothing to do here because it has no dependencies
+    }
 }
