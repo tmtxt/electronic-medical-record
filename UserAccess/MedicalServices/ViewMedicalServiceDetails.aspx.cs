@@ -51,7 +51,8 @@ public partial class UserAccess_MedicalServices_ViewMedicalServiceDetails : Syst
     }
     protected void MedicalServiceDetailsFormView_ItemDeleting(object sender, FormViewDeleteEventArgs e)
     {
-        
+        // delete all dependencies of this medical service first
+        MedicalServiceOperations.DeleteDependencies(long.Parse(e.Keys["ID"].ToString()));
 
     }
     protected void MedicalServiceDetailsFormView_DataBound(object sender, EventArgs e)

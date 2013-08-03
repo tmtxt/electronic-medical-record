@@ -44,6 +44,11 @@ public partial class UserAccess_MedicalServices_ViewAllMedicalServices : System.
     protected void AllMedicalServicesGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         System.Threading.Thread.Sleep(1000);
+
+        // delete its dependencies first
+        MedicalServiceOperations.DeleteDependencies(long.Parse(e.Keys["ID"].ToString()));
+
+        // delete the medical service
         var ctx = new DataClassesDataContext();
         var itemToDelete = from ms in ctx.MedicalServices
                            where ms.ID == long.Parse(e.Keys["ID"].ToString())

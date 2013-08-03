@@ -54,7 +54,7 @@
                             <ItemTemplate>
                                 <asp:Button ID="DeleteButton" runat="server" Text="Delete"
                                     CommandName="Delete" CssClass="btn btn-danger btn-small"
-                                    OnClientClick="return confirm('Are you sure to you want to delete this Medical Service?\nAll Lab Order Details associated with this Medical Service will be deleted, too!')" />
+                                    OnClientClick="return confirm('Are you sure to you want to delete this Medical Service?\n\nAll Lab Order Details associated with this Medical Service will be deleted, too!')" />
                             </ItemTemplate>
                             <FooterStyle Width="10%" />
                             <HeaderStyle Width="10%" />
