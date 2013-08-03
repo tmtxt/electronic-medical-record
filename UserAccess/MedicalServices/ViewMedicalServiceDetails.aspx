@@ -5,13 +5,13 @@
 
 
 
-<asp:Content ID="Content1" ContentPlaceHolderID="Title" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="Server">
     Medical Service Details
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="Header" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="Header" runat="Server">
     Medical Service Details
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="Content" Runat="Server">
+<asp:Content ID="Content3" ContentPlaceHolderID="Content" runat="Server">
     <form runat="server">
         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -20,19 +20,13 @@
                 <asp:FormView ID="MedicalServiceDetailsFormView" runat="server" DataKeyNames="ID" OnModeChanging="MedicalServiceDetailsFormView_ModeChanging" DataSourceID="MedicalServiceDetailDataSource" OnItemCommand="MedicalServiceDetailsFormView_ItemCommand" OnItemDeleting="MedicalServiceDetailsFormView_ItemDeleting" OnDataBound="MedicalServiceDetailsFormView_DataBound">
                     <ItemTemplate>
                         <h3><%# Eval("Name") %></h3>
-                        <table style="width: 100%" class="table table-hover">
+                        <table class="table table-hover">
                             <tr>
                                 <td>
                                     <strong>ID</strong>
                                 </td>
                                 <td>
                                     <asp:Label ID="Label1" runat="server" Text='<%# Eval("ID") %>'></asp:Label>
-                                </td>
-                                <td>
-                                    <strong>Price (USD)</strong>
-                                </td>
-                                <td>
-                                    <asp:Label ID="Label2" runat="server" Text='<%# Eval("Price") %>'></asp:Label>
                                 </td>
                             </tr>
                             <tr>
@@ -42,6 +36,16 @@
                                 <td>
                                     <asp:Label ID="Label3" runat="server" Text='<%# Eval("Name") %>'></asp:Label>
                                 </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Price (USD)</strong>
+                                </td>
+                                <td>
+                                    <asp:Label ID="Label2" runat="server" Text='<%# Eval("Price") %>'></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td>
                                     <strong>Medical Service Group</strong>
                                 </td>
@@ -64,19 +68,13 @@
                     </ItemTemplate>
                     <EditItemTemplate>
                         <h3><%# Eval("Name") %></h3>
-                        <table style="width: 100%" class="table table-hover">
+                        <table class="table table-hover">
                             <tr>
                                 <td>
                                     <strong>ID</strong>
                                 </td>
                                 <td>
-                                    <asp:Label ID="Label1" runat="server" Text='<%# Eval("ID") %>'></asp:Label>
-                                </td>
-                                <td>
-                                    <strong>Price (USD)</strong>
-                                </td>
-                                <td>
-                                    <asp:TextBox ID="PriceTextBox" runat="server" Text='<%# Bind("Price") %>'></asp:TextBox>
+                                    <asp:Label ID="Label5" runat="server" Text='<%# Eval("ID") %>'></asp:Label>
                                 </td>
                             </tr>
                             <tr>
@@ -86,16 +84,31 @@
                                 <td>
                                     <asp:TextBox ID="NameTextBox" runat="server" Text='<%# Bind("Name") %>'></asp:TextBox>
                                 </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Price (USD)</strong>
+                                </td>
+                                <td>
+                                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Price") %>'></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td>
                                     <strong>Medical Service Group</strong>
                                 </td>
                                 <td>
-                                    <asp:Label ID="Label4" runat="server" Text='<%# Eval("MedicalServiceGroupID") %>'></asp:Label>
+                                    <asp:Label ID="MedicalServiceGroupLabel" Text='<%# ((MedicalService)MedicalServiceDetailsFormView.DataItem).MedicalServiceGroup.Name %>' runat="server"></asp:Label>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="4">
-                                    
+                                    <asp:Button ID="UpdateButton" CommandName="Update" runat="server" Text="Update Medical Service"
+                                        CssClass="btn btn-primary"  />
+                                    <asp:Button ID="ClearButton" runat="server" Text="Clear Form" CssClass="btn btn-primary"
+                                         />
+                                    <asp:Button ID="CancelButton" CommandName="Cancel" runat="server" Text="Cancel"
+                                        CssClass="btn btn-primary"  />
                                 </td>
                             </tr>
                         </table>
