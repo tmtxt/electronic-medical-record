@@ -20,8 +20,9 @@
         <li class="nav-header">Drugs</li>
         <li><a href="/UserAccess/Drugs/ViewAllDrugGroups.aspx">Drug Groups</a></li>
         <li><a href="/UserAccess/Drugs/AddNewDrugGroup.aspx">Add New Drug Group</a></li>
-        <li><a href="#">ICD List</a></li>
-        <li><a href="#">Add New ICD</a></li>
+        <li><a href="/UserAccess/Drugs/ViewAllDrugs.aspx">Drugs</a></li>
+        <li><a href="/UserAccess/Drugs/ViewDrugDetails.aspx">Drug Details</a></li>
+        <li><a href="/UserAccess/Drugs/AddNewDrug.aspx">Add New Drug</a></li>
 
         <li class="nav-header">Medical Services</li>
         <li><a href="/UserAccess/MedicalServices/ViewAllMedicalServiceGroups.aspx">Medical Service Groups</a></li>
