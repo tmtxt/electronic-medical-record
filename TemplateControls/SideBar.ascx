@@ -14,8 +14,9 @@
         <li class="nav-header">ICD</li>
         <li><a href="/UserAccess/ICDs/ViewAllICDChapters.aspx">ICD Chapters</a></li>
         <li><a href="/UserAccess/ICDs/AddNewICDChapter.aspx">Add New ICD Chapter</a></li>
-        <li><a href="#">ICD List</a></li>
-        <li><a href="#">Add New ICD</a></li>
+        <li><a href="/UserAccess/ICDs/ViewAllICD.aspx">ICD List</a></li>
+        <li><a href="/UserAccess/ICDs/VIewICDDetails.aspx">ICD Details</a></li>
+        <li><a href="/UserAccess/ICDs/AddNewICD.aspx">Add New ICD</a></li>
 
         <li class="nav-header">Drugs</li>
         <li><a href="/UserAccess/Drugs/ViewAllDrugGroups.aspx">Drug Groups</a></li>
