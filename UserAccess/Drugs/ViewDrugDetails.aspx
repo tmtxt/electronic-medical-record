@@ -35,6 +35,8 @@
                                 </td>
                                 <td>
                                     <asp:TextBox ID="NameTextBox" Text='<%# Bind("Name") %>' runat="server"></asp:TextBox>
+                                    <br />
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="NameTextBox" CssClass="label label-important" Display="Dynamic" ErrorMessage="Drug Name is required"></asp:RequiredFieldValidator>
                                 </td>
                             </tr>
                             <tr>
@@ -43,6 +45,8 @@
                                 </td>
                                 <td>
                                     <asp:TextBox ID="GenericName" Text='<%# Bind("GenericName") %>' runat="server"></asp:TextBox>
+                                    <br />
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="GenericName" CssClass="label label-important" Display="Dynamic" ErrorMessage="Generic Name is required"></asp:RequiredFieldValidator>
                                 </td>
                             </tr>
                             <tr>
@@ -51,6 +55,8 @@
                                 </td>
                                 <td>
                                     <asp:TextBox ID="UnitTextBox" Text='<%# Bind("Unit") %>' runat="server"></asp:TextBox>
+                                    <br />
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="UnitTextBox" CssClass="label label-important" Display="Dynamic" ErrorMessage="Unit is required"></asp:RequiredFieldValidator>
                                 </td>
                             </tr>
                             <tr>
@@ -59,6 +65,9 @@
                                 </td>
                                 <td>
                                     <asp:TextBox ID="PriceTextBox" Text='<%# Bind("Price") %>' runat="server"></asp:TextBox>
+                                    <br />
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="PriceTextBox" CssClass="label label-important" Display="Dynamic" ErrorMessage="Drug Price is required"></asp:RequiredFieldValidator>
+                                    <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="PriceTextBox" CssClass="label label-important" Display="Dynamic" ErrorMessage="Price must be a number" Operator="DataTypeCheck" Type="Double"></asp:CompareValidator>
                                 </td>
                             </tr>
                             <tr>
@@ -66,7 +75,13 @@
                                     <strong>Drug Group</strong>
                                 </td>
                                 <td>
-                                    <asp:Label ID="Label6" runat="server" Text='<%# Eval("DrugGroup") %>'></asp:Label>
+                                    <asp:DropDownList ID="DrugGroupDropdownList" runat="server"
+                                        DataSourceID="DrugGroupDataSource" DataTextField="Name"
+                                        DataValueField="ID" SelectedValue='<%# Bind("DrugGroupID") %>'></asp:DropDownList>
+                                    <asp:LinqDataSource ID="DrugGroupDataSource" runat="server"
+                                        ContextTypeName="DataClassesDataContext" EntityTypeName=""
+                                        TableName="DrugGroups">
+                                    </asp:LinqDataSource>
                                 </td>
                             </tr>
                             <tr>
@@ -74,9 +89,9 @@
 
                                     <asp:Button ID="UpdateButton" runat="server" Text="Update"
                                         CommandName="Update" CssClass="btn btn-primary" />
-                                    <asp:Button ID="ClearButton" runat="server" Text="Clear Form"
+                                    <asp:Button ID="ClearButton" CausesValidation="false" runat="server" Text="Clear Form"
                                         CssClass="btn btn-primary" />
-                                    <asp:Button ID="CancelButton" runat="server" Text="Cancel"
+                                    <asp:Button ID="CancelButton" CausesValidation="false" runat="server" Text="Cancel"
                                         CommandName="Cancel" CssClass="btn btn-primary" />
                                 </td>
                             </tr>
@@ -133,7 +148,7 @@
                                     <strong>Drug Group</strong>
                                 </td>
                                 <td>
-                                    <asp:Label ID="Label6" runat="server" Text='<%# Eval("DrugGroup") %>'></asp:Label>
+                                    <asp:Label ID="Label6" runat="server" Text='<%# ((Drug)DrugDetailsFormView.DataItem).DrugGroup.Name %>'></asp:Label>
                                 </td>
                             </tr>
                             <tr>
