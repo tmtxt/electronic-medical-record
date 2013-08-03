@@ -69,6 +69,10 @@
             </ContentTemplate>
         </asp:UpdatePanel>
         <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
+        <asp:HyperLink ID="AddNewButton" CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign"
+            runat="server" NavigateUrl="/UserAccess/MedicalServices/AddNewMedicalService.aspx">
+                                        Add New Medical Service
+        </asp:HyperLink>
     </form>
 </asp:Content>
 

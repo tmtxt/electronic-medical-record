@@ -54,7 +54,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="4">
+                                <td colspan="2">
                                     <asp:Button ID="DeleteButton" CommandName="Delete" runat="server" Text="Delete Medical Service"
                                         CssClass="btn btn-danger" OnClientClick="return confirm('Are you sure you want to delete this Medical Service?\n\nAll Lab Order Details belong to this Medical Service will be deleted, too!')" />
                                     <asp:LinkButton ID="EditButton" runat="server" Text="Edit" CssClass="btn btn-primary"
@@ -83,6 +83,8 @@
                                 </td>
                                 <td>
                                     <asp:TextBox ID="NameTextBox" runat="server" Text='<%# Bind("Name") %>'></asp:TextBox>
+                                    <br />
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="NameTextBox" CssClass="label label-important" Display="Dynamic" ErrorMessage="Medical Service Name is required"></asp:RequiredFieldValidator>
                                 </td>
                             </tr>
                             <tr>
@@ -90,7 +92,10 @@
                                     <strong>Price (USD)</strong>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Price") %>'></asp:TextBox>
+                                    <asp:TextBox ID="PriceTextBox" runat="server" Text='<%# Bind("Price") %>'></asp:TextBox>
+                                    <br />
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="PriceTextBox" CssClass="label label-important" Display="Dynamic" ErrorMessage="Medical Service Price is required"></asp:RequiredFieldValidator>
+                                    <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="PriceTextBox" CssClass="label label-important" Display="Dynamic" ErrorMessage="Price must be a number" Operator="DataTypeCheck" Type="Double"></asp:CompareValidator>
                                 </td>
                             </tr>
                             <tr>
@@ -105,9 +110,9 @@
                                 <td colspan="4">
                                     <asp:Button ID="UpdateButton" CommandName="Update" runat="server" Text="Update Medical Service"
                                         CssClass="btn btn-primary"  />
-                                    <asp:Button ID="ClearButton" runat="server" Text="Clear Form" CssClass="btn btn-primary"
+                                    <asp:Button ID="ClearButton" runat="server" Text="Clear Form" CssClass="btn btn-primary" CausesValidation="False" OnClick="ClearButton_Click"
                                          />
-                                    <asp:Button ID="CancelButton" CommandName="Cancel" runat="server" Text="Cancel"
+                                    <asp:Button ID="CancelButton" CommandName="Cancel" runat="server" CausesValidation="false" Text="Cancel"
                                         CssClass="btn btn-primary"  />
                                 </td>
                             </tr>
@@ -126,6 +131,10 @@
             </ContentTemplate>
         </asp:UpdatePanel>
         <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
+        <asp:HyperLink ID="AddNewButton" CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign"
+            runat="server" NavigateUrl="/UserAccess/MedicalServices/AddNewMedicalService.aspx">
+                                        Add New Medical Service
+        </asp:HyperLink>
     </form>
 </asp:Content>
 

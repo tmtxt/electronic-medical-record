@@ -80,4 +80,15 @@ public partial class UserAccess_MedicalServices_ViewMedicalServiceDetails : Syst
         System.Threading.Thread.Sleep(1000);
         e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Medical Service deleted successfully!", e.Exception);
     }
+
+    protected void ClearForm()
+    {
+        ((TextBox)MedicalServiceDetailsFormView.FindControl("NameTextBox")).Text = "";
+        ((TextBox)MedicalServiceDetailsFormView.FindControl("PriceTextBox")).Text = "";
+    }
+
+    protected void ClearButton_Click(object sender, EventArgs e)
+    {
+        ClearForm();
+    }
 }
