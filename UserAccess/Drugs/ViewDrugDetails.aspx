@@ -19,8 +19,69 @@
                 <asp:FormView ID="DrugDetailsFormView" runat="server" DataKeyNames="ID" DataSourceID="DrugDetailDataSource" OnItemDeleted="DrugDetailsFormView_ItemDeleted" OnItemUpdated="DrugDetailsFormView_ItemUpdated">
                     <EditItemTemplate>
 
+                        <h3><%# Eval("Name") %></h3>
+                        <table class="table table-hover">
+                            <tr>
+                                <td>
+                                    <strong>ID</strong>
+                                </td>
+                                <td>
+                                    <asp:Label ID="Label1" runat="server" Text='<%# Eval("ID") %>'></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Name</strong>
+                                </td>
+                                <td>
+                                    <asp:TextBox ID="NameTextBox" Text='<%# Bind("Name") %>' runat="server"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Generic Name</strong>
+                                </td>
+                                <td>
+                                    <asp:TextBox ID="GenericName" Text='<%# Bind("GenericName") %>' runat="server"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Unit</strong>
+                                </td>
+                                <td>
+                                    <asp:TextBox ID="UnitTextBox" Text='<%# Bind("Unit") %>' runat="server"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Price (USD)</strong>
+                                </td>
+                                <td>
+                                    <asp:TextBox ID="PriceTextBox" Text='<%# Bind("Price") %>' runat="server"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Drug Group</strong>
+                                </td>
+                                <td>
+                                    <asp:Label ID="Label6" runat="server" Text='<%# Eval("DrugGroup") %>'></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
 
-                       
+                                    <asp:Button ID="UpdateButton" runat="server" Text="Update"
+                                        CommandName="Update" CssClass="btn btn-primary" />
+                                    <asp:Button ID="ClearButton" runat="server" Text="Clear Form"
+                                        CssClass="btn btn-primary" />
+                                    <asp:Button ID="CancelButton" runat="server" Text="Cancel"
+                                        CommandName="Cancel" CssClass="btn btn-primary" />
+                                </td>
+                            </tr>
+                        </table>
+
                     </EditItemTemplate>
 
                     <ItemTemplate>
@@ -90,7 +151,7 @@
                             </tr>
                         </table>
 
-                        
+
                     </ItemTemplate>
                 </asp:FormView>
                 <asp:LinqDataSource ID="DrugDetailDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableDelete="True" EnableUpdate="True" EntityTypeName="" TableName="Drugs" Where="ID == @ID">
