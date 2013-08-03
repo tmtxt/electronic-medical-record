@@ -16,7 +16,7 @@
         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <asp:FormView Width="100%" ID="FormView1" runat="server" DefaultMode="Insert" DataKeyNames="ID" DataSourceID="AddNewMedicalServiceDataSource">
+                <asp:FormView Width="100%" ID="AddNewMedicalServiceFormView" runat="server" DefaultMode="Insert" DataKeyNames="ID" DataSourceID="AddNewMedicalServiceDataSource">
                     <InsertItemTemplate>
                         <fieldset>
                             <legend>Enter Medical Service Information</legend>
@@ -32,13 +32,17 @@
                                 <label for="MedicalServiceGroupNameDropdownList">
                                     Medical Service Group
                                 </label>
-                                <asp:DropDownList ID="MedicalServiceGroupNameDropdownList" runat="server">
+                                <asp:DropDownList ID="MedicalServiceGroupNameDropdownList" runat="server"
+                                    DataSourceID="MedicalServiceGroupDataSource" DataTextField="Name"
+                                    DataValueField="ID">
                                 </asp:DropDownList>
+                                <asp:LinqDataSource ID="MedicalServiceGroupDataSource" runat="server" ContextTypeName="DataClassesDataContext" EntityTypeName="" TableName="MedicalServiceGroups">
+                                </asp:LinqDataSource>
                             </div>
                             <asp:Button ID="AddButton" runat="server" Text="Add New Medical Service"
                                 CommandName="Insert" CausesValidation="true" CssClass="btn btn-primary" />
                             <asp:Button ID="ClearButton" runat="server" Text="Clear Form"
-                                CausesValidation="false" CssClass="btn btn-primary" />
+                                CausesValidation="false" CssClass="btn btn-primary" OnClick="ClearButton_Click" />
                             <asp:HyperLink CssClass="btn btn-primary" ID="CancelButton"
                                 NavigateUrl="/UserAccess/MedicalServices/ViewAllMedicalServices.aspx" runat="server">
                                 Cancel
