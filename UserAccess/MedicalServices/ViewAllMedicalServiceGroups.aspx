@@ -29,7 +29,7 @@
 
                 <asp:GridView ID="AllMedicalServiceGroupsGridView"  CssClass="table table-bordered table-striped table-hover"
                     runat="server" AutoGenerateColumns="False" DataKeyNames="ID"
-                    DataSourceID="AllMedicalServiceGroupsDataSource" OnRowDeleted="AllMedicalServiceGroupsGridView_RowDeleted" OnRowUpdated="AllMedicalServiceGroupsGridView_RowUpdated" OnRowDeleting="AllMedicalServiceGroupsGridView_RowDeleting">
+                    DataSourceID="AllMedicalServiceGroupsDataSource" OnRowDeleted="AllMedicalServiceGroupsGridView_RowDeleted" OnRowUpdated="AllMedicalServiceGroupsGridView_RowUpdated" OnRowDeleting="AllMedicalServiceGroupsGridView_RowDeleting" AllowPaging="True">
                     <Columns>
                         <asp:TemplateField HeaderText="Name" SortExpression="Name"
                              HeaderStyle-Width="40%" FooterStyle-Width="40%" ItemStyle-Width="40%">
@@ -76,10 +76,31 @@
                             <ItemTemplate>
                                 <asp:Button ID="DeleteButton" CssClass="btn btn-danger" runat="server"
                                     Text="Delete" CommandName="Delete"
-                                    OnClientClick="return confirm('Are you sure you want to delete this Medical Service Group?\nAll Medical Services belong to this group as well as Lab Order Detail associated with those Medical Services will be deleted, too.')" />
+                                    OnClientClick="return confirm('Are you sure you want to delete this Medical Service Group?\n\nAll Medical Services belong to this group as well as Lab Order Detail associated with those Medical Services will be deleted, too.')" />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
+                    <pagertemplate>
+                        <ul class="pager">
+                            <li>
+                                <asp:LinkButton CommandName="Page" CommandArgument="First" ID="HyperLink2" runat="server">
+                                    First
+                                </asp:LinkButton>
+                                <asp:LinkButton CommandName="Page" CommandArgument="Prev" ID="LinkButton1" runat="server">
+                                    Previous
+                                </asp:LinkButton>
+                                <asp:Label ID="Label4" runat="server" Text="Label">
+                                    Page <%= AllMedicalServiceGroupsGridView.PageIndex + 1 %> of <%= AllMedicalServiceGroupsGridView.PageCount %>
+                                </asp:Label>
+                                <asp:LinkButton CommandName="Page" CommandArgument="Next" ID="LinkButton2" runat="server">
+                                    Next
+                                </asp:LinkButton>
+                                <asp:LinkButton CommandName="Page" CommandArgument="Last" ID="LinkButton3" runat="server">
+                                    Last
+                                </asp:LinkButton>
+                            </li>
+                        </ul>
+                    </pagertemplate>
                 </asp:GridView>
                 <utmpl:ResultAlert runat="server" ID="ResultAlert" />
                 <asp:LinqDataSource ID="AllMedicalServiceGroupsDataSource" runat="server"
