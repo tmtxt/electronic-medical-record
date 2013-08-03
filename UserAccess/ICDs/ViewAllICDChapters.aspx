@@ -27,7 +27,7 @@
                     <asp:Button ID="Button1" runat="server" CssClass="btn btn-primary" OnClick="Button1_Click" Text="Cancel" />
                 </div>
 
-                <asp:GridView CssClass="table table-bordered table-striped table-hover" ID="AllICDChaptersGridView" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="AllICDChaptersDataSource" OnRowDeleted="AllICDChaptersGridView_RowDeleted" OnRowDeleting="AllICDChaptersGridView_RowDeleting" OnRowUpdated="AllICDChaptersGridView_RowUpdated" OnRowUpdating="AllICDChaptersGridView_RowUpdating">
+                <asp:GridView CssClass="table table-bordered table-striped table-hover" ID="AllICDChaptersGridView" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="AllICDChaptersDataSource" OnRowDeleted="AllICDChaptersGridView_RowDeleted" OnRowDeleting="AllICDChaptersGridView_RowDeleting" OnRowUpdated="AllICDChaptersGridView_RowUpdated" OnRowUpdating="AllICDChaptersGridView_RowUpdating" AllowPaging="True">
                     <Columns>
                         <asp:TemplateField HeaderStyle-Width="40%" FooterStyle-Width="40%" ItemStyle-Width="40%" HeaderText="Name" SortExpression="Name">
                             <EditItemTemplate>
@@ -76,6 +76,27 @@
                             <ItemStyle Width="10%" />
                         </asp:TemplateField>
                     </Columns>
+                    <pagertemplate>
+                        <ul class="pager">
+                            <li>
+                                <asp:LinkButton CommandName="Page" CommandArgument="First" ID="HyperLink2" runat="server">
+                                    First
+                                </asp:LinkButton>
+                                <asp:LinkButton CommandName="Page" CommandArgument="Prev" ID="LinkButton1" runat="server">
+                                    Previous
+                                </asp:LinkButton>
+                                <asp:Label ID="Label4" runat="server" Text="Label">
+                                    Page <%= AllICDChaptersGridView.PageIndex + 1 %> of <%= AllICDChaptersGridView.PageCount %>
+                                </asp:Label>
+                                <asp:LinkButton CommandName="Page" CommandArgument="Next" ID="LinkButton2" runat="server">
+                                    Next
+                                </asp:LinkButton>
+                                <asp:LinkButton CommandName="Page" CommandArgument="Last" ID="LinkButton3" runat="server">
+                                    Last
+                                </asp:LinkButton>
+                            </li>
+                        </ul>
+                    </pagertemplate>
                 </asp:GridView>
                 <utmpl:ResultAlert runat="server" ID="ResultAlert" />
                 
