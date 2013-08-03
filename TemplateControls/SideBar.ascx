@@ -8,7 +8,7 @@
 
         <li class="nav-header">Patients</li>
         <li><a href="/UserAccess/Patients/ViewAllPatients.aspx">View Patients</a></li>
-        <li><a href="/UserAccess/Patients/ViewPatientDetails.aspx">Patient Detail</a></li>
+        <li><a href="/UserAccess/Patients/ViewPatientDetails.aspx">Patient Details</a></li>
         <li><a href="/UserAccess/Patients/AddNewPatient.aspx">Add New Patient</a></li>
 
         <li class="nav-header">ICD</li>
@@ -27,7 +27,8 @@
         <li><a href="/UserAccess/MedicalServices/ViewAllMedicalServiceGroups.aspx">Medical Service Groups</a></li>
         <li><a href="/UserAccess/MedicalServices/AddNewMedicalServiceGroup.aspx">Add Medical Service Group</a></li>
         <li><a href="/UserAccess/MedicalServices/ViewAllMedicalServices.aspx">Medical Services</a></li>
-        <li><a href="#">Add New ICD</a></li>
+        <li><a href="/UserAccess/MedicalServices/ViewMedicalServiceDetails.aspx">Medical Service Details</a></li>
+        <li><a href="#">Add New Medical Service</a></li>
 
         <%-- this section is for admin only --%>
         <%

@@ -14,4 +14,9 @@ public class HospitalOperations
 		// TODO: Add constructor logic here
 		//
 	}
+
+    public static void DeleteDependencies(long id)
+    {
+
+    }
 }
