@@ -17,9 +17,27 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
 
+                <div class="control-group">
+                    <strong><asp:Label CssClass="label_filter" ID="Label3" runat="server" Text="Filter"></asp:Label></strong>&nbsp;
+                    <asp:TextBox placeholder="ICD Code" ID="FindICDCodeTextBox" runat="server"></asp:TextBox>
+                    <asp:AutoCompleteExtender ID="AutoCompleteExtender1" TargetControlID="FindICDCodeTextBox"
+                        runat="server" UseContextKey="True" ServiceMethod="GetICDCodeCompletionList">
+                    </asp:AutoCompleteExtender>
+                    <asp:TextBox placeholder="ICD Name" ID="FindICDNameTextBox" runat="server"></asp:TextBox>
+                    <asp:AutoCompleteExtender ID="AutoCompleteExtender2" TargetControlID="FindICDNameTextBox"
+                        runat="server" UseContextKey="True" ServiceMethod="GetICDNameCompletionList">
+                    </asp:AutoCompleteExtender>
+                    
+                    <asp:Button ID="FindICDButton" CssClass="btn btn-primary" runat="server" Text="Search" OnClick="FindICDButton_Click"/>
+                    <asp:Button ID="CancelFindButton" runat="server" CssClass="btn btn-primary" Text="Cancel" OnClick="CancelFindButton_Click" />
+                </div>
+
                 <asp:GridView ID="AllICDGridView" runat="server" AllowPaging="True"
                     AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="AllICDDataSource"
                     CssClass="gridview table table-bordered table-striped table-hover" OnRowDeleted="AllICDGridView_RowDeleted" OnRowDeleting="AllICDGridView_RowDeleting">
+                    <EmptyDataTemplate>
+                        <strong>There are no ICDs that match your criteria</strong>
+                    </EmptyDataTemplate>
                     <Columns>
                         <asp:TemplateField HeaderText="Code" SortExpression="Code">
                             <ItemTemplate>
@@ -74,7 +92,13 @@
                     </pagertemplate>
                 </asp:GridView>
 
-                <asp:LinqDataSource ID="AllICDDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableDelete="True" EntityTypeName="" TableName="ICDs">
+                <asp:LinqDataSource ID="AllICDDataSource" runat="server" ContextTypeName="DataClassesDataContext"
+                    EnableDelete="True" EntityTypeName="" TableName="ICDs"
+                    Where="Code.Contains(@CodePart) && Name.Contains(@NamePart)">
+                    <WhereParameters>
+                        <asp:ControlParameter ControlID="FindICDCodeTextBox" ConvertEmptyStringToNull="False" Name="CodePart" PropertyName="Text" />
+                        <asp:ControlParameter ControlID="FindICDNameTextBox" ConvertEmptyStringToNull="False" Name="NamePart" PropertyName="Text" />
+                    </WhereParameters>
                 </asp:LinqDataSource>
 
                 <p></p>
