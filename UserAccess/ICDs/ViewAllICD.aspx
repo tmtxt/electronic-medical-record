@@ -19,7 +19,7 @@
 
                 <asp:GridView ID="AllICDGridView" runat="server" AllowPaging="True"
                     AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="AllICDDataSource"
-                    CssClass="gridview table table-bordered table-striped table-hover">
+                    CssClass="gridview table table-bordered table-striped table-hover" OnRowDeleted="AllICDGridView_RowDeleted" OnRowDeleting="AllICDGridView_RowDeleting">
                     <Columns>
                         <asp:TemplateField HeaderText="Code" SortExpression="Code">
                             <ItemTemplate>
