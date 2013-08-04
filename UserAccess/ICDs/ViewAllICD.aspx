@@ -31,9 +31,11 @@
                                 <asp:Label ID="Label2" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Description" SortExpression="Description">
+                        <asp:TemplateField>
                             <ItemTemplate>
-                                <asp:Label ID="Label3" runat="server" Text='<%# Bind("Description") %>'></asp:Label>
+                                <asp:Label ID="Label5" runat="server"
+                                    Text='<%# (new DataClassesDataContext()).ICDChapters.Where(c => c.ID == long.Parse(Eval("ICDChapterID").ToString())).Select(c => c.Name).First().ToString() %>'>
+                                </asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:HyperLinkField DataNavigateUrlFields="ID"
@@ -49,6 +51,27 @@
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
+                    <pagertemplate>
+                        <ul class="pager">
+                            <li>
+                                <asp:LinkButton CommandName="Page" CommandArgument="First" ID="HyperLink2" runat="server">
+                                    First
+                                </asp:LinkButton>
+                                <asp:LinkButton CommandName="Page" CommandArgument="Prev" ID="LinkButton1" runat="server">
+                                    Previous
+                                </asp:LinkButton>
+                                <asp:Label ID="Label4" runat="server" Text="Label">
+                                    Page <%= AllICDGridView.PageIndex + 1 %> of <%= AllICDGridView.PageCount %>
+                                </asp:Label>
+                                <asp:LinkButton CommandName="Page" CommandArgument="Next" ID="LinkButton2" runat="server">
+                                    Next
+                                </asp:LinkButton>
+                                <asp:LinkButton CommandName="Page" CommandArgument="Last" ID="LinkButton3" runat="server">
+                                    Last
+                                </asp:LinkButton>
+                            </li>
+                        </ul>
+                    </pagertemplate>
                 </asp:GridView>
 
                 <asp:LinqDataSource ID="AllICDDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableDelete="True" EntityTypeName="" TableName="ICDs">
