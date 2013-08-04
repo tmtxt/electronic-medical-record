@@ -88,10 +88,11 @@ public partial class UserAccess_ICDs_ViewAllICD : System.Web.UI.Page
     protected void CancelFindButton_Click(object sender, EventArgs e)
     {
         // remove all search criteria
-        FindICDCodeTextBox.Text = "";
-        FindICDNameTextBox.Text = "";
-        FindICDChapterDropdownList.SelectedIndex = 0;
-        AllICDGridView.DataBind();
+        //FindICDCodeTextBox.Text = "";
+        //FindICDNameTextBox.Text = "";
+        //FindICDChapterDropdownList.SelectedIndex = 0;
+        //AllICDGridView.DataBind();
+        Response.Redirect(Request.RawUrl);
     }
 
     protected void FindICDChapterDropdownList_DataBound(object sender, EventArgs e)
