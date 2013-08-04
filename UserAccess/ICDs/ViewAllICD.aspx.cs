@@ -7,9 +7,43 @@ using System.Web.UI.WebControls;
 
 public partial class UserAccess_ICDs_ViewAllICD : System.Web.UI.Page
 {
+    protected readonly string AllICDChapterValue = "-1";
+
     protected void Page_Load(object sender, EventArgs e)
     {
+        // bind the icd chapter dropdownlist
+        if (!IsPostBack)
+        {
+            BindICDChapterDropdownList();
+        }
 
+        // filter criteria for the dropdownlist
+        if (FindICDChapterDropdownList.SelectedValue == AllICDChapterValue)
+        {
+            AllICDDataSource.Where = "Code.Contains(@CodePart) && Name.Contains(@NamePart)";
+        }
+        else
+        {
+            AllICDDataSource.Where = "Code.Contains(@CodePart) && Name.Contains(@NamePart) && ICDChapterID == @ICDChapter";
+        }
+
+        AllICDGridView.DataBind();
+    }
+
+    protected void BindICDChapterDropdownList()
+    {
+        // add one item to the top of the dropdownlist
+        FindICDChapterDropdownList.Items.Add(new ListItem("Al ICD Chapters", AllICDChapterValue));
+
+        // select all ICD chapters from database
+        var chapters = from ic in new DataClassesDataContext().ICDChapters
+                          select ic;
+        foreach (var chapter in chapters)
+        {
+            FindICDChapterDropdownList.Items.Add(new ListItem(chapter.Name,chapter.ID.ToString()));
+        }
+
+        FindICDChapterDropdownList.SelectedIndex = 0;
     }
 
     protected void AllICDGridView_RowDeleted(object sender, GridViewDeletedEventArgs e)
@@ -56,6 +90,23 @@ public partial class UserAccess_ICDs_ViewAllICD : System.Web.UI.Page
         // remove all search criteria
         FindICDCodeTextBox.Text = "";
         FindICDNameTextBox.Text = "";
+        FindICDChapterDropdownList.SelectedIndex = 0;
         AllICDGridView.DataBind();
+    }
+
+    protected void FindICDChapterDropdownList_DataBound(object sender, EventArgs e)
+    {
+        //// add one new item on top of the dropdown list
+        //ListItem item = new ListItem("All ICD Chapters", AllICDChapterValue);
+        //FindICDChapterDropdownList.Items.Insert(0, item);
+
+        //if (FindICDChapterDropdownList.SelectedValue == AllICDChapterValue)
+        //{
+        //    AllICDDataSource.Where = "Code.Contains(@CodePart) && Name.Contains(@NamePart)";
+        //}
+        //else
+        //{
+        //    AllICDDataSource.Where = "Code.Contains(@CodePart) && Name.Contains(@NamePart) && ICDChapterID == @ICDChapter";
+        //}
     }
 }

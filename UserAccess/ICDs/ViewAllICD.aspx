@@ -5,31 +5,40 @@
 
 
 
-<asp:Content ID="Content1" ContentPlaceHolderID="Title" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="Server">
     ICD List
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="Header" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="Header" runat="Server">
     ICD List
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="Content" Runat="Server">
+<asp:Content ID="Content3" ContentPlaceHolderID="Content" runat="Server">
     <form runat="server" class="form-horizontal">
         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
 
                 <div class="control-group">
-                    <strong><asp:Label CssClass="label_filter" ID="Label3" runat="server" Text="Filter"></asp:Label></strong>&nbsp;
+                    <p>
+                        <strong>
+                            <asp:Label CssClass="label_filter" ID="Label3" runat="server" Text="Filter"></asp:Label></strong>&nbsp;
                     <asp:TextBox placeholder="ICD Code" ID="FindICDCodeTextBox" runat="server"></asp:TextBox>
-                    <asp:AutoCompleteExtender ID="AutoCompleteExtender1" TargetControlID="FindICDCodeTextBox"
-                        runat="server" UseContextKey="True" ServiceMethod="GetICDCodeCompletionList">
-                    </asp:AutoCompleteExtender>
-                    <asp:TextBox placeholder="ICD Name" ID="FindICDNameTextBox" runat="server"></asp:TextBox>
-                    <asp:AutoCompleteExtender ID="AutoCompleteExtender2" TargetControlID="FindICDNameTextBox"
-                        runat="server" UseContextKey="True" ServiceMethod="GetICDNameCompletionList">
-                    </asp:AutoCompleteExtender>
-                    
-                    <asp:Button ID="FindICDButton" CssClass="btn btn-primary" runat="server" Text="Search" OnClick="FindICDButton_Click"/>
-                    <asp:Button ID="CancelFindButton" runat="server" CssClass="btn btn-primary" Text="Cancel" OnClick="CancelFindButton_Click" />
+                        <asp:AutoCompleteExtender ID="AutoCompleteExtender1" TargetControlID="FindICDCodeTextBox"
+                            runat="server" UseContextKey="True" ServiceMethod="GetICDCodeCompletionList">
+                        </asp:AutoCompleteExtender>
+                        <asp:TextBox placeholder="ICD Name" ID="FindICDNameTextBox" runat="server"></asp:TextBox>
+                        <asp:AutoCompleteExtender ID="AutoCompleteExtender2" TargetControlID="FindICDNameTextBox"
+                            runat="server" UseContextKey="True" ServiceMethod="GetICDNameCompletionList">
+                        </asp:AutoCompleteExtender>
+                    </p>
+                    <p>
+                        <strong>Filter</strong>&nbsp;
+                        <asp:DropDownList ID="FindICDChapterDropdownList" runat="server"
+                            ></asp:DropDownList>
+                        <asp:LinqDataSource ID="ICDChaptersDataSource" runat="server" ContextTypeName="DataClassesDataContext" EntityTypeName="" TableName="ICDChapters">
+                        </asp:LinqDataSource>
+                        <asp:Button ID="FindICDButton" CssClass="btn btn-primary" runat="server" Text="Search" OnClick="FindICDButton_Click" />
+                        <asp:Button ID="CancelFindButton" runat="server" CssClass="btn btn-primary" Text="Cancel" OnClick="CancelFindButton_Click" />
+                    </p>
                 </div>
 
                 <asp:GridView ID="AllICDGridView" runat="server" AllowPaging="True"
@@ -69,7 +78,7 @@
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
-                    <pagertemplate>
+                    <PagerTemplate>
                         <ul class="pager">
                             <li>
                                 <asp:LinkButton CommandName="Page" CommandArgument="First" ID="HyperLink2" runat="server">
@@ -89,7 +98,7 @@
                                 </asp:LinkButton>
                             </li>
                         </ul>
-                    </pagertemplate>
+                    </PagerTemplate>
                 </asp:GridView>
 
                 <asp:LinqDataSource ID="AllICDDataSource" runat="server" ContextTypeName="DataClassesDataContext"
@@ -98,6 +107,8 @@
                     <WhereParameters>
                         <asp:ControlParameter ControlID="FindICDCodeTextBox" ConvertEmptyStringToNull="False" Name="CodePart" PropertyName="Text" />
                         <asp:ControlParameter ControlID="FindICDNameTextBox" ConvertEmptyStringToNull="False" Name="NamePart" PropertyName="Text" />
+                        <asp:ControlParameter ControlID="FindICDChapterDropdownList" Name="ICDChapter"
+                            PropertyName="SelectedValue" Type="Int64" />
                     </WhereParameters>
                 </asp:LinqDataSource>
 
