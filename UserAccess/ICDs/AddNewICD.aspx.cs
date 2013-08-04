@@ -24,4 +24,15 @@ public partial class UserAccess_ICDs_AddNewICD : System.Web.UI.Page
     {
         ClearForm();
     }
+
+    protected void AddNewICDFormView_ItemInserting(object sender, FormViewInsertEventArgs e)
+    {
+        System.Threading.Thread.Sleep(1000);
+    }
+
+    protected void AddNewICDFormView_ItemInserted(object sender, FormViewInsertedEventArgs e)
+    {
+        // set the result alert
+        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("ICD inserted successfully!", e.Exception);
+    }
 }

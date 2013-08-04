@@ -17,7 +17,7 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
 
-                <asp:FormView ID="AddNewICDFormView" runat="server" DataKeyNames="ID" DataSourceID="AddNewICDDataSource" DefaultMode="Insert">
+                <asp:FormView ID="AddNewICDFormView" runat="server" DataKeyNames="ID" DataSourceID="AddNewICDDataSource" DefaultMode="Insert" OnItemInserted="AddNewICDFormView_ItemInserted" OnItemInserting="AddNewICDFormView_ItemInserting">
 
                     <InsertItemTemplate>
                         <h4>Enter ICD Information</h4>
