@@ -65,7 +65,7 @@
                                     <asp:Button ID="InsertButton" runat="server" Text="Add New ICD"
                                         CommandName="Insert" CssClass="btn btn-primary" CausesValidation="true" />
                                     <asp:Button ID="ClearButton" runat="server" Text="Clear Form"
-                                         CssClass="btn btn-primary" CausesValidation="false" />
+                                         CssClass="btn btn-primary" CausesValidation="false" OnClick="ClearButton_Click" />
                                     <asp:HyperLink ID="HyperLink1" runat="server"  CssClass="btn btn-primary"
                                         NavigateUrl="/UserAccess/ICDs/ViewAllICD.aspx">
                                         Cancel

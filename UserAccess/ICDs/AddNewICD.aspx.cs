@@ -11,4 +11,17 @@ public partial class UserAccess_ICDs_AddNewICD : System.Web.UI.Page
     {
 
     }
+
+    protected void ClearForm()
+    {
+        ((TextBox)AddNewICDFormView.FindControl("CodeTextBox")).Text = "";
+        ((TextBox)AddNewICDFormView.FindControl("DescriptionTextBox")).Text = "";
+        ((TextBox)AddNewICDFormView.FindControl("NameTextBox")).Text = "";
+        ((DropDownList)AddNewICDFormView.FindControl("ICDChapterDropdownList")).SelectedIndex = 0;
+    }
+
+    protected void ClearButton_Click(object sender, EventArgs e)
+    {
+        ClearForm();
+    }
 }
