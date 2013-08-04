@@ -28,6 +28,8 @@
                                         <label for="CodeTextBox">ICD Code *</label>
                                         <asp:TextBox ID="CodeTextBox" runat="server"
                                             Text='<%# Bind("Code") %>'></asp:TextBox>
+                                        <br />
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="CodeTextBox" CssClass="label label-important" Display="Dynamic" ErrorMessage="ICD Code is required"></asp:RequiredFieldValidator>
                                     </div>
                                 </td>
                                 <td rowspan="3">
@@ -44,6 +46,8 @@
                                         <label for="NameTextBox">ICD Name *</label>
                                         <asp:TextBox ID="NameTextBox" runat="server"
                                             Text='<%# Bind("Name") %>'></asp:TextBox>
+                                        <br />
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="NameTextBox" CssClass="label label-important" Display="Dynamic" ErrorMessage="ICD Name is required"></asp:RequiredFieldValidator>
                                     </div>
                                 </td>
                             </tr>
