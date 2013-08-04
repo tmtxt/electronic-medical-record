@@ -17,6 +17,22 @@ public class ICDChapterOperations
 
     public static void DeleteDependencies(long id)
     {
+        var ctx = new DataClassesDataContext();
 
+        // ICD Chapter's dependencies are ICDs
+        // select all ICD
+        var ICDs = from i in ctx.ICDs
+                   where i.ICDChapterID == id
+                   select i;
+
+        // delete all those ICD's dependencies
+        foreach (var ICD in ICDs)
+        {
+            ICDOperations.DeleteDependencies(ICD.ID);
+        }
+
+        // delete all those ICD
+        ctx.ICDs.DeleteAllOnSubmit(ICDs);
+        ctx.SubmitChanges();
     }
 }

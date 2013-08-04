@@ -15,7 +15,11 @@ public partial class UserAccess_ICD_ViewAllICDChapter : System.Web.UI.Page
     protected void AllICDChaptersGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         System.Threading.Thread.Sleep(1000);
+        
+        // delete all its dependencies
+        ICDChapterOperations.DeleteDependencies(long.Parse(e.Keys["ID"].ToString()));
     }
+
     protected void AllICDChaptersGridView_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
         System.Threading.Thread.Sleep(1000);

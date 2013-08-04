@@ -69,7 +69,7 @@
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" CssClass="btn btn-danger" Text="Delete"
-                                    OnClientClick="return confirm('Are you sure you want to delete this ICD Chapter?\nAll ICDs belong to this Chapter and All Visits associated with those ICDs will be deleted, too!')" />
+                                    OnClientClick="return confirm('Are you sure you want to delete this ICD Chapter?\n\nAll ICDs belong to this Chapter and All Visits associated with those ICDs will be deleted, too!')" />
                             </ItemTemplate>
                             <FooterStyle Width="10%" />
                             <HeaderStyle Width="10%" />
