@@ -83,7 +83,9 @@
                                 </td>
                                 <td>
                                     <asp:TextBox ID="CodeTextBox" runat="server"
-                                        Text='<%# Bind("Code") %>'></asp:TextBox>
+                                        Text='<%# Bind("Code") %>'></asp:TextBox><br />
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
+                                        ErrorMessage="ICD Code is required" ControlToValidate="CodeTextBox" CssClass="label label-important" Display="Dynamic"></asp:RequiredFieldValidator>
                                 </td>
                                 
                             </tr>
@@ -93,7 +95,9 @@
                                 </td>
                                 <td>
                                     <asp:TextBox ID="NameTextBox" runat="server"
-                                        Text='<%# Bind("Name") %>'></asp:TextBox>
+                                        Text='<%# Bind("Name") %>'></asp:TextBox><br />
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
+                                        ErrorMessage="ICD Name is required" ControlToValidate="NameTextBox" CssClass="label label-important" Display="Dynamic"></asp:RequiredFieldValidator>
                                 </td>
                             </tr>
                             <tr>
@@ -101,7 +105,13 @@
                                     <strong>ICD Chapter</strong>
                                 </td>
                                 <td>
-                                    <asp:Label ID="ICDChapterLabel" Text='<%# ((ICD)ICDDetailsFormView.DataItem).ICDChapter.Name %>' runat="server"></asp:Label>
+                                    <asp:DropDownList ID="ICDChapterDropdownList" runat="server"
+                                        DataSourceID="ICDChaptersDataSource" DataTextField="Name"
+                                        DataValueField="ID" SelectedValue='<%# Bind("ICDChapterID") %>'></asp:DropDownList>
+                                    <asp:LinqDataSource ID="ICDChaptersDataSource" runat="server"
+                                        ContextTypeName="DataClassesDataContext" EntityTypeName=""
+                                        Select="new (ID, Name)" TableName="ICDChapters">
+                                    </asp:LinqDataSource>
                                 </td>
                             </tr>
                             
@@ -118,15 +128,12 @@
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <asp:Button ID="DeleteButton" runat="server" Text="Delete ICD"
-                                        CssClass="btn btn-danger" CommandName="Delete"
-                                        OnClientClick="return confirm('Are you sure to you want to delete this ICD?\n\nAll Visits associated with this ICD will be deleted, too!')" />
-                                    <asp:Button ID="EditButton" runat="server" Text="Edit ICD"
-                                        CssClass="btn btn-primary" CommandName="Edit" />
-                                    <asp:HyperLink ID="ViewAllICDButton" runat="server"
-                                        NavigateUrl="/UserAccess/ICDs/ViewAllICD.aspx" CssClass="btn btn-primary">
-                                        View All ICD
-                                    </asp:HyperLink>
+                                    <asp:Button ID="UpdateButton" runat="server" Text="Update"
+                                        CssClass="btn btn-primary" CommandName="Update" CausesValidation="true" />
+                                    <asp:Button ID="ClearButton" runat="server" Text="Clear Form"
+                                        CssClass="btn btn-primary" CausesValidation="false" />
+                                    <asp:Button ID="CancelButton" runat="server" Text="Cancel"
+                                        CssClass="btn btn-primary" CommandName="Cancel" CausesValidation="false" />
                                 </td>
                             </tr>
                         </table>
