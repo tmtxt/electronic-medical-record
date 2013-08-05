@@ -117,6 +117,10 @@
             </ContentTemplate>
         </asp:UpdatePanel>
         <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
+        <p></p>
+        <asp:HyperLink ID="HyperLink1" runat="server"
+            CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign"
+            NavigateUrl="/UserAccess/ICDs/AddNewICD.aspx">Add New ICD</asp:HyperLink>
     </form>
 </asp:Content>
 

@@ -18,7 +18,7 @@
             <ContentTemplate>
                 <asp:FormView ID="ICDDetailsFormView" runat="server" DataKeyNames="ID"
                     DataSourceID="ICDDetailsDataSource" OnItemDeleted="ICDDetailsFormView_ItemDeleted"
-                    OnItemDeleting="ICDDetailsFormView_ItemDeleting" Width="100%">
+                    OnItemDeleting="ICDDetailsFormView_ItemDeleting" Width="100%" OnItemUpdated="ICDDetailsFormView_ItemUpdated" OnItemUpdating="ICDDetailsFormView_ItemUpdating">
 
                     <ItemTemplate>
                         <h3><%# Eval("Name") %></h3>
@@ -148,6 +148,10 @@
             </ContentTemplate>
         </asp:UpdatePanel>
         <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
+        <p></p>
+        <asp:HyperLink ID="HyperLink1" runat="server"
+            CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign"
+            NavigateUrl="/UserAccess/ICDs/AddNewICD.aspx">Add New ICD</asp:HyperLink>
     </form>
 </asp:Content>
 

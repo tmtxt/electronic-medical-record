@@ -36,4 +36,16 @@ public partial class UserAccess_ICDs_VIewICDDetails : System.Web.UI.Page
         ((TextBox)ICDDetailsFormView.FindControl("DescriptionTextBox")).Text = "";
         ((DropDownList)ICDDetailsFormView.FindControl("ICDChapterDropdownList")).SelectedIndex = 0;
     }
+
+
+    protected void ICDDetailsFormView_ItemUpdating(object sender, FormViewUpdateEventArgs e)
+    {
+        System.Threading.Thread.Sleep(1000);
+    }
+
+    protected void ICDDetailsFormView_ItemUpdated(object sender, FormViewUpdatedEventArgs e)
+    {
+        // display the result alert
+        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("ICD updated successfully!", e.Exception);
+    }
 }
