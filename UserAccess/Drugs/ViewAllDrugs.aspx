@@ -17,6 +17,10 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
 
+                <div runat="server" id="RedirectFromDetailsDiv">
+                    <asp:Label ID="ResultLabel" runat="server" Text="Redirect" />
+                </div>
+
                 <div class="control-group">
                     <strong><asp:Label CssClass="label_filter" ID="Label3" runat="server" Text="Filter by Name"></asp:Label></strong>&nbsp;
                     <asp:TextBox ID="FindDrugTextBox" runat="server" placeholder="Enter Drug Name"></asp:TextBox>

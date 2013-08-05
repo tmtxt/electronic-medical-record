@@ -9,7 +9,17 @@ public partial class UserAccess_Drugs_ViewAllDrugs : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        // display the redirect from details page alert?
+        if (Session[RedirectConstants.RedirectDrugDetails] != null)
+        {
+            RedirectFromDetailsDiv.Style["display"] = "block";
+            RedirectFromDetailsDiv.Attributes["class"] = "alert alert-success";
+            Session.Remove(RedirectConstants.RedirectDrugDetails);
+        }
+        else
+        {
+            RedirectFromDetailsDiv.Style["display"] = "none";
+        }
     }
 
     protected void AllDrugGridView_RowDeleted(object sender, GridViewDeletedEventArgs e)
