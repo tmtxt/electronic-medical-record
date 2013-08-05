@@ -25,6 +25,10 @@ public partial class UserAccess_ICDs_ViewAllICD : System.Web.UI.Page
             //}
         }
 
+        // set the redirect alert
+        RedirectAlert.SetAlert("You need to select an ICD to view its details",
+            RedirectConstants.RedirectICDDetailsSessionName);
+
         // filter criteria for the dropdownlist
         if (FindICDChapterDropdownList.SelectedValue == AllICDChapterValue)
         {

@@ -11,6 +11,10 @@ public partial class UserAccess_ICDs_VIewICDDetails : System.Web.UI.Page
     {
         if (Request.QueryString["ID"] == null)
         {
+            // set the session variable for displaying the redirect messsage
+            Session[RedirectConstants.RedirectICDDetailsSessionName] = "yes";
+
+            // redirect to another page
             Response.Redirect("ViewAllICD.aspx");
         }
     }
