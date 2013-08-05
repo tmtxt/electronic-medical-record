@@ -8,7 +8,7 @@ using System.Web;
 /// </summary>
 public class RedirectConstants
 {
-    public const string RedirectDrugDetails = "RedirectDrugDetails";
+    public const string RedirectDrugDetailsSessionName = "RedirectDrugDetails";
 
 	public RedirectConstants()
 	{

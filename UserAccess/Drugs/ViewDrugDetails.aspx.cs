@@ -11,7 +11,10 @@ public partial class UserAccess_Drugs_ViewDrugDetails : System.Web.UI.Page
     {
         if (Request.QueryString["ID"] == null)
         {
-            Session[RedirectConstants.RedirectDrugDetails] = "yes";
+            // set the session value to display the message
+            Session[RedirectConstants.RedirectDrugDetailsSessionName] = "yes";
+
+            // redirect to view all drugs page
             Response.Redirect("ViewAllDrugs.aspx");
             
         }
