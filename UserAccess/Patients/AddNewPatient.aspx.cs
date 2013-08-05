@@ -64,17 +64,20 @@ public partial class UserAccess_Patients_AddNewPatient : System.Web.UI.Page
     protected void AddPatientFormView_ItemInserted(object sender, FormViewInsertedEventArgs e)
     {
         System.Threading.Thread.Sleep(1000);
-        if (e.Exception == null)
-        {
-            ResultAlert.SetResultAlert("Patient inserted successfully!",
-                TemplateControls_ResultAlert.AlertTypeSuccess);
-            ClearForm();
-        }
-        else
-        {
-            ResultAlert.SetResultAlert("An error occured!",
-                TemplateControls_ResultAlert.AlertTypeError);
-        }
+
+        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Patient inserted successfully!", e.Exception);
+
+        //if (e.Exception == null)
+        //{
+        //    ResultAlert.SetResultAlert("Patient inserted successfully!",
+        //        TemplateControls_ResultAlert.AlertTypeSuccess);
+        //    ClearForm();
+        //}
+        //else
+        //{
+        //    ResultAlert.SetResultAlert("An error occured!",
+        //        TemplateControls_ResultAlert.AlertTypeError);
+        //}
     }
     protected void InsertCancelButton_Click(object sender, EventArgs e)
     {

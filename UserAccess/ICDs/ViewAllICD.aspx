@@ -58,7 +58,7 @@
                                 <asp:Label ID="Label2" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField>
+                        <asp:TemplateField HeaderText="ICD Chapter">
                             <ItemTemplate>
                                 <asp:Label ID="Label5" runat="server"
                                     Text='<%# (new DataClassesDataContext()).ICDChapters.Where(c => c.ID == long.Parse(Eval("ICDChapterID").ToString())).Select(c => c.Name).First().ToString() %>'>
