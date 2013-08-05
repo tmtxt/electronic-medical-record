@@ -35,7 +35,8 @@
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="NameTextBox" CssClass="label label-important" Display="Dynamic" ErrorMessage="ICD Chapter Name is required"></asp:RequiredFieldValidator>
                             </EditItemTemplate>
                             <ItemTemplate>
-                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
+                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("Name") %>'></asp:Label><br />
+                                
                             </ItemTemplate>
                             <FooterStyle Width="40%" />
                             <HeaderStyle Width="40%" />

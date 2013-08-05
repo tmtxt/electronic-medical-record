@@ -7,10 +7,11 @@ using System.Web.UI.WebControls;
 
 public partial class UserAccess_ICD_ViewAllICDChapter : System.Web.UI.Page
 {
+    //public GridView MainGridView { get; set; }
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        //MainGridView = AllICDChaptersGridView;
     }
     protected void AllICDChaptersGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {

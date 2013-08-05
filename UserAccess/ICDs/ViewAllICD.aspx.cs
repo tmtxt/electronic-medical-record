@@ -15,6 +15,14 @@ public partial class UserAccess_ICDs_ViewAllICD : System.Web.UI.Page
         if (!IsPostBack)
         {
             BindICDChapterDropdownList();
+
+            //if (PreviousPage != null)
+            //{
+            //    var contentHolder = PreviousPage.Master.FindControl("Content");
+            //    GridView ICDChapterGridView = contentHolder.FindControl("AllICDChaptersGridView") as GridView;
+            //    var item = (ICDChapter)ICDChapterGridView.SelectedRow.DataItem;
+            //    FindICDChapterDropdownList.SelectedValue = AllICDChapterValue;
+            //}
         }
 
         // filter criteria for the dropdownlist
@@ -93,6 +101,7 @@ public partial class UserAccess_ICDs_ViewAllICD : System.Web.UI.Page
         //FindICDChapterDropdownList.SelectedIndex = 0;
         //AllICDGridView.DataBind();
         Response.Redirect(Request.RawUrl);
+        
     }
 
     protected void FindICDChapterDropdownList_DataBound(object sender, EventArgs e)
