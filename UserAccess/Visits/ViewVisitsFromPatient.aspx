@@ -5,23 +5,23 @@
 
 
 
-<asp:Content ID="Content1" ContentPlaceHolderID="Title" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="Server">
     Patient's Visits
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="Header" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="Header" runat="Server">
     Visits History
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="Content" Runat="Server">
+<asp:Content ID="Content3" ContentPlaceHolderID="Content" runat="Server">
     <form class="form-horizontal" runat="server">
         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
 
-                
+
 
                 <asp:GridView ID="VisitsFromPatientGridView" runat="server" AutoGenerateColumns="False"
                     DataKeyNames="ID" DataSourceID="VisitsFromPatientDataSource"
-                     CssClass="gridview table table-bordered table-striped table-hover" AllowPaging="True">
+                    CssClass="gridview table table-bordered table-striped table-hover" AllowPaging="True">
                     <Columns>
                         <asp:TemplateField HeaderText="Patient">
                             <ItemTemplate>
@@ -44,17 +44,26 @@
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Outcome" SortExpression="Outcome">
-                            <EditItemTemplate>
-                                <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("Outcome") %>'></asp:TextBox>
-                            </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="Label4" runat="server" Text='<%# Bind("Outcome") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:HyperLinkField Text="Details"
+                            DataNavigateUrlFormatString="ViewVisitDetails.aspx?ID={0}"
+                            DataNavigateUrlFields="ID">
+                            <ControlStyle CssClass="btn btn-primary" />
+                        </asp:HyperLinkField>
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:Button ID="DeleteButton" runat="server" Text="Delete"
+                                    CssClass="btn btn-danger" CommandName="Delete"
+                                    OnClientClick="return confirm('Are you sure you want to delete this Visit?\n\nAll Prescriptions, Prescription Details as well as Lab Orders, Lab Order Details belong to this visit will be deleted, too!')" />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
 
-                <asp:LinqDataSource ID="VisitsFromPatientDataSource" runat="server" ContextTypeName="DataClassesDataContext" EntityTypeName="" TableName="Visits" Where="PatientID == @PatientID">
+                <asp:LinqDataSource ID="VisitsFromPatientDataSource" runat="server" ContextTypeName="DataClassesDataContext" EntityTypeName="" TableName="Visits" Where="PatientID == @PatientID" OrderBy="Date">
                     <WhereParameters>
                         <asp:QueryStringParameter Name="PatientID" QueryStringField="PatientID" Type="Int64" />
                     </WhereParameters>
