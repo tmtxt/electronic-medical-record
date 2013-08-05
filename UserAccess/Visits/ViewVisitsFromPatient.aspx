@@ -61,6 +61,27 @@
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
+                    <pagertemplate>
+                        <ul class="pager">
+                            <li>
+                                <asp:LinkButton CommandName="Page" CommandArgument="First" ID="HyperLink2" runat="server">
+                                    First
+                                </asp:LinkButton>
+                                <asp:LinkButton CommandName="Page" CommandArgument="Prev" ID="LinkButton1" runat="server">
+                                    Previous
+                                </asp:LinkButton>
+                                <asp:Label ID="Label4" runat="server" Text="Label">
+                                    Page <%= VisitsFromPatientGridView.PageIndex + 1 %> of <%= VisitsFromPatientGridView.PageCount %>
+                                </asp:Label>
+                                <asp:LinkButton CommandName="Page" CommandArgument="Next" ID="LinkButton2" runat="server">
+                                    Next
+                                </asp:LinkButton>
+                                <asp:LinkButton CommandName="Page" CommandArgument="Last" ID="LinkButton3" runat="server">
+                                    Last
+                                </asp:LinkButton>
+                            </li>
+                        </ul>
+                    </pagertemplate>
                 </asp:GridView>
 
                 <asp:LinqDataSource ID="VisitsFromPatientDataSource" runat="server" ContextTypeName="DataClassesDataContext" EntityTypeName="" TableName="Visits" Where="PatientID == @PatientID" OrderBy="Date" EnableDelete="True">
