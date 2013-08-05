@@ -19,7 +19,7 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <asp:FormView Width="100%" ID="VisitDetailsFormView" runat="server" DataKeyNames="ID"
-                    DataSourceID="VisitDetailsDataSource" OnModeChanging="VisitDetailsFormView_ModeChanging" OnModeChanged="VisitDetailsFormView_ModeChanged" OnItemUpdating="VisitDetailsFormView_ItemUpdating">
+                    DataSourceID="VisitDetailsDataSource" OnModeChanging="VisitDetailsFormView_ModeChanging" OnModeChanged="VisitDetailsFormView_ModeChanged" OnItemUpdating="VisitDetailsFormView_ItemUpdating" OnItemDeleted="VisitDetailsFormView_ItemDeleted" OnItemDeleting="VisitDetailsFormView_ItemDeleting" OnItemUpdated="VisitDetailsFormView_ItemUpdated">
                     <EmptyDataTemplate>
                         <strong>This Visit is not exist</strong>
                     </EmptyDataTemplate>
@@ -212,7 +212,7 @@
                 </asp:FormView>
 
 
-                <asp:LinqDataSource ID="VisitDetailsDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableDelete="True" EnableUpdate="True" EntityTypeName="" TableName="Visits" Where="ID == @ID">
+                <asp:LinqDataSource ID="VisitDetailsDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableDelete="True" EnableUpdate="True" EntityTypeName="" TableName="Visits" Where="ID == @ID" OnUpdating="VisitDetailsDataSource_Updating">
                     <WhereParameters>
                         <asp:QueryStringParameter Name="ID" QueryStringField="ID" Type="Int64" />
                     </WhereParameters>

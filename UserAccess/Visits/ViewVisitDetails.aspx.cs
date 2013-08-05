@@ -65,16 +65,44 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
 
     protected void VisitDetailsFormView_ItemUpdating(object sender, FormViewUpdateEventArgs e)
     {
+        System.Threading.Thread.Sleep(1000);
+
+        
+    }
+
+    protected void VisitDetailsFormView_ItemDeleting(object sender, FormViewDeleteEventArgs e)
+    {
+        System.Threading.Thread.Sleep(1000);
+
+        // delete all its dependencies first
+        VisitOperations.DeleteDependencies(long.Parse(e.Keys["ID"].ToString()));
+    }
+
+    protected void VisitDetailsFormView_ItemDeleted(object sender, FormViewDeletedEventArgs e)
+    {
+        // print the result alert
+        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Visit deleted successfully!", e.Exception);
+    }
+
+    protected void VisitDetailsFormView_ItemUpdated(object sender, FormViewUpdatedEventArgs e)
+    {
+        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Visit updated successfully!", e.Exception);
+    }
+
+    protected void VisitDetailsDataSource_Updating(object sender, LinqDataSourceUpdateEventArgs e)
+    {
+        var newObject = (Visit)e.NewObject;
+
         // get the ICD drop down list from the formview
         var dl = (DropDownList)VisitDetailsFormView.FindControl("ICDDropdownList");
 
         // set the ICDID for the new object to be updated
-        e.NewValues["ICDID"] = dl.SelectedValue;
+        newObject.ICDID = long.Parse(dl.SelectedValue);
 
         // get the date picker from the formview
         var date = ((TemplateControls_DatePicker)VisitDetailsFormView.FindControl("DatePicker")).SelectedDate;
 
         // set the new date for the visit
-        e.NewValues["Date"] = date;
+        newObject.Date = date;
     }
 }

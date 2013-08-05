@@ -56,7 +56,7 @@ public partial class TemplateControls_ResultAlert : System.Web.UI.UserControl
         else
         {
             SetResultAlert(ex.Message, AlertTypeError);
-            return false;
+            return true;
         }
     }
 
