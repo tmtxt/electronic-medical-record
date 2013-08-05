@@ -53,7 +53,7 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
         {
             if (dl.Items.FindByValue(((Visit)VisitDetailsFormView.DataItem).ICDID.ToString()) == null)
             {
-
+                // do nothing, leave the selected value by default
             }
             else
             {
@@ -61,5 +61,14 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
             }
         }
 
+    }
+
+    protected void VisitDetailsFormView_ItemUpdating(object sender, FormViewUpdateEventArgs e)
+    {
+        // get the ICD drop down list from the formview
+        var dl = (DropDownList)VisitDetailsFormView.FindControl("ICDDropdownList");
+
+        // set the ICDID for the new object to be updated
+        e.NewValues["ICDID"] = dl.SelectedValue;
     }
 }

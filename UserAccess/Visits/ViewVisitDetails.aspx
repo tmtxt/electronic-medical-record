@@ -17,7 +17,7 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <asp:FormView Width="100%" ID="VisitDetailsFormView" runat="server" DataKeyNames="ID"
-                    DataSourceID="VisitDetailsDataSource" OnModeChanging="VisitDetailsFormView_ModeChanging" OnModeChanged="VisitDetailsFormView_ModeChanged">
+                    DataSourceID="VisitDetailsDataSource" OnModeChanging="VisitDetailsFormView_ModeChanging" OnModeChanged="VisitDetailsFormView_ModeChanged" OnItemUpdating="VisitDetailsFormView_ItemUpdating">
                     <EmptyDataTemplate>
                         <strong>This Visit is not exist</strong>
                     </EmptyDataTemplate>
