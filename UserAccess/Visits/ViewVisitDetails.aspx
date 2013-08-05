@@ -16,9 +16,11 @@
         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-
                 <asp:FormView Width="100%" ID="VisitDetailsFormView" runat="server" DataKeyNames="ID"
                     DataSourceID="VisitDetailsDataSource">
+                    <EmptyDataTemplate>
+                        <strong>This Visit is not exist</strong>
+                    </EmptyDataTemplate>
                     <ItemTemplate>
                         <table class="table table-hover">
                             <tr>
@@ -41,7 +43,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <strong>Hospotal</strong>
+                                    <strong>Hospital</strong>
                                 </td>
                                 <td>
                                     <asp:Label ID="Label3" runat="server"
@@ -77,14 +79,108 @@
                             </tr>
                             <tr>
                                 <td colspan="4">
-                                    <asp:Button ID="DeleteButton" runat="server" Text="Delete"
+                                    <asp:Button ID="DeleteButton" runat="server" Text="Delete Visit"
                                         CssClass="btn btn-danger" CommandName="Delete"
                                         OnClientClick="return confirm('Are you sure you want to delete this Visit?\n\nAll Prescriptions, Prescription Details as well as Lab Orders, Lab Order Details belong to this visit will be deleted, too!')" />
+                                    <asp:Button ID="EditButton" runat="server" Text="Edit Visit"
+                                        CssClass="btn btn-primary" CommandName="Edit" />
+                                    <asp:HyperLink ID="ViewVisitsButton" runat="server"
+                                        CssClass="btn btn-primary"
+                                        NavigateUrl='<%# Eval("PatientID","ViewVisitsFromPatient.aspx?PatientID={0}") %>'>
+                                        View this Patient's Visits
+                                    </asp:HyperLink>
                                 </td>
                             </tr>
                         </table>
                     </ItemTemplate>
+                    <EditItemTemplate>
+                        <table class="table table-hover">
+                            <tr>
+                                <td>
+                                    <strong>Date</strong>
+                                </td>
+                                <td>
+                                    <asp:Label ID="Label1" runat="server"
+                                        Text='<%# DateTime.FromBinary(long.Parse(Eval("Date").ToString())).ToLongDateString() %>'>
+                                    </asp:Label>
+                                </td>
+                                <td>
+                                    <strong>Patient</strong>
+                                </td>
+                                <td>
+                                    <asp:Label ID="Label2" runat="server"
+                                        Text='<%# ((Patient)Eval("Patient")).Name %>'>
+                                    </asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Hospital</strong>
+                                </td>
+                                <td>
+                                    <asp:DropDownList ID="HospitalsDropdownList" runat="server"
+                                        DataSourceID="HospitalsDataSource" DataTextField="Name"
+                                        DataValueField="ID"
+                                        SelectedValue='<%# Bind("HospitalID") %>'>
+                                    </asp:DropDownList>
+                                    <asp:LinqDataSource ID="HospitalsDataSource" runat="server"
+                                        ContextTypeName="DataClassesDataContext" EntityTypeName=""
+                                        OrderBy="Name" Select="new (ID, Name)" TableName="Hospitals">
+                                    </asp:LinqDataSource>
+                                </td>
+                                <td>
+                                    <strong>Doctor</strong>
+                                </td>
+                                <td>
+                                    <asp:DropDownList ID="DoctorsDropdownList" runat="server"
+                                        DataSourceID="DoctorsDataSource" DataTextField="Name"
+                                        DataValueField="ID"
+                                        SelectedValue='<%# Bind("DoctorID") %>'>
+                                    </asp:DropDownList>
+                                    <asp:LinqDataSource ID="DoctorsDataSource" runat="server"
+                                        ContextTypeName="DataClassesDataContext" EntityTypeName=""
+                                        OrderBy="Name" Select="new (ID, Name)" TableName="Doctors">
+                                    </asp:LinqDataSource>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Diagnosis</strong>
+                                </td>
+                                <td>
+                                    <p>
+                                        <asp:DropDownList ID="ICDChapterDropdownList" runat="server"></asp:DropDownList>
+                                    </p>
+                                    <p>
+                                        <asp:DropDownList ID="ICDDropdownList" runat="server"></asp:DropDownList>
+                                    </p>
+                                </td>
+                                <td>
+                                    <strong>Outcome</strong>
+                                </td>
+                                <td>
+                                    <asp:DropDownList ID="OutcomeDropdownList" runat="server"
+                                        SelectedValue='<%# Bind("Outcome") %>'>
+                                        <asp:ListItem>Increased</asp:ListItem>
+                                        <asp:ListItem>Decreased</asp:ListItem>
+                                        <asp:ListItem>Unchanged</asp:ListItem>
+                                        <asp:ListItem>Cured</asp:ListItem>
+                                        <asp:ListItem>Dead</asp:ListItem>
+                                    </asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">
+                                    <asp:Button ID="UpdateButton" runat="server" Text="Update Visit"
+                                        CssClass="btn btn-primary" CommandName="Update" />
+                                    <asp:Button ID="CancelButton" runat="server" Text="Cancel"
+                                        CssClass="btn btn-primary" CommandName="Cancel" />
+                                </td>
+                            </tr>
+                        </table>
+                    </EditItemTemplate>
                 </asp:FormView>
+
 
                 <asp:LinqDataSource ID="VisitDetailsDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableDelete="True" EnableUpdate="True" EntityTypeName="" TableName="Visits" Where="ID == @ID">
                     <WhereParameters>
