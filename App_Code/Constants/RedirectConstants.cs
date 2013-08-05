@@ -10,6 +10,7 @@ public class RedirectConstants
 {
     public const string RedirectDrugDetailsSessionName = "RedirectDrugDetailsSessionName";
     public const string RedirectICDDetailsSessionName = "RedirectICDDetailsSessionName";
+    public const string RedirectMedicalServiceSessionName = "RedirectMedicalServiceSessionName";
 
 	public RedirectConstants()
 	{

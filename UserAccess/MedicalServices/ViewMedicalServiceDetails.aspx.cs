@@ -11,6 +11,10 @@ public partial class UserAccess_MedicalServices_ViewMedicalServiceDetails : Syst
     {
         if (Request.QueryString["ID"] == null)
         {
+            // set the session variable to display the redirect message
+            Session[RedirectConstants.RedirectMedicalServiceSessionName] = "yes";
+
+            // redirect to view all medical services page
             Response.Redirect("/UserAccess/MedicalServices/ViewAllMedicalServices.aspx");
         }
         //if (!IsPostBack)

@@ -34,6 +34,10 @@ public partial class UserAccess_MedicalServices_ViewAllMedicalServices : System.
         //{
         //    BindData();
         //}
+
+        // set the redirect alert
+        RedirectAlert.SetAlert("You need to select a Medical Service to view its details",
+            RedirectConstants.RedirectMedicalServiceSessionName);
         
     }
 

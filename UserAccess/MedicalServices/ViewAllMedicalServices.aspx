@@ -2,6 +2,8 @@
 
 <%@ Register Src="~/TemplateControls/UpdateProgressBar.ascx" TagPrefix="utmpl" TagName="UpdateProgressBar" %>
 <%@ Register Src="~/TemplateControls/ResultAlert.ascx" TagPrefix="utmpl" TagName="ResultAlert" %>
+<%@ Register Src="~/TemplateControls/RedirectAlert.ascx" TagPrefix="utmpl" TagName="RedirectAlert" %>
+
 
 
 
@@ -16,6 +18,9 @@
         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
+
+                <utmpl:RedirectAlert runat="server" ID="RedirectAlert" />
+
                 <div class="control-group">
                     <strong><asp:Label CssClass="label_filter" ID="Label3" runat="server" Text="Filter"></asp:Label></strong>&nbsp;
                     <asp:TextBox placeholder="Medical Service Name" ID="FindMedicalServiceTextBox" runat="server"></asp:TextBox>
