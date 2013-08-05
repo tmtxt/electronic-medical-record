@@ -14,29 +14,52 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
 
     protected void VisitDetailsFormView_ModeChanging(object sender, FormViewModeEventArgs e)
     {
-        
+
     }
 
     protected void VisitDetailsFormView_PageIndexChanged(object sender, EventArgs e)
     {
-        
+
     }
 
     protected void VisitDetailsFormView_ModeChanged(object sender, EventArgs e)
     {
-        
+
         //if (VisitDetailsFormView.CurrentMode == FormViewMode.Edit)
         //{
         //    VisitDetailsFormView.DataBind();
 
-        //    // get the linq data source of the ICD drop down list
-        //    var dl = (DropDownList)VisitDetailsFormView.FindControl("ICDDropdownList");
-        //    var ds = (LinqDataSource)VisitDetailsFormView.FindControl("ICDDataSource");
 
-        //    // set the where clause
-        //    ds.Where = "ICDChapterID = @ICDChapterID";
-        //    var a = ((DropDownList)VisitDetailsFormView.FindControl("ICDChapterDropdownList")).SelectedValue;
-        //    dl.DataBind();
         //}
+    }
+
+    protected void ICDChapterDropdownList_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        // get the ICD drop down list
+        var dl = (DropDownList)VisitDetailsFormView.FindControl("ICDDropdownList");
+
+        // rebind data for it
+        dl.DataBind();
+    }
+
+    protected void ICDDropdownList_DataBound(object sender, EventArgs e)
+    {
+        // get the linq data source of the ICD drop down list
+        var dl = (DropDownList)VisitDetailsFormView.FindControl("ICDDropdownList");
+
+        // set the selected value of the ICD drop down list
+        // dl.SelectedValue = ((Visit)VisitDetailsFormView.DataItem).ICDID.ToString();
+        if (VisitDetailsFormView.DataItem != null)
+        {
+            if (dl.Items.FindByValue(((Visit)VisitDetailsFormView.DataItem).ICDID.ToString()) == null)
+            {
+
+            }
+            else
+            {
+                dl.Items.FindByValue(((Visit)VisitDetailsFormView.DataItem).ICDID.ToString()).Selected = true;
+            }
+        }
+
     }
 }
