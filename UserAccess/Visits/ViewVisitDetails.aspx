@@ -130,6 +130,8 @@
                                         DataValueField="ID"
                                         SelectedValue='<%# Bind("HospitalID") %>'>
                                     </asp:DropDownList>
+                                    <br />
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Hospital is required.&lt;br/&gt; If there is no Hospital, please add one first" ControlToValidate="HospitalsDropdownList" CssClass="label label-important" Display="Dynamic"></asp:RequiredFieldValidator>
                                     <asp:LinqDataSource ID="HospitalsDataSource" runat="server"
                                         ContextTypeName="DataClassesDataContext" EntityTypeName=""
                                         OrderBy="Name" Select="new (ID, Name)" TableName="Hospitals">
@@ -143,7 +145,8 @@
                                         DataSourceID="DoctorsDataSource" DataTextField="Name"
                                         DataValueField="ID"
                                         SelectedValue='<%# Bind("DoctorID") %>'>
-                                    </asp:DropDownList>
+                                    </asp:DropDownList><br />
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Doctor is required.&lt;br/&gt; If there is no Doctor, please add one first" ControlToValidate="DoctorsDropdownList" CssClass="label label-important" Display="Dynamic"></asp:RequiredFieldValidator>
                                     <asp:LinqDataSource ID="DoctorsDataSource" runat="server"
                                         ContextTypeName="DataClassesDataContext" EntityTypeName=""
                                         OrderBy="Name" Select="new (ID, Name)" TableName="Doctors">
@@ -172,7 +175,8 @@
                                         <asp:DropDownList ID="ICDDropdownList" runat="server"
                                             DataSourceID="ICDDataSource" DataTextField="DisplayName"
                                             DataValueField="ID" OnDataBound="ICDDropdownList_DataBound" >
-                                        </asp:DropDownList>
+                                        </asp:DropDownList><br />
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="ICD Code is required.&lt;br/&gt; If there is no ICD code, please add one." ControlToValidate="ICDDropdownList" CssClass="label label-important" Display="Dynamic"></asp:RequiredFieldValidator>
                                         <asp:LinqDataSource ID="ICDDataSource" runat="server"
                                             ContextTypeName="DataClassesDataContext" EntityTypeName=""
                                             Select='new (ID, (Code + " - " + Name) as DisplayName, Code, ICDChapterID)'
@@ -204,7 +208,7 @@
                                     <asp:Button ID="UpdateButton" runat="server" Text="Update Visit"
                                         CssClass="btn btn-primary" CommandName="Update" />
                                     <asp:Button ID="CancelButton" runat="server" Text="Cancel"
-                                        CssClass="btn btn-primary" CommandName="Cancel" />
+                                        CssClass="btn btn-primary" CommandName="Cancel" CausesValidation="False" />
                                 </td>
                             </tr>
                         </table>

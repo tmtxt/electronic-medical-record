@@ -3,4 +3,4 @@
 <asp:TextBox Text='<%# DateTime.FromBinary(InitialDate).ToString("dd/MMM/yyyy") %>' ID="DateOfBirthTextBox" CssClass="form-control" runat="server"></asp:TextBox><br />
 <asp:CalendarExtender ID="DateOfBirthCalendarExtender" TargetControlID="DateOfBirthTextBox" Format="dd/MMM/yyyy" runat="server">
 </asp:CalendarExtender>
-<asp:RequiredFieldValidator ID="DateOfBirthTextBoxValidator" runat="server" ControlToValidate="DateOfBirthTextBox" CssClass="label label-important" Display="Dynamic" ErrorMessage="Birthdate is required"></asp:RequiredFieldValidator>
+<asp:RequiredFieldValidator ID="DateOfBirthTextBoxValidator" runat="server" ControlToValidate="DateOfBirthTextBox" CssClass="label label-important" Display="Dynamic" ErrorMessage="Date is required"></asp:RequiredFieldValidator>
