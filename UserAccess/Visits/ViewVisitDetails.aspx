@@ -17,7 +17,7 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <asp:FormView Width="100%" ID="VisitDetailsFormView" runat="server" DataKeyNames="ID"
-                    DataSourceID="VisitDetailsDataSource">
+                    DataSourceID="VisitDetailsDataSource" OnModeChanging="VisitDetailsFormView_ModeChanging" OnModeChanged="VisitDetailsFormView_ModeChanged">
                     <EmptyDataTemplate>
                         <strong>This Visit is not exist</strong>
                     </EmptyDataTemplate>
@@ -64,6 +64,10 @@
                                     <strong>Diagnosis</strong>
                                 </td>
                                 <td>
+                                    <asp:Label ID="Label7" runat="server"
+                                        Text='<%# ((ICD)Eval("ICD")).Code %>'>
+                                    </asp:Label>
+                                    &nbsp;-&nbsp;
                                     <asp:Label ID="Label5" runat="server"
                                         Text='<%# ((ICD)Eval("ICD")).Name %>'>
                                     </asp:Label>
@@ -149,10 +153,34 @@
                                 </td>
                                 <td>
                                     <p>
-                                        <asp:DropDownList ID="ICDChapterDropdownList" runat="server"></asp:DropDownList>
+                                        <label for="ICDChapterDropdownList">ICD Chapter</label>
+                                        <asp:DropDownList ID="ICDChapterDropdownList" runat="server"
+                                            DataSourceID="ICDChapterDataSource" DataTextField="Name"
+                                            DataValueField="ID"
+                                            SelectedValue='<%# ((ICD)Eval("ICD")).ICDChapter.ID %>'>
+                                        </asp:DropDownList>
+                                        <asp:LinqDataSource ID="ICDChapterDataSource" runat="server"
+                                            ContextTypeName="DataClassesDataContext" EntityTypeName=""
+                                            OrderBy="Name" Select="new (ID, Name)" TableName="ICDChapters">
+                                        </asp:LinqDataSource>
                                     </p>
                                     <p>
-                                        <asp:DropDownList ID="ICDDropdownList" runat="server"></asp:DropDownList>
+                                        <label for="ICDDropdownList">ICD Code</label>
+                                        <asp:DropDownList ID="ICDDropdownList" runat="server"
+                                            DataSourceID="ICDDataSource" DataTextField="DisplayName"
+                                            DataValueField="ID"
+                                            SelectedValue='<%# Bind("ICDID") %>'>
+                                        </asp:DropDownList>
+                                        <asp:LinqDataSource ID="ICDDataSource" runat="server"
+                                            ContextTypeName="DataClassesDataContext" EntityTypeName=""
+                                            Select='new (ID, (Code + " - " + Name) as DisplayName, Code, ICDChapterID)'
+                                            TableName="ICDs" OrderBy="Code" Where="ICDChapterID == @ICDChapterID">
+                                            <WhereParameters>
+                                                <asp:ControlParameter ControlID="ICDChapterDropdownList"
+                                                    Name="ICDChapterID" PropertyName="SelectedValue"
+                                                    Type="Int64" />
+                                            </WhereParameters>
+                                        </asp:LinqDataSource>
                                     </p>
                                 </td>
                                 <td>
