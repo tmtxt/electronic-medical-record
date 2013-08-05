@@ -28,4 +28,12 @@ public partial class UserAccess_ICDs_VIewICDDetails : System.Web.UI.Page
         // delete all its dependencies
         ICDOperations.DeleteDependencies(long.Parse(e.Keys["ID"].ToString()));
     }
+
+    protected void ClearButton_Click(object sender, EventArgs e)
+    {
+        ((TextBox)ICDDetailsFormView.FindControl("NameTextBox")).Text = "";
+        ((TextBox)ICDDetailsFormView.FindControl("CodeTextBox")).Text = "";
+        ((TextBox)ICDDetailsFormView.FindControl("DescriptionTextBox")).Text = "";
+        ((DropDownList)ICDDetailsFormView.FindControl("ICDChapterDropdownList")).SelectedIndex = 0;
+    }
 }

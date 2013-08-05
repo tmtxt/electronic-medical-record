@@ -131,7 +131,7 @@
                                     <asp:Button ID="UpdateButton" runat="server" Text="Update"
                                         CssClass="btn btn-primary" CommandName="Update" CausesValidation="true" />
                                     <asp:Button ID="ClearButton" runat="server" Text="Clear Form"
-                                        CssClass="btn btn-primary" CausesValidation="false" />
+                                        CssClass="btn btn-primary" CausesValidation="false" OnClick="ClearButton_Click" />
                                     <asp:Button ID="CancelButton" runat="server" Text="Cancel"
                                         CssClass="btn btn-primary" CommandName="Cancel" CausesValidation="false" />
                                 </td>
