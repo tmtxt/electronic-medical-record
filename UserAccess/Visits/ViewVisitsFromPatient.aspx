@@ -21,7 +21,7 @@
 
                 <asp:GridView ID="VisitsFromPatientGridView" runat="server" AutoGenerateColumns="False"
                     DataKeyNames="ID" DataSourceID="VisitsFromPatientDataSource"
-                    CssClass="gridview table table-bordered table-striped table-hover" AllowPaging="True">
+                    CssClass="gridview table table-bordered table-striped table-hover" AllowPaging="True" OnRowDeleted="VisitsFromPatientGridView_RowDeleted" OnRowDeleting="VisitsFromPatientGridView_RowDeleting">
                     <Columns>
                         <asp:TemplateField HeaderText="Patient">
                             <ItemTemplate>
@@ -63,7 +63,7 @@
                     </Columns>
                 </asp:GridView>
 
-                <asp:LinqDataSource ID="VisitsFromPatientDataSource" runat="server" ContextTypeName="DataClassesDataContext" EntityTypeName="" TableName="Visits" Where="PatientID == @PatientID" OrderBy="Date">
+                <asp:LinqDataSource ID="VisitsFromPatientDataSource" runat="server" ContextTypeName="DataClassesDataContext" EntityTypeName="" TableName="Visits" Where="PatientID == @PatientID" OrderBy="Date" EnableDelete="True">
                     <WhereParameters>
                         <asp:QueryStringParameter Name="PatientID" QueryStringField="PatientID" Type="Int64" />
                     </WhereParameters>
