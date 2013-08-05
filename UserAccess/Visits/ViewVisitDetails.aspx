@@ -2,6 +2,8 @@
 
 <%@ Register Src="~/TemplateControls/UpdateProgressBar.ascx" TagPrefix="utmpl" TagName="UpdateProgressBar" %>
 <%@ Register Src="~/TemplateControls/ResultAlert.ascx" TagPrefix="utmpl" TagName="ResultAlert" %>
+<%@ Register Src="~/TemplateControls/DatePicker.ascx" TagPrefix="utmpl" TagName="DatePicker" %>
+
 
 
 
@@ -24,20 +26,21 @@
                     <ItemTemplate>
                         <table class="table table-hover">
                             <tr>
-                                <td>
-                                    <strong>Date</strong>
-                                </td>
-                                <td>
-                                    <asp:Label ID="Label1" runat="server"
-                                        Text='<%# DateTime.FromBinary(long.Parse(Eval("Date").ToString())).ToLongDateString() %>'>
-                                    </asp:Label>
-                                </td>
+                                
                                 <td>
                                     <strong>Patient</strong>
                                 </td>
                                 <td>
                                     <asp:Label ID="Label2" runat="server"
                                         Text='<%# ((Patient)Eval("Patient")).Name %>'>
+                                    </asp:Label>
+                                </td>
+                                <td>
+                                    <strong>Date</strong>
+                                </td>
+                                <td>
+                                    <asp:Label ID="Label1" runat="server"
+                                        Text='<%# DateTime.FromBinary(long.Parse(Eval("Date").ToString())).ToLongDateString() %>'>
                                     </asp:Label>
                                 </td>
                             </tr>
@@ -100,14 +103,7 @@
                     <EditItemTemplate>
                         <table class="table table-hover">
                             <tr>
-                                <td>
-                                    <strong>Date</strong>
-                                </td>
-                                <td>
-                                    <asp:Label ID="Label1" runat="server"
-                                        Text='<%# DateTime.FromBinary(long.Parse(Eval("Date").ToString())).ToLongDateString() %>'>
-                                    </asp:Label>
-                                </td>
+                                
                                 <td>
                                     <strong>Patient</strong>
                                 </td>
@@ -115,6 +111,13 @@
                                     <asp:Label ID="Label2" runat="server"
                                         Text='<%# ((Patient)Eval("Patient")).Name %>'>
                                     </asp:Label>
+                                </td>
+                                <td>
+                                    <strong>Date</strong>
+                                </td>
+                                <td>
+                                    <utmpl:DatePicker runat="server" ID="DatePicker" IsRequired="true"
+                                        InitialDate='<%# long.Parse(Eval("Date").ToString()) %>' />
                                 </td>
                             </tr>
                             <tr>

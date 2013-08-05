@@ -70,5 +70,11 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
 
         // set the ICDID for the new object to be updated
         e.NewValues["ICDID"] = dl.SelectedValue;
+
+        // get the date picker from the formview
+        var date = ((TemplateControls_DatePicker)VisitDetailsFormView.FindControl("DatePicker")).SelectedDate;
+
+        // set the new date for the visit
+        e.NewValues["Date"] = date;
     }
 }
