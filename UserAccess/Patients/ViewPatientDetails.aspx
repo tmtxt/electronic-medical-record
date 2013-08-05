@@ -50,7 +50,7 @@
                                     <asp:Button ID="EditButton" runat="server" Text="Edit Patient" CommandName="Edit"
                                         CssClass="btn btn-primary" />
                                     <asp:HyperLink ID="HyperLink1" CssClass="btn btn-primary" runat="server"
-                                        NavigateUrl="/UserAccess/Visits/ViewVisitsFromPatient.aspx?PatientID=1">
+                                        NavigateUrl='<%# Eval("ID", "/UserAccess/Visits/ViewVisitsFromPatient.aspx?PatientID={0}") %>'>
                                         View Patient's Visits
                                     </asp:HyperLink>
                                 </td>
