@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
 {
+
     protected void Page_Load(object sender, EventArgs e)
     {
         // redirect if no query string found
@@ -140,5 +141,45 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
                 PrescriptionDetailsDataSource.Where = "PrescriptionID = " + prescription.ID;
             }
         }
+    }
+
+    protected void PrescriptionFormView_DataBound(object sender, EventArgs e)
+    {
+        var myctx = new DataClassesDataContext();
+        if (PrescriptionFormView.DataItem == null)
+        {
+            // just do nothing
+        }
+        else
+        {
+            var lbl = (Label)PrescriptionFormView.FindControl("TotalDrugPriceLabel");
+            var prescription = (Prescription)PrescriptionFormView.DataItem;
+
+            if (prescription.PrescriptionDetails.Count() == 0)
+            {
+                lbl.Text = "0 USD";
+            }
+            else
+            {
+                var prescriptionID = prescription.ID;
+                
+                var totalPrice = (from p in myctx.PrescriptionDetails
+                                  join d in myctx.Drugs
+                                  on p.DrugID equals d.ID
+                                  where p.PrescriptionID == prescriptionID
+                                  group p by p.ID into g
+                                  select new { SumEach = g.Sum(p => p.Quantity * p.Drug.Price) })
+                                 .Sum(p => p.SumEach).ToString();
+                lbl.Text = totalPrice + " USD";
+            }
+
+            
+            
+            // lbl.Text = totalPrice;
+            //lbl.Text = myctx.PrescriptionDetails.Where(p => p.ID == prescriptionID)
+            //    .Join(myctx.Drugs, p => p.DrugID, d => d.ID, (p, d) => new { p.ID, TotalPrice = p.Quantity * d.Price })
+            //    .Sum(p => p.TotalPrice) + " USD";
+        }
+        
     }
 }

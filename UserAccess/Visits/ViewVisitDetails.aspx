@@ -234,7 +234,7 @@
                 <h3>Prescription</h3>
 
                 <asp:FormView Width="100%" ID="PrescriptionFormView" runat="server" DataKeyNames="ID"
-                    DataSourceID="PrescriptionDataSource">
+                    DataSourceID="PrescriptionDataSource" OnDataBound="PrescriptionFormView_DataBound">
 
                     <EditItemTemplate>
                         
@@ -247,15 +247,20 @@
                         <table class="table">
                             <tr>
                                 <td>
-                                    <strong>Date</strong>:&nbsp;&nbsp;
+                                    <strong>Date</strong>:
                                     <asp:Label ID="Label8" runat="server"
                                         Text='<%# DateTime.FromBinary((long)Eval("Date")).ToShortDateString() %>'></asp:Label>
                                 </td>
                                 <td>
-                                    <strong>Prescribed Doctor</strong>:&nbsp;&nbsp;
+                                    <strong>Prescribed Doctor</strong>:
                                     <asp:Label ID="Label9" runat="server"
                                         Text='<%# ((Doctor)Eval("Doctor")).Name %>'>
                                     </asp:Label>
+                                </td>
+                                <td>
+                                    <strong>Total Drug Price</strong>:
+                                    <asp:Label ID="TotalDrugPriceLabel" runat="server">
+                                        <%--Text='<%# myctx.PrescriptionDetails.Join(myctx.Drugs, p => p.DrugID, d => d.ID, (p,d) => new {p.ID, TotalPrice = p.Quantity * d.Price}).GroupBy(p => p.ID).Sum() %>'--%>                                    </asp:Label>
                                 </td>
                             </tr>
                         </table>
@@ -277,12 +282,37 @@
                     DataKeyNames="ID" DataSourceID="PrescriptionDetailsDataSource"
                     CssClass="gridview table table-bordered table-hover" OnDataBinding="PrescriptionDetailsGridView_DataBinding">
                     <Columns>
-                        <asp:BoundField DataField="ID" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="ID" />
-                        <asp:BoundField DataField="DrugID" HeaderText="DrugID" SortExpression="DrugID" />
-                        <asp:BoundField DataField="PrescriptionID" HeaderText="PrescriptionID" SortExpression="PrescriptionID" />
-                        <asp:BoundField DataField="Quantity" HeaderText="Quantity" SortExpression="Quantity" />
-                        <asp:BoundField DataField="Dose" HeaderText="Dose" SortExpression="Dose" />
-                        <asp:BoundField DataField="SpecialInstruction" HeaderText="SpecialInstruction" SortExpression="SpecialInstruction" />
+                        <asp:TemplateField HeaderText="Drug">
+                            <ItemTemplate>
+                                <asp:Label ID="Label10" runat="server"
+                                    Text='<%# ((Drug)Eval("Drug")).Name %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Quantity">
+                            <ItemTemplate>
+                                <asp:Label ID="Label11" runat="server"
+                                    Text='<%# Eval("Quantity") %>'></asp:Label>
+                                
+                                <asp:Label ID="Label10" runat="server"
+                                    Text='<%# ((Drug)Eval("Drug")).Unit %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Dose">
+                            <ItemTemplate>
+                                <asp:Label ID="Label11" runat="server"
+                                    Text='<%# Eval("Dose") %>'></asp:Label>
+                                
+                                <asp:Label ID="Label10" runat="server"
+                                    Text='<%# ((Drug)Eval("Drug")).Unit %>'></asp:Label>
+                                / day
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Special Instruction">
+                            <ItemTemplate>
+                                <asp:Label ID="Label11" runat="server"
+                                    Text='<%# Eval("SpecialInstruction") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
 
