@@ -14,6 +14,7 @@
         <li class="nav-header">Visits</li>
         <li><a href="/UserAccess/Visits/ViewVisitsFromPatient.aspx">Visits from Patient</a></li>
         <li><a href="/UserAccess/Visits/ViewVisitDetails.aspx">Visit Details</a></li>
+        <li><a href="/UserAccess/Visits/AddNewVisit.aspx">Add New Visit</a></li>
 
         <li class="nav-header">ICD</li>
         <li><a href="/UserAccess/ICDs/ViewAllICDChapters.aspx">ICD Chapters</a></li>

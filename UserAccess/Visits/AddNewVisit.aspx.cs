@@ -9,7 +9,9 @@ public partial class UserAccess_Visits_AddNewVisit : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        // set the target link for cancel button
+        var cancelButton = (HyperLink)AddVisitFormView.FindControl("CancelButton");
+        cancelButton.NavigateUrl = "ViewVisitsFromPatient.aspx?PatientID=" + Request.QueryString["PatientID"];
     }
 
     protected void ICDChapterDropdownList_SelectedIndexChanged(object sender, EventArgs e)
