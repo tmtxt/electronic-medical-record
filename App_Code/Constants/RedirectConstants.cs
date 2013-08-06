@@ -14,6 +14,7 @@ public class RedirectConstants
     public const string RedirectVisitFromPatientSessionName = "RedirectVisitFromPatientSessionName";
     public const string RedirectVisitDetailsSessionName = "RedirectVisitDetailsSessionName";
     public const string RedirectAddNewVisitSessionName = "RedirectAddNewVisitSessionName";
+    public const string RedirectPatientDetailsSessionName = "RedirectPatientDetailsSessionName";
 
 	public RedirectConstants()
 	{

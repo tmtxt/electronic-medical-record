@@ -14,6 +14,9 @@ public partial class UserAccess_Patients_ViewPatientDetails : System.Web.UI.Page
 
         if (Request.QueryString["ID"] == null)
         {
+            // set the session variable
+            Session[RedirectConstants.RedirectPatientDetailsSessionName] = "yes";
+
             Response.Redirect("/UserAccess/Patients/ViewAllPatients.aspx");
         }
     }

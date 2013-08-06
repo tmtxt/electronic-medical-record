@@ -9,6 +9,27 @@ public partial class UserAccess_Patients_ViewAllPatient : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        // display the redirect alert
+        //RedirectAlert.SetAlert("You need to select a Patient to view details",
+        //    RedirectConstants.RedirectPatientDetailsSessionName);
+        //RedirectAlert.SetAlert("You need to select a Patient's details to view that Patient's Visits",
+        //    RedirectConstants.RedirectVisitFromPatientSessionName);
+        //RedirectAlert.SetAlert("You need to select a Patient's details to view that Patient's Visit details",
+        //    RedirectConstants.RedirectVisitDetailsSessionName);
+        //RedirectAlert.SetAlert("You need to select a Patient's details to add a new Visit",
+        //    RedirectConstants.RedirectAddNewVisitSessionName);
+        var redirectMessage = new Dictionary<string, string>();
+        redirectMessage.Add(RedirectConstants.RedirectPatientDetailsSessionName,
+            "You need to select a Patient to view details");
+        redirectMessage.Add(RedirectConstants.RedirectVisitFromPatientSessionName,
+            "You need to select a Patient's details to view that Patient's Visits");
+        redirectMessage.Add(RedirectConstants.RedirectVisitDetailsSessionName,
+            "You need to select a Patient's details to view that Patient's Visit details");
+        redirectMessage.Add(RedirectConstants.RedirectAddNewVisitSessionName,
+            "You need to select a Patient's details to add a new Visit");
+        RedirectAlert.SetAlert(redirectMessage);
+        
+
     }
     protected void AllPatientsGridview_RowDeleted(object sender, GridViewDeletedEventArgs e)
     {

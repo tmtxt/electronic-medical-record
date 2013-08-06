@@ -38,6 +38,31 @@ public partial class TemplateControls_RedirectAlert : System.Web.UI.UserControl
         }
     }
 
+    /// <summary>
+    /// Set the redirect alert
+    /// Loop through all the input dictionary to find if any session name exist, display the corresponding message
+    /// </summary>
+    /// <param name="sessionMessage">Key is the Session Name, Value is the message</param>
+    public void SetAlert(Dictionary<string, string> sessionMessage)
+    {
+        bool hideAlert = true;
+
+        foreach (var item in sessionMessage)
+        {
+            if (Session[item.Key] != null)
+            {
+                ShowAlert(item.Value);
+                Session.Remove(item.Key);
+                hideAlert = false;
+            }
+        }
+
+        if (hideAlert)
+        {
+            HideAlert();
+        }
+    }
+
     private void ShowAlert(string message)
     {
         // set the style for the div to show the alert
