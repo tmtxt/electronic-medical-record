@@ -9,7 +9,14 @@ public partial class UserAccess_Visits_ViewVisitsFromPatient : System.Web.UI.Pag
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Request.QueryString["PatientID"] == null)
+        {
+            // set the session variable for displaying the message
+            Session[RedirectConstants.RedirectVisitFromPatientSessionName] = "yes";
 
+            // redirect to view all patients
+            Response.Redirect("/UserAccess/Patients/ViewAllPatients.aspx");
+        }
     }
 
     protected void VisitsFromPatientGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)

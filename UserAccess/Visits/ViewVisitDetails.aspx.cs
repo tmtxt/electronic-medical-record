@@ -9,7 +9,15 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        // redirect if no query string found
+        if (Request.QueryString["ID"] == null)
+        {
+            // set the session variable
+            Session[RedirectConstants.RedirectVisitDetailsSessionName] = "yes";
 
+            // redirect to view all patients page
+            Response.Redirect("/UserAccess/Patients/ViewAllPatients.aspx");
+        }
     }
 
     protected void VisitDetailsFormView_ModeChanging(object sender, FormViewModeEventArgs e)
