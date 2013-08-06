@@ -4,6 +4,8 @@
 <%@ Register Src="~/TemplateControls/ResultAlert.ascx" TagPrefix="utmpl" TagName="ResultAlert" %>
 <%@ Register Src="~/TemplateControls/DatePicker.ascx" TagPrefix="utmpl" TagName="DatePicker" %>
 <%@ Register Src="~/TemplateControls/RangeDatePicker.ascx" TagPrefix="utmpl" TagName="RangeDatePicker" %>
+<%@ Register Src="~/TemplateControls/RedirectAlert.ascx" TagPrefix="utmpl" TagName="RedirectAlert" %>
+
 
 
 
@@ -20,6 +22,8 @@
         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
+
+                <utmpl:RedirectAlert runat="server" ID="RedirectAlert" />
 
                 <div class="control-group">
                     <p>

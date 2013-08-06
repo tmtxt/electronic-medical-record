@@ -38,6 +38,11 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Diagnosis" SortExpression="ICDID">
                             <ItemTemplate>
+                                <strong>ICD Code:</strong>
+                                <asp:Label ID="Label5" runat="server"
+                                    Text='<%# ((ICD)Eval("ICD")).Code %>'>
+                                </asp:Label>
+                                <br />
                                 <asp:Label ID="Label3" runat="server"
                                     Text='<%# ((ICD)Eval("ICD")).Name %>'>
                                 </asp:Label>

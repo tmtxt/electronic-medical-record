@@ -13,6 +13,9 @@ public partial class UserAccess_Visits_ViewAllVisits : System.Web.UI.Page
         {
             ClearForm();
         }
+
+        RedirectAlert.SetAlert("You need to select a Visit to view its details",
+            RedirectConstants.RedirectVisitDetailsSessionName);
     }
 
     [System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethodAttribute()]

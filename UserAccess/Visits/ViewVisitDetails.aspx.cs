@@ -16,7 +16,7 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
             Session[RedirectConstants.RedirectVisitDetailsSessionName] = "yes";
 
             // redirect to view all patients page
-            Response.Redirect("/UserAccess/Patients/ViewAllPatients.aspx");
+            Response.Redirect("/UserAccess/Visits/ViewAllVisits.aspx");
         }
     }
 
