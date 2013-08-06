@@ -18,7 +18,7 @@
         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <asp:FormView ID="AddPrescriptionFormView" runat="server" DataKeyNames="ID" DataSourceID="AddPrescriptionDataSource" DefaultMode="Insert">
+                <asp:FormView ID="AddPrescriptionFormView" runat="server" DataKeyNames="ID" DataSourceID="AddPrescriptionDataSource" DefaultMode="Insert" OnItemInserted="AddPrescriptionFormView_ItemInserted" OnItemInserting="AddPrescriptionFormView_ItemInserting">
 
                     <InsertItemTemplate>
                         <fieldset>
@@ -44,7 +44,7 @@
                             <p></p>
                             <asp:Button ID="InsertButton" runat="server" Text="Add New Prescription"
                                 CommandName="Insert" CssClass="btn btn-primary" />
-                            <asp:Button ID="CancelButton" runat="server" Text="Cancel" CssClass="btn btn-primary" OnClick="CancelButton_Click" />
+                            <asp:Button ID="CancelButton" runat="server" Text="Cancel" CssClass="btn btn-primary" CausesValidation="False" OnClick="CancelButton_Click" />
                         </fieldset>
                         
                     </InsertItemTemplate>
@@ -53,7 +53,7 @@
                 </asp:FormView>
                 <asp:LinqDataSource ID="AddPrescriptionDataSource" runat="server"
                     ContextTypeName="DataClassesDataContext" EnableInsert="True" EntityTypeName=""
-                    TableName="Prescriptions">
+                    TableName="Prescriptions" OnInserting="AddPrescriptionDataSource_Inserting">
                 </asp:LinqDataSource>
                 <p></p>
                 <utmpl:ResultAlert runat="server" ID="ResultAlert" />
