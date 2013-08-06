@@ -22,6 +22,9 @@
                 <asp:GridView ID="VisitsFromPatientGridView" runat="server" AutoGenerateColumns="False"
                     DataKeyNames="ID" DataSourceID="VisitsFromPatientDataSource"
                     CssClass="gridview table table-bordered table-striped table-hover" AllowPaging="True" OnRowDeleted="VisitsFromPatientGridView_RowDeleted" OnRowDeleting="VisitsFromPatientGridView_RowDeleting">
+                    <EmptyDataTemplate>
+                        <strong>This Patient has no Visit</strong>
+                    </EmptyDataTemplate>
                     <Columns>
                         <asp:TemplateField HeaderText="Patient">
                             <ItemTemplate>

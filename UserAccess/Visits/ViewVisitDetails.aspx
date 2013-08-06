@@ -236,7 +236,10 @@
                 <asp:FormView Width="100%" ID="PrescriptionFormView" runat="server" DataKeyNames="ID"
                     DataSourceID="PrescriptionDataSource" OnDataBound="PrescriptionFormView_DataBound">
                     <EmptyDataTemplate>
-                        <strong>No Info</strong>
+                        <strong>No Info</strong>&nbsp;&nbsp;
+                        <asp:Button ID="AddNewPrescriptionButton" runat="server" Text="Add Prescription"
+                            CausesValidation="False" CssClass="btn btn-primary"
+                            OnClick="AddNewPrescriptionButton_Click" />
                     </EmptyDataTemplate>
                     <EditItemTemplate>
                     </EditItemTemplate>
@@ -376,6 +379,13 @@
                             <ItemTemplate>
                                 <asp:Label ID="Label10" runat="server"
                                     Text='<%# ((MedicalService)Eval("MedicalService")).Name %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Price">
+                            <ItemTemplate>
+                                <asp:Label ID="Label12" runat="server"
+                                    Text='<%# ((MedicalService)Eval("MedicalService")).Price %>'></asp:Label>
+                                USD
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Result">

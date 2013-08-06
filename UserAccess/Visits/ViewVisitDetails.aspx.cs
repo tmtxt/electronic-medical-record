@@ -228,4 +228,17 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
             }
         }
     }
+
+    protected void AddNewPrescriptionButton_Click(object sender, EventArgs e)
+    {
+        if (Request.QueryString["ID"] == null)
+        {
+            // do nothing
+        }
+        else
+        {
+            var visitID = Request.QueryString["ID"];
+            Response.Redirect("/UserAccess/Prescriptions/AddNewPrescription?VisitID=" + visitID);
+        }
+    }
 }
