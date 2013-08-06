@@ -163,7 +163,9 @@
                                         <asp:DropDownList ID="ICDChapterDropdownList" runat="server"
                                             DataSourceID="ICDChapterDataSource" DataTextField="Name"
                                             DataValueField="ID"
-                                            SelectedValue='<%# ((ICD)Eval("ICD")).ICDChapter.ID %>' AutoPostBack="True" OnSelectedIndexChanged="ICDChapterDropdownList_SelectedIndexChanged">
+                                            SelectedValue='<%# ((ICD)Eval("ICD")).ICDChapter.ID %>'
+                                            AutoPostBack="True"
+                                            OnSelectedIndexChanged="ICDChapterDropdownList_SelectedIndexChanged">
                                         </asp:DropDownList>
                                         <asp:LinqDataSource ID="ICDChapterDataSource" runat="server"
                                             ContextTypeName="DataClassesDataContext" EntityTypeName=""

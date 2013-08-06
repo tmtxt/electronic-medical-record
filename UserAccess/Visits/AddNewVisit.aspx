@@ -20,7 +20,7 @@
             <ContentTemplate>
 
                 <asp:FormView Width="100%" ID="AddVisitFormView" runat="server" DataKeyNames="ID"
-                    DataSourceID="AddVisitDataSource" DefaultMode="Insert">
+                    DataSourceID="AddVisitDataSource" DefaultMode="Insert" OnItemInserted="AddVisitFormView_ItemInserted">
 
                     <InsertItemTemplate>
                         <table class="table table-hover">
@@ -31,6 +31,8 @@
                                 <td>
                                     <asp:Label ID="Label1" runat="server"
                                         Text='<%# (new DataClassesDataContext().Patients).Where(p => p.ID == long.Parse(Request.QueryString["PatientID"])).Select(p => p.Name).First().ToString() %>'></asp:Label>
+                                    <asp:HiddenField ID="PatientIDField" runat="server"
+                                        Value='<%# Request.QueryString["PatientID"] %>' />
                                 </td>
                                 <td>
                                     <p></p>
@@ -49,7 +51,8 @@
                                 <td>
                                     <asp:DropDownList ID="HospitalsDropdownList" runat="server"
                                         DataSourceID="HospitalsDataSource" DataTextField="Name"
-                                        DataValueField="ID"></asp:DropDownList>
+                                        DataValueField="ID" SelectedValue='<%# Bind("HospitalID") %>'>
+                                    </asp:DropDownList>
                                     <asp:LinqDataSource ID="HospitalsDataSource" runat="server"
                                         ContextTypeName="DataClassesDataContext" EntityTypeName=""
                                         OrderBy="Name" Select="new (ID, Name)" TableName="Hospitals">
@@ -62,7 +65,8 @@
                                 <td>
                                     <asp:DropDownList ID="DoctorsDropdownList" runat="server"
                                         DataSourceID="DoctorsDataSource" DataTextField="Name"
-                                        DataValueField="ID"></asp:DropDownList>
+                                        DataValueField="ID" SelectedValue='<%# Bind("DoctorID") %>'>
+                                    </asp:DropDownList>
                                     <asp:LinqDataSource ID="DoctorsDataSource" runat="server"
                                         ContextTypeName="DataClassesDataContext" EntityTypeName=""
                                         OrderBy="Name" Select="new (ID, Name)" TableName="Doctors">
@@ -76,22 +80,29 @@
                                 </td>
                                 <td>
                                     <p>
-                                        <asp:DropDownList ID="DropDownList1" runat="server"
+                                        <asp:DropDownList ID="ICDChapterDropdownList" runat="server"
                                             DataSourceID="ICDChaptersDataSource" DataTextField="Name"
-                                            DataValueField="ID"></asp:DropDownList>
+                                            DataValueField="ID"
+                                            OnSelectedIndexChanged="ICDChapterDropdownList_SelectedIndexChanged"
+                                            AutoPostBack="True"></asp:DropDownList>
                                         <asp:LinqDataSource ID="ICDChaptersDataSource" runat="server"
                                             ContextTypeName="DataClassesDataContext" EntityTypeName=""
                                             OrderBy="Name" Select="new (ID, Name)" TableName="ICDChapters">
                                         </asp:LinqDataSource>
                                     </p>
                                     <p>
-                                        <asp:DropDownList ID="DropDownList2" runat="server"
+                                        <asp:DropDownList ID="ICDDropdownList" runat="server"
                                             DataSourceID="ICDDataSource" DataTextField="DisplayName"
                                             DataValueField="ID"></asp:DropDownList>
                                         <asp:LinqDataSource ID="ICDDataSource" runat="server"
                                             ContextTypeName="DataClassesDataContext" EntityTypeName=""
                                             OrderBy="Code" Select='new (ID, Code, (Code + " - " + Name) as DisplayName)'
-                                            TableName="ICDs">
+                                            TableName="ICDs" Where="ICDChapterID == @ICDChapterID">
+                                            <WhereParameters>
+                                                <asp:ControlParameter ControlID="ICDChapterDropdownList"
+                                                    Name="ICDChapterID" PropertyName="SelectedValue"
+                                                    Type="Int64" />
+                                            </WhereParameters>
                                         </asp:LinqDataSource>
                                     </p>
                                 </td>
@@ -111,17 +122,13 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>
-
-                                </td>
-                                <td>
-
-                                </td>
-                                <td>
-
-                                </td>
-                                <td>
-
+                                <td colspan="4">
+                                    <asp:Button ID="InsertButton" runat="server" Text="Add New Visit"
+                                        CssClass="btn btn-primary" CommandName="Insert" />
+                                    <asp:Button ID="ClearButton" runat="server" Text="Clear"
+                                        CssClass="btn btn-primary" />
+                                    <asp:HyperLink ID="CancelButton" runat="server" CssClass="btn btn-primary">
+                                        Cancel</asp:HyperLink>
                                 </td>
                             </tr>
                         </table>
@@ -129,10 +136,10 @@
 
                 </asp:FormView>
 
-                <asp:LinqDataSource ID="AddVisitDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableInsert="True" EntityTypeName="" TableName="Visits" Where="PatientID == @PatientID">
-                    <WhereParameters>
-                        <asp:QueryStringParameter Name="PatientID" QueryStringField="PatientID" Type="Int64" />
-                    </WhereParameters>
+                <asp:LinqDataSource ID="AddVisitDataSource" runat="server"
+                    ContextTypeName="DataClassesDataContext" EnableInsert="True" EntityTypeName=""
+                    TableName="Visits" OnInserting="AddVisitDataSource_Inserting">
+                    
                 </asp:LinqDataSource>
 
                 <utmpl:ResultAlert runat="server" ID="ResultAlert" />
