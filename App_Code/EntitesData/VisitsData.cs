@@ -32,14 +32,17 @@ public class VisitsData
         // select the data from database, sort by date by default
         var ctx = new DataClassesDataContext();
         var result = ctx.Visits.Where(v => v.Patient.Name.Contains(SearchPatientName)
-            && v.Doctor.Name.Contains(SearchDoctorName) && v.Hospital.Name.Contains(SearchHospitalName))
+            && v.Doctor.Name.Contains(SearchDoctorName) && v.Hospital.Name.Contains(SearchHospitalName)
+            && v.Date >= SearchStartTime && v.Date <= SearchEndTime)
             .OrderByDescending(v => v.Date)
             .Skip(startIndex)
             .Take(pageSize);
 
         // count the number of visits
         totalVisits = ctx.Visits.Where(v => v.Patient.Name.Contains(SearchPatientName)
-            && v.Doctor.Name.Contains(SearchDoctorName) && v.Hospital.Name.Contains(SearchHospitalName)).Count();
+            && v.Doctor.Name.Contains(SearchDoctorName) && v.Hospital.Name.Contains(SearchHospitalName)
+            && v.Date >= SearchStartTime && v.Date <= SearchEndTime)
+            .Count();
         
         return result;
 
@@ -58,6 +61,16 @@ public class VisitsData
     public static void SetHospitalName(string name)
     {
         SearchHospitalName = name;
+    }
+
+    public static void SetStartDate(long date)
+    {
+        SearchStartTime = date;
+    }
+
+    public static void SetEndDate(long date)
+    {
+        SearchEndTime = date;
     }
 
     public static int GetTotalVisitsCount()

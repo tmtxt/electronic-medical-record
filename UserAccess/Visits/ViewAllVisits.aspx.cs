@@ -62,6 +62,7 @@ public partial class UserAccess_Visits_ViewAllVisits : System.Web.UI.Page
         FindDoctorNameTextBox.Text = "";
         FindHospitalNameTextBox.Text = "";
         FindPatientNameTextBox.Text = "";
+        RangeDatePicker.ClearForm();
 
         // set the search criteria
         SetSearchCriteria();
@@ -76,5 +77,7 @@ public partial class UserAccess_Visits_ViewAllVisits : System.Web.UI.Page
         VisitsData.SetDoctorName(FindDoctorNameTextBox.Text);
         VisitsData.SetPatientName(FindPatientNameTextBox.Text);
         VisitsData.SetHospitalName(FindHospitalNameTextBox.Text);
+        VisitsData.SetStartDate(RangeDatePicker.StartDate);
+        VisitsData.SetEndDate(RangeDatePicker.EndDate);
     }
 }

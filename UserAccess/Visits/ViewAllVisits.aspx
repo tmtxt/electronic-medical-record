@@ -2,6 +2,10 @@
 
 <%@ Register Src="~/TemplateControls/UpdateProgressBar.ascx" TagPrefix="utmpl" TagName="UpdateProgressBar" %>
 <%@ Register Src="~/TemplateControls/ResultAlert.ascx" TagPrefix="utmpl" TagName="ResultAlert" %>
+<%@ Register Src="~/TemplateControls/DatePicker.ascx" TagPrefix="utmpl" TagName="DatePicker" %>
+<%@ Register Src="~/TemplateControls/RangeDatePicker.ascx" TagPrefix="utmpl" TagName="RangeDatePicker" %>
+
+
 
 
 
@@ -18,6 +22,11 @@
             <ContentTemplate>
 
                 <div class="control-group">
+                    <p>
+                        <strong>Filter</strong>
+                        <utmpl:RangeDatePicker runat="server" ID="RangeDatePicker" />
+                    </p>
+
                     <p>
                         <strong>Filter</strong>
                         <asp:TextBox ID="FindPatientNameTextBox" runat="server"
@@ -43,6 +52,7 @@
                         <asp:Button ID="CancelButton" runat="server" CssClass="btn btn-primary"
                              Text="Cancel" OnClick="CancelButton_Click" />
                     </p>
+                    
 
 
                 </div>
