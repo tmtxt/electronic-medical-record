@@ -18,10 +18,17 @@ public partial class UserAccess_Prescriptions_AddNewPrescription : System.Web.UI
         }
         else
         {
-            if (new DataClassesDataContext().Visits.Where(v => v.ID == long.Parse(Request.QueryString["VisitID"])).Count() == 0)
+            var visit = new DataClassesDataContext().Visits.Where(v => v.ID == long.Parse(Request.QueryString["VisitID"]));
+            if (visit.Count() == 0)
             {
                 // redirect
                 Session[RedirectConstants.RedirectAddNewPrescriptionSessionName] = "yes";
+                Response.Redirect("/UserAccess/Visits/ViewAllVisits.aspx");
+            }
+            else if (visit.First().Prescriptions.Count() > 0)
+            {
+                // redirect
+                Session[RedirectConstants.RedirectAddNewPrescriptionExistSessionName] = "yes";
                 Response.Redirect("/UserAccess/Visits/ViewAllVisits.aspx");
             }
         }
