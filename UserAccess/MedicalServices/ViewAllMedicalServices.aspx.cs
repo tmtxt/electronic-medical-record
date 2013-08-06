@@ -72,6 +72,7 @@ public partial class UserAccess_MedicalServices_ViewAllMedicalServices : System.
 
     protected void AllMedicalServicesGridView_RowDeleted(object sender, GridViewDeletedEventArgs e)
     {
+        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Medical Service deleted successfully!", e.Exception);
     }
 
     [System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethodAttribute()]
