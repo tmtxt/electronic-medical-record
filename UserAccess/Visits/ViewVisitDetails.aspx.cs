@@ -172,14 +172,39 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
                                  .Sum(p => p.SumEach).ToString();
                 lbl.Text = totalPrice + " USD";
             }
-
-            
-            
-            // lbl.Text = totalPrice;
-            //lbl.Text = myctx.PrescriptionDetails.Where(p => p.ID == prescriptionID)
-            //    .Join(myctx.Drugs, p => p.DrugID, d => d.ID, (p, d) => new { p.ID, TotalPrice = p.Quantity * d.Price })
-            //    .Sum(p => p.TotalPrice) + " USD";
         }
         
+    }
+
+    protected void LabOrderFormView_DataBound(object sender, EventArgs e)
+    {
+        var myctx = new DataClassesDataContext();
+        if (LabOrderFormView.DataItem == null)
+        {
+            // just do nothing
+        }
+        else
+        {
+            var lbl = (Label)LabOrderFormView.FindControl("TotalLabOrderPriceLabel");
+            var labOrder = (LabOrder)LabOrderFormView.DataItem;
+
+            if (labOrder.LabOrderDetails.Count() == 0)
+            {
+                lbl.Text = "0 USD";
+            }
+            else
+            {
+                var labOrderID = labOrder.ID;
+
+                var totalPrice = (from l in myctx.LabOrderDetails
+                                  join m in myctx.MedicalServices
+                                  on l.MedicalServiceID equals m.ID
+                                  where l.LabOrderID == labOrderID
+                                  group l by l.ID into g
+                                  select new { SumEach = g.Sum(l => l.MedicalService.Price) })
+                                 .Sum(l => l.SumEach).ToString();
+                lbl.Text = totalPrice + " USD";
+            }
+        }
     }
 }

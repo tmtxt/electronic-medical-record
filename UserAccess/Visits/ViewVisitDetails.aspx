@@ -21,7 +21,7 @@
                 <asp:FormView Width="100%" ID="VisitDetailsFormView" runat="server" DataKeyNames="ID"
                     DataSourceID="VisitDetailsDataSource" OnModeChanging="VisitDetailsFormView_ModeChanging" OnModeChanged="VisitDetailsFormView_ModeChanged" OnItemUpdating="VisitDetailsFormView_ItemUpdating" OnItemDeleted="VisitDetailsFormView_ItemDeleted" OnItemDeleting="VisitDetailsFormView_ItemDeleting" OnItemUpdated="VisitDetailsFormView_ItemUpdated">
                     <EmptyDataTemplate>
-                        <strong>This Visit is not exist</strong>
+                        <strong>This Visit does not exist</strong>
                     </EmptyDataTemplate>
                     <ItemTemplate>
                         <table class="table table-hover">
@@ -235,15 +235,15 @@
 
                 <asp:FormView Width="100%" ID="PrescriptionFormView" runat="server" DataKeyNames="ID"
                     DataSourceID="PrescriptionDataSource" OnDataBound="PrescriptionFormView_DataBound">
-
+                    <EmptyDataTemplate>
+                        <strong>No Info</strong>
+                    </EmptyDataTemplate>
                     <EditItemTemplate>
-                        
                     </EditItemTemplate>
                     <InsertItemTemplate>
-                        
                     </InsertItemTemplate>
                     <ItemTemplate>
-                        
+
                         <table class="table">
                             <tr>
                                 <td>
@@ -267,7 +267,7 @@
                     </ItemTemplate>
 
                 </asp:FormView>
-                
+
                 <asp:LinqDataSource ID="PrescriptionDataSource" runat="server"
                     ContextTypeName="DataClassesDataContext" EntityTypeName="" TableName="Prescriptions"
                     Where="VisitID == @VisitID">
@@ -281,6 +281,9 @@
                 <asp:GridView ID="PrescriptionDetailsGridView" runat="server" AutoGenerateColumns="False"
                     DataKeyNames="ID" DataSourceID="PrescriptionDetailsDataSource"
                     CssClass="gridview table table-bordered table-hover" OnDataBinding="PrescriptionDetailsGridView_DataBinding">
+
+                    <EmptyDataTemplate><strong>No Info</strong></EmptyDataTemplate>
+
                     <Columns>
                         <asp:TemplateField HeaderText="Drug">
                             <ItemTemplate>
@@ -292,7 +295,7 @@
                             <ItemTemplate>
                                 <asp:Label ID="Label11" runat="server"
                                     Text='<%# Eval("Quantity") %>'></asp:Label>
-                                
+
                                 <asp:Label ID="Label10" runat="server"
                                     Text='<%# ((Drug)Eval("Drug")).Unit %>'></asp:Label>
                             </ItemTemplate>
@@ -301,7 +304,7 @@
                             <ItemTemplate>
                                 <asp:Label ID="Label11" runat="server"
                                     Text='<%# Eval("Dose") %>'></asp:Label>
-                                
+
                                 <asp:Label ID="Label10" runat="server"
                                     Text='<%# ((Drug)Eval("Drug")).Unit %>'></asp:Label>
                                 / day
@@ -320,6 +323,41 @@
                     ContextTypeName="DataClassesDataContext" EntityTypeName=""
                     TableName="PrescriptionDetails">
                     <WhereParameters>
+                    </WhereParameters>
+                </asp:LinqDataSource>
+
+                <h3>Lab Order</h3>
+
+                <asp:FormView Width="100%" ID="LabOrderFormView" runat="server" DataKeyNames="ID" DataSourceID="LabOrderDataSource" OnDataBound="LabOrderFormView_DataBound">
+                    <EmptyDataTemplate><strong>No Info</strong></EmptyDataTemplate>
+                    <ItemTemplate>
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    <strong>Date</strong>:
+                                    <asp:Label ID="Label8" runat="server"
+                                        Text='<%# DateTime.FromBinary((long)Eval("Date")).ToShortDateString() %>'></asp:Label>
+                                </td>
+                                <td>
+                                    <strong>Order Doctor</strong>:
+                                    <asp:Label ID="Label9" runat="server"
+                                        Text='<%# ((Doctor)Eval("Doctor")).Name %>'>
+                                    </asp:Label>
+                                </td>
+                                <td>
+                                    <strong>Total Drug Price</strong>:
+                                    <asp:Label ID="TotalLabOrderPriceLabel" runat="server">
+                                    </asp:Label>
+                                </td>
+                            </tr>
+                        </table>
+                    </ItemTemplate>
+                </asp:FormView>
+
+                <asp:LinqDataSource ID="LabOrderDataSource" runat="server" ContextTypeName="DataClassesDataContext"
+                    EntityTypeName="" TableName="LabOrders" Where="VisitID == @VisitID">
+                    <WhereParameters>
+                        <asp:QueryStringParameter Name="VisitID" QueryStringField="ID" Type="Int64" />
                     </WhereParameters>
                 </asp:LinqDataSource>
 
