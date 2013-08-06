@@ -14,8 +14,13 @@ public partial class UserAccess_Visits_ViewAllVisits : System.Web.UI.Page
             ClearForm();
         }
 
-        RedirectAlert.SetAlert("You need to select a Visit to view its details",
-            RedirectConstants.RedirectVisitDetailsSessionName);
+        // set the alert
+        var dic = new Dictionary<string, string>();
+        dic.Add(RedirectConstants.RedirectVisitDetailsSessionName,
+            "You need to select a Visit to view its details");
+        dic.Add(RedirectConstants.RedirectAddNewPrescriptionSessionName,
+            "You need to select a Visit details to add new Prescription");
+        RedirectAlert.SetAlert(dic);
     }
 
     [System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethodAttribute()]
