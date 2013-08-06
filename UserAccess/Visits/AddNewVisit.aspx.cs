@@ -9,6 +9,16 @@ public partial class UserAccess_Visits_AddNewVisit : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        // redirect if query string not found
+        if (Request.QueryString["PatientID"] == null)
+        {
+            // set the session variable
+            Session[RedirectConstants.RedirectAddNewVisitSessionName] = "yes";
+
+            // redirect to view all patients
+            Response.Redirect("/UserAccess/Patients/ViewAllPatients.aspx");
+        }
+
         // set the target link for cancel button
         var cancelButton = (HyperLink)AddVisitFormView.FindControl("CancelButton");
         cancelButton.NavigateUrl = "ViewVisitsFromPatient.aspx?PatientID=" + Request.QueryString["PatientID"];
