@@ -53,6 +53,9 @@
                                         NavigateUrl='<%# Eval("ID", "/UserAccess/Visits/ViewVisitsFromPatient.aspx?PatientID={0}") %>'>
                                         View Patient's Visits
                                     </asp:HyperLink>
+                                    <asp:HyperLink ID="HyperLink2" runat="server" CssClass="btn btn-primary"
+                                        NavigateUrl='<%# Eval("ID","/UserAccess/Visits/AddNewVisit.aspx?PatientID={0}")  %>'>
+                                        Add Visit</asp:HyperLink>
                                 </td>
                             </tr>
                         </table>
