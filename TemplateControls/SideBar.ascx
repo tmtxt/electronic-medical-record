@@ -11,6 +11,10 @@
         <li><a href="/UserAccess/Patients/ViewPatientDetails.aspx">Patient Details</a></li>
         <li><a href="/UserAccess/Patients/AddNewPatient.aspx">Add New Patient</a></li>
 
+        <li class="nav-header">Visits</li>
+        <li><a href="/UserAccess/Visits/ViewVisitsFromPatient.aspx">Visits from Patient</a></li>
+        <li><a href="/UserAccess/Visits/ViewVisitDetails.aspx">Visit Details</a></li>
+
         <li class="nav-header">ICD</li>
         <li><a href="/UserAccess/ICDs/ViewAllICDChapters.aspx">ICD Chapters</a></li>
         <li><a href="/UserAccess/ICDs/AddNewICDChapter.aspx">Add New ICD Chapter</a></li>

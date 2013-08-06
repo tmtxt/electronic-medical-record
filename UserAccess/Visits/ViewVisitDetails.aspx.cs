@@ -66,8 +66,6 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
     protected void VisitDetailsFormView_ItemUpdating(object sender, FormViewUpdateEventArgs e)
     {
         System.Threading.Thread.Sleep(1000);
-
-        
     }
 
     protected void VisitDetailsFormView_ItemDeleting(object sender, FormViewDeleteEventArgs e)
