@@ -17,6 +17,9 @@
         <li><a href="/UserAccess/Visits/ViewVisitDetails.aspx">Visit Details</a></li>
         <li><a href="/UserAccess/Visits/AddNewVisit.aspx">Add New Visit</a></li>
 
+        <li class="nav-header">Prescriptions</li>
+        <li><a href="/UserAccess/Prescriptions/AddNewPrescription.aspx">Add New Prescription</a></li>
+
         <li class="nav-header">ICD</li>
         <li><a href="/UserAccess/ICDs/ViewAllICDChapters.aspx">ICD Chapters</a></li>
         <li><a href="/UserAccess/ICDs/AddNewICDChapter.aspx">Add New ICD Chapter</a></li>
