@@ -17,6 +17,36 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
 
+                <div class="control-group">
+                    <p>
+                        <strong>Filter</strong>
+                        <asp:TextBox ID="FindPatientNameTextBox" runat="server"
+                            placeholder="Patient Name"></asp:TextBox>
+                        <asp:AutoCompleteExtender ID="AutoCompleteExtender1" TargetControlID="FindPatientNameTextBox"
+                            runat="server" ServiceMethod="GetPatientNamesCompletionList" UseContextKey="True">
+                        </asp:AutoCompleteExtender>
+                        <asp:TextBox ID="FindDoctorNameTextBox" runat="server"
+                            placeholder="Doctor Name"></asp:TextBox>
+                        <asp:AutoCompleteExtender ID="AutoCompleteExtender2" TargetControlID="FindDoctorNameTextBox"
+                            runat="server" ServiceMethod="GetDoctorNamesCompletionList" UseContextKey="True">
+                        </asp:AutoCompleteExtender>
+                    </p>
+                    <p>
+                        <strong>Filter</strong>
+                        <asp:TextBox ID="FindHospitalNameTextBox" runat="server"
+                            placeholder="Hospital Name"></asp:TextBox>
+                        <asp:AutoCompleteExtender ID="AutoCompleteExtender3" TargetControlID="FindHospitalNameTextBox"
+                            runat="server" ServiceMethod="GetHospitalNamesCompletionList" UseContextKey="True">
+                        </asp:AutoCompleteExtender>
+                        <asp:Button ID="FindPatientButton" CssClass="btn btn-primary" runat="server"
+                            Text="Search" OnClick="FindPatientButton_Click" />
+                        <asp:Button ID="CancelButton" runat="server" CssClass="btn btn-primary"
+                             Text="Cancel" OnClick="CancelButton_Click" />
+                    </p>
+
+
+                </div>
+
                 <asp:GridView ID="AllVisitsGridView" runat="server" DataSourceID="AllVisitsDataSource"
                     DataKeyNames="ID" AllowPaging="true" AutoGenerateColumns="false" AllowSorting="true"
                     PageSize="10" CssClass="gridview table table-bordered table-striped table-hover">

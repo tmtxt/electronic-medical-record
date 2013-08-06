@@ -13,11 +13,11 @@ public class VisitsData
     private static int totalVisits = 0;
 
     // the select criteria
-    private static string searchPatientID;
-    private static string searchDoctorID;
-    private static string searchHospitalID;
-    private static string searchStartTime;
-    private static string searchEndTime;
+    private static string SearchPatientName = "";
+    private static string SearchDoctorName = "";
+    private static string SearchHospitalName = "";
+    private static long SearchStartTime;
+    private static long SearchEndTime;
 
 	public VisitsData()
 	{
@@ -29,19 +29,35 @@ public class VisitsData
     [DataObjectMethod(DataObjectMethodType.Select)]
     public static IEnumerable<Visit> GetAllVisits(int startIndex, int pageSize, string sortBy)
     {
-        // sort by ID by default
-        if (string.IsNullOrEmpty(sortBy))
-            sortBy = "ID";
-
-        // select the data from database
+        // select the data from database, sort by date by default
         var ctx = new DataClassesDataContext();
-        var result = ctx.Visits;
+        var result = ctx.Visits.Where(v => v.Patient.Name.Contains(SearchPatientName)
+            && v.Doctor.Name.Contains(SearchDoctorName) && v.Hospital.Name.Contains(SearchHospitalName))
+            .OrderByDescending(v => v.Date)
+            .Skip(startIndex)
+            .Take(pageSize);
 
         // count the number of visits
-        totalVisits = ctx.Visits.Count();
+        totalVisits = ctx.Visits.Where(v => v.Patient.Name.Contains(SearchPatientName)
+            && v.Doctor.Name.Contains(SearchDoctorName) && v.Hospital.Name.Contains(SearchHospitalName)).Count();
         
         return result;
 
+    }
+
+    public static void SetPatientName(string name)
+    {
+        SearchPatientName = name;
+    }
+
+    public static void SetDoctorName(string name)
+    {
+        SearchDoctorName = name;
+    }
+
+    public static void SetHospitalName(string name)
+    {
+        SearchHospitalName = name;
     }
 
     public static int GetTotalVisitsCount()
