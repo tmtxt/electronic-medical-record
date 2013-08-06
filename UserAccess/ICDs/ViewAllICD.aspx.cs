@@ -39,13 +39,13 @@ public partial class UserAccess_ICDs_ViewAllICD : System.Web.UI.Page
             AllICDDataSource.Where = "Code.Contains(@CodePart) && Name.Contains(@NamePart) && ICDChapterID == @ICDChapter";
         }
 
-        AllICDGridView.DataBind();
+        // AllICDGridView.DataBind();
     }
 
     protected void BindICDChapterDropdownList()
     {
         // add one item to the top of the dropdownlist
-        FindICDChapterDropdownList.Items.Add(new ListItem("Al ICD Chapters", AllICDChapterValue));
+        FindICDChapterDropdownList.Items.Add(new ListItem("All ICD Chapters", AllICDChapterValue));
 
         // select all ICD chapters from database
         var chapters = from ic in new DataClassesDataContext().ICDChapters
@@ -99,28 +99,7 @@ public partial class UserAccess_ICDs_ViewAllICD : System.Web.UI.Page
 
     protected void CancelFindButton_Click(object sender, EventArgs e)
     {
-        // remove all search criteria
-        //FindICDCodeTextBox.Text = "";
-        //FindICDNameTextBox.Text = "";
-        //FindICDChapterDropdownList.SelectedIndex = 0;
-        //AllICDGridView.DataBind();
         Response.Redirect(Request.RawUrl);
         
-    }
-
-    protected void FindICDChapterDropdownList_DataBound(object sender, EventArgs e)
-    {
-        //// add one new item on top of the dropdown list
-        //ListItem item = new ListItem("All ICD Chapters", AllICDChapterValue);
-        //FindICDChapterDropdownList.Items.Insert(0, item);
-
-        //if (FindICDChapterDropdownList.SelectedValue == AllICDChapterValue)
-        //{
-        //    AllICDDataSource.Where = "Code.Contains(@CodePart) && Name.Contains(@NamePart)";
-        //}
-        //else
-        //{
-        //    AllICDDataSource.Where = "Code.Contains(@CodePart) && Name.Contains(@NamePart) && ICDChapterID == @ICDChapter";
-        //}
     }
 }

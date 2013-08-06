@@ -36,8 +36,7 @@
                     </p>
                     <p>
                         <strong>Filter</strong>&nbsp;
-                        <asp:DropDownList ID="FindICDChapterDropdownList" runat="server"
-                            ></asp:DropDownList>
+                        <asp:DropDownList ID="FindICDChapterDropdownList" runat="server"></asp:DropDownList>
                         <asp:LinqDataSource ID="ICDChaptersDataSource" runat="server" ContextTypeName="DataClassesDataContext" EntityTypeName="" TableName="ICDChapters">
                         </asp:LinqDataSource>
                         <asp:Button ID="FindICDButton" CssClass="btn btn-primary" runat="server" Text="Search" OnClick="FindICDButton_Click" />
@@ -47,7 +46,8 @@
 
                 <asp:GridView ID="AllICDGridView" runat="server" AllowPaging="True"
                     AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="AllICDDataSource"
-                    CssClass="gridview table table-bordered table-striped table-hover" OnRowDeleted="AllICDGridView_RowDeleted" OnRowDeleting="AllICDGridView_RowDeleting">
+                    CssClass="gridview table table-bordered table-striped table-hover"
+                    OnRowDeleted="AllICDGridView_RowDeleted" OnRowDeleting="AllICDGridView_RowDeleting">
                     <EmptyDataTemplate>
                         <strong>There are no ICDs that match your criteria</strong>
                     </EmptyDataTemplate>
@@ -76,7 +76,7 @@
                         </asp:HyperLinkField>
                         <asp:TemplateField>
                             <ItemTemplate>
-                                <asp:Button ID="DeleteButton" runat="server" Text="Delete"
+                                <asp:Button ID="DeleteButton" runat="server" Text="Delete" CausesValidation="false"
                                     CommandName="Delete" CssClass="btn btn-danger btn-small"
                                     OnClientClick="return confirm('Are you sure to you want to delete this ICD?\n\nAll Visits associated with this ICD will be deleted, too!')" />
                             </ItemTemplate>
