@@ -207,4 +207,25 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
             }
         }
     }
+
+    protected void LabOrderDetailsGridView_DataBinding(object sender, EventArgs e)
+    {
+        // set the where condition for the lab order details grid view
+        if (VisitDetailsFormView.DataItem == null)
+        {
+            LabOrderDetailsDataSource.Where = "LabOrderID = 0";
+        }
+        else
+        {
+            if (LabOrderFormView.DataItem == null)
+            {
+                LabOrderDetailsDataSource.Where = "LabOrderID = 0";
+            }
+            else
+            {
+                var labOrder = (LabOrder)LabOrderFormView.DataItem;
+                LabOrderDetailsDataSource.Where = "LabOrderID = " + labOrder.ID;
+            }
+        }
+    }
 }

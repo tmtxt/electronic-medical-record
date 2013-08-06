@@ -280,7 +280,8 @@
 
                 <asp:GridView ID="PrescriptionDetailsGridView" runat="server" AutoGenerateColumns="False"
                     DataKeyNames="ID" DataSourceID="PrescriptionDetailsDataSource"
-                    CssClass="gridview table table-bordered table-hover" OnDataBinding="PrescriptionDetailsGridView_DataBinding">
+                    CssClass="gridview table table-bordered table-hover"
+                    OnDataBinding="PrescriptionDetailsGridView_DataBinding">
 
                     <EmptyDataTemplate><strong>No Info</strong></EmptyDataTemplate>
 
@@ -328,7 +329,8 @@
 
                 <h3>Lab Order</h3>
 
-                <asp:FormView Width="100%" ID="LabOrderFormView" runat="server" DataKeyNames="ID" DataSourceID="LabOrderDataSource" OnDataBound="LabOrderFormView_DataBound">
+                <asp:FormView Width="100%" ID="LabOrderFormView" runat="server" DataKeyNames="ID"
+                    DataSourceID="LabOrderDataSource" OnDataBound="LabOrderFormView_DataBound">
                     <EmptyDataTemplate><strong>No Info</strong></EmptyDataTemplate>
                     <ItemTemplate>
                         <table class="table">
@@ -359,6 +361,34 @@
                     <WhereParameters>
                         <asp:QueryStringParameter Name="VisitID" QueryStringField="ID" Type="Int64" />
                     </WhereParameters>
+                </asp:LinqDataSource>
+
+                <h3>Lab Order Details</h3>
+
+                <asp:GridView ID="LabOrderDetailsGridView" runat="server" AutoGenerateColumns="False"
+                    DataKeyNames="ID" DataSourceID="LabOrderDetailsDataSource"
+                    CssClass="gridview table table-bordered table-hover" OnDataBinding="LabOrderDetailsGridView_DataBinding">
+                    <EmptyDataTemplate>
+                        <strong>No Info</strong>
+                    </EmptyDataTemplate>
+                    <Columns>
+                        <asp:TemplateField HeaderText="Medical Service">
+                            <ItemTemplate>
+                                <asp:Label ID="Label10" runat="server"
+                                    Text='<%# ((MedicalService)Eval("MedicalService")).Name %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Result">
+                            <ItemTemplate>
+                                <asp:Label ID="Label11" runat="server"
+                                    Text='<%# Eval("Result") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+
+                <asp:LinqDataSource ID="LabOrderDetailsDataSource" runat="server"
+                    ContextTypeName="DataClassesDataContext" EntityTypeName="" TableName="LabOrderDetails">
                 </asp:LinqDataSource>
 
                 <utmpl:ResultAlert runat="server" ID="ResultAlert" />
