@@ -12,6 +12,7 @@
         <li><a href="/UserAccess/Patients/AddNewPatient.aspx">Add New Patient</a></li>
 
         <li class="nav-header">Visits</li>
+        <li><a href="/UserAccess/Visits/ViewAllVisits.aspx">View All Visits</a></li>
         <li><a href="/UserAccess/Visits/ViewVisitsFromPatient.aspx">Visits from Patient</a></li>
         <li><a href="/UserAccess/Visits/ViewVisitDetails.aspx">Visit Details</a></li>
         <li><a href="/UserAccess/Visits/AddNewVisit.aspx">Add New Visit</a></li>
