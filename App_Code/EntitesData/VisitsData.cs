@@ -29,9 +29,6 @@ public class VisitsData
     [DataObjectMethod(DataObjectMethodType.Select)]
     public static IEnumerable<Visit> GetAllVisits(int startIndex, int pageSize, string sortBy)
     {
-        //List<Visit> result;
-        int totalEmployees = 0;
-
         // sort by ID by default
         if (string.IsNullOrEmpty(sortBy))
             sortBy = "ID";
@@ -39,6 +36,9 @@ public class VisitsData
         // select the data from database
         var ctx = new DataClassesDataContext();
         var result = ctx.Visits;
+
+        // count the number of visits
+        totalVisits = ctx.Visits.Count();
         
         return result;
 

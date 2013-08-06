@@ -5,13 +5,13 @@
 
 
 
-<asp:Content ID="Content1" ContentPlaceHolderID="Title" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="Server">
     Visits List
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="Header" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="Header" runat="Server">
     Visits List
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="Content" Runat="Server">
+<asp:Content ID="Content3" ContentPlaceHolderID="Content" runat="Server">
     <form runat="server" class="form-horizontal">
         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -38,14 +38,30 @@
                                     Text='<%# ((Patient)Eval("Patient")).Name %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Doctor">
+                            <ItemTemplate>
+                                <asp:Label ID="Label1" runat="server"
+                                    Text='<%# ((Doctor)Eval("Doctor")).Name %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Hospital">
+                            <ItemTemplate>
+                                <asp:Label ID="Label1" runat="server"
+                                    Text='<%# ((Hospital)Eval("Hospital")).Name %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:HyperLinkField HeaderText="Details"
+                            DataNavigateUrlFormatString="ViewVisitDetails.aspx?ID={0}"
+                            DataNavigateUrlFields="ID" Text="Details">
+                            <ControlStyle CssClass="btn btn-primary btn-small" />
+                        </asp:HyperLinkField>
                     </Columns>
                 </asp:GridView>
 
                 <asp:ObjectDataSource ID="AllVisitsDataSource" runat="server" SelectMethod="GetAllVisits"
                     EnablePaging="true" TypeName="VisitsData" MaximumRowsParameterName="pageSize"
                     StartRowIndexParameterName="startIndex" SortParameterName="sortBy"
-                    SelectCountMethod="GetTotalVisitsCount">
-                </asp:ObjectDataSource>
+                    SelectCountMethod="GetTotalVisitsCount"></asp:ObjectDataSource>
 
                 <utmpl:ResultAlert runat="server" ID="ResultAlert" />
             </ContentTemplate>
