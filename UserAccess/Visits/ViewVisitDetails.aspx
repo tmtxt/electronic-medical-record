@@ -26,7 +26,7 @@
                     <ItemTemplate>
                         <table class="table table-hover">
                             <tr>
-                                
+
                                 <td>
                                     <strong>Patient</strong>
                                 </td>
@@ -110,7 +110,7 @@
                     <EditItemTemplate>
                         <table class="table table-hover">
                             <tr>
-                                
+
                                 <td>
                                     <strong>Patient</strong>
                                 </td>
@@ -183,7 +183,7 @@
                                         <label for="ICDDropdownList">ICD Code</label>
                                         <asp:DropDownList ID="ICDDropdownList" runat="server"
                                             DataSourceID="ICDDataSource" DataTextField="DisplayName"
-                                            DataValueField="ID" OnDataBound="ICDDropdownList_DataBound" >
+                                            DataValueField="ID" OnDataBound="ICDDropdownList_DataBound">
                                         </asp:DropDownList><br />
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="ICD Code is required.&lt;br/&gt; If there is no ICD code, please add one." ControlToValidate="ICDDropdownList" CssClass="label label-important" Display="Dynamic"></asp:RequiredFieldValidator>
                                         <asp:LinqDataSource ID="ICDDataSource" runat="server"
@@ -231,13 +231,53 @@
                     </WhereParameters>
                 </asp:LinqDataSource>
 
+                <asp:FormView Width="100%" ID="PrescriptionFormView" runat="server" DataKeyNames="ID"
+                    DataSourceID="PrescriptionDataSource">
+
+                    <EditItemTemplate>
+                        
+                    </EditItemTemplate>
+                    <InsertItemTemplate>
+                        
+                    </InsertItemTemplate>
+                    <ItemTemplate>
+                        <h3>Prescription</h3>
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    <strong>Date</strong>:&nbsp;&nbsp;
+                                    <asp:Label ID="Label8" runat="server"
+                                        Text='<%# DateTime.FromBinary((long)Eval("Date")).ToShortDateString() %>'></asp:Label>
+                                </td>
+                                <td>
+                                    <strong>Prescribed Doctor</strong>:&nbsp;&nbsp;
+                                    <asp:Label ID="Label9" runat="server"
+                                        Text='<%# ((Doctor)Eval("Doctor")).Name %>'>
+                                    </asp:Label>
+                                </td>
+                            </tr>
+                        </table>
+                    </ItemTemplate>
+
+                </asp:FormView>
+
+                <asp:LinqDataSource ID="PrescriptionDataSource" runat="server"
+                    ContextTypeName="DataClassesDataContext" EntityTypeName="" TableName="Prescriptions"
+                    Where="VisitID == @VisitID">
+                    <WhereParameters>
+                        <asp:QueryStringParameter Name="VisitID" QueryStringField="ID" Type="Int64" />
+                    </WhereParameters>
+                </asp:LinqDataSource>
+
                 <utmpl:ResultAlert runat="server" ID="ResultAlert" />
-                <p></p>
-                <asp:Button CausesValidation="false" ID="AddNewButton" CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign"
-                    runat="server" Text="Add New Visit" OnClick="AddNewButton_Click"/>
+
             </ContentTemplate>
         </asp:UpdatePanel>
         <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
+
+        <p></p>
+        <asp:Button CausesValidation="false" ID="AddNewButton" CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign"
+            runat="server" Text="Add New Visit" OnClick="AddNewButton_Click" />
     </form>
 </asp:Content>
 
