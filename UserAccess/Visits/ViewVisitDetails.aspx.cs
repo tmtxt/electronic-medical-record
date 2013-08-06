@@ -22,7 +22,9 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
 
         RedirectSuccessAlert.SetAlert("Prescription inserted successfully!",
             RedirectSuccessConstants.RedirectSuccessAddNewPrescription);
-        
+        RedirectAlert.SetAlert("You need to add Prescription first!",
+            RedirectConstants.RedirectVisitDetailAddPrescriptionDetailSessionName);
+
     }
 
     protected void VisitDetailsFormView_ModeChanging(object sender, FormViewModeEventArgs e)
@@ -240,6 +242,32 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
         {
             var visitID = Request.QueryString["ID"];
             Response.Redirect("/UserAccess/Prescriptions/AddNewPrescription.aspx?VisitID=" + visitID);
+        }
+    }
+
+    protected void AddNewPrescriptionDetailButton_Click(object sender, EventArgs e)
+    {
+        if (Request.QueryString["ID"] == null)
+        {
+            // do nothing
+        }
+        else
+        {
+            // get prescription belong to this visit
+            var prescriptions = new DataClassesDataContext().Prescriptions.Where(p => p.VisitID == long.Parse(Request.QueryString["ID"]));
+            if (prescriptions.Count() == 0)
+            {
+                // display the alert that user need to add prescription first
+                Session[RedirectConstants.RedirectVisitDetailAddPrescriptionDetailSessionName] = "yes";
+
+                // redirect to itself
+                Response.Redirect("/UserAccess/Visits/ViewVisitDetails.aspx?ID=" + Request.QueryString["ID"]);
+            }
+            else
+            {
+                // redirect to to add new prescription detail page
+                Response.Redirect("/UserAccess/Prescriptions/AddNewPrescriptionDetail.aspx?PrescriptionID=" + prescriptions.First().ID);
+            }
         }
     }
 }
