@@ -111,4 +111,10 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
         // set the new date for the visit
         newObject.Date = date;
     }
+
+    protected void AddNewButton_Click(object sender, EventArgs e)
+    {
+        var patientID = ((HiddenField)VisitDetailsFormView.FindControl("PatientIDField")).Value;
+        Response.Redirect("AddNewVisit.aspx?PatientID=" + patientID);
+    }
 }

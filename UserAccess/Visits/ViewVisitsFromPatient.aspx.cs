@@ -31,4 +31,9 @@ public partial class UserAccess_Visits_ViewVisitsFromPatient : System.Web.UI.Pag
     {
         e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Visit deleted successfully", e.Exception);
     }
+
+    protected void AddNewButton_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("AddNewVisit.aspx?PatientID=" + Request.QueryString["PatientID"]);
+    }
 }

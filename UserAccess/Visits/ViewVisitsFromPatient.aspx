@@ -61,7 +61,7 @@
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
-                    <pagertemplate>
+                    <PagerTemplate>
                         <ul class="pager">
                             <li>
                                 <asp:LinkButton CommandName="Page" CommandArgument="First" ID="HyperLink2" runat="server">
@@ -81,7 +81,7 @@
                                 </asp:LinkButton>
                             </li>
                         </ul>
-                    </pagertemplate>
+                    </PagerTemplate>
                 </asp:GridView>
 
                 <asp:LinqDataSource ID="VisitsFromPatientDataSource" runat="server" ContextTypeName="DataClassesDataContext" EntityTypeName="" TableName="Visits" Where="PatientID == @PatientID" OrderBy="Date" EnableDelete="True">
@@ -91,6 +91,9 @@
                 </asp:LinqDataSource>
 
                 <utmpl:ResultAlert runat="server" ID="ResultAlert" />
+                <p></p>
+                <asp:Button ID="AddNewButton" CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign"
+                    runat="server" Text="Add New Visit" OnClick="AddNewButton_Click" />
             </ContentTemplate>
         </asp:UpdatePanel>
         <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />

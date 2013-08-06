@@ -34,6 +34,8 @@
                                     <asp:Label ID="Label2" runat="server"
                                         Text='<%# ((Patient)Eval("Patient")).Name %>'>
                                     </asp:Label>
+                                    <asp:HiddenField ID="PatientIDField" runat="server"
+                                        Value='<%# ((Patient)Eval("Patient")).ID %>' />
                                 </td>
                                 <td>
                                     <strong>Date</strong>
@@ -225,6 +227,9 @@
                 </asp:LinqDataSource>
 
                 <utmpl:ResultAlert runat="server" ID="ResultAlert" />
+                <p></p>
+                <asp:Button CausesValidation="false" ID="AddNewButton" CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign"
+                    runat="server" Text="Add New Visit" OnClick="AddNewButton_Click"/>
             </ContentTemplate>
         </asp:UpdatePanel>
         <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
