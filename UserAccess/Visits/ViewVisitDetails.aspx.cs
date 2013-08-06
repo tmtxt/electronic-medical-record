@@ -18,6 +18,9 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
             // redirect to view all patients page
             Response.Redirect("/UserAccess/Visits/ViewAllVisits.aspx");
         }
+
+        
+        
     }
 
     protected void VisitDetailsFormView_ModeChanging(object sender, FormViewModeEventArgs e)
@@ -116,5 +119,26 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
     {
         var patientID = ((HiddenField)VisitDetailsFormView.FindControl("PatientIDField")).Value;
         Response.Redirect("AddNewVisit.aspx?PatientID=" + patientID);
+    }
+
+    protected void PrescriptionDetailsGridView_DataBinding(object sender, EventArgs e)
+    {
+        // set the where condition for the prescription details grid view
+        if (VisitDetailsFormView.DataItem == null)
+        {
+            PrescriptionDetailsDataSource.Where = "PrescriptionID = 0";
+        }
+        else
+        {
+            if (PrescriptionFormView.DataItem == null)
+            {
+                PrescriptionDetailsDataSource.Where = "PrescriptionID = 0";
+            }
+            else
+            {
+                var prescription = (Prescription)PrescriptionFormView.DataItem;
+                PrescriptionDetailsDataSource.Where = "PrescriptionID = " + prescription.ID;
+            }
+        }
     }
 }

@@ -231,6 +231,8 @@
                     </WhereParameters>
                 </asp:LinqDataSource>
 
+                <h3>Prescription</h3>
+
                 <asp:FormView Width="100%" ID="PrescriptionFormView" runat="server" DataKeyNames="ID"
                     DataSourceID="PrescriptionDataSource">
 
@@ -241,7 +243,7 @@
                         
                     </InsertItemTemplate>
                     <ItemTemplate>
-                        <h3>Prescription</h3>
+                        
                         <table class="table">
                             <tr>
                                 <td>
@@ -260,12 +262,34 @@
                     </ItemTemplate>
 
                 </asp:FormView>
-
+                
                 <asp:LinqDataSource ID="PrescriptionDataSource" runat="server"
                     ContextTypeName="DataClassesDataContext" EntityTypeName="" TableName="Prescriptions"
                     Where="VisitID == @VisitID">
                     <WhereParameters>
                         <asp:QueryStringParameter Name="VisitID" QueryStringField="ID" Type="Int64" />
+                    </WhereParameters>
+                </asp:LinqDataSource>
+
+                <h3>Prescription Details</h3>
+
+                <asp:GridView ID="PrescriptionDetailsGridView" runat="server" AutoGenerateColumns="False"
+                    DataKeyNames="ID" DataSourceID="PrescriptionDetailsDataSource"
+                    CssClass="gridview table table-bordered table-hover" OnDataBinding="PrescriptionDetailsGridView_DataBinding">
+                    <Columns>
+                        <asp:BoundField DataField="ID" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="ID" />
+                        <asp:BoundField DataField="DrugID" HeaderText="DrugID" SortExpression="DrugID" />
+                        <asp:BoundField DataField="PrescriptionID" HeaderText="PrescriptionID" SortExpression="PrescriptionID" />
+                        <asp:BoundField DataField="Quantity" HeaderText="Quantity" SortExpression="Quantity" />
+                        <asp:BoundField DataField="Dose" HeaderText="Dose" SortExpression="Dose" />
+                        <asp:BoundField DataField="SpecialInstruction" HeaderText="SpecialInstruction" SortExpression="SpecialInstruction" />
+                    </Columns>
+                </asp:GridView>
+
+                <asp:LinqDataSource ID="PrescriptionDetailsDataSource" runat="server"
+                    ContextTypeName="DataClassesDataContext" EntityTypeName=""
+                    TableName="PrescriptionDetails">
+                    <WhereParameters>
                     </WhereParameters>
                 </asp:LinqDataSource>
 
