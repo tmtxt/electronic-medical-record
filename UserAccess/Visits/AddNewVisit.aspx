@@ -140,8 +140,8 @@
                                 <td colspan="4">
                                     <asp:Button ID="InsertButton" runat="server" Text="Add New Visit"
                                         CssClass="btn btn-primary" CommandName="Insert" />
-                                    <asp:Button ID="ClearButton" runat="server" Text="Clear"
-                                        CssClass="btn btn-primary" CausesValidation="false" />
+                                    <asp:Button ID="ClearButton" runat="server" Text="Clear Form"
+                                        CssClass="btn btn-primary" CausesValidation="false" OnClick="ClearButton_Click" />
                                     <asp:HyperLink ID="CancelButton" runat="server" CssClass="btn btn-primary">
                                         Cancel</asp:HyperLink>
                                 </td>

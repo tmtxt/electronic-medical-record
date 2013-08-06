@@ -52,4 +52,13 @@ public partial class UserAccess_Visits_AddNewVisit : System.Web.UI.Page
         // print the result alert
         e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Visit inserted successfully!", e.Exception);
     }
+
+    protected void ClearButton_Click(object sender, EventArgs e)
+    {
+        ((TemplateControls_DatePicker)AddVisitFormView.FindControl("DatePicker")).SelectedDate = DateTime.Now.Ticks;
+        ((DropDownList)AddVisitFormView.FindControl("HospitalsDropdownList")).SelectedIndex = 0;
+        ((DropDownList)AddVisitFormView.FindControl("DoctorsDropdownList")).SelectedIndex = 0;
+        ((DropDownList)AddVisitFormView.FindControl("ICDChapterDropdownList")).SelectedIndex = 0;
+        ((DropDownList)AddVisitFormView.FindControl("OutcomeDropdownList")).SelectedIndex = 0;
+    }
 }
