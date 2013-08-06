@@ -18,10 +18,6 @@ public partial class UserAccess_Visits_AddNewVisit : System.Web.UI.Page
             // redirect to view all patients
             Response.Redirect("/UserAccess/Patients/ViewAllPatients.aspx");
         }
-
-        // set the target link for cancel button
-        var cancelButton = (HyperLink)AddVisitFormView.FindControl("CancelButton");
-        cancelButton.NavigateUrl = "ViewVisitsFromPatient.aspx?PatientID=" + Request.QueryString["PatientID"];
     }
 
     protected void ICDChapterDropdownList_SelectedIndexChanged(object sender, EventArgs e)
@@ -49,6 +45,8 @@ public partial class UserAccess_Visits_AddNewVisit : System.Web.UI.Page
 
     protected void AddVisitFormView_ItemInserted(object sender, FormViewInsertedEventArgs e)
     {
+        System.Threading.Thread.Sleep(1000);
+
         // print the result alert
         e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Visit inserted successfully!", e.Exception);
     }
@@ -60,5 +58,10 @@ public partial class UserAccess_Visits_AddNewVisit : System.Web.UI.Page
         ((DropDownList)AddVisitFormView.FindControl("DoctorsDropdownList")).SelectedIndex = 0;
         ((DropDownList)AddVisitFormView.FindControl("ICDChapterDropdownList")).SelectedIndex = 0;
         ((DropDownList)AddVisitFormView.FindControl("OutcomeDropdownList")).SelectedIndex = 0;
+    }
+
+    protected void CancelButton_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("ViewVisitsFromPatient.aspx?PatientID=" + Request.QueryString["PatientID"]);
     }
 }

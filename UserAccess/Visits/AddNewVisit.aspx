@@ -142,8 +142,8 @@
                                         CssClass="btn btn-primary" CommandName="Insert" />
                                     <asp:Button ID="ClearButton" runat="server" Text="Clear Form"
                                         CssClass="btn btn-primary" CausesValidation="false" OnClick="ClearButton_Click" />
-                                    <asp:HyperLink ID="CancelButton" runat="server" CssClass="btn btn-primary">
-                                        Cancel</asp:HyperLink>
+                                    <asp:Button ID="CancelButton" runat="server" CssClass="btn btn-primary"
+                                        Text="Cancel" OnClick="CancelButton_Click" CausesValidation="false" />
                                 </td>
                             </tr>
                         </table>
