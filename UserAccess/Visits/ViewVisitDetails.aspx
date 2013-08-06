@@ -98,6 +98,11 @@
                                         NavigateUrl='<%# Eval("PatientID","ViewVisitsFromPatient.aspx?PatientID={0}") %>'>
                                         View this Patient's Visits
                                     </asp:HyperLink>
+                                    <asp:HyperLink runat="server" ID="ViewAllVisitsButton"
+                                        CssClass="btn btn-primary"
+                                        NavigateUrl="/UserAccess/Visits/ViewAllVisits.aspx">
+                                        View All Visits
+                                    </asp:HyperLink>
                                 </td>
                             </tr>
                         </table>
