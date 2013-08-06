@@ -20,7 +20,8 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
             Response.Redirect("/UserAccess/Visits/ViewAllVisits.aspx");
         }
 
-        
+        RedirectSuccessAlert.SetAlert("Prescription inserted successfully!",
+            RedirectSuccessConstants.RedirectSuccessAddNewPrescription);
         
     }
 

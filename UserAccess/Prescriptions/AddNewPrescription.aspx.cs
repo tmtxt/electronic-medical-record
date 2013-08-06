@@ -55,7 +55,20 @@ public partial class UserAccess_Prescriptions_AddNewPrescription : System.Web.UI
     protected void AddPrescriptionFormView_ItemInserted(object sender, FormViewInsertedEventArgs e)
     {
         System.Threading.Thread.Sleep(1000);
-        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Prescription inserted successfully!", e.Exception);
+
+        if (e.Exception != null)
+        {
+            // print the exception
+            e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Prescription inserted successfully!", e.Exception);
+        }
+        else
+        {
+            // redirect to view visit details page
+            Session[RedirectSuccessConstants.RedirectSuccessAddNewPrescription] = "yes";
+            Response.Redirect("/UserAccess/Visits/ViewVisitDetails.aspx?ID="
+            + Request.QueryString["VisitID"]);
+        }
+
     }
 
     protected void AddPrescriptionFormView_ItemInserting(object sender, FormViewInsertEventArgs e)
