@@ -33,4 +33,11 @@ public partial class UserAccess_Prescriptions_AddNewPrescription : System.Web.UI
             }
         }
     }
+
+    protected void CancelButton_Click(object sender, EventArgs e)
+    {
+        // redirect back to view visit details
+        Response.Redirect("/UserAccess/Visits/ViewVisitDetails.aspx?ID="
+            + Request.QueryString["VisitID"]);
+    }
 }
