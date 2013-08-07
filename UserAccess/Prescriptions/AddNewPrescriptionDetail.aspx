@@ -15,7 +15,7 @@
                 <fieldset>
                     <legend>Enter Prescription Detail</legend>
                     <div class="form-group">
-                        <label>Drug</label>
+                        <label for="DrugGroupsDropdownList">Drug</label>
                         <asp:DropDownList ID="DrugGroupsDropdownList" runat="server" Width="70%"
                             AutoPostBack="True" DataSourceID="DrugGroupsDataSource"
                             DataTextField="Name" DataValueField="ID"
@@ -27,6 +27,8 @@
                         <br />
                         <asp:DropDownList ID="DrugsDropdownList" runat="server" Width="70%"
                             DataSourceID="DrugsDataSource" DataTextField="Name" DataValueField="ID"></asp:DropDownList>
+                        <br />
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Drug is required&lt;br/&gt;If there is no Drug, please add one." ControlToValidate="DrugsDropdownList" CssClass="label label-important" Display="Dynamic"></asp:RequiredFieldValidator>
                         <asp:LinqDataSource ID="DrugsDataSource" runat="server"
                             ContextTypeName="DataClassesDataContext" EntityTypeName="" OrderBy="Name"
                             Select="new (ID, Name)" TableName="Drugs" Where="DrugGroupID == @DrugGroupID">
@@ -42,12 +44,18 @@
                         <label>Quantity</label>
                         <asp:TextBox ID="QuantityTextBox" Width="70%" runat="server"
                             Text='<%# Bind("Quantity") %>' placeholder='Total Quantity'></asp:TextBox>
+                        <br />
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Quantity is required" ControlToValidate="QuantityTextBox" CssClass="label label-important" Display="Dynamic"></asp:RequiredFieldValidator>
+                        <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="Quantity must be a number" ControlToValidate="QuantityTextBox" CssClass="label label-important" Display="Dynamic" Operator="DataTypeCheck" Type="Integer"></asp:CompareValidator>
                     </div>
                     <p></p>
                     <div class="form-group">
                         <label>Dose</label>
                         <asp:TextBox ID="DoseTextBox" Width="70%" runat="server"
-                            Text='<%# Bind("Dose") %>' placeholder='Quantity per day'></asp:TextBox>
+                            Text='<%# Bind("Dose") %>' placeholder='Quantity per day'></asp:TextBox><br />
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Dose is required" ControlToValidate="DoseTextBox" CssClass="label label-important" Display="Dynamic"></asp:RequiredFieldValidator>
+                        <asp:CompareValidator ID="CompareValidator2" runat="server" ErrorMessage="Dose must be a number" ControlToValidate="DoseTextBox" CssClass="label label-important" Display="Dynamic" Operator="DataTypeCheck" Type="Integer"></asp:CompareValidator>
+                        <asp:CompareValidator ID="CompareValidator3" runat="server" ErrorMessage="Dose must be less than or equal Total Quantity" ControlToCompare="QuantityTextBox" ControlToValidate="DoseTextBox" CssClass="label label-important" Display="Dynamic" Operator="LessThanEqual" Type="Integer"></asp:CompareValidator>
                     </div>
                     <p></p>
                     <div class="form-group">
