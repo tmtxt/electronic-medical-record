@@ -282,7 +282,7 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
         
 
         // redirect to the prescription detail page
-        Response.Redirect("/UserAccess/Prescriptions/ViewPrescriptionDetail.aspx?ID=" + prescriptionID.ToString());
+        Response.Redirect("/UserAccess/Prescriptions/ViewPrescriptionInfo.aspx?ID=" + prescriptionID.ToString());
     }
 
     protected void PrescriptionFormView_ItemDeleted(object sender, FormViewDeletedEventArgs e)
