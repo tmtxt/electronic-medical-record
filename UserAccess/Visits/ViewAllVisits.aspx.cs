@@ -19,7 +19,7 @@ public partial class UserAccess_Visits_ViewAllVisits : System.Web.UI.Page
         dic.Add(RedirectConstants.RedirectVisitDetailsSessionName,
             "You need to select a Visit to view its details");
         dic.Add(RedirectConstants.RedirectAddNewPrescriptionSessionName,
-            "You need to select a Visit details to add new Prescription");
+            "You need to view a Visit details to add new Prescription");
         dic.Add(RedirectConstants.RedirectAddNewPrescriptionExistSessionName,
             "You need to select a Visit details with no Prescription");
         dic.Add(RedirectConstants.RedirectAddPrescriptionDetailSessionName,
@@ -28,6 +28,8 @@ public partial class UserAccess_Visits_ViewAllVisits : System.Web.UI.Page
             "You need to select a Visit details to view Prescription Info");
         dic.Add(RedirectConstants.RedirectPrescriptionDetailInfoSessionName,
             "You need to select a Visit details to view Prescription Details Info");
+        dic.Add(RedirectConstants.RedirectAddLabOrderSessionName,
+            "You need to view a Visit details to add new Lab Order");
         RedirectAlert.SetAlert(dic);
     }
 

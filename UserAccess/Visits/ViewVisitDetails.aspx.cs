@@ -313,7 +313,7 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
         else
         {
             var visitID = Request.QueryString["ID"];
-            Response.Redirect("/UserAccess/Prescriptions/AddNewLabOrder.aspx?VisitID=" + visitID);
+            Response.Redirect("/UserAccess/LabOrders/AddNewLabOrder.aspx?VisitID=" + visitID);
         }
     }
 }
