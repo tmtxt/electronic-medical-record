@@ -26,6 +26,7 @@
         <li class="nav-header">Lab Orders</li>
         <li><a href="/UserAccess/LabOrders/ViewLabOrderInfo.aspx">Lab Order Info</a></li>
         <li><a href="/UserAccess/LabOrders/AddNewLabOrder.aspx">Add Lab Order</a></li>
+        <li><a href="/UserAccess/LabOrders/AddNewLabOrderDetail.aspx">Add Lab Order Detail</a></li>
 
         <li class="nav-header">ICD</li>
         <li><a href="/UserAccess/ICDs/ViewAllICDChapters.aspx">ICD Chapters</a></li>
