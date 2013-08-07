@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 
 public partial class UserAccess_Prescriptions_ViewPrescriptionDetailInfo : System.Web.UI.Page
 {
+    private long VisitID { get; set; }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         // redirect if query string not found
@@ -31,6 +33,8 @@ public partial class UserAccess_Prescriptions_ViewPrescriptionDetailInfo : Syste
                 else
                 {
                     // OK
+                    // store the visit ID
+                    VisitID = (new DataClassesDataContext()).PrescriptionDetails.Where(pd => pd.ID == long.Parse(Request.QueryString["ID"])).First().Prescription.VisitID;
                 }
             }
             else
@@ -45,5 +49,10 @@ public partial class UserAccess_Prescriptions_ViewPrescriptionDetailInfo : Syste
     {
         Session[RedirectConstants.RedirectPrescriptionDetailInfoSessionName] = "yes";
         Response.Redirect("/UserAccess/Visits/ViewAllVisits.aspx");
+    }
+
+    protected void ViewVisitButton_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("/UserAccess/Visits/ViewVisitDetails.aspx?ID=" + VisitID.ToString());
     }
 }
