@@ -2,6 +2,8 @@
 
 <%@ Register Src="~/TemplateControls/UpdateProgressBar.ascx" TagPrefix="utmpl" TagName="UpdateProgressBar" %>
 <%@ Register Src="~/TemplateControls/ResultAlert.ascx" TagPrefix="utmpl" TagName="ResultAlert" %>
+<%@ Register Src="~/TemplateControls/DatePicker.ascx" TagPrefix="utmpl" TagName="DatePicker" %>
+
 
 
 
@@ -19,7 +21,35 @@
 
                 <asp:FormView ID="PrescriptionDetailsFormView" runat="server" DataKeyNames="ID" DataSourceID="PrescriptionInfoDataSource" OnItemDeleted="PrescriptionDetailsFormView_ItemDeleted" OnItemDeleting="PrescriptionDetailsFormView_ItemDeleting">
                     <EditItemTemplate>
-                        
+                        <fieldset>
+                            <div class="form-group">
+                                <strong>Prescribed Doctor</strong><br />
+                                <asp:DropDownList ID="DoctorsDropdownList" runat="server"
+                                    DataSourceID="DoctorsDataSource" DataTextField="Name"
+                                    DataValueField="ID"
+                                    SelectedValue='<%# Bind("DoctorID") %>'></asp:DropDownList>
+                                <asp:LinqDataSource ID="DoctorsDataSource" runat="server"
+                                    ContextTypeName="DataClassesDataContext" EntityTypeName="" OrderBy="Name"
+                                    Select="new (ID, Name)" TableName="Doctors">
+                                </asp:LinqDataSource>
+                                <br />
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
+                                    Display="Dynamic" CssClass="label label-important"
+                                    ControlToValidate="DoctorsDropdownList"
+                                    ErrorMessage="Prescribed Doctor is required"></asp:RequiredFieldValidator>
+                            </div>
+                            <p></p>
+                            <div class="form-group">
+                                <strong>Prescribed Date</strong><br />
+                                <utmpl:DatePicker runat="server" ID="DatePicker" IsRequired="true"
+                                    InitialDate='<%# long.Parse(Eval("Date").ToString()) %>' />
+                            </div>
+                            <p></p>
+                            <asp:Button ID="UpdateButton" runat="server" Text="Update"
+                                CssClass="btn btn-primary" CommandName="Update" />
+                            <asp:Button ID="CancelButton" runat="server" Text="Cancel"
+                                CssClass="btn btn-primary" CommandName="Cancel" />
+                        </fieldset>
                     </EditItemTemplate>
                     
                     <ItemTemplate>
