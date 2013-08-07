@@ -16,12 +16,25 @@
                     <legend>Enter Prescription Detail</legend>
                     <div class="form-group">
                         <label>Drug</label>
-                        <asp:DropDownList ID="DrugGroupsDropdownList" runat="server" Width="70%" DataSourceID="DrugGroupsDataSource" DataTextField="Name" DataValueField="ID"></asp:DropDownList>
-                        <asp:LinqDataSource ID="DrugGroupsDataSource" runat="server" ContextTypeName="DataClassesDataContext" EntityTypeName="" OrderBy="Name" Select="new (ID, Name)" TableName="DrugGroups">
+                        <asp:DropDownList ID="DrugGroupsDropdownList" runat="server" Width="70%"
+                            AutoPostBack="True" DataSourceID="DrugGroupsDataSource"
+                            DataTextField="Name" DataValueField="ID"
+                            OnSelectedIndexChanged="DrugGroupsDropdownList_SelectedIndexChanged"></asp:DropDownList>
+                        <asp:LinqDataSource ID="DrugGroupsDataSource" runat="server"
+                            ContextTypeName="DataClassesDataContext" EntityTypeName="" OrderBy="Name"
+                            Select="new (ID, Name)" TableName="DrugGroups">
                         </asp:LinqDataSource>
                         <br />
-                        <asp:DropDownList ID="DrugsDropdownList" runat="server" Width="70%" DataSourceID="DrugsDataSource" DataTextField="Name" DataValueField="ID"></asp:DropDownList>
-                        <asp:LinqDataSource ID="DrugsDataSource" runat="server" ContextTypeName="DataClassesDataContext" EntityTypeName="" OrderBy="Name" Select="new (ID, Name)" TableName="Drugs">
+                        <asp:DropDownList ID="DrugsDropdownList" runat="server" Width="70%"
+                            DataSourceID="DrugsDataSource" DataTextField="Name" DataValueField="ID"></asp:DropDownList>
+                        <asp:LinqDataSource ID="DrugsDataSource" runat="server"
+                            ContextTypeName="DataClassesDataContext" EntityTypeName="" OrderBy="Name"
+                            Select="new (ID, Name)" TableName="Drugs" Where="DrugGroupID == @DrugGroupID">
+                            <WhereParameters>
+                                <asp:ControlParameter ControlID="DrugGroupsDropdownList"
+                                                    Name="DrugGroupID" PropertyName="SelectedValue"
+                                                    Type="Int64" />
+                            </WhereParameters>
                         </asp:LinqDataSource>
                     </div>
                     <p></p>

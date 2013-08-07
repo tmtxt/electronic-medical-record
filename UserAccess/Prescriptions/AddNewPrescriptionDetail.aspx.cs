@@ -48,4 +48,9 @@ public partial class UserAccess_Prescriptions_AddNewPrescriptionDetail : System.
         // redirect
         Response.Redirect("/UserAccess/Visits/ViewAllVisits.aspx");
     }
+
+    protected void DrugGroupsDropdownList_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
 }
