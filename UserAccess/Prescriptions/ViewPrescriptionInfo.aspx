@@ -8,10 +8,10 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" Runat="Server">
-    Prescription Details
+    Prescription Information
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Header" Runat="Server">
-    Prescription Info 
+    Prescription Information
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Content" Runat="Server">
     <form runat="server" class="form-horizontal">
@@ -76,7 +76,7 @@
                                 CssClass="btn btn-primary" OnClick="ViewVisitButton_Click" />
                             <asp:Button ID="DeleteButton" runat="server" Text="Delete"
                                 CssClass="btn btn-danger" CommandName="Delete"
-                                OnClientClick="return confirm('Are you sure you want to delete this Prescription?\n\nAll Prescription Details belong to this Prescription wiil be deleted, too!')" />
+                                OnClientClick="return confirm('Are you sure you want to delete this Prescription?\n\nAll Prescription Details belong to this Prescription will be deleted, too!')" />
                         </fieldset>
                     </ItemTemplate>
                 </asp:FormView>

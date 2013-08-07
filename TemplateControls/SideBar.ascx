@@ -23,7 +23,7 @@
         <li><a href="/UserAccess/Prescriptions/AddNewPrescription.aspx">Add Prescription</a></li>
         <li><a href="/UserAccess/Prescriptions/AddNewPrescriptionDetail.aspx">Add Prescription Details</a></li>
 
-        <li class="nav-header">Prescriptions</li>
+        <li class="nav-header">Lab Orders</li>
         <li><a href="/UserAccess/LabOrders/ViewLabOrderInfo.aspx">Lab Order Info</a></li>
         <li><a href="/UserAccess/LabOrders/AddNewLabOrder.aspx">Add Lab Order</a></li>
 
