@@ -30,6 +30,8 @@ public partial class UserAccess_Visits_ViewAllVisits : System.Web.UI.Page
             "You need to select a Visit details to view Prescription Details Info");
         dic.Add(RedirectConstants.RedirectAddLabOrderSessionName,
             "You need to view a Visit details to add new Lab Order");
+        dic.Add(RedirectConstants.RedirectViewLabOrderSessionName,
+            "You need to select a Visit details to view Lab Order Info");
         RedirectAlert.SetAlert(dic);
     }
 
