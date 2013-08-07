@@ -17,7 +17,7 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
 
-                <asp:FormView ID="PrescriptionDetailInfoFormView" runat="server" DataKeyNames="ID" DataSourceID="PrescriptionDetailInfoDataSource">
+                <asp:FormView ID="PrescriptionDetailInfoFormView" runat="server" DataKeyNames="ID" DataSourceID="PrescriptionDetailInfoDataSource" OnItemDeleted="PrescriptionDetailInfoFormView_ItemDeleted">
                     <EditItemTemplate>
                         <fieldset>
                             <div class="form-group">

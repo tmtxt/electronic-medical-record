@@ -27,6 +27,8 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
             "Prescription Detail inserted successfully!");
         successDictionary.Add(RedirectSuccessConstants.RedirectSuccessDeletePrescription,
             "Prescription deleted successfully!");
+        successDictionary.Add(RedirectSuccessConstants.RedirectSuccessDeletePrescriptionDetail,
+            "Prescription Detail deleted successfully!");
         RedirectSuccessAlert.SetAlert(successDictionary);
         RedirectAlert.SetAlert("You need to add Prescription first!",
             RedirectConstants.RedirectVisitDetailAddPrescriptionDetailSessionName);

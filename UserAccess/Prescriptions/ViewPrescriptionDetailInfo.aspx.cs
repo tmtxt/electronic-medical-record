@@ -55,4 +55,20 @@ public partial class UserAccess_Prescriptions_ViewPrescriptionDetailInfo : Syste
     {
         Response.Redirect("/UserAccess/Visits/ViewVisitDetails.aspx?ID=" + VisitID.ToString());
     }
+
+    protected void PrescriptionDetailInfoFormView_ItemDeleted(object sender, FormViewDeletedEventArgs e)
+    {
+        System.Threading.Thread.Sleep(1000);
+
+        if (e.Exception == null)
+        {
+            Session[RedirectSuccessConstants.RedirectSuccessDeletePrescriptionDetail] = "yes";
+            Response.Redirect("/UserAccess/Visits/ViewVisitDetails.aspx?ID=" + VisitID.ToString());
+        }
+        else
+        {
+            // print the result alert
+            e.ExceptionHandled = ResultAlert.SetResultAlertReturn("error", e.Exception);
+        }
+    }
 }
