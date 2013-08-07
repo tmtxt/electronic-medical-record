@@ -71,4 +71,21 @@ public partial class UserAccess_Prescriptions_ViewPrescriptionDetailInfo : Syste
             e.ExceptionHandled = ResultAlert.SetResultAlertReturn("error", e.Exception);
         }
     }
+
+    protected void DrugsDropdownList_DataBound(object sender, EventArgs e)
+    {
+        // get the drug dropdown list
+        var dl = (DropDownList)PrescriptionDetailInfoFormView.FindControl("DrugsDropdownList");
+
+        // set the selected value for the dropdown list
+        var drugID = (new DataClassesDataContext()).PrescriptionDetails.Where(p => p.ID == long.Parse(Request.QueryString["ID"])).First().DrugID.ToString();
+        if (dl.Items.FindByValue(drugID) == null)
+        {
+            // do nothing, leave the default selected value
+        }
+        else
+        {
+            dl.Items.FindByValue(drugID).Selected = true;
+        }
+    }
 }
