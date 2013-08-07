@@ -59,6 +59,7 @@ public partial class UserAccess_Prescriptions_AddNewPrescriptionDetail : System.
 
     protected void CancelButton_Click(object sender, EventArgs e)
     {
-
+        var visit = new DataClassesDataContext().Visits.Where(v => v.Prescriptions.First().ID == long.Parse(Request.QueryString["PrescriptionID"])).First();
+        Response.Redirect("/UserAccess/Visits/ViewVisitDetails.aspx?ID=" + visit.ID.ToString());
     }
 }
