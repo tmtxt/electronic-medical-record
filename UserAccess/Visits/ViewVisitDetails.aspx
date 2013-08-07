@@ -454,6 +454,10 @@
                     </Columns>
                 </asp:GridView>
 
+                <asp:Button ID="AddLabOrderDetailButton" runat="server" Text="Add Lab Order Detail"
+                            CausesValidation="False" CssClass="btn btn-primary btn-small" OnClick="AddLabOrderDetailButton_Click"
+                             />
+
                 <asp:LinqDataSource ID="LabOrderDetailsDataSource" runat="server"
                     ContextTypeName="DataClassesDataContext" EntityTypeName="" TableName="LabOrderDetails">
                 </asp:LinqDataSource>
@@ -463,8 +467,7 @@
             </ContentTemplate>
         </asp:UpdatePanel>
         <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
-
-        <p></p>
+        <p>&nbsp;</p>
         <asp:Button CausesValidation="false" ID="AddNewButton" CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign"
             runat="server" Text="Add New Visit" OnClick="AddNewButton_Click" />
     </form>

@@ -32,8 +32,13 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
         successDictionary.Add(RedirectSuccessConstants.RedirectSuccessAddLabOrder,
             "Lab Order inserted successfully!");
         RedirectSuccessAlert.SetAlert(successDictionary);
-        RedirectAlert.SetAlert("You need to add Prescription first!",
-            RedirectConstants.RedirectVisitDetailAddPrescriptionDetailSessionName);
+
+        Dictionary<string, string> infoDictionary = new Dictionary<string, string>();
+        infoDictionary.Add(RedirectConstants.RedirectVisitDetailAddLabOrderDetailSessionName,
+            "You need to add Lab Order before adding Lab Order Detail");
+        infoDictionary.Add(RedirectConstants.RedirectVisitDetailAddPrescriptionDetailSessionName,
+            "You need to add Prescription before adding Prescription Detail");
+        RedirectAlert.SetAlert(infoDictionary);
 
     }
 
@@ -327,5 +332,31 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
 
         // redirect to the prescription detail page
         Response.Redirect("/UserAccess/LabOrders/ViewLabOrderInfo.aspx?ID=" + labOrderID.ToString());
+    }
+
+    protected void AddLabOrderDetailButton_Click(object sender, EventArgs e)
+    {
+        if (Request.QueryString["ID"] == null)
+        {
+            // do nothing
+        }
+        else
+        {
+            // get lab order belong to this visit
+            var laborders = new DataClassesDataContext().LabOrders.Where(l => l.VisitID == long.Parse(Request.QueryString["ID"]));
+            if (laborders.Count() == 0)
+            {
+                // display the alert that user need to add lab order first
+                Session[RedirectConstants.RedirectVisitDetailAddLabOrderDetailSessionName] = "yes";
+
+                // redirect to itself
+                Response.Redirect("/UserAccess/Visits/ViewVisitDetails.aspx?ID=" + Request.QueryString["ID"]);
+            }
+            else
+            {
+                // redirect to to add new lab order detail page
+                Response.Redirect("/UserAccess/LabOrders/AddNewLabOrderDetail.aspx?LabOrderID=" + laborders.First().ID);
+            }
+        }
     }
 }
