@@ -51,6 +51,7 @@ public partial class UserAccess_LabOrders_AddNewLabOrderDetail : System.Web.UI.P
 
     protected void ClearForm_Click(object sender, EventArgs e)
     {
-        
+        ((DropDownList)AddLabOrderDetailFormView.FindControl("MedicalServiceGroupsDropdownList")).SelectedIndex = 0;
+        ((TextBox)AddLabOrderDetailFormView.FindControl("ResultTextBox")).Text = "";
     }
 }
