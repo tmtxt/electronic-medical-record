@@ -385,7 +385,7 @@
                                     </asp:Label>
                                 </td>
                                 <td>
-                                    <strong>Total Drug Price</strong>:
+                                    <strong>Total Lab Order Price</strong>:
                                     <asp:Label ID="TotalLabOrderPriceLabel" runat="server">
                                     </asp:Label>
                                 </td>
