@@ -19,7 +19,10 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
 
-                <asp:FormView ID="PrescriptionDetailsFormView" runat="server" DataKeyNames="ID" DataSourceID="PrescriptionInfoDataSource" OnItemDeleted="PrescriptionDetailsFormView_ItemDeleted" OnItemDeleting="PrescriptionDetailsFormView_ItemDeleting">
+                <asp:FormView ID="PrescriptionInfoFormView" runat="server" DataKeyNames="ID"
+                    DataSourceID="PrescriptionInfoDataSource"
+                    OnItemDeleted="PrescriptionDetailsFormView_ItemDeleted"
+                    OnItemDeleting="PrescriptionDetailsFormView_ItemDeleting" OnItemUpdated="PrescriptionDetailsFormView_ItemUpdated">
                     <EditItemTemplate>
                         <fieldset>
                             <div class="form-group">
@@ -48,7 +51,7 @@
                             <asp:Button ID="UpdateButton" runat="server" Text="Update"
                                 CssClass="btn btn-primary" CommandName="Update" />
                             <asp:Button ID="CancelButton" runat="server" Text="Cancel"
-                                CssClass="btn btn-primary" CommandName="Cancel" />
+                                CssClass="btn btn-primary" CommandName="Cancel" CausesValidation="false" />
                         </fieldset>
                     </EditItemTemplate>
                     
@@ -78,12 +81,12 @@
                     </ItemTemplate>
                 </asp:FormView>
 
-                <asp:LinqDataSource ID="PrescriptionInfoDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableDelete="True" EnableUpdate="True" EntityTypeName="" TableName="Prescriptions" Where="ID == @ID">
+                <asp:LinqDataSource ID="PrescriptionInfoDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableDelete="True" EnableUpdate="True" EntityTypeName="" TableName="Prescriptions" Where="ID == @ID" OnUpdating="PrescriptionInfoDataSource_Updating">
                     <WhereParameters>
                         <asp:QueryStringParameter Name="ID" QueryStringField="ID" Type="Int64" />
                     </WhereParameters>
                 </asp:LinqDataSource>
-
+                <p></p>
                 <utmpl:ResultAlert runat="server" ID="ResultAlert" />
                 <p></p>
             </ContentTemplate>

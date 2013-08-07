@@ -80,4 +80,21 @@ public partial class UserAccess_Prescriptions_ViewPrescriptionDetail : System.We
     {
         Response.Redirect("/UserAccess/Visits/ViewVisitDetails.aspx?ID=" + VisitID.ToString());
     }
+
+    protected void PrescriptionInfoDataSource_Updating(object sender, LinqDataSourceUpdateEventArgs e)
+    {
+        var prescription = (Prescription)e.NewObject;
+
+        // set the prescribed date for the new object to be updated
+        var date = ((TemplateControls_DatePicker)PrescriptionInfoFormView.FindControl("DatePicker")).SelectedDate;
+        prescription.Date = date;
+    }
+
+    protected void PrescriptionDetailsFormView_ItemUpdated(object sender, FormViewUpdatedEventArgs e)
+    {
+        System.Threading.Thread.Sleep(1000);
+
+        // display the result alert
+        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Prescription updated successfully!", e.Exception);
+    }
 }
