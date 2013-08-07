@@ -248,7 +248,7 @@
                     <EmptyDataTemplate>
                         <p><strong>No Info</strong></p>
                         <p><asp:Button ID="AddNewPrescriptionButton" runat="server" Text="Add Prescription"
-                            CausesValidation="False" CssClass="btn btn-primary"
+                            CausesValidation="False" CssClass="btn btn-primary btn-small"
                             OnClick="AddNewPrescriptionButton_Click" /></p>
                     </EmptyDataTemplate>
                     <EditItemTemplate>
@@ -285,9 +285,9 @@
                                 </td>
                                 <td>
                                     <asp:Button ID="DetailsButton" runat="server" Text="Details"
-                                        CssClass="btn btn-primary" OnClick="DetailsButton_Click" />
+                                        CssClass="btn btn-primary btn-small" OnClick="DetailsButton_Click" />
                                     <asp:Button ID="DeleteButton" runat="server" Text="Delete"
-                                        CssClass="btn btn-danger" CommandName="Delete"
+                                        CssClass="btn btn-danger btn-small" CommandName="Delete"
                                         OnClientClick="return confirm('Are you sure you want to delete this Prescription?\n\nAll Prescription Details belong to this Prescription wiil be deleted, too!')" />
                                     
                                 </td>
@@ -329,7 +329,7 @@
                                     Text='<%# Eval("Quantity") %>'></asp:Label>
 
                                 <asp:Label ID="Label10" runat="server"
-                                    Text='<%# ((Drug)Eval("Drug")).Unit %>'></asp:Label>
+                                    Text='<%# ((Drug)Eval("Drug")).Unit %>'></asp:Label>(s)
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Dose">
@@ -338,8 +338,7 @@
                                     Text='<%# Eval("Dose") %>'></asp:Label>
 
                                 <asp:Label ID="Label10" runat="server"
-                                    Text='<%# ((Drug)Eval("Drug")).Unit %>'></asp:Label>
-                                / day
+                                    Text='<%# ((Drug)Eval("Drug")).Unit %>'></asp:Label>(s) / day
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Special Instruction">
@@ -348,11 +347,15 @@
                                     Text='<%# Eval("SpecialInstruction") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
+                        <asp:HyperLinkField Text="Details" DataNavigateUrlFields="ID"
+                            DataNavigateUrlFormatString="/UserAccess/ViewPrescriptionDetailInfo.aspx?ID={0}">
+                            <ControlStyle CssClass="btn btn-primary btn-small" />
+                        </asp:HyperLinkField>
                     </Columns>
                 </asp:GridView>
 
                 <asp:Button ID="AddNewPrescriptionDetailButton" runat="server" Text="Add Prescription Detail"
-                            CausesValidation="False" CssClass="btn btn-primary"
+                            CausesValidation="False" CssClass="btn btn-primary btn-small"
                             OnClick="AddNewPrescriptionDetailButton_Click" />
 
                 <asp:LinqDataSource ID="PrescriptionDetailsDataSource" runat="server"
