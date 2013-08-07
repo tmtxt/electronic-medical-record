@@ -22,6 +22,8 @@ public partial class UserAccess_Visits_ViewAllVisits : System.Web.UI.Page
             "You need to select a Visit details to add new Prescription");
         dic.Add(RedirectConstants.RedirectAddNewPrescriptionExistSessionName,
             "You need to select a Visit details with no Prescription");
+        dic.Add(RedirectConstants.RedirectAddPrescriptionDetailSessionName,
+            "You need to view a Visit details to add Prescription Detail");
         RedirectAlert.SetAlert(dic);
     }
 
