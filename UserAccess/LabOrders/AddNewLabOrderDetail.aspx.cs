@@ -42,4 +42,15 @@ public partial class UserAccess_LabOrders_AddNewLabOrderDetail : System.Web.UI.P
         Session[RedirectConstants.RedirectAddLabOrderDetailSessionName] = "yes";
         Response.Redirect("/UserAccess/Visits/ViewAllVisits.aspx");
     }
+
+    protected void CancelButton_Click(object sender, EventArgs e)
+    {
+        var visit = new DataClassesDataContext().Visits.Where(v => v.LabOrders.First().ID == long.Parse(Request.QueryString["LabOrderID"])).First();
+        Response.Redirect("/UserAccess/Visits/ViewVisitDetails.aspx?ID=" + visit.ID.ToString());
+    }
+
+    protected void ClearForm_Click(object sender, EventArgs e)
+    {
+        
+    }
 }

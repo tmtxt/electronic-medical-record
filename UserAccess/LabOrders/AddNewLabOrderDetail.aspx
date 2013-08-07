@@ -57,9 +57,9 @@
                             <asp:Button ID="InsertButton" runat="server" Text="Add Lab Order Detail"
                                 CssClass="btn btn-primary" CommandName="Insert" />
                             <asp:Button ID="ClearForm" runat="server" Text="ClearForm"
-                                CssClass="btn btn-primary" />
+                                CssClass="btn btn-primary" CausesValidation="false" OnClick="ClearForm_Click" />
                             <asp:Button ID="CancelButton" runat="server" Text="Cancel"
-                                CssClass="btn btn-primary" />
+                                CssClass="btn btn-primary" CausesValidation="false" OnClick="CancelButton_Click" />
                         </fieldset>
                     </InsertItemTemplate>
                 </asp:FormView>
