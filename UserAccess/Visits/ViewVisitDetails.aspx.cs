@@ -274,4 +274,24 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
             }
         }
     }
+
+    protected void DetailsButton_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void PrescriptionFormView_ItemDeleted(object sender, FormViewDeletedEventArgs e)
+    {
+        // rebind the data for the prescription detail grid view
+        PrescriptionDetailsGridView.DataBind();
+
+        // display the result alert
+        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Prescription deleted successfully!", e.Exception);
+    }
+
+    protected void PrescriptionFormView_ItemDeleting(object sender, FormViewDeleteEventArgs e)
+    {
+        // delete all this prescription's dependencies
+        PrescriptionOperations.DeleteDependencies(long.Parse(e.Keys["ID"].ToString()));
+    }
 }

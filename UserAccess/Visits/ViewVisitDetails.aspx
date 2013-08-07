@@ -25,6 +25,7 @@
 
                 <utmpl:RedirectSuccessAlert runat="server" ID="RedirectSuccessAlert" />
                 <utmpl:RedirectAlert runat="server" ID="RedirectAlert" />
+                <utmpl:ResultAlert runat="server" ID="ResultAlert" />
 
                 <asp:FormView Width="100%" ID="VisitDetailsFormView" runat="server" DataKeyNames="ID"
                     DataSourceID="VisitDetailsDataSource" OnModeChanging="VisitDetailsFormView_ModeChanging" OnModeChanged="VisitDetailsFormView_ModeChanged" OnItemUpdating="VisitDetailsFormView_ItemUpdating" OnItemDeleted="VisitDetailsFormView_ItemDeleted" OnItemDeleting="VisitDetailsFormView_ItemDeleting" OnItemUpdated="VisitDetailsFormView_ItemUpdated">
@@ -96,9 +97,7 @@
                             </tr>
                             <tr>
                                 <td colspan="4">
-                                    <asp:Button ID="DeleteButton" runat="server" Text="Delete Visit"
-                                        CssClass="btn btn-danger" CommandName="Delete"
-                                        OnClientClick="return confirm('Are you sure you want to delete this Visit?\n\nAll Prescriptions, Prescription Details as well as Lab Orders, Lab Order Details belong to this visit will be deleted, too!')" />
+                                    
                                     <asp:Button ID="EditButton" runat="server" Text="Edit Visit"
                                         CssClass="btn btn-primary" CommandName="Edit" />
                                     <asp:HyperLink ID="ViewVisitsButton" runat="server"
@@ -111,6 +110,9 @@
                                         NavigateUrl="/UserAccess/Visits/ViewAllVisits.aspx">
                                         View All Visits
                                     </asp:HyperLink>
+                                    <asp:Button ID="DeleteButton" runat="server" Text="Delete Visit"
+                                        CssClass="btn btn-danger" CommandName="Delete"
+                                        OnClientClick="return confirm('Are you sure you want to delete this Visit?\n\nAll Prescriptions, Prescription Details as well as Lab Orders, Lab Order Details belong to this visit will be deleted, too!')" />
                                 </td>
                             </tr>
                         </table>
@@ -242,7 +244,7 @@
                 <h3>Prescription</h3>
 
                 <asp:FormView Width="100%" ID="PrescriptionFormView" runat="server" DataKeyNames="ID"
-                    DataSourceID="PrescriptionDataSource" OnDataBound="PrescriptionFormView_DataBound">
+                    DataSourceID="PrescriptionDataSource" OnDataBound="PrescriptionFormView_DataBound" OnItemDeleted="PrescriptionFormView_ItemDeleted" OnItemDeleting="PrescriptionFormView_ItemDeleting">
                     <EmptyDataTemplate>
                         <p><strong>No Info</strong></p>
                         <p><asp:Button ID="AddNewPrescriptionButton" runat="server" Text="Add Prescription"
@@ -274,6 +276,22 @@
                                         <%--Text='<%# myctx.PrescriptionDetails.Join(myctx.Drugs, p => p.DrugID, d => d.ID, (p,d) => new {p.ID, TotalPrice = p.Quantity * d.Price}).GroupBy(p => p.ID).Sum() %>'--%>                                    </asp:Label>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>
+
+                                </td>
+                                <td>
+                                    
+                                </td>
+                                <td>
+                                    <asp:Button ID="DetailsButton" runat="server" Text="Details"
+                                        CssClass="btn btn-primary" OnClick="DetailsButton_Click" />
+                                    <asp:Button ID="DeleteButton" runat="server" Text="Delete"
+                                        CssClass="btn btn-danger" CommandName="Delete"
+                                        OnClientClick="return confirm('Are you sure you want to delete this Prescription?\n\nAll Prescription Details belong to this Prescription wiil be deleted, too!')" />
+                                    
+                                </td>
+                            </tr>
                         </table>
                     </ItemTemplate>
 
@@ -281,7 +299,7 @@
 
                 <asp:LinqDataSource ID="PrescriptionDataSource" runat="server"
                     ContextTypeName="DataClassesDataContext" EntityTypeName="" TableName="Prescriptions"
-                    Where="VisitID == @VisitID">
+                    Where="VisitID == @VisitID" EnableDelete="True">
                     <WhereParameters>
                         <asp:QueryStringParameter Name="VisitID" QueryStringField="ID" Type="Int64" />
                     </WhereParameters>
@@ -415,7 +433,7 @@
                     ContextTypeName="DataClassesDataContext" EntityTypeName="" TableName="LabOrderDetails">
                 </asp:LinqDataSource>
 
-                <utmpl:ResultAlert runat="server" ID="ResultAlert" />
+                <utmpl:ResultAlert runat="server" ID="ResultAlertBottom" />
 
             </ContentTemplate>
         </asp:UpdatePanel>
