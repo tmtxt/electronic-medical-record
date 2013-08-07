@@ -270,7 +270,7 @@
                                         Text='<%# ((Doctor)Eval("Doctor")).Name %>'>
                                     </asp:Label>
                                 </td>
-                                <td>
+                                <td style="width:40%">
                                     <strong>Total Drug Price</strong>:
                                     <asp:Label ID="TotalDrugPriceLabel" runat="server">
                                         <%--Text='<%# myctx.PrescriptionDetails.Join(myctx.Drugs, p => p.DrugID, d => d.ID, (p,d) => new {p.ID, TotalPrice = p.Quantity * d.Price}).GroupBy(p => p.ID).Sum() %>'--%>                                    </asp:Label>
@@ -390,10 +390,26 @@
                                         Text='<%# ((Doctor)Eval("Doctor")).Name %>'>
                                     </asp:Label>
                                 </td>
-                                <td>
+                                <td style="width:40%">
                                     <strong>Total Lab Order Price</strong>:
                                     <asp:Label ID="TotalLabOrderPriceLabel" runat="server">
                                     </asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                </td>
+                                <td>
+                                    
+                                </td>
+                                <td>
+                                    <asp:Button ID="DetailsButton" runat="server" Text="Details"
+                                        CssClass="btn btn-primary btn-small" OnClick="DetailsLabOrderButton_Click" />
+                                    <asp:Button ID="DeleteButton" runat="server" Text="Delete"
+                                        CssClass="btn btn-danger btn-small" CommandName="Delete"
+                                        OnClientClick="return confirm('Are you sure you want to delete this Lab Order?\n\nAll Lab Order Details belong to this Lab Order wiil be deleted, too!')" />
+                                    
                                 </td>
                             </tr>
                         </table>

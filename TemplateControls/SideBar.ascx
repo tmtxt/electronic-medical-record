@@ -23,6 +23,10 @@
         <li><a href="/UserAccess/Prescriptions/AddNewPrescription.aspx">Add Prescription</a></li>
         <li><a href="/UserAccess/Prescriptions/AddNewPrescriptionDetail.aspx">Add Prescription Details</a></li>
 
+        <li class="nav-header">Prescriptions</li>
+        <li><a href="/UserAccess/LabOrders/ViewLabOrderInfo.aspx">Lab Order Info</a></li>
+        <li><a href="/UserAccess/LabOrders/AddNewLabOrder.aspx">Add Lab Order</a></li>
+
         <li class="nav-header">ICD</li>
         <li><a href="/UserAccess/ICDs/ViewAllICDChapters.aspx">ICD Chapters</a></li>
         <li><a href="/UserAccess/ICDs/AddNewICDChapter.aspx">Add New ICD Chapter</a></li>

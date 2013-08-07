@@ -318,4 +318,14 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
             Response.Redirect("/UserAccess/LabOrders/AddNewLabOrder.aspx?VisitID=" + visitID);
         }
     }
+
+    protected void DetailsLabOrderButton_Click(object sender, EventArgs e)
+    {
+        // get the lab order ID from the visit
+        var labOrderID = new DataClassesDataContext().LabOrders.Where(l => l.VisitID == long.Parse(Request.QueryString["ID"])).First().ID;
+
+
+        // redirect to the prescription detail page
+        Response.Redirect("/UserAccess/LabOrders/ViewLabOrderInfo.aspx?ID=" + labOrderID.ToString());
+    }
 }
