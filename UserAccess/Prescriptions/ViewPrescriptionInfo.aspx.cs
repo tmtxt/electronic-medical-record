@@ -75,4 +75,9 @@ public partial class UserAccess_Prescriptions_ViewPrescriptionDetail : System.We
             e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Prescription deleted successfully!", e.Exception);
         }
     }
+
+    protected void ViewVisitButton_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("/UserAccess/Visits/ViewVisitDetails.aspx?ID=" + VisitID.ToString());
+    }
 }

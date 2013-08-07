@@ -40,7 +40,7 @@
                             <asp:Button ID="EditButton" runat="server" Text="Edit"
                                 CssClass="btn btn-primary" CommandName="Edit" />
                             <asp:Button ID="ViewVisitButton" runat="server" Text="View Visit"
-                                CssClass="btn btn-primary" />
+                                CssClass="btn btn-primary" OnClick="ViewVisitButton_Click" />
                             <asp:Button ID="DeleteButton" runat="server" Text="Delete"
                                 CssClass="btn btn-danger" CommandName="Delete"
                                 OnClientClick="return confirm('Are you sure you want to delete this Prescription?\n\nAll Prescription Details belong to this Prescription wiil be deleted, too!')" />
