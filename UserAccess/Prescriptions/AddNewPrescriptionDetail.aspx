@@ -25,7 +25,7 @@
                         <fieldset>
                             <legend>Enter Prescription Detail</legend>
                             <div class="form-group">
-                                <label for="DrugGroupsDropdownList">Drug</label>
+                                <label for="DrugGroupsDropdownList">Drug Group</label>
                                 <asp:DropDownList ID="DrugGroupsDropdownList" runat="server" Width="70%"
                                     AutoPostBack="True" DataSourceID="DrugGroupsDataSource"
                                     DataTextField="Name" DataValueField="ID">
@@ -34,7 +34,10 @@
                                     ContextTypeName="DataClassesDataContext" EntityTypeName="" OrderBy="Name"
                                     Select="new (ID, Name)" TableName="DrugGroups">
                                 </asp:LinqDataSource>
-                                <br />
+                            </div>
+                            <p></p>
+                            <div class="form-group">
+                                <label for="DrugGroupsDropdownList">Drug</label>
                                 <asp:DropDownList ID="DrugsDropdownList" runat="server" Width="70%"
                                     DataSourceID="DrugsDataSource" DataTextField="Name" DataValueField="ID">
                                 </asp:DropDownList>
