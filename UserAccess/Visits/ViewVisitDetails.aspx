@@ -369,7 +369,13 @@
 
                 <asp:FormView Width="100%" ID="LabOrderFormView" runat="server" DataKeyNames="ID"
                     DataSourceID="LabOrderDataSource" OnDataBound="LabOrderFormView_DataBound">
-                    <EmptyDataTemplate><strong>No Info</strong></EmptyDataTemplate>
+                    <EmptyDataTemplate>
+                        <p><strong>No Info</strong></p>
+                        <p>
+                            <asp:Button ID="AddNewLabOrderButton" runat="server" Text="Add Lab Order"
+                            CausesValidation="False" CssClass="btn btn-primary btn-small" OnClick="AddNewLabOrderButton_Click" />
+                        </p>
+                    </EmptyDataTemplate>
                     <ItemTemplate>
                         <table class="table">
                             <tr>

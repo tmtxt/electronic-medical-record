@@ -303,4 +303,17 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
         // delete all this prescription's dependencies
         PrescriptionOperations.DeleteDependencies(long.Parse(e.Keys["ID"].ToString()));
     }
+
+    protected void AddNewLabOrderButton_Click(object sender, EventArgs e)
+    {
+        if (Request.QueryString["ID"] == null)
+        {
+            // do nothing
+        }
+        else
+        {
+            var visitID = Request.QueryString["ID"];
+            Response.Redirect("/UserAccess/Prescriptions/AddNewLabOrder.aspx?VisitID=" + visitID);
+        }
+    }
 }
