@@ -9,6 +9,7 @@ using System.Web;
 public class RedirectSuccessConstants
 {
     public const string RedirectSuccessAddNewPrescription = "RedirectSuccessAddNewPrescription";
+    public const string RedirectSuccessAddPrescriptionDetail = "RedirectSuccessAddPrescriptionDetail";
 
 	public RedirectSuccessConstants()
 	{

@@ -20,8 +20,12 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
             Response.Redirect("/UserAccess/Visits/ViewAllVisits.aspx");
         }
 
-        RedirectSuccessAlert.SetAlert("Prescription inserted successfully!",
-            RedirectSuccessConstants.RedirectSuccessAddNewPrescription);
+        Dictionary<string, string> successDictionary = new Dictionary<string, string>();
+        successDictionary.Add(RedirectSuccessConstants.RedirectSuccessAddNewPrescription,
+            "Prescription inserted successfully!");
+        successDictionary.Add(RedirectSuccessConstants.RedirectSuccessAddPrescriptionDetail,
+            "Prescription Detail inserted successfully!");
+        RedirectSuccessAlert.SetAlert(successDictionary);
         RedirectAlert.SetAlert("You need to add Prescription first!",
             RedirectConstants.RedirectVisitDetailAddPrescriptionDetailSessionName);
 
