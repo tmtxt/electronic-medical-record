@@ -8,12 +8,44 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Content" Runat="Server">
     <form runat="server">
-        <asp:FormView ID="AddPrescriptionDetailFormView" runat="server" DataKeyNames="ID" DataSourceID="AddPrescriptionDetailDataSource" DefaultMode="Insert">
+        <asp:FormView Width="100%" ID="AddPrescriptionDetailFormView" runat="server" DataKeyNames="ID"
+            DataSourceID="AddPrescriptionDetailDataSource" DefaultMode="Insert">
             
             <InsertItemTemplate>
-                
+                <fieldset>
+                    <legend>Enter Prescription Detail</legend>
+                    <div class="form-group">
+                        <label>Drug</label>
+                        <asp:DropDownList ID="DrugGroupsDropdownList" runat="server" Width="70%" DataSourceID="DrugGroupsDataSource" DataTextField="Name" DataValueField="ID"></asp:DropDownList>
+                        <asp:LinqDataSource ID="DrugGroupsDataSource" runat="server" ContextTypeName="DataClassesDataContext" EntityTypeName="" OrderBy="Name" Select="new (ID, Name)" TableName="DrugGroups">
+                        </asp:LinqDataSource>
+                        <br />
+                        <asp:DropDownList ID="DrugsDropdownList" runat="server" Width="70%" DataSourceID="DrugsDataSource" DataTextField="Name" DataValueField="ID"></asp:DropDownList>
+                        <asp:LinqDataSource ID="DrugsDataSource" runat="server" ContextTypeName="DataClassesDataContext" EntityTypeName="" OrderBy="Name" Select="new (ID, Name)" TableName="Drugs">
+                        </asp:LinqDataSource>
+                    </div>
+                    <p></p>
+                    <div class="form-group">
+                        <label>Quantity</label>
+                        <asp:TextBox ID="QuantityTextBox" Width="70%" runat="server"
+                            Text='<%# Bind("Quantity") %>' placeholder='Total Quantity'></asp:TextBox>
+                    </div>
+                    <p></p>
+                    <div class="form-group">
+                        <label>Dose</label>
+                        <asp:TextBox ID="DoseTextBox" Width="70%" runat="server"
+                            Text='<%# Bind("Dose") %>' placeholder='Quantity per day'></asp:TextBox>
+                    </div>
+                    <p></p>
+                    <div class="form-group">
+                        <label>Special Instruction</label>
+                        <asp:TextBox ID="SpecialInstructionTextBox" runat="server" TextMode="MultiLine"
+                            Text='<%# Bind("SpecialInstruction") %>' Rows="6" Width="70%"
+                            placeholder="Special Instruction"></asp:TextBox>
+                    </div>
+                    <p></p>
+                </fieldset>
             </InsertItemTemplate>
-            
 
         </asp:FormView>
         <asp:LinqDataSource ID="AddPrescriptionDetailDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableInsert="True" EntityTypeName="" TableName="PrescriptionDetails">
