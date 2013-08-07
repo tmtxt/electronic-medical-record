@@ -65,7 +65,21 @@ public partial class UserAccess_LabOrders_AddNewLabOrder : System.Web.UI.Page
 
     protected void AddLabOrderFormView_ItemInserted(object sender, FormViewInsertedEventArgs e)
     {
-        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Lab Order inserted successfully!", e.Exception);
+        System.Threading.Thread.Sleep(1000);
+
+        if (e.Exception == null)
+        {
+            // set the session value
+            Session[RedirectSuccessConstants.RedirectSuccessAddLabOrder] = "yes";
+
+            Response.Redirect("/UserAccess/Visits/ViewVisitDetails.aspx?ID="
+            + Request.QueryString["VisitID"]);
+        }
+        else
+        {
+            e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Lab Order inserted successfully!", e.Exception);
+        }
+        
     }
 
     protected void AddLabOrderFormView_ItemInserting(object sender, FormViewInsertEventArgs e)

@@ -12,6 +12,7 @@ public class RedirectSuccessConstants
     public const string RedirectSuccessAddPrescriptionDetail = "RedirectSuccessAddPrescriptionDetail";
     public const string RedirectSuccessDeletePrescription = "RedirectSuccessDeletePrescription";
     public const string RedirectSuccessDeletePrescriptionDetail = "RedirectSuccessDeletePrescriptionDetail";
+    public const string RedirectSuccessAddLabOrder = "RedirectSuccessAddLabOrder";
 
 	public RedirectSuccessConstants()
 	{
