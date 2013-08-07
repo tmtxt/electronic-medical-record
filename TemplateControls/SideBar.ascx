@@ -19,6 +19,7 @@
 
         <li class="nav-header">Prescriptions</li>
         <li><a href="/UserAccess/Prescriptions/ViewPrescriptionInfo.aspx">Prescription Info</a></li>
+        <li><a href="/UserAccess/Prescriptions/ViewPrescriptionDetailInfo.aspx">Prescription Details Info</a></li>
         <li><a href="/UserAccess/Prescriptions/AddNewPrescription.aspx">Add Prescription</a></li>
         <li><a href="/UserAccess/Prescriptions/AddNewPrescriptionDetail.aspx">Add Prescription Details</a></li>
 
