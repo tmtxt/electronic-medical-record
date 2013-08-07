@@ -53,4 +53,21 @@ public partial class UserAccess_LabOrders_ViewLabOrderInfo : System.Web.UI.Page
     {
         Response.Redirect("/UserAccess/Visits/ViewVisitDetails.aspx?ID=" + VisitID.ToString());
     }
+
+    protected void LabOrderInfoDataSource_Updating(object sender, LinqDataSourceUpdateEventArgs e)
+    {
+        var labOrder = (LabOrder)e.NewObject;
+
+        // set the order date
+        var date = ((TemplateControls_DatePicker)LabOrderInfoFormView.FindControl("DatePicker")).SelectedDate;
+        labOrder.Date = date;
+    }
+
+    protected void LabOrderInfoFormView_ItemUpdated(object sender, FormViewUpdatedEventArgs e)
+    {
+        System.Threading.Thread.Sleep(1000);
+
+        // display the result alert
+        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Lab Order updated successfully!", e.Exception);
+    }
 }

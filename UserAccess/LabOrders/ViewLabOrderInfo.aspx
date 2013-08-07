@@ -20,7 +20,7 @@
 
             <ContentTemplate>
 
-                <asp:FormView ID="LabOrderInfoFormView" runat="server" DataKeyNames="ID" DataSourceID="LabOrderInfoDataSource">
+                <asp:FormView ID="LabOrderInfoFormView" runat="server" DataKeyNames="ID" DataSourceID="LabOrderInfoDataSource" OnItemUpdated="LabOrderInfoFormView_ItemUpdated">
                     <ItemTemplate>
                         <fieldset>
                             <div class="form-group">
@@ -78,7 +78,7 @@
                     </EditItemTemplate>
                 </asp:FormView>
 
-                <asp:LinqDataSource ID="LabOrderInfoDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableDelete="True" EnableUpdate="True" EntityTypeName="" TableName="LabOrders" Where="ID == @ID">
+                <asp:LinqDataSource ID="LabOrderInfoDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableDelete="True" EnableUpdate="True" EntityTypeName="" TableName="LabOrders" Where="ID == @ID" OnUpdating="LabOrderInfoDataSource_Updating">
                     <WhereParameters>
                         <asp:QueryStringParameter Name="ID" QueryStringField="ID" Type="Int64" />
                     </WhereParameters>
