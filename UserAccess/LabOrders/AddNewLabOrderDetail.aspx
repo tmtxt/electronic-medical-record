@@ -53,7 +53,8 @@
                                 <label>Result</label>
                                 <asp:TextBox ID="ResultTextBox" Width="70%" runat="server"
                                     Text='<%# Bind("Result") %>'
-                                    placeholder="Result"></asp:TextBox>
+                                    placeholder="Result"></asp:TextBox><br />
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Result is required" ControlToValidate="ResultTextBox" CssClass="label label-important" Display="Dynamic"></asp:RequiredFieldValidator>
                             </div>
                             <p></p>
                             <asp:Button ID="InsertButton" runat="server" Text="Add Lab Order Detail"
