@@ -18,7 +18,8 @@
         <li><a href="/UserAccess/Visits/AddNewVisit.aspx">Add New Visit</a></li>
 
         <li class="nav-header">Prescriptions</li>
-        <li><a href="/UserAccess/Prescriptions/AddNewPrescription.aspx">Add New Prescription</a></li>
+        <li><a href="/UserAccess/Prescriptions/AddNewPrescription.aspx">Add Prescription</a></li>
+        <li><a href="/UserAccess/Prescriptions/AddNewPrescriptionDetail.aspx">Add Prescription Details</a></li>
 
         <li class="nav-header">ICD</li>
         <li><a href="/UserAccess/ICDs/ViewAllICDChapters.aspx">ICD Chapters</a></li>
