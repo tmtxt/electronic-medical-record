@@ -12,83 +12,38 @@
     Prescription Info 
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Content" Runat="Server">
-    <form runat="server">
+    <form runat="server" class="form-horizontal">
         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
 
                 <asp:FormView ID="PrescriptionDetailsFormView" runat="server" DataKeyNames="ID" DataSourceID="PrescriptionInfoDataSource">
                     <EditItemTemplate>
-                        ID:
-                        <asp:Label ID="IDLabel1" runat="server" Text='<%# Eval("ID") %>' />
-                        <br />
-                        Date:
-                        <asp:TextBox ID="DateTextBox" runat="server" Text='<%# Bind("Date") %>' />
-                        <br />
-                        DoctorID:
-                        <asp:TextBox ID="DoctorIDTextBox" runat="server" Text='<%# Bind("DoctorID") %>' />
-                        <br />
-                        VisitID:
-                        <asp:TextBox ID="VisitIDTextBox" runat="server" Text='<%# Bind("VisitID") %>' />
-                        <br />
-                        PrescriptionDetails:
-                        <asp:TextBox ID="PrescriptionDetailsTextBox" runat="server" Text='<%# Bind("PrescriptionDetails") %>' />
-                        <br />
-                        Visit:
-                        <asp:TextBox ID="VisitTextBox" runat="server" Text='<%# Bind("Visit") %>' />
-                        <br />
-                        Doctor:
-                        <asp:TextBox ID="DoctorTextBox" runat="server" Text='<%# Bind("Doctor") %>' />
-                        <br />
-                        <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" />
-                        &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+                        
                     </EditItemTemplate>
-                    <InsertItemTemplate>
-                        Date:
-                        <asp:TextBox ID="DateTextBox" runat="server" Text='<%# Bind("Date") %>' />
-                        <br />
-                        DoctorID:
-                        <asp:TextBox ID="DoctorIDTextBox" runat="server" Text='<%# Bind("DoctorID") %>' />
-                        <br />
-                        VisitID:
-                        <asp:TextBox ID="VisitIDTextBox" runat="server" Text='<%# Bind("VisitID") %>' />
-                        <br />
-                        PrescriptionDetails:
-                        <asp:TextBox ID="PrescriptionDetailsTextBox" runat="server" Text='<%# Bind("PrescriptionDetails") %>' />
-                        <br />
-                        Visit:
-                        <asp:TextBox ID="VisitTextBox" runat="server" Text='<%# Bind("Visit") %>' />
-                        <br />
-                        Doctor:
-                        <asp:TextBox ID="DoctorTextBox" runat="server" Text='<%# Bind("Doctor") %>' />
-                        <br />
-                        <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
-                        &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
-                    </InsertItemTemplate>
+                    
                     <ItemTemplate>
-                        ID:
-                        <asp:Label ID="IDLabel" runat="server" Text='<%# Eval("ID") %>' />
-                        <br />
-                        Date:
-                        <asp:Label ID="DateLabel" runat="server" Text='<%# Bind("Date") %>' />
-                        <br />
-                        DoctorID:
-                        <asp:Label ID="DoctorIDLabel" runat="server" Text='<%# Bind("DoctorID") %>' />
-                        <br />
-                        VisitID:
-                        <asp:Label ID="VisitIDLabel" runat="server" Text='<%# Bind("VisitID") %>' />
-                        <br />
-                        PrescriptionDetails:
-                        <asp:Label ID="PrescriptionDetailsLabel" runat="server" Text='<%# Bind("PrescriptionDetails") %>' />
-                        <br />
-                        Visit:
-                        <asp:Label ID="VisitLabel" runat="server" Text='<%# Bind("Visit") %>' />
-                        <br />
-                        Doctor:
-                        <asp:Label ID="DoctorLabel" runat="server" Text='<%# Bind("Doctor") %>' />
-                        <br />
-                        <asp:LinkButton ID="EditButton" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" />
-                        &nbsp;<asp:LinkButton ID="DeleteButton" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" />
+                        <fieldset>
+                            <div class="form-group">
+                                <strong>Prescribed Doctor</strong>:<br />
+                                <asp:Label ID="Label1" runat="server"
+                                    Text='<%# ((Doctor)Eval("Doctor")).Name %>'></asp:Label>
+                            </div>
+                            <p></p>
+                            <div class="form-group">
+                                <strong>Prescribed Date</strong>:<br />
+                                <asp:Label ID="Label2" runat="server"
+                                    Text='<%# DateTime.FromBinary(long.Parse(Eval("Date").ToString())).ToLongDateString() %>'>
+                                </asp:Label>
+                            </div>
+                            <p></p>
+                            <asp:Button ID="EditButton" runat="server" Text="Edit"
+                                CssClass="btn btn-primary" />
+                            <asp:Button ID="ViewVisitButton" runat="server" Text="View Visit"
+                                CssClass="btn btn-primary" />
+                            <asp:Button ID="DeleteButton" runat="server" Text="Delete"
+                                CssClass="btn btn-danger" />
+                        </fieldset>
                     </ItemTemplate>
                 </asp:FormView>
 
