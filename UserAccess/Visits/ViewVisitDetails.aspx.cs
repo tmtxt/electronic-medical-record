@@ -277,7 +277,12 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
 
     protected void DetailsButton_Click(object sender, EventArgs e)
     {
+        // get the prescription ID from the visit
+        var prescriptionID = new DataClassesDataContext().Prescriptions.Where(p => p.VisitID == long.Parse(Request.QueryString["ID"])).First().ID;
+        
 
+        // redirect to the prescription detail page
+        Response.Redirect("/UserAccess/Prescriptions/ViewPrescriptionDetail.aspx?ID=" + prescriptionID.ToString());
     }
 
     protected void PrescriptionFormView_ItemDeleted(object sender, FormViewDeletedEventArgs e)
