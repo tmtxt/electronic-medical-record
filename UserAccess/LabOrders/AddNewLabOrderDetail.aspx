@@ -17,7 +17,7 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
 
-                <asp:FormView Width="100%" ID="AddLabOrderDetailFormView" runat="server" DataKeyNames="ID" DataSourceID="AddlabOrderDetailDataSource" DefaultMode="Insert">
+                <asp:FormView Width="100%" ID="AddLabOrderDetailFormView" runat="server" DataKeyNames="ID" DataSourceID="AddlabOrderDetailDataSource" DefaultMode="Insert" OnItemInserted="AddLabOrderDetailFormView_ItemInserted">
                     <InsertItemTemplate>
                         <fieldset>
                             <legend>Enter Lab Order Detail Information</legend>
@@ -51,7 +51,9 @@
                             <p></p>
                             <div class="form-group">
                                 <label>Result</label>
-                                <asp:TextBox ID="ResultTextBox" Width="70%" runat="server" placeholder="Result"></asp:TextBox>
+                                <asp:TextBox ID="ResultTextBox" Width="70%" runat="server"
+                                    Text='<%# Bind("Result") %>'
+                                    placeholder="Result"></asp:TextBox>
                             </div>
                             <p></p>
                             <asp:Button ID="InsertButton" runat="server" Text="Add Lab Order Detail"
@@ -66,7 +68,7 @@
 
                 <asp:LinqDataSource ID="AddlabOrderDetailDataSource" runat="server"
                     ContextTypeName="DataClassesDataContext" EnableInsert="True" EntityTypeName=""
-                    TableName="LabOrderDetails">
+                    TableName="LabOrderDetails" OnInserting="AddlabOrderDetailDataSource_Inserting">
                 </asp:LinqDataSource>
 
                 <p></p>

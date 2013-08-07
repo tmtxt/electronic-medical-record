@@ -54,4 +54,34 @@ public partial class UserAccess_LabOrders_AddNewLabOrderDetail : System.Web.UI.P
         ((DropDownList)AddLabOrderDetailFormView.FindControl("MedicalServiceGroupsDropdownList")).SelectedIndex = 0;
         ((TextBox)AddLabOrderDetailFormView.FindControl("ResultTextBox")).Text = "";
     }
+
+    protected void AddlabOrderDetailDataSource_Inserting(object sender, LinqDataSourceInsertEventArgs e)
+    {
+        // get the new object to be inserted
+        var labOrderDetail = (LabOrderDetail)e.NewObject;
+
+        // set the lab order ID
+        labOrderDetail.LabOrderID = long.Parse(Request.QueryString["LabOrderID"]);
+
+        // set the medical service ID
+        var dl = (DropDownList)AddLabOrderDetailFormView.FindControl("MedicalServicesDropdownList");
+        labOrderDetail.MedicalServiceID = long.Parse(dl.SelectedValue);
+    }
+
+    protected void AddLabOrderDetailFormView_ItemInserted(object sender, FormViewInsertedEventArgs e)
+    {
+        System.Threading.Thread.Sleep(1000);
+
+        // redirect if successfull
+        if (e.Exception == null)
+        {
+            Session[RedirectSuccessConstants.RedirectSuccessAddLabOrderDetail] = "yes";
+            var visit = new DataClassesDataContext().Visits.Where(v => v.LabOrders.First().ID == long.Parse(Request.QueryString["LabOrderID"])).First();
+            Response.Redirect("/UserAccess/Visits/ViewVisitDetails.aspx?ID=" + visit.ID.ToString());
+        }
+        else
+        {
+            e.ExceptionHandled = ResultAlert.SetResultAlertReturn("error", e.Exception);
+        }
+    }
 }
