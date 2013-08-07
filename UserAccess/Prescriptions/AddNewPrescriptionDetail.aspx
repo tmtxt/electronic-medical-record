@@ -18,8 +18,7 @@
                         <label for="DrugGroupsDropdownList">Drug</label>
                         <asp:DropDownList ID="DrugGroupsDropdownList" runat="server" Width="70%"
                             AutoPostBack="True" DataSourceID="DrugGroupsDataSource"
-                            DataTextField="Name" DataValueField="ID"
-                            OnSelectedIndexChanged="DrugGroupsDropdownList_SelectedIndexChanged"></asp:DropDownList>
+                            DataTextField="Name" DataValueField="ID"></asp:DropDownList>
                         <asp:LinqDataSource ID="DrugGroupsDataSource" runat="server"
                             ContextTypeName="DataClassesDataContext" EntityTypeName="" OrderBy="Name"
                             Select="new (ID, Name)" TableName="DrugGroups">
@@ -65,6 +64,12 @@
                             placeholder="Special Instruction"></asp:TextBox>
                     </div>
                     <p></p>
+                    <asp:Button ID="InsertButton" runat="server" Text="Add Prescription Detail"
+                        CssClass="btn btn-primary" CommandName="Insert" />
+                    <asp:Button ID="ClearButton" runat="server" Text="Clear Form"
+                        CssClass="btn btn-primary" CausesValidation="false" OnClick="ClearButton_Click" />
+                    <asp:Button ID="CancelButton" runat="server" Text="Cancel"
+                        CssClass="btn btn-primary" CausesValidation="false" OnClick="CancelButton_Click" />
                 </fieldset>
             </InsertItemTemplate>
 

@@ -49,7 +49,15 @@ public partial class UserAccess_Prescriptions_AddNewPrescriptionDetail : System.
         Response.Redirect("/UserAccess/Visits/ViewAllVisits.aspx");
     }
 
-    protected void DrugGroupsDropdownList_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ClearButton_Click(object sender, EventArgs e)
+    {
+        ((DropDownList)AddPrescriptionDetailFormView.FindControl("DrugGroupsDropdownList")).SelectedIndex = 0;
+        ((TextBox)AddPrescriptionDetailFormView.FindControl("QuantityTextBox")).Text = "";
+        ((TextBox)AddPrescriptionDetailFormView.FindControl("DoseTextBox")).Text = "";
+        ((TextBox)AddPrescriptionDetailFormView.FindControl("SpecialInstructionTextBox")).Text = "";
+    }
+
+    protected void CancelButton_Click(object sender, EventArgs e)
     {
 
     }
