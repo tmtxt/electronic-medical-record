@@ -19,7 +19,7 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
 
-                <asp:FormView ID="AddLabOrderFormView" runat="server" DataKeyNames="ID" DataSourceID="AddLabOrderDataSource" DefaultMode="Insert">
+                <asp:FormView ID="AddLabOrderFormView" runat="server" DataKeyNames="ID" DataSourceID="AddLabOrderDataSource" DefaultMode="Insert" OnItemInserted="AddLabOrderFormView_ItemInserted" OnItemInserting="AddLabOrderFormView_ItemInserting">
 
                     <InsertItemTemplate>
                         <fieldset>
@@ -45,14 +45,14 @@
                             <asp:Button ID="InsertButton" runat="server" Text="Add New Lab Order"
                                 CommandName="Insert" CssClass="btn btn-primary" />
                             <asp:Button ID="CancelButton" runat="server" Text="Cancel" CssClass="btn btn-primary"
-                                CausesValidation="False" />
+                                CausesValidation="False" OnClick="CancelButton_Click" />
                             <p></p>
                         </fieldset>
                     </InsertItemTemplate>
 
                 </asp:FormView>
 
-                <asp:LinqDataSource ID="AddLabOrderDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableInsert="True" EntityTypeName="" TableName="LabOrders">
+                <asp:LinqDataSource ID="AddLabOrderDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableInsert="True" EntityTypeName="" TableName="LabOrders" OnInserting="AddLabOrderDataSource_Inserting">
                 </asp:LinqDataSource>
 
                 <p></p>

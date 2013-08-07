@@ -45,4 +45,38 @@ public partial class UserAccess_LabOrders_AddNewLabOrder : System.Web.UI.Page
         Session[RedirectConstants.RedirectAddLabOrderSessionName] = "yes";
         Response.Redirect("/UserAccess/Visits/ViewAllVisits.aspx");
     }
+
+    protected void CancelButton_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("/UserAccess/Visits/ViewVisitDetails.aspx?ID="
+            + Request.QueryString["VisitID"]);
+    }
+
+    protected void AddLabOrderDataSource_Inserting(object sender, LinqDataSourceInsertEventArgs e)
+    {
+        var labOrder = (LabOrder)e.NewObject;
+
+        // set the visit ID for the new lab order
+        labOrder.VisitID = long.Parse(Request.QueryString["VisitID"]);
+
+        // set the order date for the new lab order
+        labOrder.Date = ((TemplateControls_DatePicker)AddLabOrderFormView.FindControl("DatePicker")).SelectedDate;
+    }
+
+    protected void AddLabOrderFormView_ItemInserted(object sender, FormViewInsertedEventArgs e)
+    {
+        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Lab Order inserted successfully!", e.Exception);
+    }
+
+    protected void AddLabOrderFormView_ItemInserting(object sender, FormViewInsertEventArgs e)
+    {
+        // set the visit ID for the new lab order
+        e.Values["VisitID"] = long.Parse(Request.QueryString["VisitID"]);
+
+        // set the order date for the new lab order
+        e.Values["Date"] = ((TemplateControls_DatePicker)AddLabOrderFormView.FindControl("DatePicker")).SelectedDate;
+
+        // set the doctor ID
+        e.Values["DoctorID"] = ((DropDownList)AddLabOrderFormView.FindControl("DoctorsDropdownList")).SelectedValue;
+    }
 }
