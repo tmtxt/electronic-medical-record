@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 
 public partial class UserAccess_Prescriptions_ViewPrescriptionDetail : System.Web.UI.Page
 {
+    private long VisitID { get; set; }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         // redirect if error
@@ -29,7 +31,9 @@ public partial class UserAccess_Prescriptions_ViewPrescriptionDetail : System.We
                 }
                 else
                 {
-                    // OK do nothing, just continue
+                    // OK, set the visit ID into the property
+                    VisitID = new DataClassesDataContext().Visits.Where(v => v.Prescriptions.First().ID == long.Parse(Request.QueryString["ID"])).First().ID;
+
                 }
             }
             else
@@ -59,7 +63,16 @@ public partial class UserAccess_Prescriptions_ViewPrescriptionDetail : System.We
 
     protected void PrescriptionDetailsFormView_ItemDeleted(object sender, FormViewDeletedEventArgs e)
     {
-        // display the result alert
-        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Prescription deleted successfully!", e.Exception);   
+        // redirect to the view visit detail page
+        if (e.Exception == null)
+        {
+            Session[RedirectSuccessConstants.RedirectSuccessDeletePrescription] = "yes";
+            Response.Redirect("/UserAccess/Visits/ViewVisitDetails.aspx?ID=" + VisitID.ToString());
+        }
+        else
+        {
+            // display the result alert
+            e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Prescription deleted successfully!", e.Exception);
+        }
     }
 }
