@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 
 public partial class UserAccess_LabOrders_ViewLabOrderInfo : System.Web.UI.Page
 {
+    private long VisitID { get; set; }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         // redirect if query string not found
@@ -29,7 +31,8 @@ public partial class UserAccess_LabOrders_ViewLabOrderInfo : System.Web.UI.Page
                 }
                 else
                 {
-                    // OK
+                    // OK, set the visit ID to the property
+                    VisitID = new DataClassesDataContext().Visits.Where(v => v.LabOrders.First().ID == long.Parse(Request.QueryString["ID"])).First().ID;
                 }
             }
             else
@@ -44,5 +47,10 @@ public partial class UserAccess_LabOrders_ViewLabOrderInfo : System.Web.UI.Page
     {
         Session[RedirectConstants.RedirectViewLabOrderSessionName] = "yes";
         Response.Redirect("/UserAccess/Visits/ViewAllVisits.aspx");
+    }
+
+    protected void ViewVisitButton_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("/UserAccess/Visits/ViewVisitDetails.aspx?ID=" + VisitID.ToString());
     }
 }
