@@ -88,4 +88,19 @@ public partial class UserAccess_Prescriptions_ViewPrescriptionDetailInfo : Syste
             dl.Items.FindByValue(drugID).Selected = true;
         }
     }
+
+    protected void PrescriptionDetailInfoFormView_ItemUpdating(object sender, FormViewUpdateEventArgs e)
+    {
+        // set the drug ID for the new object
+        var drugID = long.Parse(((DropDownList)PrescriptionDetailInfoFormView.FindControl("DrugsDropdownList")).SelectedValue);
+        e.NewValues["DrugID"] = drugID;
+    }
+
+    protected void PrescriptionDetailInfoFormView_ItemUpdated(object sender, FormViewUpdatedEventArgs e)
+    {
+        System.Threading.Thread.Sleep(1000);
+
+        // set the result alert
+        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Prescription Detail updated successfully!", e.Exception);
+    }
 }
