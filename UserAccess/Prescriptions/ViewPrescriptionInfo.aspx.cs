@@ -48,4 +48,18 @@ public partial class UserAccess_Prescriptions_ViewPrescriptionDetail : System.We
         // redirect to view all visits page
         Response.Redirect("/UserAccess/Visits/ViewAllVisits.aspx");
     }
+
+    protected void PrescriptionDetailsFormView_ItemDeleting(object sender, FormViewDeleteEventArgs e)
+    {
+        System.Threading.Thread.Sleep(1000);
+
+        // delete all this prescription's dependencies
+        PrescriptionOperations.DeleteDependencies(long.Parse(e.Keys["ID"].ToString()));
+    }
+
+    protected void PrescriptionDetailsFormView_ItemDeleted(object sender, FormViewDeletedEventArgs e)
+    {
+        // display the result alert
+        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Prescription deleted successfully!", e.Exception);   
+    }
 }

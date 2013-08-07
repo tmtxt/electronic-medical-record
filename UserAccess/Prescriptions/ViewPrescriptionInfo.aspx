@@ -17,7 +17,7 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
 
-                <asp:FormView ID="PrescriptionDetailsFormView" runat="server" DataKeyNames="ID" DataSourceID="PrescriptionInfoDataSource">
+                <asp:FormView ID="PrescriptionDetailsFormView" runat="server" DataKeyNames="ID" DataSourceID="PrescriptionInfoDataSource" OnItemDeleted="PrescriptionDetailsFormView_ItemDeleted" OnItemDeleting="PrescriptionDetailsFormView_ItemDeleting">
                     <EditItemTemplate>
                         
                     </EditItemTemplate>
@@ -38,11 +38,12 @@
                             </div>
                             <p></p>
                             <asp:Button ID="EditButton" runat="server" Text="Edit"
-                                CssClass="btn btn-primary" />
+                                CssClass="btn btn-primary" CommandName="Edit" />
                             <asp:Button ID="ViewVisitButton" runat="server" Text="View Visit"
                                 CssClass="btn btn-primary" />
                             <asp:Button ID="DeleteButton" runat="server" Text="Delete"
-                                CssClass="btn btn-danger" />
+                                CssClass="btn btn-danger" CommandName="Delete"
+                                OnClientClick="return confirm('Are you sure you want to delete this Prescription?\n\nAll Prescription Details belong to this Prescription wiil be deleted, too!')" />
                         </fieldset>
                     </ItemTemplate>
                 </asp:FormView>
