@@ -50,4 +50,9 @@ public partial class UserAccess_LabOrders_ViewLabOrderDetailInfo : System.Web.UI
         Session[RedirectConstants.RedirectLabOrderInfoSessionName] = "yes";
         Response.Redirect("/UserAccess/Visits/ViewAllVisits.aspx");
     }
+
+    protected void ViewVisitButton_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("/UserAccess/Visits/ViewVisitDetails.aspx?ID=" + VisitID.ToString());
+    }
 }
