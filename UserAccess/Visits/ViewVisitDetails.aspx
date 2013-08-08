@@ -438,6 +438,12 @@
                                     Text='<%# ((MedicalService)Eval("MedicalService")).Name %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Result">
+                            <ItemTemplate>
+                                <asp:Label ID="Label11" runat="server"
+                                    Text='<%# Eval("Result") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:TemplateField HeaderText="Price">
                             <ItemTemplate>
                                 <asp:Label ID="Label12" runat="server"
@@ -445,12 +451,10 @@
                                 USD
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Result">
-                            <ItemTemplate>
-                                <asp:Label ID="Label11" runat="server"
-                                    Text='<%# Eval("Result") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
+                        <asp:HyperLinkField Text="Details" DataNavigateUrlFields="ID"
+                            DataNavigateUrlFormatString="/UserAccess/LabOrders/ViewLabOrderDetailInfo.aspx?ID={0}">
+                            <ControlStyle CssClass="btn btn-primary btn-small" />
+                        </asp:HyperLinkField>
                     </Columns>
                 </asp:GridView>
 
