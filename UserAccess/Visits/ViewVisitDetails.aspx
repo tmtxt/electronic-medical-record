@@ -305,7 +305,7 @@
                     </WhereParameters>
                 </asp:LinqDataSource>
 
-                <h3>Prescription Details</h3>
+                <h4>Prescription Details</h4>
 
                 <asp:GridView ID="PrescriptionDetailsGridView" runat="server" AutoGenerateColumns="False"
                     DataKeyNames="ID" DataSourceID="PrescriptionDetailsDataSource"
@@ -348,6 +348,7 @@
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:HyperLinkField Text="Details" DataNavigateUrlFields="ID"
+                            ItemStyle-Width="10%" HeaderStyle-Width="10%" FooterStyle-Width="10%"
                             DataNavigateUrlFormatString="/UserAccess/Prescriptions/ViewPrescriptionDetailInfo.aspx?ID={0}">
                             <ControlStyle CssClass="btn btn-primary btn-small" />
                         </asp:HyperLinkField>
@@ -364,7 +365,7 @@
                     <WhereParameters>
                     </WhereParameters>
                 </asp:LinqDataSource>
-
+                <p>&nbsp;</p>
                 <h3>Lab Order</h3>
 
                 <asp:FormView Width="100%" ID="LabOrderFormView" runat="server" DataKeyNames="ID"
@@ -423,7 +424,7 @@
                     </WhereParameters>
                 </asp:LinqDataSource>
 
-                <h3>Lab Order Details</h3>
+                <h4>Lab Order Details</h4>
 
                 <asp:GridView ID="LabOrderDetailsGridView" runat="server" AutoGenerateColumns="False"
                     DataKeyNames="ID" DataSourceID="LabOrderDetailsDataSource"
@@ -451,7 +452,8 @@
                                 USD
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:HyperLinkField Text="Details" DataNavigateUrlFields="ID"
+                        <asp:HyperLinkField Text="Details" DataNavigateUrlFields="ID" 
+                            ItemStyle-Width="10%" HeaderStyle-Width="10%" FooterStyle-Width="10%"
                             DataNavigateUrlFormatString="/UserAccess/LabOrders/ViewLabOrderDetailInfo.aspx?ID={0}">
                             <ControlStyle CssClass="btn btn-primary btn-small" />
                         </asp:HyperLinkField>
