@@ -55,4 +55,20 @@ public partial class UserAccess_LabOrders_ViewLabOrderDetailInfo : System.Web.UI
     {
         Response.Redirect("/UserAccess/Visits/ViewVisitDetails.aspx?ID=" + VisitID.ToString());
     }
+
+    protected void LabOrderDetailInfoFormView_ItemDeleted(object sender, FormViewDeletedEventArgs e)
+    {
+        System.Threading.Thread.Sleep(1000);
+
+        if (e.Exception == null)
+        {
+            Session[RedirectSuccessConstants.RedirectSuccessDeleteLabOrderDetail] = "yes";
+            Response.Redirect("/UserAccess/Visits/ViewVisitDetails.aspx?ID=" + VisitID.ToString());
+        }
+        else
+        {
+            // print the result alert
+            e.ExceptionHandled = ResultAlert.SetResultAlertReturn("error", e.Exception);
+        }
+    }
 }

@@ -17,7 +17,10 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
 
-                <asp:FormView Width="100%" ID="LabOrderDetailInfoFormView" runat="server" DataSourceID="LabOrderDetailInfoDataSource">
+                <asp:FormView Width="100%" ID="LabOrderDetailInfoFormView" runat="server"
+                    DataSourceID="LabOrderDetailInfoDataSource"
+                    DataKeyNames="ID"
+                    OnItemDeleted="LabOrderDetailInfoFormView_ItemDeleted">
                     <ItemTemplate>
                         <table style="width: 80%" class="table">
                             <tr>
@@ -41,13 +44,13 @@
                             
                             <tr>
                                 <td colspan="2">
-                                    <asp:Button ID="EditButton" runat="server" Text="Edit Prescription Detail"
+                                    <asp:Button ID="EditButton" runat="server" Text="Edit Lab Order Detail"
                                         CssClass="btn btn-primary" CommandName="Edit" />
                                     <asp:Button ID="ViewVisitButton" runat="server" Text="View Visit Details"
                                         CssClass="btn btn-primary" OnClick="ViewVisitButton_Click" />
-                                    <asp:Button ID="DeleteButton" runat="server" Text="Delete Prescription Detail"
+                                    <asp:Button ID="DeleteButton" runat="server" Text="Delete Lab Order Detail"
                                         CssClass="btn btn-danger" CommandName="Delete"
-                                        OnClientClick="return confirm('Are you sure you want to delete this Prescription Details?')" />
+                                        OnClientClick="return confirm('Are you sure you want to delete this Lab Order Details?')" />
                                 </td>
                             </tr>
                         </table>
