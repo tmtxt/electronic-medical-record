@@ -31,6 +31,8 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
             "Prescription Detail deleted successfully!");
         successDictionary.Add(RedirectSuccessConstants.RedirectSuccessAddLabOrder,
             "Lab Order inserted successfully!");
+        successDictionary.Add(RedirectSuccessConstants.RedirectSuccessAddLabOrderDetail,
+            "Lab Order Detail inserted successfuly!");
         RedirectSuccessAlert.SetAlert(successDictionary);
 
         Dictionary<string, string> infoDictionary = new Dictionary<string, string>();
