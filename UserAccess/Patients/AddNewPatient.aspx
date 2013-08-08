@@ -19,7 +19,7 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
 
             <ContentTemplate>
-                <asp:FormView Width="100%" ID="AddPatientFormView" runat="server" DataKeyNames="ID" DataSourceID="AddPatientDataSource" OnItemInserted="AddPatientFormView_ItemInserted">
+                <asp:FormView Width="100%" ID="AddPatientFormView" runat="server" DataKeyNames="ID" DataSourceID="AddPatientDataSource" OnItemInserted="AddPatientFormView_ItemInserted" DefaultMode="Insert" OnItemInserting="AddPatientFormView_ItemInserting">
 
                     <InsertItemTemplate>
                         <fieldset>
@@ -32,7 +32,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="GenderDropdownList">Gender</label>
-                                <asp:DropDownList ID="GenderDropdownList" DataValueField='<%# Bind("Gender") %>' runat="server">
+                                <asp:DropDownList ID="GenderDropdownList" SelectedValue='<%# Bind("Gender") %>' runat="server">
                                     <asp:ListItem>Male</asp:ListItem>
                                     <asp:ListItem>Female</asp:ListItem>
                                     <asp:ListItem>Gay</asp:ListItem>
@@ -52,11 +52,11 @@
                             </div>
 
                             <p></p>
-                            <asp:LinkButton CssClass="btn btn-primary" ID="InsertButton" runat="server"
-                                CausesValidation="True" Text="Add New Patient" OnClick="InsertButton_Click" />
-                            &nbsp;<asp:LinkButton CssClass="btn btn-primary" ID="ClearButton" runat="server"
+                            <asp:Button CssClass="btn btn-primary" ID="InsertButton" runat="server"
+                                CausesValidation="True" Text="Add New Patient" CommandName="Insert" />
+                            &nbsp;<asp:Button CssClass="btn btn-primary" ID="ClearButton" runat="server"
                                 CausesValidation="False" Text="Clear Form" OnClick="ClearButton_Click" />
-                            &nbsp;<asp:LinkButton CssClass="btn btn-primary" ID="InsertCancelButton" runat="server"
+                            &nbsp;<asp:Button CssClass="btn btn-primary" ID="InsertCancelButton" runat="server"
                                 CausesValidation="False" Text="Cancel" OnClick="InsertCancelButton_Click" />
 
                         </fieldset>
@@ -64,7 +64,7 @@
 
                 </asp:FormView>
                 <asp:LinqDataSource ID="AddPatientDataSource"
-                    runat="server" ContextTypeName="DataClassesDataContext" EnableInsert="True" EntityTypeName="" TableName="Patients" OnInserting="AddPatientDataSource_Inserting">
+                    runat="server" ContextTypeName="DataClassesDataContext" EnableInsert="True" EntityTypeName="" TableName="Patients">
                 </asp:LinqDataSource>
                 <p>&nbsp;</p>
                 <utmpl:ResultAlert runat="server" ID="ResultAlert" />

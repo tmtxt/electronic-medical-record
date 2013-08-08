@@ -9,14 +9,9 @@ public partial class UserAccess_Patients_AddNewPatient : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
-            AddPatientFormView.ChangeMode(FormViewMode.Insert);
-        else
-        {
-            AddPatientFormView.ChangeMode(FormViewMode.Edit);
-            AddPatientFormView.ChangeMode(FormViewMode.Insert);
-        }
+        
     }
+
     protected void InsertButton_Click(object sender, EventArgs e)
     {
 
@@ -63,7 +58,7 @@ public partial class UserAccess_Patients_AddNewPatient : System.Web.UI.Page
 
     protected void AddPatientFormView_ItemInserted(object sender, FormViewInsertedEventArgs e)
     {
-        System.Threading.Thread.Sleep(1000);
+        
 
         e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Patient inserted successfully!", e.Exception);
 
@@ -83,7 +78,15 @@ public partial class UserAccess_Patients_AddNewPatient : System.Web.UI.Page
     {
         Response.Redirect("/UserAccess/Patients/ViewAllPatients.aspx");
     }
-    protected void AddPatientDataSource_Inserting(object sender, LinqDataSourceInsertEventArgs e)
+
+    protected void AddPatientFormView_ItemInserting(object sender, FormViewInsertEventArgs e)
     {
+        System.Threading.Thread.Sleep(1000);
+
+        // get the date picker control from the form view
+        var datePicker = (TemplateControls_DatePicker)AddPatientFormView.FindControl("DateOfBirthDatePicker");
+
+        // set the date of birth of the new patient
+        e.Values["DateOfBirth"] = datePicker.SelectedDate;
     }
 }
