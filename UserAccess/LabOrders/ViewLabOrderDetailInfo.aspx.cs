@@ -88,4 +88,19 @@ public partial class UserAccess_LabOrders_ViewLabOrderDetailInfo : System.Web.UI
             dl.Items.FindByValue(medicalServiceID).Selected = true;
         }
     }
+
+    protected void LabOrderDetailInfoFormView_ItemUpdated(object sender, FormViewUpdatedEventArgs e)
+    {
+        System.Threading.Thread.Sleep(1000);
+
+        // set the result alert
+        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Lab Order Detail updated successfully!", e.Exception);
+    }
+
+    protected void LabOrderDetailInfoFormView_ItemUpdating(object sender, FormViewUpdateEventArgs e)
+    {
+        // set the medical service ID for the new object
+        var medicalServiceID = long.Parse(((DropDownList)LabOrderDetailInfoFormView.FindControl("MedicalServicesDropdownList")).SelectedValue);
+        e.NewValues["MedicalServiceID"] = medicalServiceID;
+    }
 }

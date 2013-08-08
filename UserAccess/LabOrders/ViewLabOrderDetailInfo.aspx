@@ -20,7 +20,7 @@
                 <asp:FormView Width="100%" ID="LabOrderDetailInfoFormView" runat="server"
                     DataSourceID="LabOrderDetailInfoDataSource"
                     DataKeyNames="ID"
-                    OnItemDeleted="LabOrderDetailInfoFormView_ItemDeleted">
+                    OnItemDeleted="LabOrderDetailInfoFormView_ItemDeleted" OnItemUpdated="LabOrderDetailInfoFormView_ItemUpdated" OnItemUpdating="LabOrderDetailInfoFormView_ItemUpdating">
                     <ItemTemplate>
                         <table style="width: 80%" class="table">
                             <tr>
