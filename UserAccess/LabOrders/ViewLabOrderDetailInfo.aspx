@@ -41,7 +41,7 @@
                                         Text='<%# Eval("Result") %>'></asp:Label>
                                 </td>
                             </tr>
-                            
+
                             <tr>
                                 <td colspan="2">
                                     <asp:Button ID="EditButton" runat="server" Text="Edit Lab Order Detail"
@@ -55,6 +55,58 @@
                             </tr>
                         </table>
                     </ItemTemplate>
+                    <EditItemTemplate>
+                        <fieldset>
+                            <legend>Enter Lab Order Detail</legend>
+                            <div class="form-group">
+                                <label for="MedicalServiceGroupsDropdownList">Medical Service Group</label>
+                                <asp:DropDownList ID="MedicalServiceGroupsDropdownList"
+                                    Width="70%" AutoPostBack="true"
+                                    runat="server" DataSourceID="MedicalServiceGroupsDataSource"
+                                    SelectedValue='<%# ((MedicalService)Eval("MedicalService")).MedicalServiceGroupID %>'
+                                    DataTextField="Name" DataValueField="ID">
+                                </asp:DropDownList>
+                                <asp:LinqDataSource ID="MedicalServiceGroupsDataSource" runat="server"
+                                    ContextTypeName="DataClassesDataContext" EntityTypeName="" OrderBy="Name"
+                                    Select="new (ID, Name)" TableName="MedicalServiceGroups">
+                                </asp:LinqDataSource>
+                            </div>
+                            <p></p>
+                            <div class="form-group">
+                                <label for="MedicalServicesDropdownList">Medical Service</label>
+                                <asp:DropDownList ID="MedicalServicesDropdownList"
+                                    Width="70%"
+                                    runat="server" DataSourceID="MedicalServicesDataSource" DataTextField="Name"
+                                    DataValueField="ID" OnDataBound="MedicalServicesDropdownList_DataBound">
+                                </asp:DropDownList>
+                                <asp:LinqDataSource ID="MedicalServicesDataSource" runat="server"
+                                    ContextTypeName="DataClassesDataContext" EntityTypeName="" OrderBy="Name"
+                                    Where="MedicalServiceGroupID = @MedicalServiceGroupID"
+                                    Select="new (ID, Name)" TableName="MedicalServices">
+                                    <WhereParameters>
+                                        <asp:ControlParameter ControlID="MedicalServiceGroupsDropdownList"
+                                            Name="MedicalServiceGroupID" PropertyName="SelectedValue"
+                                            Type="Int64" />
+                                    </WhereParameters>
+                                </asp:LinqDataSource>
+                            </div>
+                            <p></p>
+                            <div class="form-group">
+                                <label>Result</label>
+                                <asp:TextBox ID="ResultTextBox" Width="70%" runat="server"
+                                    Text='<%# Bind("Result") %>' placeholder='Result'></asp:TextBox>
+                                <br />
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
+                                    ErrorMessage="Result is required" ControlToValidate="ResultTextBox"
+                                    CssClass="label label-important" Display="Dynamic"></asp:RequiredFieldValidator>
+                            </div>
+                            <p></p>
+                            <asp:Button ID="UpdateButton" runat="server" Text="Update"
+                                CssClass="btn btn-primary" CommandName="Update" />
+                            <asp:Button ID="CancelButton" runat="server" Text="Cancel"
+                                CssClass="btn btn-primary" CausesValidation="false" CommandName="Cancel" />
+                        </fieldset>
+                    </EditItemTemplate>
                 </asp:FormView>
 
                 <asp:LinqDataSource ID="LabOrderDetailInfoDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableDelete="True" EnableUpdate="True" EntityTypeName="" TableName="LabOrderDetails" Where="ID == @ID">

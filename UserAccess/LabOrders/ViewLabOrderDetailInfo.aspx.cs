@@ -71,4 +71,21 @@ public partial class UserAccess_LabOrders_ViewLabOrderDetailInfo : System.Web.UI
             e.ExceptionHandled = ResultAlert.SetResultAlertReturn("error", e.Exception);
         }
     }
+
+    protected void MedicalServicesDropdownList_DataBound(object sender, EventArgs e)
+    {
+        // get the medical service dropdown list
+        var dl = (DropDownList)LabOrderDetailInfoFormView.FindControl("MedicalServicesDropdownList");
+
+        // set the selected value for the dropdown list
+        var medicalServiceID = (new DataClassesDataContext()).LabOrderDetails.Where(l => l.ID == long.Parse(Request.QueryString["ID"])).First().MedicalServiceID.ToString();
+        if (dl.Items.FindByValue(medicalServiceID) == null)
+        {
+            // do nothing, leave the default selected value
+        }
+        else
+        {
+            dl.Items.FindByValue(medicalServiceID).Selected = true;
+        }
+    }
 }
