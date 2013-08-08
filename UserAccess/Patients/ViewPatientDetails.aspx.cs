@@ -11,18 +11,45 @@ public partial class UserAccess_Patients_ViewPatientDetails : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        // redirect if query string not found
         if (Request.QueryString["ID"] == null)
         {
-            // set the session variable
-            Session[RedirectConstants.RedirectPatientDetailsSessionName] = "yes";
-
-            Response.Redirect("/UserAccess/Patients/ViewAllPatients.aspx");
+            RedirectToViewAllPatients();
+        }
+        else
+        {
+            long temp;
+            // redirect if cannot parse
+            if (long.TryParse(Request.QueryString["ID"], out temp))
+            {
+                // redirect if patient not found
+                if (new DataClassesDataContext().Patients.Where(p => p.ID == long.Parse(Request.QueryString["ID"])).Count() == 0)
+                {
+                    RedirectToViewAllPatients();
+                }
+                else
+                {
+                    // OK
+                }
+            }
+            else
+            {
+                RedirectToViewAllPatients();
+            }
         }
 
         RedirectSuccessAlert.SetAlert("Patient inserted successfully!",
             RedirectSuccessConstants.RedirectSuccessAddPatient);
     }
+
+    protected void RedirectToViewAllPatients()
+    {
+        // set the session variable
+        Session[RedirectConstants.RedirectPatientDetailsSessionName] = "yes";
+
+        Response.Redirect("/UserAccess/Patients/ViewAllPatients.aspx");
+    }
+
     protected void PatientDetailFormView_ItemDeleted(object sender, FormViewDeletedEventArgs e)
     {
         if (e.Exception == null)
