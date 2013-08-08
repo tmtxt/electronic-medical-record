@@ -20,7 +20,7 @@
 
             <ContentTemplate>
 
-                <asp:FormView ID="LabOrderInfoFormView" runat="server" DataKeyNames="ID" DataSourceID="LabOrderInfoDataSource" OnItemUpdated="LabOrderInfoFormView_ItemUpdated">
+                <asp:FormView ID="LabOrderInfoFormView" runat="server" DataKeyNames="ID" DataSourceID="LabOrderInfoDataSource" OnItemUpdated="LabOrderInfoFormView_ItemUpdated" OnItemDeleted="LabOrderInfoFormView_ItemDeleted" OnItemDeleting="LabOrderInfoFormView_ItemDeleting">
                     <ItemTemplate>
                         <fieldset>
                             <div class="form-group">

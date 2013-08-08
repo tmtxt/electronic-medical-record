@@ -35,6 +35,8 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
             "Lab Order Detail inserted successfuly!");
         successDictionary.Add(RedirectSuccessConstants.RedirectSuccessDeleteLabOrderDetail,
             "Lab Order Detail deleted successfully!");
+        successDictionary.Add(RedirectSuccessConstants.RedirectSuccessDeleteLabOrder,
+            "Lab Order deleted successfully!");
         RedirectSuccessAlert.SetAlert(successDictionary);
 
         Dictionary<string, string> infoDictionary = new Dictionary<string, string>();
@@ -362,5 +364,20 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
                 Response.Redirect("/UserAccess/LabOrders/AddNewLabOrderDetail.aspx?LabOrderID=" + laborders.First().ID);
             }
         }
+    }
+
+    protected void LabOrderFormView_ItemDeleting(object sender, FormViewDeleteEventArgs e)
+    {
+        // delete all this lab order dependencies
+        LabOrderOperations.DeleteDependencies(long.Parse(e.Keys["ID"].ToString()));
+    }
+
+    protected void LabOrderFormView_ItemDeleted(object sender, FormViewDeletedEventArgs e)
+    {
+        // rebind data for the lab order detail grid view
+        LabOrderDetailsGridView.DataBind();
+
+        // display the result alert
+        e.ExceptionHandled = ResultAlertBottom.SetResultAlertReturn("Lab Order deleted successfully!", e.Exception);
     }
 }

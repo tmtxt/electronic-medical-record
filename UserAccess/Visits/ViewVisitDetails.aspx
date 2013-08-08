@@ -365,11 +365,12 @@
                     <WhereParameters>
                     </WhereParameters>
                 </asp:LinqDataSource>
+
                 <p>&nbsp;</p>
                 <h3>Lab Order</h3>
 
                 <asp:FormView Width="100%" ID="LabOrderFormView" runat="server" DataKeyNames="ID"
-                    DataSourceID="LabOrderDataSource" OnDataBound="LabOrderFormView_DataBound">
+                    DataSourceID="LabOrderDataSource" OnDataBound="LabOrderFormView_DataBound" OnItemDeleted="LabOrderFormView_ItemDeleted" OnItemDeleting="LabOrderFormView_ItemDeleting">
                     <EmptyDataTemplate>
                         <p><strong>No Info</strong></p>
                         <p>
@@ -418,7 +419,7 @@
                 </asp:FormView>
 
                 <asp:LinqDataSource ID="LabOrderDataSource" runat="server" ContextTypeName="DataClassesDataContext"
-                    EntityTypeName="" TableName="LabOrders" Where="VisitID == @VisitID">
+                    EntityTypeName="" TableName="LabOrders" Where="VisitID == @VisitID" EnableDelete="True">
                     <WhereParameters>
                         <asp:QueryStringParameter Name="VisitID" QueryStringField="ID" Type="Int64" />
                     </WhereParameters>
@@ -468,6 +469,7 @@
                     ContextTypeName="DataClassesDataContext" EntityTypeName="" TableName="LabOrderDetails">
                 </asp:LinqDataSource>
 
+                <p></p>
                 <utmpl:ResultAlert runat="server" ID="ResultAlertBottom" />
 
             </ContentTemplate>

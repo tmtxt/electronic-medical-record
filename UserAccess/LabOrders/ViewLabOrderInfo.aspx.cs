@@ -70,4 +70,27 @@ public partial class UserAccess_LabOrders_ViewLabOrderInfo : System.Web.UI.Page
         // display the result alert
         e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Lab Order updated successfully!", e.Exception);
     }
+
+    protected void LabOrderInfoFormView_ItemDeleting(object sender, FormViewDeleteEventArgs e)
+    {
+        System.Threading.Thread.Sleep(1000);
+
+        // delete all this lab order's dependencies
+        LabOrderOperations.DeleteDependencies(long.Parse(e.Keys["ID"].ToString()));
+    }
+
+    protected void LabOrderInfoFormView_ItemDeleted(object sender, FormViewDeletedEventArgs e)
+    {
+        // redirect to the view visit detail page
+        if (e.Exception == null)
+        {
+            Session[RedirectSuccessConstants.RedirectSuccessDeleteLabOrder] = "yes";
+            Response.Redirect("/UserAccess/Visits/ViewVisitDetails.aspx?ID=" + VisitID.ToString());
+        }
+        else
+        {
+            // display the result alert
+            e.ExceptionHandled = ResultAlert.SetResultAlertReturn("error", e.Exception);
+        }
+    }
 }
