@@ -46,7 +46,11 @@
                                 <td><strong>Birthdate</strong></td>
                                 <td><%# DateTime.FromBinary(long.Parse(Eval("DateOfBirth").ToString())).ToLongDateString() %></td>
                                 <td><strong>Number of visits</strong></td>
-                                <td>number</td>
+                                <td>
+                                    <asp:Label ID="Label1" runat="server"
+                                        Text='<%# new DataClassesDataContext().Visits.Where(v => v.PatientID == long.Parse(Eval("ID").ToString())).Count() %>'>
+                                    </asp:Label>
+                                </td>
                             </tr>
                             <tr>
                                 <td colspan="4">
