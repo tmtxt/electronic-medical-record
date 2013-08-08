@@ -19,6 +19,9 @@ public partial class UserAccess_Patients_ViewPatientDetails : System.Web.UI.Page
 
             Response.Redirect("/UserAccess/Patients/ViewAllPatients.aspx");
         }
+
+        RedirectSuccessAlert.SetAlert("Patient inserted successfully!",
+            RedirectSuccessConstants.RedirectSuccessAddPatient);
     }
     protected void PatientDetailFormView_ItemDeleted(object sender, FormViewDeletedEventArgs e)
     {

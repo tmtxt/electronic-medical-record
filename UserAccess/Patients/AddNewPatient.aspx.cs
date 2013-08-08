@@ -58,21 +58,18 @@ public partial class UserAccess_Patients_AddNewPatient : System.Web.UI.Page
 
     protected void AddPatientFormView_ItemInserted(object sender, FormViewInsertedEventArgs e)
     {
+        // redirect to view patient detail if successful
+        if (e.Exception == null)
+        {
+            Session[RedirectSuccessConstants.RedirectSuccessAddPatient] = "yes";
+            Response.Redirect("/UserAccess/Patients/ViewPatientDetails.aspx?ID=" + InsertedPatient.ID);
+        }
+        else
+        {
+            // display the result alert
+            e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Patient inserted successfully!", e.Exception);
+        }
         
-
-        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Patient inserted successfully!", e.Exception);
-
-        //if (e.Exception == null)
-        //{
-        //    ResultAlert.SetResultAlert("Patient inserted successfully!",
-        //        TemplateControls_ResultAlert.AlertTypeSuccess);
-        //    ClearForm();
-        //}
-        //else
-        //{
-        //    ResultAlert.SetResultAlert("An error occured!",
-        //        TemplateControls_ResultAlert.AlertTypeError);
-        //}
     }
     protected void InsertCancelButton_Click(object sender, EventArgs e)
     {
@@ -88,5 +85,13 @@ public partial class UserAccess_Patients_AddNewPatient : System.Web.UI.Page
 
         // set the date of birth of the new patient
         e.Values["DateOfBirth"] = datePicker.SelectedDate;
+    }
+
+    private Patient InsertedPatient;
+
+    protected void AddPatientDataSource_Inserted(object sender, LinqDataSourceStatusEventArgs e)
+    {
+        // store the inserted patient
+        InsertedPatient = (Patient)e.Result;
     }
 }

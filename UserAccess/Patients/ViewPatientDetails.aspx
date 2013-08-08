@@ -3,6 +3,8 @@
 <%@ Register Src="~/TemplateControls/UpdateProgressBar.ascx" TagPrefix="utmpl" TagName="UpdateProgressBar" %>
 <%@ Register Src="~/TemplateControls/ResultAlert.ascx" TagPrefix="utmpl" TagName="ResultAlert" %>
 <%@ Register Src="~/TemplateControls/DatePicker.ascx" TagPrefix="utmpl" TagName="DatePicker" %>
+<%@ Register Src="~/TemplateControls/RedirectSuccessAlert.ascx" TagPrefix="utmpl" TagName="RedirectSuccessAlert" %>
+
 
 
 
@@ -20,6 +22,9 @@
         <asp:UpdatePanel ID="PatientDetailUpdatePanel" runat="server">
         
             <ContentTemplate>
+
+                <utmpl:RedirectSuccessAlert runat="server" ID="RedirectSuccessAlert" />
+
                 <asp:FormView DataKeyNames="ID" ID="PatientDetailFormView" runat="server" DataSourceID="PatientDetailDataSource" OnItemDeleted="PatientDetailFormView_ItemDeleted" OnItemDeleting="PatientDetailFormView_ItemDeleting" OnItemUpdated="PatientDetailFormView_ItemUpdated" OnModeChanged="PatientDetailFormView_ModeChanged">
                     <ItemTemplate>
                         <%-- patient name as title --%>
