@@ -12,12 +12,38 @@ public partial class UserAccess_Visits_AddNewVisit : System.Web.UI.Page
         // redirect if query string not found
         if (Request.QueryString["PatientID"] == null)
         {
-            // set the session variable
-            Session[RedirectConstants.RedirectAddNewVisitSessionName] = "yes";
-
-            // redirect to view all patients
-            Response.Redirect("/UserAccess/Patients/ViewAllPatients.aspx");
+            RedirectToViewAllPatients();
         }
+        else
+        {
+            long temp;
+            // redirect if cannot parse
+            if (long.TryParse(Request.QueryString["PatientID"], out temp))
+            {
+                // redirect if patient ID not found
+                if (new DataClassesDataContext().Patients.Where(p => p.ID == long.Parse(Request.QueryString["PatientID"])).Count() == 0)
+                {
+                    RedirectToViewAllPatients();
+                }
+                else
+                {
+                    // OK
+                }
+            }
+            else
+            {
+                RedirectToViewAllPatients();
+            }
+        }
+    }
+
+    protected void RedirectToViewAllPatients()
+    {
+        // set the session variable
+        Session[RedirectConstants.RedirectAddNewVisitSessionName] = "yes";
+
+        // redirect to view all patients
+        Response.Redirect("/UserAccess/Patients/ViewAllPatients.aspx");
     }
 
     protected void ICDChapterDropdownList_SelectedIndexChanged(object sender, EventArgs e)
@@ -46,6 +72,8 @@ public partial class UserAccess_Visits_AddNewVisit : System.Web.UI.Page
     protected void AddVisitFormView_ItemInserted(object sender, FormViewInsertedEventArgs e)
     {
         System.Threading.Thread.Sleep(1000);
+
+        // redirect if success
 
         // print the result alert
         e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Visit inserted successfully!", e.Exception);
