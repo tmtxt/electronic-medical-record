@@ -8,16 +8,42 @@ using System.Web.UI.WebControls;
 public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
 {
 
+    protected void RedirectToViewAllVisits()
+    {
+        // set the session variable
+        Session[RedirectConstants.RedirectVisitDetailsSessionName] = "yes";
+
+        // redirect to view all patients page
+        Response.Redirect("/UserAccess/Visits/ViewAllVisits.aspx");
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         // redirect if no query string found
         if (Request.QueryString["ID"] == null)
         {
-            // set the session variable
-            Session[RedirectConstants.RedirectVisitDetailsSessionName] = "yes";
-
-            // redirect to view all patients page
-            Response.Redirect("/UserAccess/Visits/ViewAllVisits.aspx");
+            RedirectToViewAllVisits();
+        }
+        else
+        {
+            long temp;
+            // redirect if cannot parse
+            if (long.TryParse(Request.QueryString["ID"], out temp))
+            {
+                // redirect if ID not found
+                if (new DataClassesDataContext().Visits.Where(v => v.ID == long.Parse(Request.QueryString["ID"])).Count() == 0)
+                {
+                    RedirectToViewAllVisits();
+                }
+                else
+                {
+                    // OK
+                }
+            }
+            else
+            {
+                RedirectToViewAllVisits();
+            }
         }
 
         Dictionary<string, string> successDictionary = new Dictionary<string, string>();
