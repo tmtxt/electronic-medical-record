@@ -24,6 +24,7 @@
 
                 <utmpl:RedirectAlert runat="server" ID="RedirectAlert" />
                 <utmpl:RedirectSuccessAlert runat="server" ID="RedirectSuccessAlert" />
+                <utmpl:ResultAlert runat="server" ID="ResultAlertTop" />
 
                 <div class="control-group">
                     <asp:Label CssClass="label_filter" ID="Label3" runat="server" Text="Filter Patients by Name"></asp:Label>

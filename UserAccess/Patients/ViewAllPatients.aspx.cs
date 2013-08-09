@@ -29,6 +29,7 @@ public partial class UserAccess_Patients_ViewAllPatient : System.Web.UI.Page
     protected void AllPatientsGridview_RowDeleted(object sender, GridViewDeletedEventArgs e)
     {
         // Display whether the delete operation succeeded.
+        ResultAlertTop.SetResultAlertReturn("Patient deleted successfully!", e.Exception);
         e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Patient deleted successfully!", e.Exception);
     }
     protected void AllPatientsGridview_RowDeleting(object sender, GridViewDeleteEventArgs e)
