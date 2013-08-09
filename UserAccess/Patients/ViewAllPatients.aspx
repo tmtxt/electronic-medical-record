@@ -3,6 +3,8 @@
 <%@ Register Src="~/TemplateControls/ResultAlert.ascx" TagPrefix="utmpl" TagName="ResultAlert" %>
 <%@ Register Src="~/TemplateControls/UpdateProgressBar.ascx" TagPrefix="utmpl" TagName="UpdateProgressBar" %>
 <%@ Register Src="~/TemplateControls/RedirectAlert.ascx" TagPrefix="utmpl" TagName="RedirectAlert" %>
+<%@ Register Src="~/TemplateControls/RedirectSuccessAlert.ascx" TagPrefix="utmpl" TagName="RedirectSuccessAlert" %>
+
 
 
 
@@ -21,6 +23,7 @@
             <ContentTemplate>
 
                 <utmpl:RedirectAlert runat="server" ID="RedirectAlert" />
+                <utmpl:RedirectSuccessAlert runat="server" ID="RedirectSuccessAlert" />
 
                 <div class="control-group">
                     <asp:Label CssClass="label_filter" ID="Label3" runat="server" Text="Filter Patients by Name"></asp:Label>

@@ -54,13 +54,12 @@ public partial class UserAccess_Patients_ViewPatientDetails : System.Web.UI.Page
     {
         if (e.Exception == null)
         {
-            ResultAlert.SetResultAlert("Patient deleted successfully.", TemplateControls_ResultAlert.AlertTypeSuccess);
+            Session[RedirectSuccessConstants.RedirectSuccessDeletePatient] = "yes";
+            Response.Redirect("/UserAccess/Patients/ViewAllPatients.aspx");
         }
         else
         {
-            ResultAlert.SetResultAlert("An error occured! Please try again!",
-                TemplateControls_ResultAlert.AlertTypeError);
-            e.ExceptionHandled = true;
+            e.ExceptionHandled = ResultAlert.SetResultAlertReturn("error", e.Exception);
         }
     }
     protected void PatientDetailFormView_ItemDeleting(object sender, FormViewDeleteEventArgs e)
