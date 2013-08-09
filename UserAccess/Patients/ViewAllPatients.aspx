@@ -39,7 +39,7 @@
                     <asp:Button ID="Button3" runat="server" CssClass="btn btn-primary" OnClick="Button3_Click" Text="Cancel" />
                 </div>
 
-                <asp:GridView CssClass="gridview table table-bordered table-striped table-hover" ID="AllPatientsGridview" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="AllPatientsDataSource" OnRowDeleted="AllPatientsGridview_RowDeleted" OnRowDeleting="AllPatientsGridview_RowDeleting" AllowPaging="True">
+                <asp:GridView CssClass="gridview table table-bordered table-striped table-hover" ID="AllPatientsGridview" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="AllPatientsDataSource" OnRowDeleted="AllPatientsGridview_RowDeleted" OnRowDeleting="AllPatientsGridview_RowDeleting" AllowPaging="True" PageSize="20">
                     <Columns>
                         <asp:TemplateField HeaderText="ID" InsertVisible="False" SortExpression="ID">
                             <EditItemTemplate>
