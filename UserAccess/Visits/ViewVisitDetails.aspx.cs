@@ -17,6 +17,8 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
         Response.Redirect("/UserAccess/Visits/ViewAllVisits.aspx");
     }
 
+    private long PatientID { get; set; }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         // redirect if no query string found
@@ -30,14 +32,16 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
             // redirect if cannot parse
             if (long.TryParse(Request.QueryString["ID"], out temp))
             {
+                var visits = new DataClassesDataContext().Visits.Where(v => v.ID == long.Parse(Request.QueryString["ID"]));
                 // redirect if ID not found
-                if (new DataClassesDataContext().Visits.Where(v => v.ID == long.Parse(Request.QueryString["ID"])).Count() == 0)
+                if (visits.Count() == 0)
                 {
                     RedirectToViewAllVisits();
                 }
                 else
                 {
-                    // OK
+                    // OK, store the patient ID for later redirect
+                    PatientID = visits.First().PatientID;
                 }
             }
             else
@@ -140,8 +144,16 @@ public partial class UserAccess_Visits_ViewVisitDetails : System.Web.UI.Page
 
     protected void VisitDetailsFormView_ItemDeleted(object sender, FormViewDeletedEventArgs e)
     {
-        // print the result alert
-        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Visit deleted successfully!", e.Exception);
+        if (e.Exception == null)
+        {
+            Session[RedirectSuccessConstants.RedirectSuccessDeleteVisit] = "yes";
+            Response.Redirect("/UserAccess/Visits/ViewVisitsFromPatient.aspx?PatientID=" + PatientID);
+        }
+        else
+        {
+            // print the result alert
+            e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Visit deleted successfully!", e.Exception);
+        }
     }
 
     protected void VisitDetailsFormView_ItemUpdated(object sender, FormViewUpdatedEventArgs e)

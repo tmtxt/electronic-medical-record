@@ -46,8 +46,12 @@ public partial class UserAccess_Visits_ViewVisitsFromPatient : System.Web.UI.Pag
         }
 
         // display the redirect success alert
-        RedirectSuccessAlert.SetAlert("Visit inserted successfully!",
-            RedirectSuccessConstants.RedirectSuccessAddVisit);
+        var successDic = new Dictionary<string, string>();
+        successDic.Add(RedirectSuccessConstants.RedirectSuccessAddVisit,
+            "Visit inserted successfully!");
+        successDic.Add(RedirectSuccessConstants.RedirectSuccessDeleteVisit,
+            "Visit deleted successfully!");
+        RedirectSuccessAlert.SetAlert(successDic);
     }
 
     protected void VisitsFromPatientGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
