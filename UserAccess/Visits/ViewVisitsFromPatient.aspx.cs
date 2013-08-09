@@ -7,15 +7,42 @@ using System.Web.UI.WebControls;
 
 public partial class UserAccess_Visits_ViewVisitsFromPatient : System.Web.UI.Page
 {
+    protected void RedirectToViewAllPatients()
+    {
+        // set the session variable for displaying the message
+        Session[RedirectConstants.RedirectVisitFromPatientSessionName] = "yes";
+
+        // redirect to view all patients
+        Response.Redirect("/UserAccess/Patients/ViewAllPatients.aspx");
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
+        // redirect if query string not found
         if (Request.QueryString["PatientID"] == null)
         {
-            // set the session variable for displaying the message
-            Session[RedirectConstants.RedirectVisitFromPatientSessionName] = "yes";
-
-            // redirect to view all patients
-            Response.Redirect("/UserAccess/Patients/ViewAllPatients.aspx");
+            RedirectToViewAllPatients();
+        }
+        else
+        {
+            long temp;
+            // redirect if cannot parse
+            if (long.TryParse(Request.QueryString["PatientID"], out temp))
+            {
+                // redirect if patient id not found
+                if (new DataClassesDataContext().Patients.Where(p => p.ID == long.Parse(Request.QueryString["PatientID"])).Count() == 0)
+                {
+                    RedirectToViewAllPatients();
+                }
+                else
+                {
+                    // OK
+                }
+            }
+            else
+            {
+                RedirectToViewAllPatients();
+            }
         }
 
         // display the redirect success alert
