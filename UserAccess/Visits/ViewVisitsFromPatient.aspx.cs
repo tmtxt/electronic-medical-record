@@ -17,6 +17,10 @@ public partial class UserAccess_Visits_ViewVisitsFromPatient : System.Web.UI.Pag
             // redirect to view all patients
             Response.Redirect("/UserAccess/Patients/ViewAllPatients.aspx");
         }
+
+        // display the redirect success alert
+        RedirectSuccessAlert.SetAlert("Visit inserted successfully!",
+            RedirectSuccessConstants.RedirectSuccessAddVisit);
     }
 
     protected void VisitsFromPatientGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)

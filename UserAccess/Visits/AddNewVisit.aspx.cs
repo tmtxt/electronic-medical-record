@@ -74,9 +74,16 @@ public partial class UserAccess_Visits_AddNewVisit : System.Web.UI.Page
         System.Threading.Thread.Sleep(1000);
 
         // redirect if success
-
-        // print the result alert
-        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Visit inserted successfully!", e.Exception);
+        if (e.Exception == null)
+        {
+            Session[RedirectSuccessConstants.RedirectSuccessAddVisit] = "yes";
+            Response.Redirect("ViewVisitsFromPatient.aspx?PatientID=" + Request.QueryString["PatientID"]);
+        }
+        else
+        {
+            // print the result alert
+            e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Visit inserted successfully!", e.Exception);
+        }
     }
 
     protected void ClearButton_Click(object sender, EventArgs e)
