@@ -30,202 +30,18 @@
           <s:element minOccurs="1" maxOccurs="1" name="DateOfBirth" type="s:long" />
           <s:element minOccurs="0" maxOccurs="1" name="LicenseNumber" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Doctor" type="tns:Doctor" />
         </s:sequence>
       </s:complexType>
-      <s:complexType name="Doctor">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:long" />
-          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Gender" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="DateOfBirth" type="s:long" />
-          <s:element minOccurs="0" maxOccurs="1" name="LicenseNumber" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Image" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Visits" type="tns:ArrayOfVisit" />
-          <s:element minOccurs="0" maxOccurs="1" name="LabOrders" type="tns:ArrayOfLabOrder" />
-          <s:element minOccurs="0" maxOccurs="1" name="Prescriptions" type="tns:ArrayOfPrescription" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="ArrayOfVisit">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="Visit" nillable="true" type="tns:Visit" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="Visit">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:long" />
-          <s:element minOccurs="1" maxOccurs="1" name="Date" type="s:long" />
-          <s:element minOccurs="1" maxOccurs="1" name="HospitalID" type="s:long" />
-          <s:element minOccurs="1" maxOccurs="1" name="PatientID" type="s:long" />
-          <s:element minOccurs="1" maxOccurs="1" name="DoctorID" type="s:long" />
-          <s:element minOccurs="1" maxOccurs="1" name="ICDID" type="s:long" />
-          <s:element minOccurs="0" maxOccurs="1" name="Outcome" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="LabOrders" type="tns:ArrayOfLabOrder" />
-          <s:element minOccurs="0" maxOccurs="1" name="Prescriptions" type="tns:ArrayOfPrescription" />
-          <s:element minOccurs="0" maxOccurs="1" name="Doctor" type="tns:Doctor" />
-          <s:element minOccurs="0" maxOccurs="1" name="Hospital" type="tns:Hospital" />
-          <s:element minOccurs="0" maxOccurs="1" name="ICD" type="tns:ICD" />
-          <s:element minOccurs="0" maxOccurs="1" name="Patient" type="tns:Patient" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="ArrayOfLabOrder">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="LabOrder" nillable="true" type="tns:LabOrder" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="LabOrder">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:long" />
-          <s:element minOccurs="1" maxOccurs="1" name="VisitID" type="s:long" />
-          <s:element minOccurs="1" maxOccurs="1" name="Date" type="s:long" />
-          <s:element minOccurs="1" maxOccurs="1" name="DoctorID" type="s:long" />
-          <s:element minOccurs="0" maxOccurs="1" name="LabOrderDetails" type="tns:ArrayOfLabOrderDetail" />
-          <s:element minOccurs="0" maxOccurs="1" name="Doctor" type="tns:Doctor" />
-          <s:element minOccurs="0" maxOccurs="1" name="Visit" type="tns:Visit" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="ArrayOfLabOrderDetail">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="LabOrderDetail" nillable="true" type="tns:LabOrderDetail" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="LabOrderDetail">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:long" />
-          <s:element minOccurs="1" maxOccurs="1" name="MedicalServiceID" type="s:long" />
-          <s:element minOccurs="0" maxOccurs="1" name="Result" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="LabOrderID" type="s:long" />
-          <s:element minOccurs="0" maxOccurs="1" name="LabOrder" type="tns:LabOrder" />
-          <s:element minOccurs="0" maxOccurs="1" name="MedicalService" type="tns:MedicalService" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="MedicalService">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:long" />
-          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="Price" type="s:double" />
-          <s:element minOccurs="1" maxOccurs="1" name="MedicalServiceGroupID" type="s:long" />
-          <s:element minOccurs="0" maxOccurs="1" name="LabOrderDetails" type="tns:ArrayOfLabOrderDetail" />
-          <s:element minOccurs="0" maxOccurs="1" name="MedicalServiceGroup" type="tns:MedicalServiceGroup" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="MedicalServiceGroup">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:long" />
-          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="MedicalServices" type="tns:ArrayOfMedicalService" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="ArrayOfMedicalService">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="MedicalService" nillable="true" type="tns:MedicalService" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="ArrayOfPrescription">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="Prescription" nillable="true" type="tns:Prescription" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="Prescription">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:long" />
-          <s:element minOccurs="1" maxOccurs="1" name="Date" type="s:long" />
-          <s:element minOccurs="1" maxOccurs="1" name="DoctorID" type="s:long" />
-          <s:element minOccurs="1" maxOccurs="1" name="VisitID" type="s:long" />
-          <s:element minOccurs="0" maxOccurs="1" name="PrescriptionDetails" type="tns:ArrayOfPrescriptionDetail" />
-          <s:element minOccurs="0" maxOccurs="1" name="Doctor" type="tns:Doctor" />
-          <s:element minOccurs="0" maxOccurs="1" name="Visit" type="tns:Visit" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="ArrayOfPrescriptionDetail">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="PrescriptionDetail" nillable="true" type="tns:PrescriptionDetail" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="PrescriptionDetail">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:long" />
-          <s:element minOccurs="1" maxOccurs="1" name="DrugID" type="s:long" />
-          <s:element minOccurs="1" maxOccurs="1" name="PrescriptionID" type="s:long" />
-          <s:element minOccurs="1" maxOccurs="1" name="Quantity" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="Dose" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="SpecialInstruction" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Drug" type="tns:Drug" />
-          <s:element minOccurs="0" maxOccurs="1" name="Prescription" type="tns:Prescription" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="Drug">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:long" />
-          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="GenericName" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Unit" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="Price" type="s:double" />
-          <s:element minOccurs="1" maxOccurs="1" name="DrugGroupID" type="s:long" />
-          <s:element minOccurs="0" maxOccurs="1" name="PrescriptionDetails" type="tns:ArrayOfPrescriptionDetail" />
-          <s:element minOccurs="0" maxOccurs="1" name="DrugGroup" type="tns:DrugGroup" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="DrugGroup">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:long" />
-          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Drugs" type="tns:ArrayOfDrug" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="ArrayOfDrug">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="Drug" nillable="true" type="tns:Drug" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="Hospital">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:long" />
-          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="LicenseNumber" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Image" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Visits" type="tns:ArrayOfVisit" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="ICD">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:long" />
-          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="ICDChapterID" type="s:long" />
-          <s:element minOccurs="0" maxOccurs="1" name="Visits" type="tns:ArrayOfVisit" />
-          <s:element minOccurs="0" maxOccurs="1" name="ICDChapter" type="tns:ICDChapter" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="ICDChapter">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:long" />
-          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="ICDs" type="tns:ArrayOfICD" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="ArrayOfICD">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="ICD" nillable="true" type="tns:ICD" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="Patient">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:long" />
-          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Gender" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="DateOfBirth" type="s:long" />
-          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Image" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Visits" type="tns:ArrayOfVisit" />
-        </s:sequence>
-      </s:complexType>
+      <s:element name="GetITotalDoctorsCount">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetITotalDoctorsCountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetITotalDoctorsCountResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="GetAllDoctorsSoapIn">
@@ -234,10 +50,20 @@
   <wsdl:message name="GetAllDoctorsSoapOut">
     <wsdl:part name="parameters" element="tns:GetAllDoctorsResponse" />
   </wsdl:message>
+  <wsdl:message name="GetITotalDoctorsCountSoapIn">
+    <wsdl:part name="parameters" element="tns:GetITotalDoctorsCount" />
+  </wsdl:message>
+  <wsdl:message name="GetITotalDoctorsCountSoapOut">
+    <wsdl:part name="parameters" element="tns:GetITotalDoctorsCountResponse" />
+  </wsdl:message>
   <wsdl:portType name="DoctorServiceSoap">
     <wsdl:operation name="GetAllDoctors">
       <wsdl:input message="tns:GetAllDoctorsSoapIn" />
       <wsdl:output message="tns:GetAllDoctorsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetITotalDoctorsCount">
+      <wsdl:input message="tns:GetITotalDoctorsCountSoapIn" />
+      <wsdl:output message="tns:GetITotalDoctorsCountSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="DoctorServiceSoap" type="tns:DoctorServiceSoap">
@@ -251,11 +77,29 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetITotalDoctorsCount">
+      <soap:operation soapAction="http://tempuri.org/GetITotalDoctorsCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="DoctorServiceSoap12" type="tns:DoctorServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetAllDoctors">
       <soap12:operation soapAction="http://tempuri.org/GetAllDoctors" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetITotalDoctorsCount">
+      <soap12:operation soapAction="http://tempuri.org/GetITotalDoctorsCount" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

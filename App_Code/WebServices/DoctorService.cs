@@ -13,18 +13,18 @@ using System.Web.Services;
 // [System.Web.Script.Services.ScriptService]
 public class DoctorService : System.Web.Services.WebService {
 
+    DataClassesDataContext ctx;
+
     public DoctorService () {
 
         //Uncomment the following line if using designed components 
         //InitializeComponent(); 
+        ctx = new DataClassesDataContext();
     }
 
     [WebMethod]
     public SerializableDoctor[] GetAllDoctors(int startIndex, int pageSize)
     {
-        // declare variables
-        var ctx = new DataClassesDataContext();
-
         // select from database
         var result = ctx.Doctors.Skip(startIndex).Take(pageSize).ToArray();
 
@@ -43,6 +43,13 @@ public class DoctorService : System.Web.Services.WebService {
 
         // return the value
         return doctorList;
+    }
+
+    [WebMethod]
+    public int GetITotalDoctorsCount()
+    {
+        var result = ctx.Doctors.Count();
+        return result;
     }
     
 }
