@@ -29,6 +29,6 @@ public partial class UserAccess_Doctors_AddNewDoctor : System.Web.UI.Page
 
     protected void InsertCancelButton_Click(object sender, EventArgs e)
     {
-
+        Response.Redirect("~/UserAccess/Doctors/ViewAllDoctors.aspx");
     }
 }
