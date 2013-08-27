@@ -44,8 +44,8 @@ public partial class UserAccess_Doctors_AddNewDoctor : System.Web.UI.Page
         // redirect to view patient detail if successful
         if (e.Exception == null)
         {
-            Session[RedirectSuccessConstants.RedirectSuccessAddPatient] = "yes";
-            Response.Redirect("/UserAccess/Doctors/ViewDoctorsDetails.aspx?ID=" + InsertedDoctor.ID);
+            Session[RedirectSuccessConstants.RedirectSuccessAddDoctor] = "yes";
+            Response.Redirect("/UserAccess/Doctors/ViewDoctorDetails.aspx?ID=" + InsertedDoctor.ID);
         }
         else
         {
