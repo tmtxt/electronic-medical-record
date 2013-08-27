@@ -9,7 +9,6 @@ public partial class UserAccess_Doctors_ViewAllDoctors : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        BindData();
     }
 
     protected void BindData()
@@ -17,8 +16,13 @@ public partial class UserAccess_Doctors_ViewAllDoctors : System.Web.UI.Page
         // declare the web service
         var service = new DoctorServiceReference.DoctorServiceSoapClient();
 
+        // get current page index, page size, start position
+        int pageIndex = AllDoctorsGridView.PageIndex;
+        int pageSize = AllDoctorsGridView.PageSize;
+        int startIndex = pageIndex * pageSize;
+
         // get the data
-        DoctorServiceReference.SerializableDoctor[] doctorList = service.GetAllDoctors(1, 10);
+        DoctorServiceReference.SerializableDoctor[] doctorList = service.GetAllDoctors(startIndex, pageSize);
         AllDoctorsGridView.DataSource = doctorList;
 
         // set the item count
