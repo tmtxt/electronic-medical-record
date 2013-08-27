@@ -1,8 +1,8 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
 
-<%@ Register Src="TemplateControls/Navbar.ascx" TagName="Navbar" TagPrefix="utmpl" %>
-<%@ Register Src="TemplateControls/SideBar.ascx" TagPrefix="utmpl" TagName="SideBar" %>
-<%@ Register Src="/TemplateControls/Style.ascx" TagPrefix="utmpl" TagName="Style" %>
+<%@ Register Src="~/TemplateControls/Navbar.ascx" TagName="Navbar" TagPrefix="utmpl" %>
+<%@ Register Src="~/TemplateControls/SideBar.ascx" TagPrefix="utmpl" TagName="SideBar" %>
+<%@ Register Src="~/TemplateControls/Style.ascx" TagPrefix="utmpl" TagName="Style" %>
 
 <!DOCTYPE html>
 

@@ -14,16 +14,16 @@ public partial class _Default : System.Web.UI.Page
         {
             if(Thread.CurrentPrincipal.IsInRole("admin"))
             {
-                Response.Redirect("/AdminAccess/Default.aspx");
+                Response.Redirect("~/AdminAccess/Default.aspx");
             }
             else
             {
-                Response.Redirect("/UserAccess/Default.aspx");
+                Response.Redirect("~/UserAccess/Default.aspx");
             }
         }
         else
         {
-            Response.Redirect("/Login.aspx");   
+            Response.Redirect("~/Login.aspx");   
         }
         
     }

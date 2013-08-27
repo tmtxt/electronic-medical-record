@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="Login" %>
 
-<%@ Register Src="/TemplateControls/Style.ascx" TagPrefix="utmpl" TagName="Style" %>
+<%@ Register Src="~/TemplateControls/Style.ascx" TagPrefix="utmpl" TagName="Style" %>
 
 <!DOCTYPE html>
 

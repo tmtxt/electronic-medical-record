@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ElectronicMedicalRecord" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=TMTXT-PC\SQLEXPRESS;Initial Catalog=ElectronicMedicalRecord;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ElectronicMedicalRecordConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=TMTXT-PC\SQLEXPRESS;Initial Catalog=ElectronicMedicalRecord;Persist Security Info=True;User ID=sa;Pooling=False" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ElectronicMedicalRecordConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Visit" Member="Visits">
     <Type Name="Visit">
       <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -11,10 +11,24 @@
       <Column Name="Outcome" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Association Name="Visit_LabOrder" Member="LabOrders" ThisKey="ID" OtherKey="VisitID" Type="LabOrder" />
       <Association Name="Visit_Prescription" Member="Prescriptions" ThisKey="ID" OtherKey="VisitID" Type="Prescription" />
-      <Association Name="ICD_Visit" Member="ICD" ThisKey="ICDID" OtherKey="ID" Type="ICD" IsForeignKey="true" />
       <Association Name="Doctor_Visit" Member="Doctor" ThisKey="DoctorID" OtherKey="ID" Type="Doctor" IsForeignKey="true" />
-      <Association Name="Patient_Visit" Member="Patient" ThisKey="PatientID" OtherKey="ID" Type="Patient" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="Hospital_Visit" Member="Hospital" ThisKey="HospitalID" OtherKey="ID" Type="Hospital" IsForeignKey="true" />
+      <Association Name="ICD_Visit" Member="ICD" ThisKey="ICDID" OtherKey="ID" Type="ICD" IsForeignKey="true" />
+      <Association Name="Patient_Visit" Member="Patient" ThisKey="PatientID" OtherKey="ID" Type="Patient" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Doctor" Member="Doctors">
+    <Type Name="Doctor">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Gender" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DateOfBirth" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="LicenseNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Doctor_Visit" Member="Visits" ThisKey="ID" OtherKey="DoctorID" Type="Visit" />
+      <Association Name="Doctor_LabOrder" Member="LabOrders" ThisKey="ID" OtherKey="DoctorID" Type="LabOrder" />
+      <Association Name="Doctor_Prescription" Member="Prescriptions" ThisKey="ID" OtherKey="DoctorID" Type="Prescription" />
     </Type>
   </Table>
   <Table Name="dbo.Drug" Member="Drugs">
@@ -35,6 +49,16 @@
       <Column Name="Name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Association Name="DrugGroup_Drug" Member="Drugs" ThisKey="ID" OtherKey="DrugGroupID" Type="Drug" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Hospital" Member="Hospitals">
+    <Type Name="Hospital">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="LicenseNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Hospital_Visit" Member="Visits" ThisKey="ID" OtherKey="HospitalID" Type="Visit" />
     </Type>
   </Table>
   <Table Name="dbo.ICD" Member="ICDs">
@@ -63,8 +87,8 @@
       <Column Name="Date" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="DoctorID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Association Name="LabOrder_LabOrderDetail" Member="LabOrderDetails" ThisKey="ID" OtherKey="LabOrderID" Type="LabOrderDetail" />
-      <Association Name="Visit_LabOrder" Member="Visit" ThisKey="VisitID" OtherKey="ID" Type="Visit" IsForeignKey="true" />
       <Association Name="Doctor_LabOrder" Member="Doctor" ThisKey="DoctorID" OtherKey="ID" Type="Doctor" IsForeignKey="true" />
+      <Association Name="Visit_LabOrder" Member="Visit" ThisKey="VisitID" OtherKey="ID" Type="Visit" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.LabOrderDetail" Member="LabOrderDetails">
@@ -95,6 +119,17 @@
       <Association Name="MedicalServiceGroup_MedicalService" Member="MedicalServices" ThisKey="ID" OtherKey="MedicalServiceGroupID" Type="MedicalService" />
     </Type>
   </Table>
+  <Table Name="dbo.Patient" Member="Patients">
+    <Type Name="Patient">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Gender" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DateOfBirth" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Patient_Visit" Member="Visits" ThisKey="ID" OtherKey="PatientID" Type="Visit" />
+    </Type>
+  </Table>
   <Table Name="dbo.Prescription" Member="Prescriptions">
     <Type Name="Prescription">
       <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -102,8 +137,8 @@
       <Column Name="DoctorID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="VisitID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Association Name="Prescription_PrescriptionDetail" Member="PrescriptionDetails" ThisKey="ID" OtherKey="PrescriptionID" Type="PrescriptionDetail" />
-      <Association Name="Visit_Prescription" Member="Visit" ThisKey="VisitID" OtherKey="ID" Type="Visit" IsForeignKey="true" />
       <Association Name="Doctor_Prescription" Member="Doctor" ThisKey="DoctorID" OtherKey="ID" Type="Doctor" IsForeignKey="true" />
+      <Association Name="Visit_Prescription" Member="Visit" ThisKey="VisitID" OtherKey="ID" Type="Visit" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.PrescriptionDetail" Member="PrescriptionDetails">
@@ -116,41 +151,6 @@
       <Column Name="SpecialInstruction" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Association Name="Drug_PrescriptionDetail" Member="Drug" ThisKey="DrugID" OtherKey="ID" Type="Drug" IsForeignKey="true" />
       <Association Name="Prescription_PrescriptionDetail" Member="Prescription" ThisKey="PrescriptionID" OtherKey="ID" Type="Prescription" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Doctor" Member="Doctors">
-    <Type Name="Doctor">
-      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Gender" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="DateOfBirth" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="LicenseNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Address" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Association Name="Doctor_Visit" Member="Visits" ThisKey="ID" OtherKey="DoctorID" Type="Visit" />
-      <Association Name="Doctor_LabOrder" Member="LabOrders" ThisKey="ID" OtherKey="DoctorID" Type="LabOrder" />
-      <Association Name="Doctor_Prescription" Member="Prescriptions" ThisKey="ID" OtherKey="DoctorID" Type="Prescription" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Patient" Member="Patients">
-    <Type Name="Patient">
-      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Gender" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="DateOfBirth" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="Address" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Association Name="Patient_Visit" Member="Visits" ThisKey="ID" OtherKey="PatientID" Type="Visit" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Hospital" Member="Hospitals">
-    <Type Name="Hospital">
-      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="LicenseNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Address" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Association Name="Hospital_Visit" Member="Visits" ThisKey="ID" OtherKey="HospitalID" Type="Visit" />
     </Type>
   </Table>
 </Database>
