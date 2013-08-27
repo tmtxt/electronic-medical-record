@@ -31,4 +31,42 @@ public partial class UserAccess_Doctors_AddNewDoctor : System.Web.UI.Page
     {
         Response.Redirect("~/UserAccess/Doctors/ViewAllDoctors.aspx");
     }
+
+    protected void AddDoctorFormView_ItemInserting(object sender, FormViewInsertEventArgs e)
+    {
+        System.Threading.Thread.Sleep(1000);
+
+        
+    }
+
+    protected void AddDoctorFormView_ItemInserted(object sender, FormViewInsertedEventArgs e)
+    {
+        // redirect to view patient detail if successful
+        if (e.Exception == null)
+        {
+            Session[RedirectSuccessConstants.RedirectSuccessAddPatient] = "yes";
+            Response.Redirect("/UserAccess/Doctors/ViewDoctorsDetails.aspx?ID=" + InsertedDoctor.ID);
+        }
+        else
+        {
+            // display the result alert
+            e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Patient inserted successfully!", e.Exception);
+        }
+    }
+
+    private Doctor InsertedDoctor;
+
+    protected void AddDoctorDataSource_Inserted(object sender, LinqDataSourceStatusEventArgs e)
+    {
+        InsertedDoctor = (Doctor)e.Result;
+    }
+
+    protected void AddDoctorDataSource_Inserting(object sender, LinqDataSourceInsertEventArgs e)
+    {
+        // get the date picker
+        var datePicker = ((TemplateControls_DatePicker)AddDoctorFormView.FindControl("DateOfBirthDatePicker"));
+
+        // set the date of birth
+        ((Doctor)e.NewObject).DateOfBirth = datePicker.SelectedDate;
+    }
 }

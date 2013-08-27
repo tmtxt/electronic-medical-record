@@ -2,6 +2,8 @@
 
 <%@ Register Src="~/TemplateControls/UpdateProgressBar.ascx" TagPrefix="utmpl" TagName="UpdateProgressBar" %>
 <%@ Register Src="~/TemplateControls/DatePicker.ascx" TagPrefix="utmpl" TagName="DatePicker" %>
+<%@ Register Src="~/TemplateControls/ResultAlert.ascx" TagPrefix="utmpl" TagName="ResultAlert" %>
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" Runat="Server">
     Add Doctor
@@ -14,7 +16,7 @@
         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <asp:FormView ID="AddDoctorFormView" runat="server" Width="100%" DataKeyNames="ID" DataSourceID="AddDoctorDataSource" DefaultMode="Insert">
+                <asp:FormView ID="AddDoctorFormView" runat="server" Width="100%" DataKeyNames="ID" DataSourceID="AddDoctorDataSource" DefaultMode="Insert" OnItemInserted="AddDoctorFormView_ItemInserted" OnItemInserting="AddDoctorFormView_ItemInserting">
 
                     
                     <InsertItemTemplate>
@@ -80,8 +82,10 @@
                     
 
                 </asp:FormView>
-                <asp:LinqDataSource ID="AddDoctorDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableInsert="True" EntityTypeName="" TableName="Doctors">
+                <asp:LinqDataSource ID="AddDoctorDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableInsert="True" EntityTypeName="" TableName="Doctors" OnInserted="AddDoctorDataSource_Inserted" OnInserting="AddDoctorDataSource_Inserting">
                 </asp:LinqDataSource>
+                <p>&nbsp;</p>
+                <utmpl:ResultAlert runat="server" ID="ResultAlert" />
             </ContentTemplate>
         </asp:UpdatePanel>
         <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
