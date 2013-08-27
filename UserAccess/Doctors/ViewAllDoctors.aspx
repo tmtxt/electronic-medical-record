@@ -16,13 +16,38 @@
             <ContentTemplate>
                 <asp:GridView ID="AllDoctorsGridView" runat="server"
                      CssClass="gridview table table-bordered table-striped table-hover"
-                    AutoGenerateColumns="False" DataKeyNames="ID" AllowPaging="True" PageSize="5" DataSourceID="AllDoctorsDataSource">
+                    AutoGenerateColumns="False" DataKeyNames="ID" AllowPaging="True" PageSize="20"
+                    DataSourceID="AllDoctorsDataSource">
                     <Columns>
                         <asp:TemplateField HeaderText="Name">
                             <ItemTemplate>
                                 <asp:Label ID="Label1" runat="server" Text='<%# Eval("Name") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Gender">
+                            <ItemTemplate>
+                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("Gender") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Birthdate">
+                            <ItemTemplate>
+                                <asp:Label ID="Label1" runat="server" Text='<%# DateTime.FromBinary(long.Parse(Eval("DateOfBirth").ToString())).ToShortDateString() %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="License Number">
+                            <ItemTemplate>
+                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("LicenseNumber") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Address">
+                            <ItemTemplate>
+                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("Address") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:HyperLinkField DataNavigateUrlFields="ID"
+                            DataNavigateUrlFormatString="ViewDoctorDetails.aspx?ID={0}" Text="Details">
+                            <ControlStyle CssClass="btn btn-small btn-primary" />
+                        </asp:HyperLinkField>
                     </Columns>
                 </asp:GridView>
                 <asp:ObjectDataSource ID="AllDoctorsDataSource" runat="server" SelectMethod="GetAllDoctors"
