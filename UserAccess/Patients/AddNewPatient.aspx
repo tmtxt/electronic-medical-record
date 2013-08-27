@@ -64,7 +64,7 @@
 
                 </asp:FormView>
                 <asp:LinqDataSource ID="AddPatientDataSource"
-                    runat="server" ContextTypeName="DataClassesDataContext" EnableInsert="True" EntityTypeName="" TableName="Patients" OnInserted="AddPatientDataSource_Inserted">
+                    runat="server" ContextTypeName="DataClassesDataContext" EnableInsert="True" EntityTypeName="" TableName="Patients" OnInserted="AddPatientDataSource_Inserted" OnInserting="AddPatientDataSource_Inserting">
                 </asp:LinqDataSource>
                 <p>&nbsp;</p>
                 <utmpl:ResultAlert runat="server" ID="ResultAlert" />

@@ -80,11 +80,7 @@ public partial class UserAccess_Patients_AddNewPatient : System.Web.UI.Page
     {
         System.Threading.Thread.Sleep(1000);
 
-        // get the date picker control from the form view
-        var datePicker = (TemplateControls_DatePicker)AddPatientFormView.FindControl("DateOfBirthDatePicker");
-
-        // set the date of birth of the new patient
-        e.Values["DateOfBirth"] = datePicker.SelectedDate;
+        
     }
 
     private Patient InsertedPatient;
@@ -93,5 +89,14 @@ public partial class UserAccess_Patients_AddNewPatient : System.Web.UI.Page
     {
         // store the inserted patient
         InsertedPatient = (Patient)e.Result;
+    }
+
+    protected void AddPatientDataSource_Inserting(object sender, LinqDataSourceInsertEventArgs e)
+    {
+        // get the date picker control from the form view
+        var datePicker = (TemplateControls_DatePicker)AddPatientFormView.FindControl("DateOfBirthDatePicker");
+
+        // set the date of birth of the new patient
+        ((Patient)e.NewObject).DateOfBirth = datePicker.SelectedDate;
     }
 }
