@@ -44,7 +44,7 @@
                                 <asp:Label ID="Label1" runat="server" Text='<%# Eval("Address") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:HyperLinkField DataNavigateUrlFields="ID"
+                        <asp:HyperLinkField DataNavigateUrlFields="ID" HeaderText="Details"
                             DataNavigateUrlFormatString="ViewDoctorDetails.aspx?ID={0}" Text="Details">
                             <ControlStyle CssClass="btn btn-small btn-primary" />
                         </asp:HyperLinkField>
@@ -58,5 +58,8 @@
         </asp:UpdatePanel>
         <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
     </form>
+    <asp:HyperLink CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign"
+            ID="HyperLink1" runat="server" NavigateUrl="/UserAccess/Doctors/AddNewDoctor.aspx">
+            Add New Doctor</asp:HyperLink>
 </asp:Content>
 
