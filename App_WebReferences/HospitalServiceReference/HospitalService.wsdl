@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetAllHospitals">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="startIndex" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pageSize" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="hospitalName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllHospitalsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllHospitalsResult" type="tns:ArrayOfSerializableHospital" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSerializableHospital">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SerializableHospital" nillable="true" type="tns:SerializableHospital" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SerializableHospital">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LicenseNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTotalHospitalsCount">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTotalHospitalsCountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetTotalHospitalsCountResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetAllHospitalsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllHospitals" />
+  </wsdl:message>
+  <wsdl:message name="GetAllHospitalsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllHospitalsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTotalHospitalsCountSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTotalHospitalsCount" />
+  </wsdl:message>
+  <wsdl:message name="GetTotalHospitalsCountSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTotalHospitalsCountResponse" />
+  </wsdl:message>
+  <wsdl:portType name="HospitalServiceSoap">
+    <wsdl:operation name="GetAllHospitals">
+      <wsdl:input message="tns:GetAllHospitalsSoapIn" />
+      <wsdl:output message="tns:GetAllHospitalsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTotalHospitalsCount">
+      <wsdl:input message="tns:GetTotalHospitalsCountSoapIn" />
+      <wsdl:output message="tns:GetTotalHospitalsCountSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HospitalServiceSoap" type="tns:HospitalServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllHospitals">
+      <soap:operation soapAction="http://tempuri.org/GetAllHospitals" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTotalHospitalsCount">
+      <soap:operation soapAction="http://tempuri.org/GetTotalHospitalsCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="HospitalServiceSoap12" type="tns:HospitalServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllHospitals">
+      <soap12:operation soapAction="http://tempuri.org/GetAllHospitals" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTotalHospitalsCount">
+      <soap12:operation soapAction="http://tempuri.org/GetTotalHospitalsCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HospitalService">
+    <wsdl:port name="HospitalServiceSoap" binding="tns:HospitalServiceSoap">
+      <soap:address location="http://localhost:49999/WebServices/HospitalService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="HospitalServiceSoap12" binding="tns:HospitalServiceSoap12">
+      <soap12:address location="http://localhost:49999/WebServices/HospitalService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
