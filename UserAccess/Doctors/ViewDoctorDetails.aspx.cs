@@ -68,4 +68,53 @@ public partial class UserAccess_Doctors_ViewDoctorsDetails : System.Web.UI.Page
         // delete all the dependencies first
         DoctorOperations.DeleteDependencies(long.Parse(e.Keys["ID"].ToString()));
     }
+
+    private void ClearForm()
+    {
+        ((TextBox)DoctorDetailsFormView.FindControl("NameTextBox")).Text = "";
+        ((TextBox)DoctorDetailsFormView.FindControl("AddressTextBox")).Text = "";
+        ((TextBox)DoctorDetailsFormView.FindControl("LicenseTextBox")).Text = "";
+        ((DropDownList)DoctorDetailsFormView.FindControl("GenderDropdownList")).SelectedIndex = 0;
+        ((TemplateControls_DatePicker)DoctorDetailsFormView.FindControl("DateOfBirthDatePicker"))
+            .SelectedDate = DateTime.Now.Ticks;
+    }
+
+    protected void ClearButton_Click(object sender, EventArgs e)
+    {
+        ClearForm();
+    }
+
+    protected void DoctorDetailsFormView_ItemUpdating(object sender, FormViewUpdateEventArgs e)
+    {
+
+    }
+
+    protected void DoctorDetailsFormView_ItemUpdated(object sender, FormViewUpdatedEventArgs e)
+    {
+        System.Threading.Thread.Sleep(1000);
+        if (e.Exception == null)
+        {
+            ResultAlert.SetResultAlert("Doctor updated successfully!",
+                TemplateControls_ResultAlert.AlertTypeSuccess);
+        }
+        else
+        {
+            ResultAlert.SetResultAlert(e.Exception.Message,
+                TemplateControls_ResultAlert.AlertTypeError);
+            e.ExceptionHandled = true;
+        }
+    }
+
+    protected void DoctorDetailsDataSource_Updating(object sender, LinqDataSourceUpdateEventArgs e)
+    {
+        // get the new object
+        var newObject = (Doctor)e.NewObject;
+
+        // get the controls from the view
+        var dateOfBirthDatePicker = (TemplateControls_DatePicker)
+            DoctorDetailsFormView.FindControl("DateOfBirthDatePicker");
+
+        // set the date for the new object
+        newObject.DateOfBirth = dateOfBirthDatePicker.SelectedDate;
+    }
 }
