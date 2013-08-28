@@ -26,7 +26,7 @@ public partial class AdminAccess_Hospitals_AddNewHospital : System.Web.UI.Page
 
     protected void InsertCancelButton_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/AdminAccess/Hospitals/ViewAllHospitals.aspx");
+        Response.Redirect("~/UserAccess/Hospitals/ViewAllHospitals.aspx");
     }
 
     protected void AddHospitalFormView_ItemInserting(object sender, FormViewInsertEventArgs e)
@@ -42,7 +42,7 @@ public partial class AdminAccess_Hospitals_AddNewHospital : System.Web.UI.Page
         if (e.Exception == null)
         {
             Session[RedirectSuccessConstants.RedirectSuccessAddHospital] = "yes";
-            Response.Redirect("/AdminAccess/Hospitals/ViewHospitalDetails.aspx?ID=" + InsertedHospital.ID);
+            Response.Redirect("/UserAccess/Hospitals/ViewHospitalDetails.aspx?ID=" + InsertedHospital.ID);
         }
         else
         {

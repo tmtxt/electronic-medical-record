@@ -16,10 +16,18 @@
         <li class="hide-accordingly"><a href="/UserAccess/Doctors/ViewDoctorDetails.aspx">Doctor Details</a></li>
         <li><a href="/UserAccess/Doctors/AddNewDoctor.aspx">Add New Doctor</a></li>
 
+        <%-- Hospitals --%>
         <li class="nav-header">Hospitals</li>
-        <li><a href="/AdminAccess/Hospitals/ViewAllHospitals.aspx">View Hospitals</a></li>
-        <li class="hide-accordingly"><a href="/AdminAccess/Hospitals/ViewHospitalDetails.aspx">Hospital Details</a></li>
+        <li><a href="/UserAccess/Hospitals/ViewAllHospitals.aspx">View Hospitals</a></li>
+        <li class="hide-accordingly"><a href="/UserAccess/Hospitals/ViewHospitalDetails.aspx">Hospital Details</a></li>
+        <%
+            if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+            {
+        %>
         <li><a href="/AdminAccess/Hospitals/AddNewHospital.aspx">Add New Hospital</a></li>
+        <%
+        }
+        %>
 
         <li class="nav-header">Visits</li>
         <li><a href="/UserAccess/Visits/ViewAllVisits.aspx">View All Visits</a></li>
@@ -62,9 +70,9 @@
 
         <%-- this section is for admin only --%>
         <%
-        if(System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
-        {
-        %>  
+            if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+            {
+        %>
         <li class="nav-header">Users</li>
         <li><a href="/AdminAccess/Users/ViewAllUsers.aspx">View all users</a></li>
         <li><a href="/AdminAccess/Users/AddNewUser.aspx">Add new user</a></li>
@@ -103,5 +111,5 @@
     }
 
 
-    
+
 </script>

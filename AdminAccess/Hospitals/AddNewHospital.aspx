@@ -58,7 +58,7 @@
                             <p></p>
 
                             <asp:Button CssClass="btn btn-primary" ID="InsertButton" runat="server"
-                                CausesValidation="True" Text="Add New Doctor" CommandName="Insert" />
+                                CausesValidation="True" Text="Add New Hospital" CommandName="Insert" />
                             &nbsp;<asp:Button CssClass="btn btn-primary" ID="ClearButton" runat="server"
                                 CausesValidation="False" Text="Clear Form" OnClick="ClearButton_Click" />
                             &nbsp;<asp:Button CssClass="btn btn-primary" ID="InsertCancelButton" runat="server"
