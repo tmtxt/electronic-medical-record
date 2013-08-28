@@ -9,7 +9,15 @@ public partial class AdminAccess_Hospitals_ViewAllHospitals : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        // display the redirect alert
+        var redirectMessage = new Dictionary<string, string>();
+        redirectMessage.Add(RedirectConstants.RedirectHospitalDetailsSessionName,
+            "You need to select a Hospital to view details");
+        RedirectAlert.SetAlert(redirectMessage);
 
+        // display the redirect success alert
+        RedirectSuccessAlert.SetAlert("Hospital deleted successfully!",
+            RedirectSuccessConstants.RedirectSuccessDeleteHospital);
     }
 
     /// <summary>

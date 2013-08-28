@@ -29,7 +29,7 @@ public class RedirectConstants
     public const string RedirectAddLabOrderDetailSessionName = "RedirectAddLabOrderDetailSessionName";
     public const string RedirectLabOrderInfoSessionName = "RedirectLabOrderInfoSessionName";
     public const string RedirectDoctorDetailsSessionName = "RedirectDoctorDetailsSessionName";
-
+    public const string RedirectHospitalDetailsSessionName = "RedirectHospitalDetailsSessionName";
 
 	public RedirectConstants()
 	{
