@@ -16,6 +16,9 @@ public class DoctorData
 		//
 	}
 
+    // criteria for searching
+    public static string SearchDoctorName { get; set; }
+
     [DataObjectMethod(DataObjectMethodType.Select)]
     public static IEnumerable<DoctorServiceReference.SerializableDoctor> GetAllDoctors(int startIndex, int pageSize, string sortBy)
     {
@@ -23,7 +26,7 @@ public class DoctorData
         var service = new DoctorServiceReference.DoctorServiceSoapClient();
 
         // select the data from database, sort by date by default
-        DoctorServiceReference.SerializableDoctor[] doctorList = service.GetAllDoctors(startIndex, pageSize);
+        DoctorServiceReference.SerializableDoctor[] doctorList = service.GetAllDoctors(startIndex, pageSize, SearchDoctorName);
 
         return doctorList;
 

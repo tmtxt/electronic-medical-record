@@ -20,28 +20,6 @@ public partial class UserAccess_Doctors_ViewAllDoctors : System.Web.UI.Page
             RedirectSuccessConstants.RedirectSuccessDeleteDoctor);
     }
 
-    protected void BindData()
-    {
-        // declare the web service
-        var service = new DoctorServiceReference.DoctorServiceSoapClient();
-
-        // get current page index, page size, start position
-        int pageIndex = AllDoctorsGridView.PageIndex;
-        int pageSize = AllDoctorsGridView.PageSize;
-        int startIndex = pageIndex * pageSize;
-
-        // get the data
-        DoctorServiceReference.SerializableDoctor[] doctorList = service.GetAllDoctors(startIndex, pageSize);
-        AllDoctorsGridView.DataSource = doctorList;
-
-        // set the item count
-        int itemCount = service.GetITotalDoctorsCount();
-        AllDoctorsGridView.VirtualItemCount = itemCount;
-
-        // finally bind the data
-        AllDoctorsGridView.DataBind();
-    }
-
     /// <summary>
     /// talk the to the web service to update the data
     /// </summary>
@@ -59,5 +37,34 @@ public partial class UserAccess_Doctors_ViewAllDoctors : System.Web.UI.Page
                                      where d.Name.Contains(prefixText)
                                      select d.Name).ToArray();
         return doctorNameDataSource;
+    }
+
+    protected void FindPatientButton_Click(object sender, EventArgs e)
+    {
+        // set the search criteria
+        SetSearchCriteria();
+
+        // rebind the data
+        AllDoctorsGridView.DataBind();
+    }
+
+    /// <summary>
+    /// Set the search criteria for doctor list
+    /// </summary>
+    protected void SetSearchCriteria()
+    {
+        DoctorData.SearchDoctorName = FindDoctorTextBox.Text;
+    }
+
+    protected void Button3_Click(object sender, EventArgs e)
+    {
+        // empty the textbox
+        FindDoctorTextBox.Text = "";
+
+        // set the search criteria
+        SetSearchCriteria();
+
+        // rebind the data
+        AllDoctorsGridView.DataBind();
     }
 }

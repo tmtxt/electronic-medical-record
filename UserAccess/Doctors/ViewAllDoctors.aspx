@@ -30,8 +30,8 @@
                         runat="server" ServiceMethod="GetCompletionList" UseContextKey="True">
                     </asp:AutoCompleteExtender>
                     
-                    <asp:Button ID="FindPatientButton" CssClass="btn btn-primary" runat="server" Text="Search" />
-                    <asp:Button ID="Button3" runat="server" CssClass="btn btn-primary" Text="Cancel" />
+                    <asp:Button ID="FindPatientButton" CssClass="btn btn-primary" runat="server" Text="Search" OnClick="FindPatientButton_Click" />
+                    <asp:Button ID="Button3" runat="server" CssClass="btn btn-primary" Text="Cancel" OnClick="Button3_Click" />
                 </div>
 
                 <asp:GridView ID="AllDoctorsGridView" runat="server"

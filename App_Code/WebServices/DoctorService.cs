@@ -23,10 +23,13 @@ public class DoctorService : System.Web.Services.WebService {
     }
 
     [WebMethod]
-    public SerializableDoctor[] GetAllDoctors(int startIndex, int pageSize)
+    public SerializableDoctor[] GetAllDoctors(int startIndex, int pageSize, string doctorName)
     {
+        // convert null string to empty string
+        var name = doctorName == null ? "" : doctorName;
+
         // select from database
-        var result = ctx.Doctors.Skip(startIndex).Take(pageSize).ToArray();
+        var result = ctx.Doctors.Where(d => d.Name.Contains(name)).Skip(startIndex).Take(pageSize).ToArray();
 
         // put it in the doctor array
         SerializableDoctor[] doctorList = new SerializableDoctor[result.Length];

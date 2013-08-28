@@ -7,6 +7,7 @@
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="startIndex" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="pageSize" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="doctorName" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>

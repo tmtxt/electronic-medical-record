@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="bc3d04e2-74fb-48f8-b2ba-89e7c08e5cde" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="db1aa645-0cd6-480d-8dc5-6bd37ece2b59" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,8 +22,8 @@
     <MetadataSource Address="http://localhost:49999/WebServices/DoctorService.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="DoctorService.disco" MetadataType="Disco" ID="4edae239-7843-440e-8d5f-69fdaad69c0b" SourceId="1" SourceUrl="http://localhost:49999/WebServices/DoctorService.asmx?disco" />
-    <MetadataFile FileName="DoctorService.wsdl" MetadataType="Wsdl" ID="cd127711-0d2c-4b3c-8c8a-e78ddb8fcecd" SourceId="1" SourceUrl="http://localhost:49999/WebServices/DoctorService.asmx?wsdl" />
+    <MetadataFile FileName="DoctorService.disco" MetadataType="Disco" ID="3e7d1a0c-839c-4c92-a331-ac7f660e4fcd" SourceId="1" SourceUrl="http://localhost:49999/WebServices/DoctorService.asmx?disco" />
+    <MetadataFile FileName="DoctorService.wsdl" MetadataType="Wsdl" ID="8af2690e-3808-4b38-b702-e5e3909025fa" SourceId="1" SourceUrl="http://localhost:49999/WebServices/DoctorService.asmx?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
