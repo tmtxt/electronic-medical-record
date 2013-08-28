@@ -56,7 +56,7 @@ public partial class AdminAccess_ViewAllUsers : System.Web.UI.Page
 
         if (user != null)
         {
-            if (Membership.GetUserNameByEmail(email) != null)
+            if (Membership.GetUserNameByEmail(email) != null && Membership.GetUserNameByEmail(email) != user.UserName)
             {
                 // email already exist
                 ResultLabel.Text = "Email is already exist!";
