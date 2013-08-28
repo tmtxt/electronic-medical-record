@@ -7,13 +7,13 @@
 
 
 
-<asp:Content ID="Content1" ContentPlaceHolderID="Title" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="Server">
     Doctors List
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="Header" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="Header" runat="Server">
     Doctors List
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="Content" Runat="Server">
+<asp:Content ID="Content3" ContentPlaceHolderID="Content" runat="Server">
     <form runat="server" class="form-horizontal">
         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -29,13 +29,13 @@
                     <asp:AutoCompleteExtender ID="AutoCompleteExtender1" TargetControlID="FindDoctorTextBox"
                         runat="server" ServiceMethod="GetCompletionList" UseContextKey="True">
                     </asp:AutoCompleteExtender>
-                    
+
                     <asp:Button ID="FindPatientButton" CssClass="btn btn-primary" runat="server" Text="Search" OnClick="FindPatientButton_Click" />
                     <asp:Button ID="Button3" runat="server" CssClass="btn btn-primary" Text="Cancel" OnClick="Button3_Click" />
                 </div>
 
                 <asp:GridView ID="AllDoctorsGridView" runat="server"
-                     CssClass="gridview table table-bordered table-striped table-hover"
+                    CssClass="gridview table table-bordered table-striped table-hover"
                     AutoGenerateColumns="False" DataKeyNames="ID" AllowPaging="True" PageSize="20"
                     DataSourceID="AllDoctorsDataSource">
                     <Columns>
@@ -79,8 +79,15 @@
         </asp:UpdatePanel>
         <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
     </form>
+    <%
+        if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+        {
+    %>
     <asp:HyperLink CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign"
-            ID="HyperLink1" runat="server" NavigateUrl="/UserAccess/Doctors/AddNewDoctor.aspx">
+        ID="HyperLink1" runat="server" NavigateUrl="/AdminAccess/Doctors/AddNewDoctor.aspx">
             Add New Doctor</asp:HyperLink>
+    <%
+            }
+    %>
 </asp:Content>
 

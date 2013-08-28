@@ -11,10 +11,18 @@
         <li class="hide-accordingly"><a href="/UserAccess/Patients/ViewPatientDetails.aspx">Patient Details</a></li>
         <li><a href="/UserAccess/Patients/AddNewPatient.aspx">Add New Patient</a></li>
 
+        <%-- Doctors --%>
         <li class="nav-header">Doctors</li>
         <li><a href="/UserAccess/Doctors/ViewAllDoctors.aspx">View Doctors</a></li>
         <li class="hide-accordingly"><a href="/UserAccess/Doctors/ViewDoctorDetails.aspx">Doctor Details</a></li>
-        <li><a href="/UserAccess/Doctors/AddNewDoctor.aspx">Add New Doctor</a></li>
+        <%
+            if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+            {
+        %>
+        <li><a href="/AdminAccess/Doctors/AddNewDoctor.aspx">Add New Doctor</a></li>
+        <%
+        }
+        %>
 
         <%-- Hospitals --%>
         <li class="nav-header">Hospitals</li>

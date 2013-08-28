@@ -7,13 +7,13 @@
 
 
 
-<asp:Content ID="Content1" ContentPlaceHolderID="Title" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="Server">
     Doctor Details
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="Header" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="Header" runat="Server">
     Doctor Details
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="Content" Runat="Server">
+<asp:Content ID="Content3" ContentPlaceHolderID="Content" runat="Server">
     <form runat="server">
         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -51,10 +51,17 @@
                             </tr>
                             <tr>
                                 <td colspan="4">
+                                    <%
+                                        if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+                                        {
+                                    %>
                                     <asp:Button ID="DeleteButton" CommandName="Delete" runat="server" Text="Delete Doctor"
                                         CssClass="btn btn-danger" OnClientClick="return confirm('Are you sure you want to delete this doctor?\nAll visits belong to this doctor will be deleted, too!')" />
                                     <asp:Button ID="EditButton" runat="server" Text="Edit Doctor" CommandName="Edit"
                                         CssClass="btn btn-primary" />
+                                    <%
+                                        }
+                                    %>
                                     <asp:HyperLink ID="HyperLink2" runat="server" CssClass="btn btn-primary"
                                         NavigateUrl="/UserAccess/Doctors/ViewAllDoctors.aspx">
                                         View All Doctor</asp:HyperLink>
@@ -145,11 +152,18 @@
             </ContentTemplate>
         </asp:UpdatePanel>
         <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
+        <%
+            if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+            {
+        %>
         <asp:HyperLink ID="AddNewButton"
             CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign"
-            runat="server" NavigateUrl="/UserAccess/Doctors/AddNewDoctor.aspx">
+            runat="server" NavigateUrl="/AdminAccess/Doctors/AddNewDoctor.aspx">
                                         Add New Doctor
         </asp:HyperLink>
+        <%
+            }
+        %>
     </form>
 </asp:Content>
 
