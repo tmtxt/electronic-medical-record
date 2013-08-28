@@ -14,13 +14,25 @@
     Doctors List
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Content" Runat="Server">
-    <form runat="server">
+    <form runat="server" class="form-horizontal">
         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
 
                 <utmpl:RedirectAlert runat="server" ID="RedirectAlert" />
                 <utmpl:RedirectSuccessAlert runat="server" ID="RedirectSuccessAlert" />
+
+                <div class="control-group">
+                    <asp:Label CssClass="label_filter" ID="Label3" runat="server"
+                        Text="Filter Doctors by Name"></asp:Label>
+                    <asp:TextBox ID="FindDoctorTextBox" runat="server"></asp:TextBox>
+                    <asp:AutoCompleteExtender ID="AutoCompleteExtender1" TargetControlID="FindDoctorTextBox"
+                        runat="server" ServiceMethod="GetCompletionList" UseContextKey="True">
+                    </asp:AutoCompleteExtender>
+                    
+                    <asp:Button ID="FindPatientButton" CssClass="btn btn-primary" runat="server" Text="Search" />
+                    <asp:Button ID="Button3" runat="server" CssClass="btn btn-primary" Text="Cancel" />
+                </div>
 
                 <asp:GridView ID="AllDoctorsGridView" runat="server"
                      CssClass="gridview table table-bordered table-striped table-hover"
@@ -62,7 +74,7 @@
                     EnablePaging="true" TypeName="DoctorData" MaximumRowsParameterName="pageSize"
                     StartRowIndexParameterName="startIndex" SortParameterName="sortBy"
                     SelectCountMethod="GetTotalDoctorsCount"></asp:ObjectDataSource>
-                <asp:Timer ID="Timer1" Interval="10000" runat="server" OnTick="Timer1_Tick"></asp:Timer>
+                <asp:Timer ID="Timer1" Interval="60000" runat="server" OnTick="Timer1_Tick"></asp:Timer>
             </ContentTemplate>
         </asp:UpdatePanel>
         <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />

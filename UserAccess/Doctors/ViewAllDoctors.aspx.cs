@@ -51,4 +51,13 @@ public partial class UserAccess_Doctors_ViewAllDoctors : System.Web.UI.Page
     {
         AllDoctorsGridView.DataBind();
     }
+
+    [System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethodAttribute()]
+    public static string[] GetCompletionList(string prefixText, int count, string contextKey)
+    {
+        var doctorNameDataSource = (from d in new DataClassesDataContext().Doctors
+                                     where d.Name.Contains(prefixText)
+                                     select d.Name).ToArray();
+        return doctorNameDataSource;
+    }
 }
