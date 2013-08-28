@@ -1,6 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ViewAllDoctors.aspx.cs" Inherits="UserAccess_Doctors_ViewAllDoctors" %>
 
 <%@ Register Src="~/TemplateControls/UpdateProgressBar.ascx" TagPrefix="utmpl" TagName="UpdateProgressBar" %>
+<%@ Register Src="~/TemplateControls/RedirectAlert.ascx" TagPrefix="utmpl" TagName="RedirectAlert" %>
+<%@ Register Src="~/TemplateControls/RedirectSuccessAlert.ascx" TagPrefix="utmpl" TagName="RedirectSuccessAlert" %>
+
+
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" Runat="Server">
@@ -14,6 +18,10 @@
         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
+
+                <utmpl:RedirectAlert runat="server" ID="RedirectAlert" />
+                <utmpl:RedirectSuccessAlert runat="server" ID="RedirectSuccessAlert" />
+
                 <asp:GridView ID="AllDoctorsGridView" runat="server"
                      CssClass="gridview table table-bordered table-striped table-hover"
                     AutoGenerateColumns="False" DataKeyNames="ID" AllowPaging="True" PageSize="20"

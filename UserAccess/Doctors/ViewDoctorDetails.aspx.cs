@@ -47,4 +47,25 @@ public partial class UserAccess_Doctors_ViewDoctorsDetails : System.Web.UI.Page
 
         Response.Redirect("/UserAccess/Doctors/ViewAllDoctors.aspx");
     }
+
+    protected void DoctorDetailsFormView_ItemDeleted(object sender, FormViewDeletedEventArgs e)
+    {
+        if (e.Exception == null)
+        {
+            Session[RedirectSuccessConstants.RedirectSuccessDeleteDoctor] = "yes";
+            Response.Redirect("/UserAccess/Doctors/ViewAllDoctors.aspx");
+        }
+        else
+        {
+            e.ExceptionHandled = ResultAlert.SetResultAlertReturn("error", e.Exception);
+        }
+    }
+
+    protected void DoctorDetailsFormView_ItemDeleting(object sender, FormViewDeleteEventArgs e)
+    {
+        System.Threading.Thread.Sleep(1000);
+
+        // delete all the dependencies first
+        DoctorOperations.DeleteDependencies(long.Parse(e.Keys["ID"].ToString()));
+    }
 }

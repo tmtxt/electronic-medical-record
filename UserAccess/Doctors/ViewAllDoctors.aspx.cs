@@ -9,6 +9,15 @@ public partial class UserAccess_Doctors_ViewAllDoctors : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        // display the redirect alert
+        var redirectMessage = new Dictionary<string, string>();
+        redirectMessage.Add(RedirectConstants.RedirectDoctorDetailsSessionName,
+            "You need to select a Doctor to view details");
+        RedirectAlert.SetAlert(redirectMessage);
+
+        // display the redirect success alert
+        RedirectSuccessAlert.SetAlert("Doctor deleted successfully!",
+            RedirectSuccessConstants.RedirectSuccessDeleteDoctor);
     }
 
     protected void BindData()

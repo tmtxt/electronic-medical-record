@@ -20,7 +20,7 @@
             <ContentTemplate>
                 <utmpl:RedirectSuccessAlert runat="server" ID="RedirectSuccessAlert" />
 
-                <asp:FormView ID="DoctorDetailsFormView" runat="server" DataKeyNames="ID" DataSourceID="DoctorDetailsDataSource">
+                <asp:FormView ID="DoctorDetailsFormView" runat="server" DataKeyNames="ID" DataSourceID="DoctorDetailsDataSource" OnItemDeleted="DoctorDetailsFormView_ItemDeleted" OnItemDeleting="DoctorDetailsFormView_ItemDeleting">
 
                     <ItemTemplate>
                         <%-- doctor name as title --%>
