@@ -62,6 +62,7 @@
                     EnablePaging="true" TypeName="DoctorData" MaximumRowsParameterName="pageSize"
                     StartRowIndexParameterName="startIndex" SortParameterName="sortBy"
                     SelectCountMethod="GetTotalDoctorsCount"></asp:ObjectDataSource>
+                <asp:Timer ID="Timer1" Interval="10000" runat="server" OnTick="Timer1_Tick"></asp:Timer>
             </ContentTemplate>
         </asp:UpdatePanel>
         <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />

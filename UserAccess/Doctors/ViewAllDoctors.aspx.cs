@@ -41,4 +41,14 @@ public partial class UserAccess_Doctors_ViewAllDoctors : System.Web.UI.Page
         // finally bind the data
         AllDoctorsGridView.DataBind();
     }
+
+    /// <summary>
+    /// talk the to the web service to update the data
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    protected void Timer1_Tick(object sender, EventArgs e)
+    {
+        AllDoctorsGridView.DataBind();
+    }
 }
