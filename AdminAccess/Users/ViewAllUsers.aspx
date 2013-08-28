@@ -25,18 +25,44 @@
                     OnRowUpdating="AllUsersGridViewRowUpdating">
 
                     <Columns>
-                        <asp:BoundField DataField="UserName" HeaderText="UserName" ReadOnly="true" />
-                        <asp:BoundField DataField="Email" HeaderText="Email" />
-                        <asp:BoundField DataField="LastActivityDate" HeaderText="Last Activity" ReadOnly="true" />
+                        <asp:BoundField DataField="UserName" HeaderText="Username" ReadOnly="true"
+                            HeaderStyle-Width="10%" ItemStyle-Width="10%" FooterStyle-Width="10%" />
 
-                        <asp:TemplateField>
+                        <asp:BoundField DataField="Email" HeaderText="Email"
+                            HeaderStyle-Width="30%" ItemStyle-Width="30%" FooterStyle-Width="30%" />
+
+                        <asp:TemplateField HeaderText="Role"
+                            HeaderStyle-Width="30%" ItemStyle-Width="30%" FooterStyle-Width="30%">
                             <ItemTemplate>
-                                <asp:Button ID="Button1" runat="server" CssClass="btn btn-primary" CommandName="Edit" Text="Edit" />
-                                <asp:Button ID="Button2" runat="server" CssClass="btn btn-danger" CommandName="Delete" Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this user?')" />
+                                <asp:Label ID="Label1" runat="server"
+                                    Text='<%# Roles.GetRolesForUser(Eval("UserName").ToString())[0] %>'>
+                                </asp:Label>
                             </ItemTemplate>
                             <EditItemTemplate>
-                                <asp:Button ID="Button3" runat="server" CssClass="btn btn-primary" CommandName="Update" Text="Update" />
-                                <asp:Button ID="Button4" runat="server" CssClass="btn btn-primary" CommandName="Cancel" Text="Cancel" />
+                                <asp:DropDownList ID="RoleDropdownList" runat="server" Width="100%"
+                                    SelectedValue='<%# Roles.GetRolesForUser(Eval("UserName").ToString())[0] %>'>
+                                    <asp:ListItem Value="user">User</asp:ListItem>
+                                    <asp:ListItem Value="admin">Admin</asp:ListItem>
+                                </asp:DropDownList>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+
+                        <asp:BoundField DataField="LastActivityDate" HeaderText="Last Activity" ReadOnly="true" />
+
+                        <asp:TemplateField HeaderText="Modify"
+                            HeaderStyle-Width="10%" ItemStyle-Width="10%" FooterStyle-Width="10%" >
+                            <ItemTemplate>
+                                <p><asp:Button ID="Button1" runat="server" CssClass="btn btn-primary"
+                                    CommandName="Edit" Text="Edit" Width="100%" /></p>
+                                <p><asp:Button ID="Button2" runat="server" CssClass="btn btn-danger"
+                                    CommandName="Delete" Text="Delete" Width="100%"
+                                    OnClientClick="return confirm('Are you sure you want to delete this user?')" /></p>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <p><asp:Button ID="Button3" runat="server" CssClass="btn btn-primary"
+                                    CommandName="Update" Text="Update" Width="100%" /></p>
+                                <p><asp:Button ID="Button4" runat="server" CssClass="btn btn-primary"
+                                    CommandName="Cancel" Text="Cancel" Width="100%" /></p>
                             </EditItemTemplate>
                         </asp:TemplateField>
                     </Columns>

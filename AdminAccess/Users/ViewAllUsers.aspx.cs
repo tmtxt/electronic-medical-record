@@ -43,11 +43,17 @@ public partial class AdminAccess_ViewAllUsers : System.Web.UI.Page
     protected void AllUsersGridViewRowUpdating(object sender, GridViewUpdateEventArgs e)
     {
         System.Threading.Thread.Sleep(1000);
+
+        // get the value from the gridview
         int index = AllUsersGridView.EditIndex;
         GridViewRow gvrow = AllUsersGridView.Rows[index];
         var username = AllUsersGridView.Rows[e.RowIndex].Cells[0].Text;
         var email = ((TextBox)gvrow.Cells[1].Controls[0]).Text;
+        var role = ((DropDownList)gvrow.Cells[2].FindControl("RoleDropdownList")).SelectedValue;
+
+        // get the user to be edit
         MembershipUser user = Membership.GetUser(username);
+
         if (user != null)
         {
             if (Membership.GetUserNameByEmail(email) != null)
@@ -61,6 +67,12 @@ public partial class AdminAccess_ViewAllUsers : System.Web.UI.Page
                 // email not exist, can update
                 user.Email = email;
                 Membership.UpdateUser(user);
+
+                // remove user from old role and add user to the new role
+                Roles.RemoveUserFromRole(user.UserName, Roles.GetRolesForUser(user.UserName)[0]);
+                Roles.AddUserToRole(user.UserName, role);
+
+                // display the result
                 ResultLabel.Text = string.Format("<strong>{0}</strong> details updated Successfully", username);
                 ResultDiv.Attributes["class"] = "alert alert-success";
             }
