@@ -53,24 +53,43 @@
                             <HeaderStyle Width="40%" />
                             <ItemStyle Width="40%" />
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderStyle-Width="10%" FooterStyle-Width="10%" ItemStyle-Width="10%">
+                        <asp:TemplateField HeaderStyle-Width="10%" HeaderText="Edit"
+                            FooterStyle-Width="10%" ItemStyle-Width="10%">
                             <EditItemTemplate>
                                 <asp:Button ID="UpdateButton" runat="server" CommandName="Update" CssClass="btn btn-primary" Text="Update" />
                             </EditItemTemplate>
                             <ItemTemplate>
+                                <% if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+                                   {%>
                                 <asp:Button ID="EditButton" runat="server" CommandName="Edit" CssClass="btn btn-primary" Text="Edit" />
+                                <%
+                                   } else {%>
+                                <asp:Label ID="Label6" runat="server" Text="Not Allow" CssClass="label label-important"></asp:Label>
+                                <%
+                                   } %>
+                                
+                               
                             </ItemTemplate>
                             <FooterStyle Width="10%" />
                             <HeaderStyle Width="10%" />
                             <ItemStyle Width="10%" />
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderStyle-Width="10%" FooterStyle-Width="10%" ItemStyle-Width="10%">
+                        <asp:TemplateField HeaderStyle-Width="10%" HeaderText="Delete"
+                            FooterStyle-Width="10%" ItemStyle-Width="10%">
                             <EditItemTemplate>
                                 <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" CssClass="btn btn-primary" Text="Cancel" CausesValidation="False" />
                             </EditItemTemplate>
                             <ItemTemplate>
+                                <% if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+                                   {%>
                                 <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" CssClass="btn btn-danger" Text="Delete"
                                     OnClientClick="return confirm('Are you sure you want to delete this ICD Chapter?\n\nAll ICDs belong to this Chapter and All Visits associated with those ICDs will be deleted, too!')" />
+                                <%
+                                   } else {%>
+                                <asp:Label ID="Label5" runat="server" Text="Not Allow" CssClass="label label-important"></asp:Label>
+                                <%
+                                   } %>
+                                
                             </ItemTemplate>
                             <FooterStyle Width="10%" />
                             <HeaderStyle Width="10%" />
