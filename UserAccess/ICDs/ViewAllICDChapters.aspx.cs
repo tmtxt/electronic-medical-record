@@ -11,7 +11,8 @@ public partial class UserAccess_ICD_ViewAllICDChapter : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        //MainGridView = AllICDChaptersGridView;
+        RedirectSuccessAlert.SetAlert("ICD Chapter inserted successfully",
+            RedirectSuccessConstants.RedirectSuccessAddICDChapter);
     }
     protected void AllICDChaptersGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {

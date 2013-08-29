@@ -2,6 +2,8 @@
 
 <%@ Register Src="~/TemplateControls/UpdateProgressBar.ascx" TagPrefix="utmpl" TagName="UpdateProgressBar" %>
 <%@ Register Src="~/TemplateControls/ResultAlert.ascx" TagPrefix="utmpl" TagName="ResultAlert" %>
+<%@ Register Src="~/TemplateControls/RedirectSuccessAlert.ascx" TagPrefix="utmpl" TagName="RedirectSuccessAlert" %>
+
 
 
 
@@ -16,6 +18,9 @@
         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
+
+                <utmpl:RedirectSuccessAlert runat="server" ID="RedirectSuccessAlert" />
+
                 <div class="control-group">
                     <asp:Label CssClass="label_filter" ID="Label3" runat="server" Text="Filter ICD Chapter by Name"></asp:Label>
                     
@@ -133,6 +138,13 @@
         <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
 
     </form>
-    <asp:HyperLink ID="HyperLink1" runat="server" CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign" NavigateUrl="~/UserAccess/ICDs/AddNewICDChapter.aspx">Add New ICD Chapter</asp:HyperLink>
+    <% if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+       {%>
+    <asp:HyperLink ID="HyperLink1" runat="server"
+        CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign"
+        NavigateUrl="~/AdminAccess/ICDs/AddNewICDChapter.aspx">Add New ICD Chapter</asp:HyperLink>
+    <%
+       } %>
+    
 </asp:Content>
 
