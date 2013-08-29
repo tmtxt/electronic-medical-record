@@ -29,6 +29,10 @@ public partial class UserAccess_ICDs_ViewAllICD : System.Web.UI.Page
         RedirectAlert.SetAlert("You need to select an ICD to view its details",
             RedirectConstants.RedirectICDDetailsSessionName);
 
+        // set the redirect success alert
+        RedirectSuccessAlert.SetAlert("ICD deleted successfully",
+            RedirectSuccessConstants.RedirectSuccessDeleteICD);
+
         // filter criteria for the dropdownlist
         if (FindICDChapterDropdownList.SelectedValue == AllICDChapterValue)
         {

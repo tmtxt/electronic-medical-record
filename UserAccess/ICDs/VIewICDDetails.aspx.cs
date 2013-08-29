@@ -52,8 +52,15 @@ public partial class UserAccess_ICDs_VIewICDDetails : System.Web.UI.Page
 
     protected void ICDDetailsFormView_ItemDeleted(object sender, FormViewDeletedEventArgs e)
     {
-        // display the result alert
-        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("ICD deleted successfully!", e.Exception);
+        if (e.Exception == null)
+        {
+            Session[RedirectSuccessConstants.RedirectSuccessDeleteICD] = "yes";
+            Response.Redirect("/UserAccess/ICDs/ViewAllICD.aspx");
+        }
+        else
+        {
+            e.ExceptionHandled = ResultAlert.SetResultAlertReturn("ICD deleted successfully!", e.Exception);
+        }
     }
 
     protected void ICDDetailsFormView_ItemDeleting(object sender, FormViewDeleteEventArgs e)
