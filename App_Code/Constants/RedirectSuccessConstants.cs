@@ -25,6 +25,7 @@ public class RedirectSuccessConstants
     public const string RedirectSuccessAddHospital = "RedirectSuccessAddHospital";
     public const string RedirectSuccessDeleteHospital = "RedirectSuccessDeleteHospital";
     public const string RedirectSuccessAddICDChapter = "RedirectSuccessAddICDChapter";
+    public const string RedirectSuccessAddICD = "RedirectSuccessAddICD";
 
 	public RedirectSuccessConstants()
 	{

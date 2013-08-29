@@ -2,6 +2,8 @@
 
 <%@ Register Src="~/TemplateControls/UpdateProgressBar.ascx" TagPrefix="utmpl" TagName="UpdateProgressBar" %>
 <%@ Register Src="~/TemplateControls/ResultAlert.ascx" TagPrefix="utmpl" TagName="ResultAlert" %>
+<%@ Register Src="~/TemplateControls/RedirectSuccessAlert.ascx" TagPrefix="utmpl" TagName="RedirectSuccessAlert" %>
+
 
 
 
@@ -16,6 +18,9 @@
         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
+
+                <utmpl:RedirectSuccessAlert runat="server" ID="RedirectSuccessAlert" />
+
                 <asp:FormView ID="ICDDetailsFormView" runat="server" DataKeyNames="ID"
                     DataSourceID="ICDDetailsDataSource" OnItemDeleted="ICDDetailsFormView_ItemDeleted"
                     OnItemDeleting="ICDDetailsFormView_ItemDeleting" Width="100%" OnItemUpdated="ICDDetailsFormView_ItemUpdated" OnItemUpdating="ICDDetailsFormView_ItemUpdating">

@@ -32,7 +32,23 @@ public partial class UserAccess_ICDs_AddNewICD : System.Web.UI.Page
 
     protected void AddNewICDFormView_ItemInserted(object sender, FormViewInsertedEventArgs e)
     {
-        // set the result alert
-        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("ICD inserted successfully!", e.Exception);
+        // redirect to view patient detail if successful
+        if (e.Exception == null)
+        {
+            Session[RedirectSuccessConstants.RedirectSuccessAddICD] = "yes";
+            Response.Redirect("/UserAccess/ICDs/ViewICDDetails.aspx?ID=" + insertedICD.ID);
+        }
+        else
+        {
+            // display the result alert
+            e.ExceptionHandled = ResultAlert.SetResultAlertReturn("ICD inserted successfully!", e.Exception);
+        }
+    }
+
+    private ICD insertedICD;
+
+    protected void AddNewICDDataSource_Inserted(object sender, LinqDataSourceStatusEventArgs e)
+    {
+        insertedICD = (ICD)e.Result;
     }
 }

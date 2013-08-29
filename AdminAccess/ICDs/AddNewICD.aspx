@@ -77,7 +77,7 @@
 
                 </asp:FormView>
 
-                <asp:LinqDataSource ID="AddNewICDDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableInsert="True" EntityTypeName="" TableName="ICDs">
+                <asp:LinqDataSource ID="AddNewICDDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableInsert="True" EntityTypeName="" TableName="ICDs" OnInserted="AddNewICDDataSource_Inserted">
                 </asp:LinqDataSource>
                 <p></p>
                 <utmpl:ResultAlert runat="server" ID="ResultAlert" />

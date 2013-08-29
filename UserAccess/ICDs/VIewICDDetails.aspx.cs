@@ -9,11 +9,6 @@ public partial class UserAccess_ICDs_VIewICDDetails : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Request.QueryString["ID"] == null)
-        {
-            
-        }
-
         // redirect if query string not found
         if (Request.QueryString["ID"] == null)
         {
@@ -40,6 +35,10 @@ public partial class UserAccess_ICDs_VIewICDDetails : System.Web.UI.Page
                 RedirectToViewAllICDs();
             }
         }
+
+        // display success alert
+        RedirectSuccessAlert.SetAlert("ICD inserted successfully",
+            RedirectSuccessConstants.RedirectSuccessAddICD);
     }
 
     protected void RedirectToViewAllICDs()

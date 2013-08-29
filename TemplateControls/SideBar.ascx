@@ -38,18 +38,21 @@
         }
         %>
 
+        <%-- Visit --%>
         <li class="nav-header">Visits</li>
         <li><a href="/UserAccess/Visits/ViewAllVisits.aspx">View All Visits</a></li>
         <li><a href="/UserAccess/Visits/ViewVisitsFromPatient.aspx">Visits from Patient</a></li>
         <li class="hide-accordingly"><a href="/UserAccess/Visits/ViewVisitDetails.aspx">Visit Details</a></li>
         <li><a href="/UserAccess/Visits/AddNewVisit.aspx">Add New Visit</a></li>
 
+        <%-- Prescription --%>
         <li class="nav-header">Prescriptions</li>
         <li><a href="/UserAccess/Prescriptions/ViewPrescriptionInfo.aspx">Prescription Info</a></li>
         <li><a href="/UserAccess/Prescriptions/ViewPrescriptionDetailInfo.aspx">Prescription Details Info</a></li>
         <li><a href="/UserAccess/Prescriptions/AddNewPrescription.aspx">Add Prescription</a></li>
         <li><a href="/UserAccess/Prescriptions/AddNewPrescriptionDetail.aspx">Add Prescription Details</a></li>
 
+        <%-- Lab Order --%>
         <li class="nav-header">Lab Orders</li>
         <li><a href="/UserAccess/LabOrders/ViewLabOrderInfo.aspx">Lab Order Info</a></li>
         <li><a href="/UserAccess/LabOrders/ViewLabOrderDetailInfo.aspx">Lab Order Detail Info</a></li>
@@ -69,7 +72,14 @@
         %>
         <li><a href="/UserAccess/ICDs/ViewAllICD.aspx">ICD List</a></li>
         <li class="hide-accordingly"><a href="/UserAccess/ICDs/ViewICDDetails.aspx">ICD Details</a></li>
-        <li><a href="/UserAccess/ICDs/AddNewICD.aspx">Add New ICD</a></li>
+        <%
+            if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+            {
+        %>
+        <li><a href="/AdminAccess/ICDs/AddNewICD.aspx">Add New ICD</a></li>
+        <%
+        }
+        %>
 
         <li class="nav-header">Drugs</li>
         <li><a href="/UserAccess/Drugs/ViewAllDrugGroups.aspx">Drug Groups</a></li>
