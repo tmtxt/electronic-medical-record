@@ -47,7 +47,7 @@
                 <asp:GridView ID="AllICDGridView" runat="server" AllowPaging="True"
                     AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="AllICDDataSource"
                     CssClass="gridview table table-bordered table-striped table-hover"
-                    OnRowDeleted="AllICDGridView_RowDeleted" OnRowDeleting="AllICDGridView_RowDeleting">
+                    OnRowDeleted="AllICDGridView_RowDeleted" OnRowDeleting="AllICDGridView_RowDeleting" PageSize="20">
                     <EmptyDataTemplate>
                         <strong>There are no ICDs that match your criteria</strong>
                     </EmptyDataTemplate>
