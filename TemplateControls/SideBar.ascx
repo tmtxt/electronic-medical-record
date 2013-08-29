@@ -6,6 +6,7 @@
         <li class="nav-header">Home</li>
         <li><a href="/UserAccess/Default.aspx">Home</a></li>
 
+        <%-- Patients --%>
         <li class="nav-header">Patients</li>
         <li><a href="/UserAccess/Patients/ViewAllPatients.aspx">View Patients</a></li>
         <li class="hide-accordingly"><a href="/UserAccess/Patients/ViewPatientDetails.aspx">Patient Details</a></li>
@@ -55,9 +56,17 @@
         <li><a href="/UserAccess/LabOrders/AddNewLabOrder.aspx">Add Lab Order</a></li>
         <li><a href="/UserAccess/LabOrders/AddNewLabOrderDetail.aspx">Add Lab Order Detail</a></li>
 
+        <%-- ICDs --%>
         <li class="nav-header">ICD</li>
         <li><a href="/UserAccess/ICDs/ViewAllICDChapters.aspx">ICD Chapters</a></li>
-        <li><a href="/UserAccess/ICDs/AddNewICDChapter.aspx">Add New ICD Chapter</a></li>
+        <%
+            if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+            {
+        %>
+        <li><a href="/AdminAccess/ICDs/AddNewICDChapter.aspx">Add New ICD Chapter</a></li>
+        <%
+        }
+        %>
         <li><a href="/UserAccess/ICDs/ViewAllICD.aspx">ICD List</a></li>
         <li class="hide-accordingly"><a href="/UserAccess/ICDs/ViewICDDetails.aspx">ICD Details</a></li>
         <li><a href="/UserAccess/ICDs/AddNewICD.aspx">Add New ICD</a></li>
