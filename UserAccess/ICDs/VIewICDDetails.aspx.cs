@@ -11,12 +11,44 @@ public partial class UserAccess_ICDs_VIewICDDetails : System.Web.UI.Page
     {
         if (Request.QueryString["ID"] == null)
         {
-            // set the session variable for displaying the redirect messsage
-            Session[RedirectConstants.RedirectICDDetailsSessionName] = "yes";
-
-            // redirect to another page
-            Response.Redirect("ViewAllICD.aspx");
+            
         }
+
+        // redirect if query string not found
+        if (Request.QueryString["ID"] == null)
+        {
+            RedirectToViewAllICDs();
+        }
+        else
+        {
+            long temp;
+            // redirect if cannot parse
+            if (long.TryParse(Request.QueryString["ID"], out temp))
+            {
+                // redirect if patient not found
+                if (new DataClassesDataContext().ICDs.Where(p => p.ID == long.Parse(Request.QueryString["ID"])).Count() == 0)
+                {
+                    RedirectToViewAllICDs();
+                }
+                else
+                {
+                    // OK
+                }
+            }
+            else
+            {
+                RedirectToViewAllICDs();
+            }
+        }
+    }
+
+    protected void RedirectToViewAllICDs()
+    {
+        // set the session variable for displaying the redirect messsage
+        Session[RedirectConstants.RedirectICDDetailsSessionName] = "yes";
+
+        // redirect to another page
+        Response.Redirect("ViewAllICD.aspx");
     }
 
     protected void ICDDetailsFormView_ItemDeleted(object sender, FormViewDeletedEventArgs e)
