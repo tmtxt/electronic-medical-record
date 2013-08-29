@@ -66,11 +66,13 @@
                             </tr>
                             <tr>
                                 <td colspan="2">
+                                    <% if(System.Threading.Thread.CurrentPrincipal.IsInRole("admin")){%>
                                     <asp:Button ID="DeleteButton" runat="server" Text="Delete ICD"
                                         CssClass="btn btn-danger" CommandName="Delete"
                                         OnClientClick="return confirm('Are you sure to you want to delete this ICD?\n\nAll Visits associated with this ICD will be deleted, too!')" />
                                     <asp:Button ID="EditButton" runat="server" Text="Edit ICD"
                                         CssClass="btn btn-primary" CommandName="Edit" />
+                                    <%} %>
                                     <asp:HyperLink ID="ViewAllICDButton" runat="server"
                                         NavigateUrl="/UserAccess/ICDs/ViewAllICD.aspx" CssClass="btn btn-primary">
                                         View All ICD
@@ -154,9 +156,11 @@
         </asp:UpdatePanel>
         <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
         <p></p>
+        <% if(System.Threading.Thread.CurrentPrincipal.IsInRole("admin")){%>
         <asp:HyperLink ID="HyperLink1" runat="server"
             CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign"
-            NavigateUrl="/UserAccess/ICDs/AddNewICD.aspx">Add New ICD</asp:HyperLink>
+            NavigateUrl="/AdminAccess/ICDs/AddNewICD.aspx">Add New ICD</asp:HyperLink>
+        <%} %>
     </form>
 </asp:Content>
 

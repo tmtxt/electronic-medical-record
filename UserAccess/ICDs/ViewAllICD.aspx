@@ -69,16 +69,24 @@
                                 </asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:HyperLinkField DataNavigateUrlFields="ID"
+                        <asp:HyperLinkField DataNavigateUrlFields="ID" HeaderText="Details"
                             DataNavigateUrlFormatString="ViewICDDetails.aspx?ID={0}"
                             Text="Details">
                             <ControlStyle CssClass="btn btn-primary btn-small" />
                         </asp:HyperLinkField>
-                        <asp:TemplateField>
+                        <asp:TemplateField HeaderText="Delete">
                             <ItemTemplate>
+                                <% if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+                                   {%>
                                 <asp:Button ID="DeleteButton" runat="server" Text="Delete" CausesValidation="false"
                                     CommandName="Delete" CssClass="btn btn-danger btn-small"
                                     OnClientClick="return confirm('Are you sure to you want to delete this ICD?\n\nAll Visits associated with this ICD will be deleted, too!')" />
+                                <%
+                                   } else {%>
+                                <asp:Label ID="Label6" runat="server" Text="Not Allow" CssClass="label label-important"></asp:Label>
+                                <%
+                                   } %>
+                                
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -122,9 +130,13 @@
         </asp:UpdatePanel>
         <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
         <p></p>
+        <% if(System.Threading.Thread.CurrentPrincipal.IsInRole("admin")){%>
         <asp:HyperLink ID="HyperLink1" runat="server"
             CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign"
-            NavigateUrl="/UserAccess/ICDs/AddNewICD.aspx">Add New ICD</asp:HyperLink>
+            NavigateUrl="/AdminAccess/ICDs/AddNewICD.aspx">Add New ICD</asp:HyperLink>
+        <%
+           } %>
+        
     </form>
 </asp:Content>
 
