@@ -7,13 +7,13 @@
 
 
 
-<asp:Content ID="Content1" ContentPlaceHolderID="Title" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="Server">
     Drug Groups
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="Header" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="Header" runat="Server">
     All Drug Groups
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="Content" Runat="Server">
+<asp:Content ID="Content3" ContentPlaceHolderID="Content" runat="Server">
     <form runat="server" class="form-horizontal">
         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -37,7 +37,7 @@
                     CssClass="table table-bordered table-striped table-hover" OnRowDeleted="AllDrugGroupsGridView_RowDeleted" OnRowUpdated="AllDrugGroupsGridView_RowUpdated" OnRowDeleting="AllDrugGroupsGridView_RowDeleting">
                     <Columns>
                         <asp:TemplateField HeaderText="Name" SortExpression="Name"
-                             HeaderStyle-Width="40%" FooterStyle-Width="40%" ItemStyle-Width="40%">
+                            HeaderStyle-Width="40%" FooterStyle-Width="40%" ItemStyle-Width="40%">
                             <EditItemTemplate>
                                 <asp:TextBox ID="NameTextBox" runat="server" Text='<%# Bind("Name") %>'></asp:TextBox><br />
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Drug Group Name is required" ControlToValidate="NameTextBox" CssClass="label label-important" Display="Dynamic"></asp:RequiredFieldValidator>
@@ -50,7 +50,7 @@
                             <ItemStyle Width="40%" />
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Description" SortExpression="Description"
-                             HeaderStyle-Width="40%" FooterStyle-Width="40%" ItemStyle-Width="40%">
+                            HeaderStyle-Width="40%" FooterStyle-Width="40%" ItemStyle-Width="40%">
                             <EditItemTemplate>
                                 <asp:TextBox ID="TextBox2" TextMode="MultiLine" runat="server" Rows="6"
                                     Text='<%# Bind("Description") %>'></asp:TextBox>
@@ -62,25 +62,40 @@
                             <HeaderStyle Width="40%" />
                             <ItemStyle Width="40%" />
                         </asp:TemplateField>
-                        <asp:TemplateField>
+                        <asp:TemplateField HeaderText="Edit">
                             <EditItemTemplate>
                                 <asp:Button ID="UpdateButton" runat="server" Text="Update" CommandName="Update"
                                     CssClass="btn btn-primary" />
                             </EditItemTemplate>
                             <ItemTemplate>
+                                <% if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+                                   {%>
                                 <asp:Button ID="EditButton" runat="server" Text="Edit" CommandName="Edit"
                                     CssClass="btn btn-primary" />
+                                <%
+                                   } else {%>
+                                <asp:Label ID="Label4" runat="server" Text="Not Allow" CssClass="label label-important"></asp:Label>
+                                <%
+                                   } %>
+                                
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField>
+                        <asp:TemplateField HeaderText="Delete">
                             <EditItemTemplate>
                                 <asp:Button ID="CancelButton" runat="server" Text="Cancel" CommandName="Cancel"
                                     CssClass="btn btn-primary" CausesValidation="False" />
                             </EditItemTemplate>
                             <ItemTemplate>
+                                <% if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+                                   {%>
                                 <asp:Button ID="DeleteButton" runat="server" Text="Delete" CommandName="Delete"
                                     CssClass="btn btn-danger"
                                     OnClientClick="return confirm('Are you sure you want to delete this Drug Group?\n\nAll Drugs belong to this Group as well as All Prescription Details associated with those Drugs will be deleted, too.')" />
+                                <%
+                                   } else {%>
+                                <asp:Label ID="Label5" runat="server" Text="Not Allow" CssClass="label label-important"></asp:Label>
+                                <%
+                                   } %>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -88,7 +103,7 @@
                 <utmpl:ResultAlert runat="server" ID="ResultAlert" />
                 <asp:LinqDataSource ID="AllDrugGroupsDataSource" runat="server" ContextTypeName="DataClassesDataContext"
                     EnableDelete="True" EnableUpdate="True" EntityTypeName="" TableName="DrugGroups"
-                     Where="Name.Contains(@NamePart)">
+                    Where="Name.Contains(@NamePart)">
                     <WhereParameters>
                         <asp:ControlParameter ControlID="FindDrugGroupTextBox"
                             ConvertEmptyStringToNull="False" Name="NamePart" PropertyName="Text" />
@@ -98,8 +113,12 @@
         </asp:UpdatePanel>
         <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
     </form>
+    <% if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+       {%>
     <asp:HyperLink ID="HyperLink1" runat="server" CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign"
-        NavigateUrl="/UserAccess/Drugs/AddNewDrugGroup.aspx">
+        NavigateUrl="/AdminAccess/Drugs/AddNewDrugGroup.aspx">
         Add New Drug Group</asp:HyperLink>
+    <%
+       } %>
 </asp:Content>
 
