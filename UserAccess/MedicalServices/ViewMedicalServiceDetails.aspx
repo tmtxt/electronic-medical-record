@@ -61,8 +61,8 @@
                                 <td colspan="2">
                                     <asp:Button ID="DeleteButton" CommandName="Delete" runat="server" Text="Delete Medical Service"
                                         CssClass="btn btn-danger" OnClientClick="return confirm('Are you sure you want to delete this Medical Service?\n\nAll Lab Order Details belong to this Medical Service will be deleted, too!')" />
-                                    <asp:LinkButton ID="EditButton" runat="server" Text="Edit" CssClass="btn btn-primary"
-                                        CommandName="Edit" />
+                                    <asp:LinkButton ID="EditButton" runat="server" Text="Edit Medical Service"
+                                        CssClass="btn btn-primary" CommandName="Edit" />
                                     <asp:HyperLink ID="HyperLink1" CssClass="btn btn-primary" runat="server" NavigateUrl="/UserAccess/MedicalServices/ViewAllMedicalServices.aspx">
                                         View All Medical Services
                                     </asp:HyperLink>

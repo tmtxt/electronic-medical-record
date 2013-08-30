@@ -9,18 +9,45 @@ public partial class UserAccess_MedicalServices_ViewMedicalServiceDetails : Syst
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        // redirect if query string not found
         if (Request.QueryString["ID"] == null)
         {
-            // set the session variable to display the redirect message
-            Session[RedirectConstants.RedirectMedicalServiceSessionName] = "yes";
-
-            // redirect to view all medical services page
-            Response.Redirect("/UserAccess/MedicalServices/ViewAllMedicalServices.aspx");
+            RedirectToViewAllMedicalService();
+        }
+        else
+        {
+            long temp;
+            // redirect if cannot parse
+            if (long.TryParse(Request.QueryString["ID"], out temp))
+            {
+                // redirect if medical service not found
+                if (new DataClassesDataContext().MedicalServices.Where(p => p.ID == long.Parse(Request.QueryString["ID"])).Count() == 0)
+                {
+                    RedirectToViewAllMedicalService();
+                }
+                else
+                {
+                    // OK
+                }
+            }
+            else
+            {
+                RedirectToViewAllMedicalService();
+            }
         }
         
         // display the redirect success alert
         RedirectSuccessAlert.SetAlert("Medical Service inserted successfully",
             RedirectSuccessConstants.RedirectSuccessAddMedicalService);
+    }
+
+    private void RedirectToViewAllMedicalService()
+    {
+        // set the session variable to display the redirect message
+        Session[RedirectConstants.RedirectMedicalServiceSessionName] = "yes";
+
+        // redirect to view all medical services page
+        Response.Redirect("/UserAccess/MedicalServices/ViewAllMedicalServices.aspx");
     }
 
     protected void BindData()
