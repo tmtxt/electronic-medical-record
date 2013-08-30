@@ -81,6 +81,7 @@
         }
         %>
 
+        <%-- Drugs --%>
         <li class="nav-header">Drugs</li>
         <li><a href="/UserAccess/Drugs/ViewAllDrugGroups.aspx">Drug Groups</a></li>
         <%
@@ -102,12 +103,28 @@
         }
         %>
 
+        <%-- Medical Services --%>
         <li class="nav-header">Medical Services</li>
         <li><a href="/UserAccess/MedicalServices/ViewAllMedicalServiceGroups.aspx">Medical Service Groups</a></li>
-        <li><a href="/UserAccess/MedicalServices/AddNewMedicalServiceGroup.aspx">Add Medical Service Group</a></li>
+        <%
+            if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+            {
+        %>
+        <li><a href="/AdminAccess/MedicalServices/AddNewMedicalServiceGroup.aspx">Add Medical Service Group</a></li>
+        <%
+        }
+        %>
         <li><a href="/UserAccess/MedicalServices/ViewAllMedicalServices.aspx">Medical Services</a></li>
         <li class="hide-accordingly"><a href="/UserAccess/MedicalServices/ViewMedicalServiceDetails.aspx">Medical Service Details</a></li>
-        <li><a href="/UserAccess/MedicalServices/AddNewMedicalService.aspx">Add New Medical Service</a></li>
+        <%
+            if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+            {
+        %>
+        <li><a href="/AdminAccess/MedicalServices/AddNewMedicalService.aspx">Add New Medical Service</a></li>
+        <%
+        }
+        %>
+        
 
         <%-- this section is for admin only --%>
         <%
