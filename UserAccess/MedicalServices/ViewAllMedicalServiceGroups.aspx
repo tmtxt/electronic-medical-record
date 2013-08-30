@@ -63,25 +63,42 @@
                             <HeaderStyle Width="40%" />
                             <ItemStyle Width="40%" />
                         </asp:TemplateField>
-                        <asp:TemplateField>
+                        <asp:TemplateField HeaderText="Edit">
                             <EditItemTemplate>
                                 <asp:Button ID="UpdateButton" CssClass="btn btn-primary" runat="server"
                                     Text="Update" CommandName="Update" />
                             </EditItemTemplate>
                             <ItemTemplate>
+                                <% if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+                                   {%>
                                 <asp:Button ID="EditButton" CssClass="btn btn-primary" runat="server"
                                     Text="Edit" CommandName="Edit" />
+                                <%
+                                   }
+                                   else {%>
+                                <asp:Label ID="Label5" runat="server" Text="Not Allow" CssClass="label label-important"></asp:Label>
+                                <%
+                                   } %>
+                                
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField>
+                        <asp:TemplateField HeaderText="Delete">
                             <EditItemTemplate>
                                 <asp:Button ID="CancelButton" CssClass="btn btn-primary" runat="server"
                                     Text="Cancel" CommandName="Cancel" CausesValidation="False" />
                             </EditItemTemplate>
                             <ItemTemplate>
+                                <% if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+                                   {%>
                                 <asp:Button ID="DeleteButton" CssClass="btn btn-danger" runat="server"
                                     Text="Delete" CommandName="Delete"
                                     OnClientClick="return confirm('Are you sure you want to delete this Medical Service Group?\n\nAll Medical Services belong to this group as well as Lab Order Detail associated with those Medical Services will be deleted, too.')" />
+                                <%
+                                   } else {%>
+                                <asp:Label ID="Label6" runat="server" Text="Not Allow" CssClass="label label-important"></asp:Label>
+                                <%
+                                   } %>
+                                
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -121,6 +138,14 @@
         </asp:UpdatePanel>
         <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
     </form>
-    <asp:HyperLink ID="HyperLink1" runat="server" CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign" NavigateUrl="/UserAccess/MedicalServices/AddNewMedicalServiceGroup.aspx">Add New Medical Service Group</asp:HyperLink>
+    <% if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+       {%>
+    <asp:HyperLink ID="HyperLink1" runat="server"
+        CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign"
+        NavigateUrl="/AdminAccess/MedicalServices/AddNewMedicalServiceGroup.aspx">
+        &nbsp;Add New Medical Service Group</asp:HyperLink>
+    <%
+       } %>
+    
 </asp:Content>
 
