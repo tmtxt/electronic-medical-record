@@ -39,6 +39,9 @@ public partial class UserAccess_MedicalServices_ViewAllMedicalServices : System.
         RedirectAlert.SetAlert("You need to select a Medical Service to view its details",
             RedirectConstants.RedirectMedicalServiceSessionName);
         
+        // set the redirect success alert
+        RedirectSuccessAlert.SetAlert("Medical Service deleted successfully",
+            RedirectSuccessConstants.RedirectSuccessDeleteMedicalService);
     }
 
     protected void AllMedicalServicesDataSource_Selecting(object sender, LinqDataSourceSelectEventArgs e)

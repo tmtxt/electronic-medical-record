@@ -109,7 +109,16 @@ public partial class UserAccess_MedicalServices_ViewMedicalServiceDetails : Syst
     protected void MedicalServiceDetailsFormView_ItemDeleted(object sender, FormViewDeletedEventArgs e)
     {
         System.Threading.Thread.Sleep(1000);
-        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Medical Service deleted successfully!", e.Exception);
+
+        if (e.Exception == null)
+        {
+            Session[RedirectSuccessConstants.RedirectSuccessDeleteMedicalService] = "yes";
+            Response.Redirect("/UserAccess/MedicalServices/ViewAllMedicalServices.aspx");
+        }
+        else
+        {
+            e.ExceptionHandled = ResultAlert.SetResultAlertReturn("error", e.Exception);
+        }
     }
 
     protected void ClearForm()
