@@ -2,6 +2,6 @@
 
 <asp:UpdateProgress ID="CustomUpdateProgress" runat="server">
     <ProgressTemplate>
-        <img src="/Assets/Default/images/ajax-loader.gif" />
+        <img src='/Assets/<%= Profile.Theme %>/images/ajax-loader.gif' />
     </ProgressTemplate>
 </asp:UpdateProgress>
