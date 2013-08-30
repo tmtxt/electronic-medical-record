@@ -37,7 +37,7 @@
                 <asp:GridView ID="AllDrugGridView" runat="server"
                     AutoGenerateColumns="False"
                     DataKeyNames="ID" DataSourceID="AllDrugsDataSource"
-                    CssClass="gridview table table-bordered table-striped table-hover" AllowPaging="True" OnRowDeleted="AllDrugGridView_RowDeleted" OnRowDeleting="AllDrugGridView_RowDeleting">
+                    CssClass="gridview table table-bordered table-striped table-hover" AllowPaging="True" OnRowDeleted="AllDrugGridView_RowDeleted" OnRowDeleting="AllDrugGridView_RowDeleting" PageSize="20">
 
                     <Columns>
                         <asp:TemplateField HeaderText="Drug Name" SortExpression="Name">
@@ -59,15 +59,22 @@
                                 </asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:HyperLinkField DataNavigateUrlFields="ID" Text="Details"
+                        <asp:HyperLinkField DataNavigateUrlFields="ID" Text="Details" HeaderText="Details"
                             DataNavigateUrlFormatString="ViewDrugDetails.aspx?ID={0}">
                             <ControlStyle CssClass="btn btn-small btn-primary" />
                         </asp:HyperLinkField>
-                        <asp:TemplateField>
+                        <asp:TemplateField HeaderText="Delete">
                             <ItemTemplate>
+                                <% if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+                                   {%>
                                 <asp:Button ID="DeleteButton" runat="server" Text="Delete"
                                     CommandName="Delete" CssClass="btn btn-danger btn-small"
                                     OnClientClick="return confirm('Are you sure you want to delete this Drug?\n\nAll Prescription Details associated with this Drug will be deleted, too!')" />
+                                <%
+                                   } else {%>
+                                <asp:Label ID="Label5" runat="server" Text="Not Allow" CssClass="label label-important"></asp:Label>
+                                <%
+                                   } %>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -109,10 +116,15 @@
         </asp:UpdatePanel>
         <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
         <p></p>
+        <% if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+           {%>
         <asp:HyperLink ID="AddNewButton" CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign"
-            runat="server" NavigateUrl="/UserAccess/Drugs/AddNewDrug.aspx">
+            runat="server" NavigateUrl="/AdminAccess/Drugs/AddNewDrug.aspx">
                                         Add New Drug
         </asp:HyperLink>
+        <%
+           } %>
+        
     </form>
 </asp:Content>
 
