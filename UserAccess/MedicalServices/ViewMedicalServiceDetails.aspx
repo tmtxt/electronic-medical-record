@@ -59,10 +59,14 @@
                             </tr>
                             <tr>
                                 <td colspan="2">
+                                    <% if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+                                       {%>
                                     <asp:Button ID="DeleteButton" CommandName="Delete" runat="server" Text="Delete Medical Service"
                                         CssClass="btn btn-danger" OnClientClick="return confirm('Are you sure you want to delete this Medical Service?\n\nAll Lab Order Details belong to this Medical Service will be deleted, too!')" />
                                     <asp:LinkButton ID="EditButton" runat="server" Text="Edit Medical Service"
                                         CssClass="btn btn-primary" CommandName="Edit" />
+                                    <%
+                                       } %>
                                     <asp:HyperLink ID="HyperLink1" CssClass="btn btn-primary" runat="server" NavigateUrl="/UserAccess/MedicalServices/ViewAllMedicalServices.aspx">
                                         View All Medical Services
                                     </asp:HyperLink>
@@ -140,10 +144,16 @@
             </ContentTemplate>
         </asp:UpdatePanel>
         <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
+        <p></p>
+        <% if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+           {%>
         <asp:HyperLink ID="AddNewButton" CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign"
-            runat="server" NavigateUrl="/UserAccess/MedicalServices/AddNewMedicalService.aspx">
-                                        Add New Medical Service
+            runat="server" NavigateUrl="/AdminAccess/MedicalServices/AddNewMedicalService.aspx">
+                                        &nbsp;Add New Medical Service
         </asp:HyperLink>
+        <%
+           } %>
+        
     </form>
 </asp:Content>
 
