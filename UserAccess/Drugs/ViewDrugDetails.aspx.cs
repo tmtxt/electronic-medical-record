@@ -54,8 +54,15 @@ public partial class UserAccess_Drugs_ViewDrugDetails : System.Web.UI.Page
     {
         System.Threading.Thread.Sleep(1000);
 
-        // print the result alert
-        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Drug deleted successfully!", e.Exception);
+        if (e.Exception == null)
+        {
+            Session[RedirectSuccessConstants.RedirectSuccessDeleteDrug] = "yes";
+            Response.Redirect("/UserAccess/Drugs/ViewAllDrugs.aspx");
+        }
+        else
+        {
+            e.ExceptionHandled = ResultAlert.SetResultAlertReturn("ICD deleted successfully!", e.Exception);
+        }
     }
 
     protected void DrugDetailsFormView_ItemUpdated(object sender, FormViewUpdatedEventArgs e)

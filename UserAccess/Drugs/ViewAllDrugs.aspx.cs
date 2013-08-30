@@ -9,8 +9,13 @@ public partial class UserAccess_Drugs_ViewAllDrugs : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        // set the redirect alert
         RedirectAlert.SetAlert("You need to select a Drug to view its details",
             RedirectConstants.RedirectDrugDetailsSessionName);
+
+        // set the redirect success alert
+        RedirectSuccessAlert.SetAlert("Drug deleted successfully",
+            RedirectSuccessConstants.RedirectSuccessDeleteDrug);
     }
 
     protected void AllDrugGridView_RowDeleted(object sender, GridViewDeletedEventArgs e)
