@@ -26,7 +26,17 @@ public partial class UserAccess_Drugs_AllNewDrugGroup : System.Web.UI.Page
     {
         System.Threading.Thread.Sleep(1000);
 
+        if (e.Exception == null)
+        {
+            Session[RedirectSuccessConstants.RedirectSuccessAddDrugGroup] = "yes";
+            Response.Redirect("/UserAccess/Drugs/ViewAllDrugGroups.aspx");
+        }
+        else
+        {
+            e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Drug Group inserted successfully!", e.Exception);
+        }
+
         // display the result alert
-        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Drug Group inserted successfully!", e.Exception);
+        
     }
 }

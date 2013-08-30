@@ -9,7 +9,9 @@ public partial class UserAccess_Drugs_ViewAllDrugGroups : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        // display the redirect success alert
+        RedirectSuccessAlert.SetAlert("Drug Group inserted successfully",
+            RedirectSuccessConstants.RedirectSuccessAddDrugGroup);
     }
 
     protected void AllDrugGroupsGridView_RowUpdated(object sender, GridViewUpdatedEventArgs e)

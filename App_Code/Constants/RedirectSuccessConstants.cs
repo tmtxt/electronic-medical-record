@@ -27,6 +27,7 @@ public class RedirectSuccessConstants
     public const string RedirectSuccessAddICDChapter = "RedirectSuccessAddICDChapter";
     public const string RedirectSuccessAddICD = "RedirectSuccessAddICD";
     public const string RedirectSuccessDeleteICD = "RedirectSuccessDeleteICD";
+    public const string RedirectSuccessAddDrugGroup = "RedirectSuccessAddDrugGroup";
 
 	public RedirectSuccessConstants()
 	{
