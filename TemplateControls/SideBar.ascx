@@ -83,10 +83,24 @@
 
         <li class="nav-header">Drugs</li>
         <li><a href="/UserAccess/Drugs/ViewAllDrugGroups.aspx">Drug Groups</a></li>
-        <li><a href="/UserAccess/Drugs/AddNewDrugGroup.aspx">Add New Drug Group</a></li>
+        <%
+            if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+            {
+        %>
+        <li><a href="/AdminAccess/Drugs/AddNewDrugGroup.aspx">Add New Drug Group</a></li>
+        <%
+        }
+        %>
         <li><a href="/UserAccess/Drugs/ViewAllDrugs.aspx">Drugs</a></li>
         <li class="hide-accordingly"><a href="/UserAccess/Drugs/ViewDrugDetails.aspx">Drug Details</a></li>
-        <li><a href="/UserAccess/Drugs/AddNewDrug.aspx">Add New Drug</a></li>
+        <%
+            if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+            {
+        %>
+        <li><a href="/AdminAccess/Drugs/AddNewDrug.aspx">Add New Drug</a></li>
+        <%
+        }
+        %>
 
         <li class="nav-header">Medical Services</li>
         <li><a href="/UserAccess/MedicalServices/ViewAllMedicalServiceGroups.aspx">Medical Service Groups</a></li>
