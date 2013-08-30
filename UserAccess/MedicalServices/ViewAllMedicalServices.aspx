@@ -40,7 +40,7 @@
                     CssClass="gridview table table-bordered table-striped table-hover"
                     OnRowDeleted="AllMedicalServicesGridView_RowDeleted"
                     OnRowDeleting="AllMedicalServicesGridView_RowDeleting"
-                    AllowPaging="True" DataSourceID="AllMedicalServicesDataSource">
+                    AllowPaging="True" DataSourceID="AllMedicalServicesDataSource" PageSize="20">
 
                     <Columns>
                         <asp:TemplateField HeaderText="Name">
@@ -63,7 +63,7 @@
                             </EditItemTemplate>
                         </asp:TemplateField>
                         <asp:HyperLinkField HeaderStyle-Width="10%" FooterStyle-Width="10%"
-                            ItemStyle-Width="10%" DataNavigateUrlFields="ID"
+                            ItemStyle-Width="10%" DataNavigateUrlFields="ID" HeaderText="Details"
                             DataNavigateUrlFormatString="ViewMedicalServiceDetails.aspx?ID={0}"
                             Text="Details">
                             <ControlStyle CssClass="btn btn-primary btn-small" />
@@ -71,11 +71,19 @@
                         <HeaderStyle Width="10%" />
                         <ItemStyle Width="10%" />
                         </asp:HyperLinkField>
-                        <asp:TemplateField HeaderStyle-Width="10%" FooterStyle-Width="10%" ItemStyle-Width="10%">
+                        <asp:TemplateField HeaderStyle-Width="10%" HeaderText="Delete"
+                            FooterStyle-Width="10%" ItemStyle-Width="10%">
                             <ItemTemplate>
+                                <% if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+                                   {%>
                                 <asp:Button ID="DeleteButton" runat="server" Text="Delete"
                                     CommandName="Delete" CssClass="btn btn-danger btn-small"
                                     OnClientClick="return confirm('Are you sure to you want to delete this Medical Service?\n\nAll Lab Order Details associated with this Medical Service will be deleted, too!')" />
+                                <%
+                                   } else {%>
+                                <asp:Label ID="Label5" runat="server" Text="Not Allow" CssClass="label label-important"></asp:Label>
+                                <%
+                                   } %>
                             </ItemTemplate>
                             <FooterStyle Width="10%" />
                             <HeaderStyle Width="10%" />
@@ -118,10 +126,15 @@
             </ContentTemplate>
         </asp:UpdatePanel>
         <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
+        <% if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+           {%>
         <asp:HyperLink ID="AddNewButton" CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign"
-            runat="server" NavigateUrl="/UserAccess/MedicalServices/AddNewMedicalService.aspx">
+            runat="server" NavigateUrl="/AdminAccess/MedicalServices/AddNewMedicalService.aspx">
                                         Add New Medical Service
         </asp:HyperLink>
+        <%
+           } %>
+        
     </form>
 </asp:Content>
 
