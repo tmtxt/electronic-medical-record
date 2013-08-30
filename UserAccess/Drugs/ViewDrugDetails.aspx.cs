@@ -9,19 +9,45 @@ public partial class UserAccess_Drugs_ViewDrugDetails : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        // redirect if query string not found
         if (Request.QueryString["ID"] == null)
         {
-            // set the session value to display the message
-            Session[RedirectConstants.RedirectDrugDetailsSessionName] = "yes";
-
-            // redirect to view all drugs page
-            Response.Redirect("ViewAllDrugs.aspx");
-            
+            RedirectToViewAllDrugs();
+        }
+        else
+        {
+            long temp;
+            // redirect if cannot parse
+            if (long.TryParse(Request.QueryString["ID"], out temp))
+            {
+                // redirect if drug not found
+                if (new DataClassesDataContext().Drugs.Where(p => p.ID == long.Parse(Request.QueryString["ID"])).Count() == 0)
+                {
+                    RedirectToViewAllDrugs();
+                }
+                else
+                {
+                    // OK
+                }
+            }
+            else
+            {
+                RedirectToViewAllDrugs();
+            }
         }
 
         // display the redirect success alert
         RedirectSuccessAlert.SetAlert("Drug inserted successfully",
             RedirectSuccessConstants.RedirectSuccessAddDrug);
+    }
+
+    private void RedirectToViewAllDrugs()
+    {
+        // set the session value to display the message
+        Session[RedirectConstants.RedirectDrugDetailsSessionName] = "yes";
+
+        // redirect to view all drugs page
+        Response.Redirect("ViewAllDrugs.aspx");
     }
 
     protected void DrugDetailsFormView_ItemDeleted(object sender, FormViewDeletedEventArgs e)
