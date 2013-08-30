@@ -4,7 +4,15 @@
 <div class="well" style="padding: 8px 0;">
     <ul class="nav nav-list" id="sidebar-nav">
         <li class="nav-header">Home</li>
+        <% if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+           {%>
+        <li><a href="/AdminAccess/Default.aspx">Home</a></li>
+        <%
+           } else {%>
         <li><a href="/UserAccess/Default.aspx">Home</a></li>
+        <%
+           } %>
+        
 
         <%-- Patients --%>
         <li class="nav-header">Patients</li>
