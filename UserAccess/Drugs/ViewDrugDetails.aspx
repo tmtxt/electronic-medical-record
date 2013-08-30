@@ -158,11 +158,15 @@
                             </tr>
                             <tr>
                                 <td colspan="2">
+                                    <% if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+                                       {%>
                                     <asp:Button ID="DeleteButton" runat="server" Text="Delete Drug"
                                         CommandName="Delete" CssClass="btn btn-danger"
                                         OnClientClick="return confirm('Are you sure you want to delete this Drug?\n\nAll Prescription Details associated with this Drug will be deleted, too!')" />
                                     <asp:Button ID="EditButton" runat="server" Text="Edit Drug"
                                         CommandName="Edit" CssClass="btn btn-primary" />
+                                    <%
+                                       } %>
                                     <asp:HyperLink ID="ViewAllDrugsButton" runat="server" CssClass="btn btn-primary"
                                         NavigateUrl="~/UserAccess/Drugs/ViewAllDrugs.aspx">
                                         View All Drugs
@@ -184,10 +188,15 @@
         </asp:UpdatePanel>
         <utmpl:UpdateProgressBar runat="server" ID="UpdateProgressBar" />
         <p></p>
+        <% if (System.Threading.Thread.CurrentPrincipal.IsInRole("admin"))
+           {%>
         <asp:HyperLink ID="AddNewButton" CssClass="btn btn-large btn-primary glyphicon glyphicon-plus-sign"
-            runat="server" NavigateUrl="/UserAccess/Drugs/AddNewDrug.aspx">
+            runat="server" NavigateUrl="/AdminAccess/Drugs/AddNewDrug.aspx">
                                         Add New Drug
         </asp:HyperLink>
+        <%
+           } %>
+        
     </form>
 </asp:Content>
 
