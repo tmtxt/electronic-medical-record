@@ -14,7 +14,17 @@
                 Text="Theme"></asp:Label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:DropDownList ID="ThemeDropDownList" runat="server">
+                <asp:ListItem>Amelia</asp:ListItem>
                 <asp:ListItem Value="Default">Cerulean</asp:ListItem>
+                <asp:ListItem>Cosmo</asp:ListItem>
+                <asp:ListItem>Cyborg</asp:ListItem>
+                <asp:ListItem>Flatly</asp:ListItem>
+                <asp:ListItem>Journal</asp:ListItem>
+                <asp:ListItem>Readable</asp:ListItem>
+                <asp:ListItem>Simplex</asp:ListItem>
+                <asp:ListItem>Slate</asp:ListItem>
+                <asp:ListItem>Spacelab</asp:ListItem>
+                <asp:ListItem>SuperHero</asp:ListItem>
                 <asp:ListItem>United</asp:ListItem>
             </asp:DropDownList>
         </div>
