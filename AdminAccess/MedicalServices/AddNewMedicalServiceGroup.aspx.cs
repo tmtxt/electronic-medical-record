@@ -29,8 +29,16 @@ public partial class UserAccess_MedicalServices_AddNewMedicalServiceGroup : Syst
     {
         System.Threading.Thread.Sleep(1000);
 
-        // display the result alert
-        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Medical Service Group inserted successfully!",
-            e.Exception);
+        if (e.Exception == null)
+        {
+            Session[RedirectSuccessConstants.RedirectSuccessAddMedicalServiceGroup] = "yes";
+            Response.Redirect("/UserAccess/MedicalServices/ViewAllMedicalServiceGroups.aspx");
+        }
+        else
+        {
+            ResultAlert.SetResultAlert(e.Exception.Message,
+                TemplateControls_ResultAlert.AlertTypeError);
+            e.ExceptionHandled = true;
+        }
     }
 }

@@ -9,7 +9,8 @@ public partial class UserAccess_MedicalServices_ViewAllMedicalServiceGroups : Sy
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        RedirectSuccessAlert.SetAlert("Medical Service Group inserted successfully",
+            RedirectSuccessConstants.RedirectSuccessAddMedicalServiceGroup);
     }
 
     protected void AllMedicalServiceGroupsGridView_RowUpdated(object sender, GridViewUpdatedEventArgs e)
