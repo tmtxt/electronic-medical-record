@@ -12,7 +12,7 @@
                             <b class="caret"></b>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="#">Edit Profile</a>
+                                    <a href="/UserAccess/Users/EditProfile.aspx">Edit Profile</a>
                                 </li>
                                 <li>
                                     <a href="/Logout.aspx">Logout</a>
