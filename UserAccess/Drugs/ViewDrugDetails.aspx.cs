@@ -18,6 +18,10 @@ public partial class UserAccess_Drugs_ViewDrugDetails : System.Web.UI.Page
             Response.Redirect("ViewAllDrugs.aspx");
             
         }
+
+        // display the redirect success alert
+        RedirectSuccessAlert.SetAlert("Drug inserted successfully",
+            RedirectSuccessConstants.RedirectSuccessAddDrug);
     }
 
     protected void DrugDetailsFormView_ItemDeleted(object sender, FormViewDeletedEventArgs e)

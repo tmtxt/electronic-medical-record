@@ -30,7 +30,23 @@ public partial class UserAccess_Drugs_AddNewDrug : System.Web.UI.Page
     {
         System.Threading.Thread.Sleep(1000);
 
-        // display the result alert
-        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Drug inserted successfully!", e.Exception);
+        // redirect to view patient detail if successful
+        if (e.Exception == null)
+        {
+            Session[RedirectSuccessConstants.RedirectSuccessAddDrug] = "yes";
+            Response.Redirect("/UserAccess/Drugs/ViewDrugDetails.aspx?ID=" + insertedDrug.ID);
+        }
+        else
+        {
+            // display the result alert
+            e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Drug inserted successfully!", e.Exception);
+        }
+    }
+
+    private Drug insertedDrug;
+
+    protected void AddNewDrugDataSource_Inserted(object sender, LinqDataSourceStatusEventArgs e)
+    {
+        insertedDrug = (Drug)e.Result;
     }
 }

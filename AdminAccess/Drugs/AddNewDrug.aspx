@@ -44,7 +44,7 @@
                                 <p></p>
                             </div>
                             <div class="form-group">
-                                <label for="PriceTextBox">Price *</label>
+                                <label for="PriceTextBox">Price (USD) *</label>
                                 <asp:TextBox ID="PriceTextBox" runat="server"
                                     Text='<%# Bind("Price") %>'></asp:TextBox><br />
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Drug Price is required" ControlToValidate="PriceTextBox" CssClass="label label-important" Display="Dynamic"></asp:RequiredFieldValidator>
@@ -75,7 +75,7 @@
                     </InsertItemTemplate>
                 </asp:FormView>
 
-                <asp:LinqDataSource ID="AddNewDrugDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableInsert="True" EntityTypeName="" TableName="Drugs">
+                <asp:LinqDataSource ID="AddNewDrugDataSource" runat="server" ContextTypeName="DataClassesDataContext" EnableInsert="True" EntityTypeName="" TableName="Drugs" OnInserted="AddNewDrugDataSource_Inserted">
                 </asp:LinqDataSource>
 
                 <p></p>
