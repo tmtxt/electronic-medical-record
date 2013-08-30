@@ -2,6 +2,8 @@
 
 <%@ Register Src="~/TemplateControls/UpdateProgressBar.ascx" TagPrefix="utmpl" TagName="UpdateProgressBar" %>
 <%@ Register Src="~/TemplateControls/ResultAlert.ascx" TagPrefix="utmpl" TagName="ResultAlert" %>
+<%@ Register Src="~/TemplateControls/RedirectSuccessAlert.ascx" TagPrefix="utmpl" TagName="RedirectSuccessAlert" %>
+
 
 
 
@@ -16,6 +18,8 @@
         <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
+
+                <utmpl:RedirectSuccessAlert runat="server" ID="RedirectSuccessAlert" />
 
                 <asp:FormView ID="MedicalServiceDetailsFormView" runat="server" DataKeyNames="ID" OnModeChanging="MedicalServiceDetailsFormView_ModeChanging" DataSourceID="MedicalServiceDetailDataSource" OnItemCommand="MedicalServiceDetailsFormView_ItemCommand" OnItemDeleting="MedicalServiceDetailsFormView_ItemDeleting" OnDataBound="MedicalServiceDetailsFormView_DataBound" OnItemDeleted="MedicalServiceDetailsFormView_ItemDeleted" OnItemUpdated="MedicalServiceDetailsFormView_ItemUpdated" OnItemUpdating="MedicalServiceDetailsFormView_ItemUpdating">
                     <ItemTemplate>

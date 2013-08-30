@@ -17,11 +17,10 @@ public partial class UserAccess_MedicalServices_ViewMedicalServiceDetails : Syst
             // redirect to view all medical services page
             Response.Redirect("/UserAccess/MedicalServices/ViewAllMedicalServices.aspx");
         }
-        //if (!IsPostBack)
-        //{
-
-        //    BindData();
-        //}
+        
+        // display the redirect success alert
+        RedirectSuccessAlert.SetAlert("Medical Service inserted successfully",
+            RedirectSuccessConstants.RedirectSuccessAddMedicalService);
     }
 
     protected void BindData()

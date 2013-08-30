@@ -37,6 +37,23 @@ public partial class UserAccess_MedicalServices_AddNewMedicalService : System.We
     {
         System.Threading.Thread.Sleep(1000);
 
-        e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Medical Service inserted successfully!", e.Exception);
+        // redirect to view patient detail if successful
+        if (e.Exception == null)
+        {
+            Session[RedirectSuccessConstants.RedirectSuccessAddMedicalService] = "yes";
+            Response.Redirect("/UserAccess/MedicalServices/ViewMedicalServiceDetails.aspx?ID=" + insertedMedicalService.ID);
+        }
+        else
+        {
+            // display the result alert
+            e.ExceptionHandled = ResultAlert.SetResultAlertReturn("Medical Service inserted successfully!", e.Exception);
+        }
+    }
+
+    private MedicalService insertedMedicalService;
+
+    protected void AddNewMedicalServiceDataSource_Inserted(object sender, LinqDataSourceStatusEventArgs e)
+    {
+        insertedMedicalService = (MedicalService)e.Result;
     }
 }
