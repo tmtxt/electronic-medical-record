@@ -15,6 +15,10 @@ public partial class AdminAccess_ViewAllUsers : System.Web.UI.Page
         {
             BindGridView();
         }
+
+        // display the redirect success alert
+        RedirectSuccessAlert.SetAlert("User created successfully",
+            RedirectSuccessConstants.RedirectSuccessAddUser);
         
     }
 

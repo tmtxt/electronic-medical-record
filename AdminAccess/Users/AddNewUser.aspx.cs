@@ -38,6 +38,10 @@ public partial class AdminAccess_AddNewUser : System.Web.UI.Page
             // add user to role
             Roles.AddUserToRole(user.UserName, RoleDropdownList.SelectedValue);
 
+            // redirect to view all users
+            Session[RedirectSuccessConstants.RedirectSuccessAddUser] = "yes";
+            Response.Redirect("ViewAllUsers.aspx");
+
             // display the result
             ResultLabel.Text = "User created successfully.";
             ResultDiv.Attributes["class"] = "alert alert-success";
